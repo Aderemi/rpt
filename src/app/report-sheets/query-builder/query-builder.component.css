@@ -87,3 +87,12 @@ td{
 .largetext{
   background-color: #ccc;
 }
+.m{
+  margin: auto 0!important;
+}
+input.search{
+  border-color: #ced4da!important;
+}
+.build{
+  border-top: 1px dashed #ccc
+}

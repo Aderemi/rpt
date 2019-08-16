@@ -85,7 +85,7 @@
                                 <label for="Connections">Connections</label>
                               <!-- </div> -->
                             <!-- <div class="col-md-12"> -->
-                                <select  id="mySelect" [(ngModel)]="connections.title" class="form-control" >
+                                <select  id="mySelect" [(ngModel)]="connections.title" class="form-control search" >
                                     <option value="">&lt;-------&gt;</option>
                                     <option *ngFor="let v of connections" [value]="v.title">{{v.title}}</option>
                                 </select>
@@ -101,7 +101,7 @@
                           <!-- </div> -->
                           <!-- <div class="col-md-8"> -->
 
-                            <input type="text" name="title" class="form-control" [(ngModel)]="que.title">
+                            <input type="text" name="title" class="form-control" [(ngModel)]="que.title" class="search">
                           <!-- </div> -->
 
                         </div>
@@ -117,7 +117,7 @@
 
                           <!-- </div> -->
                           <!-- <div class="col-md-8"> -->
-                            <textarea name="description" id="" class="form-control" [(ngModel)]="que.description"></textarea>
+                            <textarea name="description" id="" class="form-control search" [(ngModel)]="que.description"></textarea>
 
                           <!-- </div> -->
 
@@ -140,16 +140,14 @@
                         Query
                       </div>
                       <div class="col-md-2">
-                        <input type="radio" class="radio" id="manually" name="drone" [value]="manually" (click)="setradio('manually')" ngModel>
+                        <input type="radio" class="radio" id="manually" name="drone" [checked]="isManual" (click)="setradio('manually')">
                         <label class="labelradio ml-2" for="manually">Manually</label>
                       </div>
                       <div class="col-md-2">
-                        <input type="radio"  class="radio" id="builder" name="drone" [value]="builder" (click)="setradio('builder')" ngModel >
+                        <input type="radio"  class="radio" id="builder" name="drone"  [checked]="!isManual" (click)="setradio('builder')">
                         <label class="labelradio ml-2" for="builder">Use Builder</label>
                       </div>
                     </div>                 
-
-
                     <!-- <div class="row">
                       <div class="col-md-6" *ngIf="booleanVal">
                         <div class="row">
@@ -201,10 +199,6 @@
                       </div>
                        
                       </div> -->
-          
-
-
-
                   </div>
                 </div>
               </div>
@@ -212,15 +206,191 @@
 
              
               
-                  <div class="form-body" *ngIf="isSelected('manually')">
+                  <div class="form-body" *ngIf="isManual">
                     <textarea class="m-0 p-5 largetext col-md-12"  rows="12"></textarea>
                 </div>
-                  <div class="form-body" *ngIf="isSelected('builder')">
-                    <input type="text">
+
+
+                    <div class="panel-body build" *ngIf="!isManual">
+                      <div class="row">
+                        <div class="col-md-12">
+                           <h4 class="font-weight-bold pl-5">
+                              Builder
+                          </h4>
+                        </div>
+                      </div>
+                        <div class="col-sm-12 col-md-10 offset-md-1">
+                          <div class="form-body">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <div class="form-group row mr-2">
+                                      <label for="Connections">Table <sup>*</sup></label>
+                                      <select  id="mySelect" [(ngModel)]="connections.title" class="form-control search" >
+                                          <option value="">&lt;-------&gt;</option>
+                                          <option *ngFor="let v of connections" [value]="v.title">{{v.title}}</option>
+                                      </select>
+                              </div>                     
+                            </div>
+      
+                            <div class="col-md-2 m">
+                                <button class="btn btn-primary btn-block">Add extra table</button>
+                            </div>
+
+                          </div>
+      
+                          <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group row mr-2">
+                                    <label for="Connections">Column<sup>*</sup></label>
+                                    <select  id="mySelect" [(ngModel)]="connections.title" class="form-control search" >
+                                        <option value="">&lt;-------&gt;</option>
+                                        <option *ngFor="let v of connections" [value]="v.title">{{v.title}}</option>
+                                    </select>
+                              </div>                     
+                            </div>
+                            <div class="col-md-3">
+
+                                <label for="Connections">Aggregate(Optional)</label>
+                               <input type="text" class="search">
+                            </div>
+                            <div class="col-md-3">
+
+                                <label for="Connections">Alias(Optional)</label>
+                                <input type="text" class="search">
+                            </div>
+                            <div class="col-md-2 m">
+                                <button class="btn btn-primary btn-block">Save column</button>
+                            </div>
+                          </div>
+
+                          </div>
+                        </div>
+                          
+                          <div class="panel-body largetext">
+
+                          <div class="form-body row b ">
+                              <div class="col-md-2 text-right pl-0 pr-0" style="padding-top: 0.3rem;">
+                                  <h6 class="text-bold mb-0">Filter</h6>
+                              </div>
+                              <div class="col-md-6">
+                                <a class="btn btn-primary round-table-button" title="Add filter" theme="dark"  tooltip="Tooltip" placement="right" show-delay="500">+</a>
+                              </div>
+                            </div>
+
+                          </div>
+
+                          <div class="panel-body">
+
+                          <div class="row">
+                              <div class="col-sm-12 col-md-10 offset-md-1">
+                                  <div class="form-group row mr-2 col-md-10">
+                                      <label for="Connections">Group By</label>
+                                      <select  id="mySelect" [(ngModel)]="connections.title" class="form-control search" >
+                                          <option value="">&lt;-------&gt;</option>
+                                          <option *ngFor="let v of connections" [value]="v.title">{{v.title}}</option>
+                                      </select>
+                                </div>                     
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-12 col-md-10 offset-md-1">
+                                  <div class="form-group row mr-2">
+      
+                            <div class="col-md-4">
+
+                                <div class="form-group row mr-2">
+
+                                <label for="Connections">Order By</label>
+                                <select  id="mySelect" [(ngModel)]="connections.title" class="form-control search" >
+                                    <option value="">&lt;-------&gt;</option>
+                                    <option *ngFor="let v of connections" [value]="v.title">{{v.title}}</option>
+                                </select>
+                              </div> 
+                            </div>
+                            <div class="col-md-2 m">
+                              <input type="radio" class="radio" id="manually" name="drone" [checked]="isManual" (click)="setradio('manually')">
+                              <label class="labelradio ml-2" for="manually">Manually</label>
+                            </div>
+                            <div class="col-md-2 m">
+                              <input type="radio"  class="radio" id="builder" name="drone"  [checked]="!isManual" (click)="setradio('builder')">
+                              <label class="labelradio ml-2" for="builder">Use Builder</label>
+                            </div>
+                            <div class="col-md-2 m">
+                              <button class="btn btn-primary">Save Order</button>
+                            </div>
+                           
+                          </div>  
+                          </div>  
+                          </div>  
+                          
+                          <div class="row">
+                              <div class="col-sm-12 col-md-10 offset-md-1">
+                                  <div class="form-group row mr-2">
+                            <div class="col-md-4">
+                                <div class="form-group row mr-2">
+
+                              <label for="limit">Limit</label>
+                              <input type="text" class="search">
+                            </div>
+                          </div>
+                          </div>
+                          </div>
+                          </div>
+                          <!-- <div class="row">
+                            <div class="col-md-6" *ngIf="booleanVal">
+                              <div class="row">
+                                <div class="col-md-4">
+                                    <label for="table" >Table</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select (change)="Change($event)" class="form-control" [disabled] ='disable'>
+                                      <option *ngFor="let v of tables" [value]="v">{{v}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1"  *ngIf="isValues">
+                                    <i class="flaticon-add btn-outline-primary" (click)= "enable()"></i>
+                                </div>
+                              </div>
+                            </div>
+      
+                            <div class="col-md-6" *ngIf="!booleanVal">
+                              <div class="row">
+                                <div class="col-md-4">
+                                    <label for="table" >Query</label>
+                                </div>
+                                <div class="col-md-7">
+                                   <textarea name="content" id="" class="form-control"  [(ngModel)]="que.content"></textarea>
+                                </div>
+                                <div class="col-md-1"  *ngIf="isValues">
+                                    <i class="flaticon-add btn-outline-primary" (click)= "enable()"></i>
+                                </div>
+                              </div>
+                            </div>
+      
+      
+                            <div class="col-md-6" *ngIf="isShow">
+                              <div class="row">
+                                <div class="col-md-4">
+                                    <label for="select" >Table</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select class="form-control">
+                                        <option *ngFor="let v of rem" [value]="v">{{v}}</option>
+                                    </select>
+                                </div>
+      
+                                <div class="col-md-1" *ngIf="isShows">
+                                    <i class="flaticon-add btn-outline-primary"></i>
+                                </div>
+                              </div>
+      
+                            </div>
+                             
+                            </div> -->
+                      </div>
+                    
                 </div>
              
-
-            
            
             <div class="card-footer text-muted">
               <div class="row p-3">
@@ -228,11 +398,11 @@
                 <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="Cancel()"
                     type="submit">Cancel</button>
                 </div>
-                <div class="col-md-2 text-right"><button class="btn btn-secondary btn-block" (click)="populate()"
+                <div class="col-md-2 text-right"><button class="btn btn-primary btn-block" (click)="populate()"
                     type="submit">preview</button>
                 </div>
                 <div class="col-md-2 text-right">
-                  <button class="btn btn-primary btn-block" type="submit" (click)="processForm()">Save</button>
+                  <button class="btn btn-success btn-block" type="submit" (click)="processForm()">Save</button>
                 </div>
               </div>
             </div>

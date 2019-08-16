@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Response, Report, ReportConnection, ReportQueries } from '../class/report';
+import { Response, Report, ReportConnection, ReportQueries, SingleDataResponse, ReportGroup } from '../class/report';
 
 
 
@@ -22,24 +22,27 @@ export class ReportService {
   getReports(){
     return this._http.get<Response<Report>>(this.baseUrl+ '/reports');
   }
+
   getReportGroups(){
-    return this._http.get<Response<Report>>(this.baseUrl+ '/report/groups');
+    return this._http.get<Response<ReportGroup>>(this.baseUrl+ '/report/groups');
   }
 
 
   getReport(id:number){
-    return this._http.get<Response<Report>>(this.baseUrl+ '/report/' + id);
+    return this._http.get<SingleDataResponse<Report>>(this.baseUrl+ '/report/' + id);
   }
   getReportGroup(id:number){
     return this._http.get<Response<Report>>(this.baseUrl+ '/report/group/' + id);
   }
 
-
   createReport(report){
-    return this._http.post(this.baseUrl+ '/report/' + report.groupId + "/save" , report);
+    console.log(".................................................");
+    console.log(report);
+    return this._http.post(this.baseUrl+ '/report/' + report.group + '/save' , report);
   }
+
   updateReport(report){
-    return this._http.put(this.baseUrl+ '/report', report);
+    return this._http.put(this.baseUrl+ '/report/' + report.group + '/update', report);
   }
 
   deleteReport(id:number){

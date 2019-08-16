@@ -10,6 +10,9 @@ import { ReportQueries, ReportConnection } from '../../class/report';
 })
 export class QueryBuilderComponent implements OnInit {
 
+
+  drone = 'manually'
+  isManual = true;
   view;
   views;
   values = [
@@ -99,17 +102,17 @@ export class QueryBuilderComponent implements OnInit {
   
   }
   targetVal
-  handleChange($event){
-
-
-console.log("gotit")
-  }
 
   private selectedLink        
   
   setradio(e: string): void{  
   
     this.selectedLink = e;  
+    if(e == 'manually'){
+      this.isManual =  true;
+    }else{
+      this.isManual = false;
+    }
           
   }  
   

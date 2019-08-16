@@ -10,7 +10,7 @@ import { CustomService } from '../custom.service';
 import * as $ from 'jquery';
 import { ReportService } from '../service/report.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Report } from '../class/report';
+import { Report, ReportGroup } from '../class/report';
 declare const require: any;
 const jsPDF = require('jspdf');
 // require('jspdf-autotable');
@@ -41,10 +41,9 @@ export class ReportSheetsComponent implements OnInit {
   toview;
   tableWidget;
   datas;
-  reports
-  rep
-  report: Report = new Report();
-  reportgroups
+  reports: Report[];
+  report: Report;
+  reportgroups: ReportGroup[];
 
   constructor(
     //  private http:HttpClient, 
@@ -120,7 +119,7 @@ export class ReportSheetsComponent implements OnInit {
   }
   getReportGroups() {
     this.reportserv.getReportGroups().subscribe(response => {
-      this.reportgroups = response;
+      this.reportgroups = response.data;
       console.log(this.reportgroups);
     })
   }
@@ -137,22 +136,22 @@ export class ReportSheetsComponent implements OnInit {
 
   updateReport(reportId) {
     this.reportserv.getReport(reportId).subscribe((res) => {
-      this.rep = res.data
-      console.log(this.rep)
+      this.report = res.data
+      console.log(this.report)
     });
     this.toview = 1;
   }
 
   Change(event) { 
     const subValue = event.target.value;
-    this.reportgroups.data[name]= subValue;
+    this.reportgroups[name]= subValue;
     console.log(subValue)
   }
 
   processForm() {
-    console.log(this.rep)
+    console.log(this.report)
     if (this.report.id == undefined) {
-      this.reportserv.createReport(this.rep).subscribe((report) => {
+      this.reportserv.createReport(this.report).subscribe((report) => {
         this.toview = 1;
         console.log(report);
         this.ngOnInit();
@@ -160,7 +159,7 @@ export class ReportSheetsComponent implements OnInit {
         console.log(error);
       });
     } else {
-      this.reportserv.updateReport(this.rep).subscribe((report) => {
+      this.reportserv.updateReport(this.report).subscribe((report) => {
         console.log(report);
         this.toview = 1;
         this.ngOnInit();
@@ -170,7 +169,7 @@ export class ReportSheetsComponent implements OnInit {
     }
   }
   Add() {
-    this.rep = {}
+    this.report = {}
     this.toview = 1
   }
   Cancel() {

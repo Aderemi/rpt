@@ -178,7 +178,7 @@
                                 <label for="table" >Title</label>
                             </div>
                             <div class="col-md-8">
-                               <input class="form-control" type="text" [(ngModel)]="rep.title">
+                               <input class="form-control" type="text" [(ngModel)]="report.title">
                             </div>
                           </div>
                         </div>
@@ -189,7 +189,7 @@
                                 <label for="table" >Description</label>
                             </div>
                             <div class="col-md-8">
-                               <input class="form-control" type="text" [(ngModel)]="rep.description">
+                               <input class="form-control" type="text" [(ngModel)]="report.description">
                             </div>
                           </div>
                         </div>                    
@@ -203,9 +203,9 @@
                                 <label for="table" >Group ID</label>
                             </div>
                             <div class="col-md-8">
-                               <select name="name" id="" class="form-control" [(ngModel)]="reportgroups.name" (change)="Change($event)">
+                               <select name="name" id="" class="form-control" [(ngModel)]="report.group" (change)="Change($event)">
                                  <option value="">&gt;----------- &gt;</option>
-                                 <option value="item" *ngFor="let item of reportgroups.data">{{item.name}}</option>
+                                 <option value="{{item.id}}" *ngFor="let item of reportgroups">{{item.name}}</option>
                                </select>
                             </div>
                           </div>

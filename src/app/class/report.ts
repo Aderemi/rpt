@@ -1,52 +1,42 @@
 export interface Report {
-    id:number;
-    name:string;
-    title:string;
-    description: string;
-    template: string;
-    templateType: string;
-    defaultExportType: string;
-    
-}
-export class Report {
-    id:number;
-    name:string;
-    title:string;
-    description: string;
-    template: string;
-    templateType: string;
-    defaultExportType: string;
-    
+    id?:number;
+    name?:string;
+    title?:string;
+    description?: string;
+    template?: string;
+    group?: ReportGroup;
+    templateType?: string;
+    defaultExportType?: string;
 }
 
 export interface ReportConnection{
     id:number;
 
     title: string;
-            description: string;
-            databaseName: string;
-            dbms: string;
-            databaseDriver: string;
-            databaseUsername: string;
-            databasePassword: string;
-            databaseHost: string;
-            databasePort: string;
-            status: string;
-            type: string;
+    description: string;
+    databaseName: string;
+    dbms: string;
+    databaseDriver: string;
+    databaseUsername: string;
+    databasePassword: string;
+    databaseHost: string;
+    databasePort: string;
+    status: string;
+    type: string;
 }
 export class ReportConnection{
     id:number;
 
     title: string;
-            description: string;
-            databaseName: string;
-            dbms: string;
-            databaseUsername: string;
-            databasePassword: string;
-            databaseHost: string;
-            databasePort: string;
-            status: string;
-            type: string;
+    description: string;
+    databaseName: string;
+    dbms: string;
+    databaseUsername: string;
+    databasePassword: string;
+    databaseHost: string;
+    databasePort: string;
+    status: string;
+    type: string;
 }
 
 export interface ReportQueries{
@@ -70,6 +60,13 @@ export interface Response<T>{
     message: string;
 }
 
+export interface SingleDataResponse<T>{
+    status:string;
+    code:number;
+    data?: T;
+    message: string;
+}
+
 export class ReportQueries{
     id:number;
     title: string;
@@ -85,13 +82,6 @@ export class ReportQueries{
 }
 
 export interface ReportGroup{
-    id:number;
-    name:string;
-    
-}
-
-export class ReportGroup{
-    id:number;
-    name:string;
-   
+    id?:number;
+    name?:string;
 }
