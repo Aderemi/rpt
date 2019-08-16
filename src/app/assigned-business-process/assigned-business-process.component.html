@@ -1,0 +1,454 @@
+<!-- <div class="col-md-12" *ngIf="relatedTaskBusinessProcess">
+    <table id="myTable" class="table table-striped">
+    <thead>
+      <tr>
+           
+        <th>Code</th>
+        <th>Service</th>
+        
+        <th>Surfix</th>
+        <th>Sequence</th>
+        <th>Delimeter</th>
+        <th>Increment</th>
+        <th>Biz Process</th>
+        <th></th>
+
+        
+    
+              
+      </tr>
+    </thead>
+    <tbody>
+        <tr> -->
+<!-- <tr 
+      *ngFor="let cha of productBusinessProcess; let i = index" (dblclick)="modifyBizProcess(cha, modifyBusinessProcess)" (click)="setSelected(cha)" [ngClass]="{'selected' : cha === selCha}"
+      > -->
+
+<!-- <td>{{cha.serviceRef.prodCatCd}} </td>
+        <td>{{cha.serviceRef.code}} </td>
+        
+              <td>{{cha.surfix}}</td>
+              <td>{{cha.seqnce}}</td>
+              <td>{{cha.delim}}</td>
+              <td>{{cha.incrment}}</td>
+              <td>{{cha.workflowProcessSetup?.templateDesc}} </td> -->
+<!-- <td>wwwwwwwwww</td>
+              <td>wwwwwwwwww</td>
+              <td>wwwwwwwwww</td>
+              <td>wwwwwwwwww</td>
+              <td>wwwwwwwwww</td>
+              <td>wwwwwwwwww</td>
+              <td>wwwwwwwwww</td>
+              <td>
+                  <button class="btn btn-danger round-table-button">&mdash;</button>
+              </td>
+              
+                           
+      </tr>
+    </tbody>
+    </table> -->
+<!-- <button (click) = "businessProcessOperation($event)"  class="btn btn-info  usl-btn-color">Add</button> -->
+<!-- <button (click) = "businessProcessOperation($event)"  class="btn btn-info  usl-btn-color">Modify</button>
+    <button (click) = "businessProcessOperation($event)"  class="btn btn-info  usl-btn-color">Cancel</button>
+    <button (click) = "businessProcessOperation($event)"  class="btn btn-info  usl-btn-color">View</button>
+    <button (click) = "businessProcessOperation($event)"  class="btn btn-info usl-btn-color">Close</button>
+    
+    </div> -->
+
+
+
+<div class="container-fluid mt-1">
+    <div class="row py-3 px-4">
+        <div class="col-md-12">
+            <h1>Outward Bank Payment</h1>
+        </div>
+    </div>
+    <div class="row py-2 px-4">
+        <div class="col-md-12">
+            <div class="card box-shad">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3" style="border-right: 1px solid rgb(177, 177, 177);">
+                            <div class="row p-4">
+                                <h2>Tasks</h2>
+                            </div>
+                            <ul class="list-group list-group-flush list-group-tradex" style="margin-right: -15px;
+                                margin-left: -15px;">
+                                <li class="list-group-item">
+                                    <a routerLink="/product/outward-bank-payment/dashboard/basic-information"
+                                        routerLinkActive="active">Basic Information</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a routerLink="/product/outward-bank-payment/dashboard/charges"
+                                        routerLinkActive="active">Charges</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a routerLink="/product/outward-bank-payment/dashboard/currency"
+                                        routerLinkActive="active">Currency</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a routerLink="/outward-bank-payment/dashboard/configuration"
+                                        routerLinkActive="active">Configuration</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a routerLink="/product/outward-bank-payment/dashboard/milestones"
+                                        routerLinkActive="active">Milestones</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a routerLink="/product/outward-bank-payment/dashboard/control-account"
+                                        routerLinkActive="active">Control Account</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a routerLink="/product/outward-bank-payment/dashboard/business-process"
+                                        routerLinkActive="active">Business Process</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-9 mt-5" *ngIf="relatedTaskBusinessProcess">
+                            <div class="row p-3 pl-2">
+                                <div class="col-md-6">
+                                    <h5 class="text-bold">Business Process</h5>
+                                    <p>set the appropriate information for the message</p>
+                                </div>
+
+                                <div class="col-md-3 offset-md-3 pr-0">
+                                    <button class="btn btn-block btn-primary " (click)="Add()">&oplus; new
+                                        charge</button>
+                                </div>
+                            </div>
+
+                            <div class="row p-2 pl-2 mt-5">
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="xc">
+                                                <div class="panel-body">
+                                                    <table class="table alt-table table-borderless">
+                                                        <thead>
+                                                            <th>Code</th>
+                                                            <th>Service</th>
+                                                            <th>Surfix</th>
+                                                            <th>Sequence</th>
+                                                            <th>Delimeter</th>
+                                                            <th>Increment</th>
+                                                            <th>Biz Process</th>
+                                                            <th></th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- <tr *ngFor="let game of games; let i = index"(click)="setClickedRow(i)" [class.active]="i == selectedRow">
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>
+                                                                    <button
+                                                                        class="btn btn-danger round-table-button">&mdash;</button>
+                                                                </td>
+                                                            </tr> -->
+                                                            <tr *ngFor="let game of games; let i = index"
+                                                                (click)="setClickedRow(i)"
+                                                                [class.active]="i == selectedRow">
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>wwwwww</td>
+                                                                <td>
+                                                                    <button
+                                                                        class="btn btn-danger round-table-button">&mdash;
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch Test
+</button>
+<div class="modal related-task-modal fade" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content p-2">
+            <div class="modal-header related-task-modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-md-12 text-center">
+                            <h5>Assign Charges</h5>
+                        </div>
+                    </div>
+                    <div class="row mb-2 mt-2 text-center">
+                        <div class="col-md-6 offset-md-3">
+                            <input type="text" placeholder="Search by Code Description" class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="row mb-2 mt-4 p-2">
+                        <div class="col-md-10 offset-md-1 pt-2 pr-4 pl-4">
+                            <table class="table table-borderless related-task-modal-table">
+                                <thead>
+                                    <th>Code</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                </thead>
+                                <br>
+                                <tbody>
+                                    <tr>
+                                        <td>GBC</td>
+                                        <td>Pounce</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>GBC</td>
+                                        <td>Pounce</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>GBC</td>
+                                        <td>Pounce</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="related-task-pagination">
+                            <nav>
+                                <ul class="pagination pg-blue">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link">1</a></li>
+                                    <li class="page-item active">
+                                        <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer related-task-modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="col-md-10" *ngIf="!relatedTaskBusinessProcess">
+        <div class="row white-box">
+         <div class="col-md-12" >
+            
+                 <app-attach-business-process [product]="product" #attachBusinessProcess></app-attach-business-process>
+     </div>
+     </div>
+     <div class="row">        
+             <button (click) = "attachBusinessProcess.saveAssignedBusinessProcesstoDB()"  class="btn btn-info  usl-btn-color">Assign</button>       
+             <button (click) = "operationClose()"  class="btn btn-info usl-btn-color">Close</button>
+            </div>
+     </div>
+     -->
+
+<!-- Related Task Menu bar only displayed when relatedTaskSave == 1 -->
+
+<!-- <div class="col-md-2 white-box">  
+           
+      
+        <app-related-task-bar></app-related-task-bar>
+</div> -->
+
+<!-- Related Task Menu Ends -->
+
+<ng-template #modifyBusinessProcess let-c="close" let-d="dismiss">
+
+
+    <!-- <div class="white-box"> -->
+    <div class="col-md-12">
+        <div class="panel-group" role="tablist" aria-multiselectable="true">
+            <div class="panel-heading pb-0 mb-2" role="tab" id="headingBasic">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="float-left form-icon text-center mr-3">
+                            <span class="flaticon-paper  primary-color"></span>
+                        </div>
+                        <h4 class="panel-title  font-weight-bold secondary-color pt-2 mb-0">
+                            Configure Business Process
+                        </h4>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-wrapper in" aria-expanded="true">
+                <div class="panel-body">
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                        <!-- <form class="form-horizontal"> -->
+                        <div class="form-body">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-5">Product Category</label>
+                                        <div class="col-md-7">
+
+                                            <input type="text" name="code" [disabled]="true" class="form-control"
+                                                [(ngModel)]="selCha?.serviceRef.prodCatCd">
+                                            <!-- <span class="help-block" >{{error.code}}</span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-5">Service</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" [disabled]="true" name="category"
+                                                [(ngModel)]="selCha.serviceRef.code">
+                                            <!-- <span class="help-block" >{{error.swiftBic}}</span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+
+                            <!-- row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-5">Surfix</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="surfix"
+                                                [(ngModel)]="prev.surfix">
+                                            <!-- <span class="help-block" >{{error.name}}</span> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-5">Sequence</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="sequence"
+                                                [(ngModel)]="prev.seqnce">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-5">Delimeter</label>
+                                        <div class="col-md-7">
+                                            <!-- <span class="help-block" >{{error.country}}</span> -->
+                                            <input type="text" class="form-control" name="delim"
+                                                [(ngModel)]="prev.delim">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-5">Increment</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="incrment"
+                                                [(ngModel)]="prev.incrment">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="currency" class="control-label col-md-5">Business
+                                            Process</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="workflowProcessSetup"
+                                                [(ngModel)]="descr">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- </form> -->
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <div class="row p-1">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block"
+                            (click)="d('Cross click')">Cancel</button>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <button class="btn btn-primary btn-block" type="submit"
+                            (click)="c('Save Clicked')">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- </div> -->
+
+</ng-template>

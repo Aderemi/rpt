@@ -1,0 +1,69 @@
+
+<div class="row" >
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading"> Charges</div>
+            <div class="panel-wrapper collapse in" aria-expanded="true">
+                <div class="panel-body">
+                    <form >
+                        <div class="form-body">
+                           
+                                <input name="id" [(ngModel)] = "checklist.id" type="text" hidden>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for = "code" class="control-label col-md-3">Code</label>
+                                        <div class="col-md-9">
+                                            <input name="code" [(ngModel)] = "checklist.code" type="text" id="code" class="form-control" placeholder="code">
+                                        </div>
+                                         </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for = "description" class="control-label col-md-3">Description</label>
+                                        <div class="col-md-9">
+                                                <input name = "description" [(ngModel)] = "checklist.description" type="text" id="description" class="form-control" placeholder="description">
+                                        </div>
+                                        <br><br>
+                                         </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                    <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label for="requirement" class="control-label col-md-3">Requirement</label>
+                                                <div class="col-md-9">
+                                                        <input name="requirement" [(ngModel)] = "checklist.requirements" type="text" id="requirement" class="form-control" placeholder="Currency">
+                                                </div>
+                                                
+                                        </div>
+                                        </div> 
+
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="response" class="control-label col-md-3">Response</label>
+                                                    <div class="col-md-9">
+                                                            <input name="response" [(ngModel)] = "checklist.response" type="text" class="form-control" placeholder="Response">
+            
+                                                    </div>
+                                                   <br><br>
+                                                </div>
+                                            </div>
+                         
+                            </div>
+                          
+                        </div><br><br>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success"  (click)="createChecklist()"> <i class="fa fa-check"></i> Save</button>
+                            <button type="button" class="btn btn-default" (click) = "cancel()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    

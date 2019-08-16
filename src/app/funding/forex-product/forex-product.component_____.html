@@ -1,0 +1,497 @@
+<!-- the charge pop up -->
+
+
+
+<!-- charges template -->
+<ng-template #chargesTemp let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <div class="panel-heading"> CHARGES </div>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="col-md-12">
+
+
+            <div class="panel-wrapper collapse in" aria-expanded="true">
+                <div class="row">
+
+
+
+                    <div class="col-md-12">
+                        <div class="form-body">
+
+
+                            <!--/span-->
+                            <div class="col-md-12">
+
+                                <label class="control-label col-md-5">Select Product Charges</label>
+                                <!-- <ng-multiselect-dropdown [placeholder]="'Select Charges'" [data]="items" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
+                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                                </ng-multiselect-dropdown> -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click', $event)">
+            <li class="fa fa-plus"></li> Add To Product</button>
+
+    </div>
+</ng-template>
+
+<!-- currency template -->
+<ng-template #currenciesTemp let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <div class="panel-heading"> CURRENCY </div>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="col-md-12">
+
+
+            <div class="panel-wrapper collapse in" aria-expanded="true">
+                <div class="row">
+
+
+
+                    <div class="col-md-12">
+                        <div class="form-body">
+
+
+                            <!--/span-->
+                            <div class="col-md-12">
+
+                                <label class="control-label col-md-5">Select Product Currencies</label>
+                                <!-- <ng-multiselect-dropdown [placeholder]="'Select currencies'" [data]="items" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
+                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                                </ng-multiselect-dropdown> -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click', $event)">
+            <li class="fa fa-plus"></li> Add To Product</button>
+
+    </div>
+</ng-template>
+
+
+
+
+
+
+
+<!-- the accordion, dispalying the add form  -->
+
+
+<div class="container">
+        <div class="row p-4">
+          <div class="col-md-12">
+            <h1>FOREX PRODUCT</h1>
+          </div>
+        </div>
+        <div class="row px-4">
+          <div class="col-md-12">
+            <div class="card" style="border : 0; min-height: 500px; width:100%">
+              <div class="card-body form-card">
+                <form>
+                        <div class="panel-group" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingBasic">
+                                        <h4 class="panel-title">
+                                                Basic Information
+                                        </h4>
+                                    </div>
+                                    <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                                        <div class="panel-body">
+                        
+                                                <div class="col-sm-12 col-md-10 offset-md-1">
+
+                                            <div class="form-body">
+                                                <!-- <input name="id" [(ngModel)]="product.id" type="text" hidden> -->
+                        
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="code" class="control-label col-md-4">Code
+                                                            </label>
+                        
+                                                            <div class="col-md-8">
+                                                                <input name="code" [disabled]="cod" [(ngModel)]="fxProduct.code" type="text" id="code" class="form-control"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="description" class="control-label col-md-4">Description
+                                                            </label>
+                        
+                                                            <div class="col-md-8">
+                                                                <input name="description" [disabled]="des" [(ngModel)]="fxProduct.description" type="text" id="description"
+                                                                    class="form-control" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <!--/span-->
+                        
+                                                    <!--/span-->
+                                                </div>
+                        
+                                                <div class="row">
+                                                   
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label class="control-label col-md-4">Product Category</label>
+                                                            <div class="col-md-8">
+                                                                <select class="form-control" [disabled]="true" name="productCategory" [(ngModel)]="fxProduct.product.productSubCategory.productCategory"
+                                                                    [compareWith]="equals">
+                        
+                                                                    <option [ngValue]="productSubCategory.productCategory" >{{productSubCategory.productCategory.description}}</option>
+                                                                 </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label class="control-label col-md-4">Product Sub Category</label>
+                                                            <div class="col-md-8">
+                                                                <select class="form-control" name="ProductSubCategory" [(ngModel)]="fxProduct.product.productSubCategory" [compareWith] = "equals">
+                                                                        <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                        <option *ngFor="let psc of productSubCategorys" [ngValue]="psc">{{psc.description}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="code" class="control-label col-md-4">Primary Ref Scheme
+                                                            </label>
+                                                            <div class="col-md-8">
+                        
+                                                                <select name="priRefNumScheme" [disabled]="ref" [(ngModel)]="fxProduct.priRefNumScheme" class="form-control"
+                                                                    placeholder="">
+                                                                    <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                    <option *ngFor="let p of disPickListItemPry" [ngValue]="p.itemDecription">{{p.itemDecription}}</option>
+                        
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="code" class="control-label col-md-4">Temporary Ref Option
+                                                            </label>
+                                                            <div class="col-md-8">
+                        
+                                                                <select name="tempRefNoOption" [disabled]="ref" [(ngModel)]="fxProduct.tempRefNoOption" class="form-control"
+                                                                    placeholder="">
+                                                                    <option value="undefined">&lt;---&gt;</option>
+                                                                    <option value="yes">Yes</option>
+                                                                    <option value="no">No</option>
+                        
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <!--/span-->
+                                                    <!--/span-->
+                                                </div>
+                        
+                                                <div class="row">
+                                                   
+                        
+                                                    <!--/span-->
+                                                    <!--/span-->
+                                                </div>
+                        
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="code" class="control-label col-md-4">Temporary Ref Scheme
+                                                            </label>
+                                                            <div class="col-md-8">
+                        
+                                                                <select name="tempRefNoScheme" [disabled]="ref" [(ngModel)]="fxProduct.tempRefNoScheme" class="form-control"
+                                                                    placeholder="">
+                                                                    <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                    <option *ngFor="let ref of disPickListItemTemp" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+                        
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="warrantReq" class="control-label col-md-4">Warrant Required
+                                                            </label>
+                                                            <div class="col-md-8">
+                        
+                                                                <select name="warrantReq" (change)="enable($event.target.value)" [(ngModel)]="fxProduct.warrantReq" class="form-control"
+                                                                    placeholder="">
+                                                                    <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                    <option value="mandatory">Mandatory</option>
+                                                                    <option value="desirable">Desirable</option>
+                        
+                                                                    <option value="optional">Optional</option>
+                                                                    <option value="N/A">N/A</option>
+                        
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <!--/span-->
+                                                    <!--/span-->
+                                                </div>
+                        
+                        
+                        
+                                                <div class="row">
+                                                    
+                        
+                                                    <!--/span-->
+                                                    <!--/span-->
+                                                </div>
+                        
+                                                <div class="row" *ngIf="isDisabled">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="code" class="control-label col-md-4">Warrant Type
+                                                            </label>
+                                                            <div class="col-md-8">
+                        
+                                                                <select name="warrantType" [(ngModel)]="fxProduct.warrantType" class="form-control" placeholder="">
+                                                                    <option value="undefined">&lt;---&gt;</option>
+                                                                    <option value="warrant_product1">warrant_product1</option>
+                                                                    <option value="warrant_product2">warrant_product2</option>
+                        
+                        
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <!--/span-->
+                                                    <!--/span-->
+                                                </div>
+                        
+                                             
+                                                
+                        
+                                               
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="code" class="control-label col-md-4"> Foreign Curr Equi. Tracking
+                                                            </label>
+                                                            <div class="col-md-8">
+                        
+                                                                <select name="basForCurrEquiTrack" [(ngModel)]="fxProduct.basForCurrEquiTrack" class="form-control" placeholder="">
+                                                                    <option value="undefined">&lt;---&gt;</option>
+                                                                    <option value="mandatory">Mandatory</option>
+                                                                    <option value="desirable">Desirable</option>
+                        
+                                                                    <option value="optional">Optional</option>
+                                                                    <option value="N/A">N/A</option>
+                        
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="code" class="control-label col-md-4">Local Curr Equi. Tracking
+                                                            </label>
+                                                            <div class="col-md-8">
+                        
+                                                                <select name="localCurrEquiTrack" [(ngModel)]="fxProduct.localCurrEquiTrack" class="form-control" placeholder="">
+                                                                    <option value="undefined">&lt;---&gt;</option>
+                                                                    <option value="mandatory">Mandatory</option>
+                                                                    <option value="desirable">Desirable</option>
+                                                                    <option value="optional">Optional</option>
+                                                                    <option value="N/A">N/A</option>
+                        
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <!--/span-->
+                                                    <!--/span-->
+                                                </div>
+                        
+                                                <div class="row">
+                                                   
+                        
+                                                    <!--/span-->
+                                                    <!--/span-->
+                                                </div>
+                                            </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                        
+                        
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingBenInfo">
+                                        <h4 class="panel-title">
+                                                Control Information
+                                        </h4>
+                                    </div>
+                                    <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+                                        <div class="panel-body">
+                        
+                                            <div class="col-sm-12 col-md-10 offset-md-1">
+
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="code" class="control-label col-md-4">Effective Date
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="effectiveDate" [(ngModel)]="dateString" [disabled]="true" type="text" id="effectiveDate" class="form-control"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row row row">
+                                                            <label for="code" class="control-label col-md-4">Status
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <select class="form-control" [ngModel]="fxProduct.status" name="status">
+                                                                    <option>Inactive</option>
+                                                                    <option>Active</option>
+                                                                    <option>Cancelled</option>
+                                                                </select>
+                                                            </div>
+                        
+                                                        </div>
+                                                    </div>
+                        
+                                                    <!--/span-->
+                        
+                                                    <!--/span-->
+                                                </div>
+                                                <div class="row">
+                        
+                                                   
+                        
+                        
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="white-box" >
+                                    <div class="row">
+                                    <button *ngIf="modBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('modify')">
+                                    Save</button>
+                                    <button *ngIf="savBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('save')">
+                                    Save</button>
+                                    <button *ngIf="savCloBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('savenclose')">
+                                    Save &amp; Close</button>
+                                    <button *ngIf="appBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('approve')">
+                                    Approve</button>
+                                    <button *ngIf="canBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('cancel')">
+                                    Cancel</button>
+                        
+                                    <button *ngIf="cloBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('close')">
+                                    Close</button>
+                        </div>
+                                </div>
+                        
+                            </div>
+                </form>
+      
+      
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+<!-- end of the add form -->
+
+
+<!--  the charges related task starts here-->
+
+<!-- The charges related task ends here -->
+
+<!-- the currency related task is starts here -->
+
+<!--product Curency Display  -->
+
+<!-- <div class="col-md-10" *ngIf="relatedTaskNum == 3"> -->
+
+    <!-- <app-assigned-currency></app-assigned-currency>
+
+
+</div> -->
+<!-- End display product currency -->
+
+
+
+
+<!-- The currency related task ends here -->
+
+
+
+
+
+<!-- Related Task Menu bar only displayed when relatedTaskSave == 1 -->
+
+<!-- <div class="col-md-2 white-box"  id="relTask" *ngIf="relatedTaskFlag">
+
+
+
+        <app-related-task-bar [product]="product" [fxProduct] = "true" [operation]="operation"></app-related-task-bar>
+
+
+
+
+</div> -->
+
+<!-- Related Task Menu Ends -->

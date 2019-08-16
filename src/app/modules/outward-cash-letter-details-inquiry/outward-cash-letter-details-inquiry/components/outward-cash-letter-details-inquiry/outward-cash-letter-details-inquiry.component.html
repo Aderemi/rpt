@@ -1,0 +1,650 @@
+<div class="container mt-1">
+
+    <div class="row p-4">
+        <div class="col-md-12">
+          <h1>Outward Cash Letter Cheque Adviced</h1>
+        </div>
+      </div>
+
+
+<div style="float: right;width: 10px;height: 13px; margin-right: 10px;">
+    <span class="right-side-toggle">
+      <a class="waves-effect waves-light" href="{{url}}#popup">
+        <i style="margin-top: 5px;font-size: 18px;color: black;text-align: center; padding-left: 3px;"
+          class="fa  fa-cog"></i>
+      </a>
+    </span>
+  
+  </div>
+  
+  <div class="row" *ngIf="!view">
+    <div class="col-md-12 white-box ml-4">
+      <div class="panel-group" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBasic">
+              <h6 class="panel-title" style="font-weight: bold;">Basic Information</h6>
+          </div>
+          <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+            <div class="panel-body">
+  
+                <div class="col-md-10 offset-md-1">
+
+              <div class="form-body">
+                <div class="row" *ngIf="errors.length > 0">
+  
+                  <div class="col-md-6">
+                    <ul>
+  
+                      <li *ngFor="let error of errorMsg; let i = index" class="error-list">
+                        <span class='fa fa-close'></span>
+                        <i>
+                          <span (click)="setFocus(i)">{{error}}</span>
+                        </i>
+                      </li>
+                    </ul>
+                  </div>
+  
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="referenceNumber" class="control-label col-md-4">Reference &nbsp;
+                      </label>
+  
+                      <div class="col-md-8">
+                        <input name="referenceNumber" [disabled]='true' [(ngModel)]="import.referenceNumber" type="text"
+                          id="referenceNumber" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <div class="form-group row ">
+                      <label for="collectingBank" class="control-label col-md-4">Collecting Bank
+                        <span class="fa fa-search" (click)="open('Warrant Reference')"></span>
+                      </label>
+                      <div class="col-md-4">
+                          <input name="collectingBank" [(ngModel)]="import.collectingBank" type="text" id="collectingBank" class="form-control" placeholder="" style="text-align: right;">
+                      </div>
+                      <div class="col-md-4">
+                          <input name="collectingBank" [(ngModel)]="import.collectingBank" type="text" id="collectingBank" class="form-control" placeholder="" style="text-align: right;">
+                      </div>
+  
+                    </div>
+                  </div>
+  
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="product" class="col-md-4 control-label ">Product &nbsp;
+                      </label>
+                      
+                        <div class="col-md-2">
+                          <input name="product" [disabled]='true' [(ngModel)]="product" type="text" id="product"
+                            class="form-control" placeholder="">
+                        </div>
+                        <div class="col-md-3">
+                          <input name="product" [disabled]='true' [(ngModel)]="product" type="text" id="product"
+                            class="form-control" placeholder="">
+                        </div>
+                        <div class="col-md-3">
+                            <input name="product" [disabled]='true' [(ngModel)]="product" type="text" id="product"
+                              class="form-control" placeholder="">
+                          </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="warrantReference" class="control-label col-md-4">Warrant</label>
+                      <div class="col-md-8">
+                        <input type="text" name="warrantReference" class="form-control"
+                          [(ngModel)]="import.warrantReference" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="receiverReference" class="control-label col-md-4">Receiver Reference
+                      </label>
+                      <div class="col-md-8">
+                        <input name="receiverReference" [(ngModel)]="receiverReference" type="text" id="receiverReference"
+                          class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="msgDelChannel" class="control-label col-md-4">Message Deliver Channel</label>
+                      <div class="col-md-8">
+                        <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1"
+                          name="msgDelChannel" [(ngModel)]="import.msgDelChannel" [compareWith]="equals">
+                          <option value="">---Please select---</option>
+                          <option>Swift</option>
+                          <option>Telex</option>
+                          <option>Courier</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="priMsgRecipient" class="control-label col-md-4">Primary Message Recipient</label>
+                      <div class="col-md-8">
+                        <select class="form-control" data-placeholder="Choose a Category" tabindex="1"
+                          (change)="bankOrSyndicate()" name="priMsgRecipient" [(ngModel)]="import.priMsgRecipient">
+                          <option>---Please select---</option>
+                          <option>Our Bank</option>
+                          <option>Syndicate</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="cashLetterAmount" class="control-label col-md-4">Cash Letter Amount</label>
+                     <div class="col-md-4">
+                          <select class="form-control" data-placeholder="Choose a Category" tabindex="1"
+                            (change)="bankOrSyndicate()" name="cashLetterAmount" [(ngModel)]="import.cashLetterAmount">
+                            <option>---Please select---</option>
+                            <option>Our Bank</option>
+                            <option>Syndicate</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <input name="cashLetterAmount"  DigitsOnly [(ngModel)]="import.cashLetterAmount" type="text"
+                            id="cashLetterAmount" class="form-control" placeholder="">
+                        </div>                   
+                    </div>
+                  </div>
+  
+                  <!-- </div>
+                        
+                        <div class="row"> -->
+  
+  
+  
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="cashLetterDate" class="control-label col-md-4">Cash Letter Date</label>
+                      <div class="col-md-8">
+                        <input name="cashLetterDate" [ngModel]="import.cashLetterDate | date:'yyyy-MM-dd'"
+                          (ngModelChange)="import.cashLetterDate = $event" type="date" id="cashLetterDate"
+                          class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="numOfCheques" class="control-label col-md-4">Number of Cheques
+                      </label>
+                      <div class="col-md-8">
+                        <input name="numOfCheques" [(ngModel)]="numOfCheques" type="text" id="numOfCheques"
+                          class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="instructions" class="control-label col-md-4">Instructions
+                      </label>
+                      <div class="col-md-8">
+                        <textarea name="instructions" style="border-color : red" [(ngModel)]="import.instructions"
+                          rows="4" type="text" id="instructions" class="form-control" placeholder=""></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+  
+              </div>
+  
+              <div class="panel panel-default" id="goodsInfo">
+                <div class="panel-heading" role="tab" id="headingRemittanceDet">
+                  <h6 class="panel-title">
+                    <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                      href="#collapseRemittanceDet" aria-expanded="false" aria-controls="collapseRemittanceDet"
+                      style="color :#2b2b2b;font-weight: bold;">Collecting Bank</a>
+                  </h6>
+                </div>
+                <div id="collapseRemittanceDet" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingRemittanceDet">
+                  <div class="panel-body">
+                      <div class="col-md-10 offset-md-1">
+
+                      <div class="form-body">
+  
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label for="bankCode" class="control-label col-md-4">Bank Code &nbsp;
+                                  <span class="fa fa-search" (click)="wildCard('bank','headingBenaBank')"></span>
+                                </label>
+                                <div class="col-md-8">
+                                  <input name="bankCode" [(ngModel)]="import.bankCode" type="text"
+                                    id="bankCode" class="form-control" placeholder="">
+                                </div>
+      
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label for="bankName" class="control-label col-md-4">Bank Name &nbsp;
+                                </label>
+                                <div class="col-md-8">
+                                  <input name="bankName" [(ngModel)]="import.bankName" type="text"
+                                    id="bankName" class="form-control" placeholder="">
+                                </div> 
+                              </div>
+                            </div>
+                          </div>
+  
+                          <div class="row">   
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label for="bankLocation" class="control-label col-md-4">Bank Location
+                                </label>
+                                <div class="col-md-8">
+                                  <input name="bankLocation" [(ngModel)]="import.bankLocation" type="text"
+                                    id="bankLocation" class="form-control" placeholder="">
+                                </div>   
+                              </div>
+                            </div>
+  
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="bankAddress" class="control-label col-md-4">Bank Address
+                                  </label>
+                                  <div class="col-md-8">
+                                    <textarea name="bankAddress" [(ngModel)]="import.bankAddress" rows="4"
+                                      type="text" id="bankAddress" class="form-control" placeholder=""></textarea>
+                                  </div>  
+                                </div>
+                              </div>
+                          </div>    
+                        </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+  
+              <div class="panel panel-default" id="benInfo">
+                <div class="panel-heading" role="tab" id="headingBenInfo">
+                  <h6 class="panel-title">
+                    <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                      href="#collapseBenInfo" aria-expanded="false" aria-controls="collapseBenInfo"
+                      style="color :#2b2b2b; font-weight: bold;">Corresponding Bank Infomation </a>
+                  </h6>
+                </div>
+                <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingBenInfo">
+                  <div class="panel-body">
+                      <div class="col-md-10 offset-md-1">
+
+                    <div class="form-body">
+  
+                      <div class="row">
+                         <div class="col-md-6">
+                          <div class="form-group row">
+                            <label for="correspondingBank" class="control-label col-md-4">Corresponding Bank
+                            </label>
+                            <div class="col-md-8">
+                              <select class="form-control" data-placeholder="Choose a Category" tabindex="1"
+                                name="correspondingBank" [(ngModel)]="import.correspondingBank">
+                                <option value="">---Please select---</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="nostroAccountNum" class="control-label col-md-4">Nostro Account Number
+                                  <span class="fa fa-search" (click)="open('Warrant Reference')"></span>
+                                </label>
+                                  <div class="col-md-3">
+                                    <input type="text" name="nostroAccountNum" class="form-control"
+                                      [(ngModel)]="import.nostroAccountNum" id="nostroAccountNum" placeholder="">
+                                  </div>
+                                  <div class="col-md-5">
+                                    <input type="text" name="nostroAccountNum" class="form-control"
+                                      [(ngModel)]="import.nostroAccountNum" id="nostroAccountNum" placeholder="">
+                                  </div>                                   
+                              </div>
+                        </div>
+                    
+                  </div>
+                        
+                      </div>                   
+                    </div>
+                  </div>
+                </div>
+                </div>
+  
+  
+  
+              </div>
+  
+              <div class="panel panel-default" id="currencyReporting">
+                  <div class="panel-heading" role="tab" id="headingCurrReporting">
+                    <h6 class="panel-title">
+                      <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                        href="#collapseCurrReporting" aria-expanded="false" aria-controls="collapseCurrReporting"
+                        style="color :#2b2b2b;font-weight: bold;">Currency Reporting</a>
+                    </h6>
+                  </div>
+                  <div id="collapseCurrReporting" class="panel-collapse collapse show" role="tabpanel"
+                    aria-labelledby="headingCurrReporting">
+                    <div class="panel-body">
+                        <div class="col-md-10 offset-md-1">
+
+                      <div class="form-body">
+  
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="baseFgnEquiRateCurr" class="control-label col-md-4">Base Foreign Currency equiv/rate</label>
+                              <div class="col-md-4">
+                                <select class="col-md-9" class="form-control" data-placeholder="Choose a Category"
+                                  tabindex="1" name="baseFgnEquiRateCurr" [(ngModel)]="import.baseFgnEquiRateCurr"
+                                  [compareWith]="equals"> 
+                                  <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>  
+                                </select> 
+                              </div>
+                              <div class="col-md-4">
+                                <input name="baseFgnEquiRateCurr" [disabled]="true" [(ngModel)]="import.baseFgnEquiRateCurr"
+                                  style="text-align: right;" type="text" id="" class="form-control" placeholder="">
+                              </div>
+                            </div>
+                          </div>
+  
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <div class="col-md-4">
+                                <input name="baseFgnEquiRateCurr" [disabled]="true" type="text" id="baseFgnEquiRateCurr"
+                                  [(ngModel)]="import.baseFgnEquiRateCurr" class="form-control" style="text-align : right;"
+                                  placeholder="">
+                              </div>
+  
+                              <div class="col-md-4">
+                                  <button class="btn btn-primary btn-block"  style="padding: 5px;">Exchange Rate</button>
+                              </div>
+    
+                            </div>
+                          </div> 
+                        </div>
+  
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="localEquiRateCurr" class="control-label col-md-4">Local Currency equiv /rate</label>
+                              <div class="col-md-4">
+                                <select class="col-md-9" class="form-control" data-placeholder="Choose a Category"
+                                  tabindex="1" name="localEquiRateCurr" [(ngModel)]="import.localEquiRateCurr"
+                                  [compareWith]="equals">
+                                  <option value="0">---Please select---</option>
+                                  <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option> 
+                                </select>  
+                              </div>
+  
+                              <div class="col-md-4">
+                                <input name="localEquiRateCurr" [disabled]="true" style="text-align: right;"
+                                  [(ngModel)]="import.localEquiRateCurr" type="text" id="" class="form-control"
+                                  placeholder="">
+                              </div> 
+                            </div>
+                          </div>
+  
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <div class="col-md-4">
+                                <input name="localEquiRateCurr" [disabled]="true" type="text" id="localEquiRateCurr"
+                                  class="form-control" [(ngModel)]="import.localEquiRateCurr" style="text-align : right;"
+                                  placeholder="">
+                              </div>
+  
+                              <div class="col-md-4">
+                                  <button class="btn btn-primary btn-block"  style="padding: 5px;">Exchange Rate</button>
+                              </div>
+    
+                            </div>
+                          </div>  
+                        </div>  
+  
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+                </div>
+  
+                <div class="panel panel-default" id="partyDetails">
+                    <div class="panel-heading" role="tab" id="headingParty">
+                      <h6 class="panel-title">
+                        <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                          href="#collapseParty" aria-expanded="false" aria-controls="collapseParty"
+                          style="color :#2b2b2b;font-weight: bold;">Cheque(s)
+                          </a>
+                      </h6>
+                    </div>
+                    <div id="collapseParty" class="panel-collapse collapse show" role="tabpanel"
+                      aria-labelledby="headingParty">
+                      <div class="panel-body">
+      
+      
+                        <br>
+                        <div class="form-body" *ngIf="setChildren">
+                          <!-- <app-party-categories [instrumentRegister]="instrumentRegister"></app-party-categories> -->
+      
+      
+      
+      
+                        </div>
+                      </div>
+                    </div>
+      
+      
+                  </div>
+      
+                  <div class="panel panel-default" id="documents">
+                    <div class="panel-heading" role="tab" id="headingDocuments">
+                      <h6 class="panel-title">
+                        <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                          href="#collapseDocuments" aria-expanded="false" aria-controls="collapseDocuments"
+                          style="color :#2b2b2b;font-weight: bold;">Additional Parties</a>
+                      </h6>
+                    </div>
+                    <div id="collapseDocuments" class="panel-collapse collapse show" role="tabpanel"
+                      aria-labelledby="headingDocuments">
+                      <div class="panel-body">
+      
+                        <br>
+                        <div class="form-body" *ngIf="setChildren">
+      
+                          <!-- <app-documents [instrumentRegister]="instrumentRegister"></app-documents> -->
+                        </div>
+                      </div>
+                    </div>
+      
+      
+                  </div>
+      
+                  <div class="panel panel-default" id="documents">
+                      <div class="panel-heading" role="tab" id="headingDocuments">
+                        <h6 class="panel-title">
+                          <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapseDocuments" aria-expanded="false" aria-controls="collapseDocuments"
+                            style="color :#2b2b2b;font-weight: bold;">Documents</a>
+                        </h6>
+                      </div>
+                      <div id="collapseDocuments" class="panel-collapse collapse show" role="tabpanel"
+                        aria-labelledby="headingDocuments">
+                        <div class="panel-body">
+        
+                          <br>
+                          <div class="form-body" *ngIf="setChildren">
+        
+                            <!-- <app-documents [instrumentRegister]="instrumentRegister"></app-documents> -->
+                          </div>
+                        </div>
+                      </div>
+        
+        
+                    </div>
+      
+      
+                  <div class="panel panel-default" id="charges">
+                    <div class="panel-heading" role="tab" id="headingCharges">
+                      <h6 class="panel-title">
+                        <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                          href="#collapseCharges" aria-expanded="false" aria-controls="collapseCharges"
+                          style="color :#2b2b2b;font-weight: bold;">Checklist</a>
+                      </h6>
+                    </div>
+                    <div id="collapseCharges" class="panel-collapse collapse show" role="tabpanel"
+                      aria-labelledby="headingCharges">
+                      <div class="panel-body" *ngIf="setChildren">
+                        <!-- <app-charges [instrumentRegister]="instrumentRegister"></app-charges> -->
+      
+                      </div>
+                    </div>
+      
+      
+                  </div>
+      
+  
+              <div class="panel panel-default" id="condition">
+                <div class="panel-heading" role="tab" id="headingCorrBank">
+                  <h6 class="panel-title">
+                    <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                      href="#collapseCorrBank" aria-expanded="false" aria-controls="collapseCorrBank"
+                      style="color :#2b2b2b;font-weight: bold;">Control Infomation </a>
+                  </h6>
+                </div>
+                <div id="collapseCorrBank" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingCorrBank">
+                  <div class="panel-body">
+                      <div class="col-md-10 offset-md-1">
+
+                    <div class="form-body">
+  
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label for="servicingBranch" class="control-label col-md-4">Servicing Branch
+                            </label>
+                            <div class="col-md-8">
+                              <input name="servicingBranch" [(ngModel)]="import.servicingBranch" type="text" id="servicingBranch"
+                                class="form-control" placeholder="">
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label for="homeBranch" class="control-label col-md-4">Home Branch
+                            </label>
+                            <div class="col-md-8">
+                              <input name="homeBranch" [(ngModel)]="import.homeBranch"
+                                style="text-align: right;" type="text" id="homeBranch" class="form-control"
+                                placeholder="">
+                            </div>
+  
+                          </div>
+                        </div>
+                      </div>
+  
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label for="relationshipManagement" class="control-label col-md-4">Relationship Management
+                            </label>
+                            <div class="col-md-8">
+                              <input name="relationshipManagement" [(ngModel)]="import.relationshipManagement" rows="4"
+                                type="text" id="relationshipManagement" class="form-control" placeholder="">
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div class="col-md-6">
+                           <div class="form-group row">
+                            <label for="effectiveDate" class="control-label col-md-4">Effective Date</label>
+                            <div class="col-md-8">
+                              <input name="effectiveDate" [ngModel]="import.effectiveDate | date:'yyyy-MM-dd'"
+                                (ngModelChange)="import.effectiveDate = $event" type="date" id="effectiveDate"
+                                class="form-control" placeholder="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label for="status" class="control-label col-md-4">Status
+                            </label>
+                            <div class="col-md-8">
+                                <input name="status" [(ngModel)]="import.status" type="text"
+                                  id="status" class="form-control" placeholder="" disabled>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+          <div class="panel panel-default" style="padding-bottom:50px;">
+              <div class="panel-heading" role="tab" id="headingBasic">
+              </div>
+              <div class="panel-body">
+                  <div class="row px-4">
+                      <div class="col-md-8"></div>
+                      <div class="col-md-2 text-right"><button
+                              class="btn btn-outline-primary btn-block" type="submit">Cancel</button>
+                      </div>
+                      <div class="col-md-2 text-right">
+                          <button class="btn btn-primary btn-block" type="submit">Save</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </div>
+          <!-- <div class="white-box">
+              <div class="row">
+                <button type="button" class="btn btn-info usl-btn-color" (click)="save()">Save</button>
+                <button type="button" class="btn btn-info usl-btn-color" (click)="submit()">Submit</button>
+                <button type="button" class="btn btn-info usl-btn-color" (click)="cancel()">Cancel</button>
+              </div>
+            </div> -->
+        </div>
+
+      </div>
+  
+  
+  
+  
+   

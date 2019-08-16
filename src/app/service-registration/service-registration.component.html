@@ -1,0 +1,239 @@
+<div class="container-fluid mt-1">
+        <div class="row p-3 pl-4">
+            <div class="col-md-12">
+            <h1 class="text-bold">SERVICE REGISTRATION</h1>
+          </div>
+      </div>
+      <div class="row p-2 pl-4">
+          <div class="col-md-12">
+              <div class="panel">
+                  <div class="card-body">
+                <form>
+                  <div class="panel-group" role="tablist" aria-multiselectable="true">
+                    <div class="panel-default">
+                      <div class="panel-heading" role="tab" id="headingBasic">
+                          <div class="float-left form-icon text-center mr-3">
+                              <span class="flaticon-paper  primary-color"></span>
+                            </div>
+                            <h4 class="panel-title font-weight-bold secondary-color mb-0">
+                              Basic Information
+                            </h4>
+                            <p class="subtitle mb-0  ">Please fill in the appropriate data for new instrument</p>
+                          </div>
+                    <div class="panel-body">
+                      <div class="form-body">
+                        <div class="row">
+                          <div class="col-sm-12 col-md-10 offset-md-1">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group form-row">
+                                  <label for="code" class="control-label col-md-4">Operative/Template &nbsp;
+    
+                                  </label>
+    
+                                  <div class="col-md-8">
+                                    <select class="form-control" (click)="customerDiv()" [ngClass]="" name="operativeTemplate" [(ngModel)]="registration.operativeTemplate" [compareWith]="equals">
+                                      <option>Operative</option>
+                                      <option>Customer Template</option>
+                                      <option>General Template</option>
+                                  </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                               <div class="form-group row" style="flex-wrap:nowrap;">
+                                  <label class="control-label col-md-4">Product  &nbsp;
+    
+                                      <!-- <span class="fa fa-search" (click)="open('product')"></span> -->
+                                      <span><img src="../../assets/icons/info.svg" data-toggle="tooltip" data-placement="top" title="click on the icon to search for product" alt="info"></span>
+    
+                                  </label>
+                                  <div class="col-md-8">
+                                      <input type="text" class="form-control" [disabled]="true" [(ngModel)]="registration.product.code" [ngClass]="" name="product">
+                                  </div>
+                                  <div class="col-md-1" style="padding: 0;">
+                                    <img src="../../assets/icons/Group 135.svg"  (click)="open('product')" alt="add">
+
+                                  </div>
+                                  <!-- <div class="col-md-5">
+                                      <select class="form-control" [(ngModel)]="registration.product" (change)="setProductCatCode()" [compareWith]="equals">
+    
+                                          <option *ngFor="let p of products" [ngValue]="p">{{p.description}}</option>
+                                      </select>
+    
+                               
+                                  </div> -->
+                              </div>
+    
+                              </div>
+                            </div>
+                          </div>
+    
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12 col-md-10 offset-md-1">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="control-label col-md-4">Product Sub-Category</label>
+                                  <div class="col-md-3">
+                                      <input type="text" class="form-control" [disabled]="true" [(ngModel)]="registration.product.productSubCategory.code">
+    
+                                  </div>
+                                  <div class="col-md-5">
+                                      
+                                      <input type="text" class="form-control" [disabled]="true" [(ngModel)]="registration.product.productSubCategory.description" name="productSubCategory">
+                                  </div>
+    
+                              </div>
+                              </div>
+                              <div class="col-md-6">
+                               
+                                <div class="form-group form-row">
+                                  <label class="control-label col-md-4">Service Amount</label>
+                                  <div class="col-md-3">
+                                      <select class="form-control" [ngClass]="" name="serviceAmountCode" [(ngModel)]="registration.serviceAmountCode">
+                                          <option value="">&lt;---&gt;</option>
+                                          <option *ngFor="let cc of currencies" [ngValue]="cc">{{cc.code}}</option>
+    
+                                      </select>
+                                  </div>
+                                  <div class="col-md-5">
+                                      <input type="text" name="serviceAmount" (blur)="transformServiceAmt()" class="form-control" [(ngModel)]="registration.serviceAmount"
+                                          placeholder="" style="text-align:  right;">
+                                      <!-- <span class="help-block" >{{error.code}}</span> -->
+                                  </div>
+                              </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+    
+                      </div>
+                    </div> 
+                   
+    
+                  </div>
+
+                  
+                  <div class="panel-default">
+                        <div class="panel-heading" role="tab" id="headingBasic">
+                           <div class="float-left form-icon text-center mr-3">
+                               <span class="flaticon-paper  primary-color"></span>
+                             </div>
+                             <h4 class="panel-title font-weight-bold secondary-color pt-2">Control Information </h4>
+                           </div>
+                         <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+                             <div class="panel-body">
+             
+                                 <div class="col-md-10 offset-md-1">
+             
+                                 <div class="form-body">
+   
+                                     <div class="row">
+                                         <div class="col-md-6">
+                                             <div class="form-group row">
+                                                 <label for="servicingBranch" class="control-label col-md-4">Servicing Branch</label>
+     
+                                                 <div class="col-md-8">
+                                                         <select class="form-control" name="servicingBranch" [(ngModel)]="registration.servicingBranch">
+                                                                 <option *ngFor="let br of branches" [ngValue]="br.name">{{br.name}}</option>
+                                                           </select>
+                                                    
+                                                 </div>
+     
+     
+                                             </div>
+                                         </div>
+                                         <div class="col-md-6">
+                                             <div class="form-group row">
+                                                 <label for="homeBranch" class="control-label col-md-4">Home Branch</label>
+     
+                                                 <div class="col-md-8">
+                                                         <select class="form-control" name="homeBranch" [(ngModel)]="registration.homeBranch">
+                                                                 <option *ngFor="let br of branches" [ngValue]="br.name">{{br.name}}</option>
+                                                             </select>
+                                                 </div>
+     
+     
+                                             </div>
+                                         </div>
+     
+     
+                                     </div>
+   
+                                     <div class="row">
+                                         <div class="col-md-6">
+                                             <div class="form-group row">
+                                                 <label for="servicingBranch" class="control-label col-md-4">Relationship Management</label>
+     
+                                                 <div class="col-md-8">
+                                                     <input name="relatioinshipMgt" [(ngModel)]="registration.relatioinshipMgt" type="text" id="relationshipManagement" class="form-control"
+                                                         placeholder="">
+                                                 </div>
+     
+     
+                                             </div>
+                                         </div>
+                                         <div class="col-md-6">
+                                             <div class="form-group row">
+                                                 <label for="effectiveDate" class="control-label col-md-4">Effective Date</label>
+     
+                                                 <div class="col-md-8">
+                                                     <input name="effectiveDate" type="date" [ngModel] = "registration.effectiveDate | date:'yyyy-MM-dd'" (ngModelChange)="registration.effectiveDate = $event" id="effectiveDate" class="form-control"
+                                                         placeholder="">
+                                                 </div>
+     
+     
+                                             </div>
+                                         </div>
+     
+     
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-md-6">
+                                             <div class="form-group row">
+                                                 <label for="code" class="control-label col-md-4">Status
+                                                 </label>
+                                                 <div class="col-md-8">
+                                                     <select class="form-control" [ngModel]="inwardCustomerPaymentProduct.status"
+                                                         name="staus" [disabled]="sta">
+                                                         <option>Inactive</option>
+                                                         <option>Active</option>
+                                                         <option>Cancelled</option>
+                                                     </select>
+                                                 </div>
+             
+                                             </div>
+                                         </div>
+                                     </div>
+             
+                                 </div>
+                             </div>
+                         </div>
+                         </div>
+                     </div>
+   
+                     <div class="card-footer text-muted">
+                           <div class="row px-4">
+                             <div class="col-md-8"></div>
+                             <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="cancel()"
+                                 type="submit">Cancel</button>
+                             </div>
+                             <div class="col-md-2 text-right">
+                               <button class="btn btn-primary btn-block" type="submit" (click)="save()">Register</button>
+                             </div>
+                           </div>
+                         </div>
+   
+                
+                </div>
+              </form>
+    
+    
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </div>

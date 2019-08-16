@@ -1,0 +1,78 @@
+<div class="col-sm-12">
+    <div class="white-box">
+  
+  
+        <h3 class="box-title m-b-0">Collateral Types</h3>
+  
+        <hr class="m-t-0 m-b-20">
+  
+  
+        <form>
+            <div class="form-body">
+  
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="code" class="control-label col-md-5">Code</label>
+                            <div class="col-md-7">
+                                <input name="code" [(ngModel)]="collateraltype.code" type="text" id="code" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/span-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name" class="control-label col-md-5">Description</label>
+                            <div class="col-md-7">
+                                <input name="name" [(ngModel)]="collateraltype.description" type="text" id="description" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="form-actions">
+                  <button type="submit" class="btn btn-secondary usl-btn-color-default" (click)="search()">
+                    <i class="fa fa-search"></i> Search</button>
+                            </div>
+                   </div>
+                    
+                </div>
+                <!--/row-->
+                
+  
+            </div>   
+        </form>
+        <hr class="m-t-0 m-b-20">
+        
+        <div class="table-responsive">
+            <table id="myTable" class="table">
+                <thead>
+                    <tr>
+                       <th>#</th>
+                        <th>Code</th>
+                        <th>Description</th>
+                        <th>Status</th>
+  
+  
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let coltype of Collateraltypes" (click)="set($event, coltype)" [ngClass]="{'selected' : coltype === selectedCollateraltype}">
+                          <td>{{coltype.id}}</td>
+                        <td>{{coltype.code}}</td>
+                        <td>{{coltype.description}}</td>
+                        <td>{{coltype.status}}</td>
+                    </tr>
+  
+  
+                </tbody>
+            </table>
+            <button routerLink="/systemparameter" class="btn btn-info usl-btn-color">Add</button>
+            <button routerLink="/collateraltype" class="btn btn-info usl-btn-color">Add</button>
+            <button (click)="editCollateraltype()" class="btn btn-info usl-btn-color">Modify</button>
+            <button (click)="openConfirmationDialog()" class="btn btn-info usl-btn-color">Delete</button>
+        </div>
+    </div>
+  </div>
+  

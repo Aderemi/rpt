@@ -1,0 +1,260 @@
+
+<!-- <input type="button" class="btn btn-info" value="disable all elements" (click)="f()"> -->
+
+<!-- view for table -->
+
+<div class="container-fluid mt-1" *ngIf="view === 0">
+    <div class="row p-3 pl-4">
+      <div class="col-md-6">
+        <h1 class="text-bold">Report Connection Table</h1>
+      </div>
+  
+      <div class="col-md-2 offset-md-4 pr-0">
+        <button class="btn btn-block btn-primary " (click)="configure()"><i class="flaticon-add mr-2"></i>New</button>
+      </div>
+    </div>
+    <div class="row p-2 pl-4 mt-5">
+      <div class="col-md-12">
+        
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel">
+              <div class="panel-body">
+                <table class="table table-borderless table-align">
+                  <thead>
+                     
+                    <tr>
+                      <th>Title</th>
+                      <th>Description</th>
+                      <th>Database Name</th>
+                      <th>DBMS</th>
+                      <!-- <th>Database Driver</th> -->
+                      <th>Database Host</th>
+                      <th>Database Port</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                      <th></th>
+                      <!-- <th>Type</th> -->
+          
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of connections">
+                        <td>{{item.title}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.databaseName}}</td>
+                        <td>{{item.dbms}}</td>
+                        <!-- <td>{{item.databaseDriver}}</td> -->
+                        <td>{{item.databaseHost}}</td>
+                        <td>{{item.databasePort}}</td>
+                        <td>{{item.status}}</td>
+                        <td><a (click)="updateReport(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
+                        <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
+                        <!-- <td>{{item.type}}</td> -->
+                    </tr>                   
+          
+                </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- view for form new -->
+  
+  <div class="container-fluid mt-1" *ngIf="view === 1" id="example">
+    <div class="row p-3 pl-4">
+      <div class="col-md-12">
+        <h1 class="text-bold">Report Connection Form</h1>
+      </div>
+      
+    </div>
+  
+    <div class="col-md">
+      <div class="card panel">
+        <div class="card-body form-card">
+          <!-- <form> -->
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+              <div class="panel-default">
+                <div class="panel-heading row p-4" role="tab" id="headingBasic">
+                  <div class="col-md-10">
+
+                    <div class="float-left form-icon text-center mr-3">
+                      <span class="flaticon-paper  primary-color"></span>
+                    </div>
+                    <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                      Report Connection Details
+                    </h4>
+                    <p class="subtitle mb-0  ">Please fill in the appropriate data </p>
+  
+                  </div>
+                 
+                  <div class="col-md-2 text-right">
+                    <button class="btn btn-success btn-block" type="submit" (click)="Save()">Test</button>
+                  </div>
+
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingBasic">
+                  <div class="panel-body">
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="form-body">
+  
+                      
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Title</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input class="form-control dis" type="text"  name="title" [(ngModel)]="conn.title">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Description</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input class="form-control dis" type="text"   name="description" [(ngModel)]="conn.description">
+                            </div>
+                          </div>
+                        </div>                    
+                         
+                        </div>
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Database Name</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input class="form-control dis" type="text"   name="databaseName" [(ngModel)]="conn.databaseName">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >DBMS</label>
+                            </div>
+                            <div class="col-md-8">
+                               <select name="dbms" [(ngModel)]="conn.dbms" class="form-control" (change)="Change($event)" >
+                                 <option value=""> &gt;--------&gt;</option>
+                                 <option *ngFor="let v of dbms.data" [value]="v">{{v}}</option>
+                               </select>
+                            </div>
+                          </div>
+                        </div>                    
+                         
+                        </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Database Username</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input class="form-control dis" type="text"   name="databaseUsername" [(ngModel)]="conn.databaseUsername">
+                            </div>
+                          </div>
+                        </div>                    
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Database Password</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input class="form-control dis" type="text"   name="databasePassword" [(ngModel)]="conn.databasePassword">
+                            </div>
+                          </div>
+                        </div>                    
+                         
+                        </div>
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Database Host</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input class="form-control dis" type="text"   name="databaseHost" [(ngModel)]="conn.databaseHost">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Database Port</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input class="form-control dis" type="text"   name="databasePort" [(ngModel)]="conn.databasePort">
+                            </div>
+                          </div>
+                        </div>                    
+                         
+                        </div>
+                      <!-- <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Status</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input class="form-control dis" type="text" name="status" [(ngModel)]="conn.status">
+                            </div>
+                          </div>
+                        </div>                       
+ 
+                        </div>  -->
+                        <div class="row">
+                          <div class="col-md-2">
+                              Status
+                          </div>
+                          <div class="col-md-1">
+                              <label class="switch">
+                                  <input type="checkbox" checked> 
+                                  <span class="slider round"></span>
+                                </label>      
+                          </div>
+                          Enabled   
+                         
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+              <div class="card-footer text-muted">
+                <div class="row p-3">
+                  <div class="col-md-8"></div>
+                  <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="Cancel()"
+                      type="submit">Cancel</button>
+                  </div>
+                 
+                  <div class="col-md-2 text-right">
+                    <button class="btn btn-primary btn-block" type="submit" (click)="processForm()">Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>

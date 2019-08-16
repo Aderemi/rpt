@@ -1,0 +1,531 @@
+<!-- view for table -->
+<!-- <div class="col-sm-12" *ngIf="view === 0">
+    <div class="white-box">
+      <h3 class="box-title m-b-0">Notification Type </h3>
+      <div class="form-body">
+        <hr class="m-t-0 m-b-40">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label col-md-4">Code</label>
+              <div class="col-md-8">
+                <input type="text" name="" class="form-control" [(ngModel)]="searchNotificationType.code">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label col-md-4">Status</label>
+              <div class="col-md-8">
+                <select class="col-md-8" class="form-control" tabindex="1" name="" [(ngModel)]="searchNotificationType.status">
+                  <option value="">&lt;---&gt;</option>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select> 
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="col-md-8">
+                <button class="btn btn-secondary usl-btn-color-default" type="button" (click)="search()">
+                  <i class="fa fa-search"></i> Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="m-t-0 m-b-40">
+      </div>
+      <br />
+      <div class="table-responsive">
+        <table id="myTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let notType of notificationTypes" (click)="set($event, notType)" [class.active]="notType === notificationType">
+              <td>{{notType.code}}</td>
+              <td>{{notType.description}}</td>
+              <td>{{notType.Category}}</td>
+              <td>{{notType.status}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button (click)="Add()" class="btn btn-info usl-btn-color">Add</button>
+        <button (click)="edit()" class="btn btn-info usl-btn-color">Modify</button>
+        <button (click)="dDialog()" class="btn btn-info usl-btn-color">Delete</button>
+      </div>
+    </div>
+  </div> -->
+
+<!-- view for table new -->
+
+<div class="container-fluid mt-1" *ngIf="view === 0">
+  <div class="row p-3 pl-4">
+    <div class="col-md-6">
+      <h1 class="text-bold">Notification Type</h1>
+    </div>
+
+    <div class="col-md-2 offset-md-4 pr-0">
+      <button class="btn btn-block btn-primary " (click)="Add()">Add</button>
+    </div>
+  </div>
+  <div class="row p-2 pl-4 mt-5">
+    <div class="col-md-12">
+      <div class="row mb-2">
+        <div class="form-group col-md-3 pr-0 mb-0">
+          <input type="text" [(ngModel)]="searchNotificationType.code" class="form-control search"
+            placeholder="Search by code" id="notificationCategory">
+        </div>
+        <div class="form-group col-md-3 pr-0 mb-0">
+          <input type="text" [(ngModel)]="searchNotificationType.status" [ngClass]="" name=""
+            class="form-control search" placeholder="Search by status" id="status">
+        </div>
+        <div class="col-md-1 pr-0 mb-0">
+          <button class="btn btn-block btn-success hover-raise" (click)="search()">Search</button>
+        </div>
+        <div class="form-group col-md-2 offset-md-3 mb-0">
+          <div class="row">
+            <div class="col-md-12 text-right">
+              <label class="pr-2">Showing</label>
+              <select name="" id="">
+                <option value="">5</option>
+                <option value="">10</option>
+                <option value="">15</option>
+                <option value="">20</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel">
+            <div class="panel-body">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let notType of notificationTypes" (click)="set($event, notType)"
+                    [class.active]="notType === notificationType">
+                    <td>{{notType.code}}</td>
+                    <td>{{notType.description}}</td>
+                    <td>{{notType.Category}}</td>
+                    <td>{{notType.status}}</td>
+                    <td><button class="btn-outline-primary">view</button></td>
+                    <td>
+                      <div class="dropdown">
+                        <img src="/assets/three-dots-more-indicator.svg" alt="Ellipse"
+                          class=" btn secondary dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <a class="dropdown-item" (click)="edit()">Edit</a>
+                          <a class="dropdown-item" (click)="dDialog()">Delete</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="clearfix p-2">
+            <p class="text-secondary ml-1 float-left">20 records found</p>
+            <div class="float-right">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination pg-blue">
+                  <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link">1</a></li>
+                  <li class="page-item active">
+                    <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- view for form -->
+<!-- <div class="col-md-12" *ngIf="view === 1">
+  <div class="panel-group" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingBasic">
+        <h4 class="panel-title">
+          <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic"
+            aria-expanded="false" aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Notification
+            Type
+          </a>
+        </h4>
+      </div>
+      <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+        <div class="panel-body">
+          <div class="form-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="code" class="control-label col-md-4">Code
+                  </label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" [(ngModel)]="notificationType.code" name="code">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="code" class="control-label col-md-4">Description
+                  </label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" [(ngModel)]="notificationType.description" [ngClass]=""
+                      name="description">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Category</label>
+                  <div class="col-md-8">
+                    <select class="col-md-8" class="form-control" tabindex="1" name="category"
+                      [(ngModel)]="notificationType.category">
+                      <option value="">&lt;---&gt;</option>
+                      <option *ngFor="let cat of notificationCategories" [ngValue]="cat.description">{{cat.description}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="code" class="control-label col-md-4">Primary Object
+                    <span class="fa fa-search" (click)="open('Primary Object')"></span>
+                  </label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" [(ngModel)]="notificationType.primaryObject" [ngClass]=""
+                      name="primaryObject">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Recipient Category</label>
+                  <div class="col-md-8">
+                    <select class="col-md-8" class="form-control" tabindex="1" name="category"
+                      [(ngModel)]="notificationType.category">
+                      <option value="">&lt;---&gt;</option>
+                      <option *ngFor="let recipientCat of recipientCategory" value="recipientCat">{{recipientCat}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Priority</label>
+                  <div class="col-md-8">
+                    <select class="col-md-8" class="form-control" tabindex="1" name="priority"
+                      [(ngModel)]="notificationType.priority">
+                      <option value="">&lt;---&gt;</option>
+                      <option *ngFor="let p of priority" value="p">{{p}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Ad Hoc Generation</label>
+                  <div class="col-md-8">
+                    <select class="col-md-8" class="form-control" tabindex="1" name="adHocGeneration"
+                      [(ngModel)]="notificationType.adHocGeneration">
+                      <option value="">&lt;---&gt;</option>
+                      <option *ngFor="let  of adhocGeneration" value="adHocGen">{{adHocGen}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingBenInfo">
+        <h4 class="panel-title">
+          <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBenInfo"
+            aria-expanded="false" aria-controls="collapseBenInfo" style="color :#2b2b2b; font-weight: bold;">Control
+            Information </a>
+        </h4>
+      </div>
+      <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+        <div class="panel-body">
+          <div class="form-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="additionalAmtCov" class="control-label col-md-4">Effective Date &nbsp;
+                  </label>
+                  <div class="col-md-8">
+                    <input name="effectiveDate" [ngModel]="notificationType.effectiveDate|date :'yyyy-MM-dd'"
+                      type="date" id="effectiveDate" (ngModelChange)="notificationType.effectiveDate = $event"
+                      class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Status</label>
+                  <div class="col-md-8">
+                    <select class="col-md-8" class="form-control" tabindex="1" name=""
+                      [(ngModel)]="notificationType.status">
+                      <option value="">&lt;---&gt;</option>
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                      <option value="Cancelled">Cancelled</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="white-box">
+      <div class="row">
+        <button class="btn btn-info  usl-btn-color" type="button" (click)="Save()">
+          Save</button>
+        <button class="btn btn-info  usl-btn-color" type="button" (click)="Cancel()">
+          Cancel</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- view for form new -->
+
+<div class="container-fluid mt-1" *ngIf="view === 1">
+  <div class="row p-3 pl-4">
+    <div class="col-md-12">
+      <h1 class="text-bold">Notification Type Form</h1>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="card panel">
+      <div class="card-body form-card">
+        <form>
+          <div class="panel-group" role="tablist" aria-multiselectable="true">
+            <div class="panel-default">
+              <div class="panel-heading" role="tab" id="headingBasic">
+                <div class="float-left form-icon text-center mr-3">
+                  <span class="flaticon-paper  primary-color"></span>
+                </div>
+                <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                  Notification Details
+                </h4>
+                <p class="subtitle mb-0  ">Please fill in the appropriate data </p>
+              </div>
+              <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel"
+                aria-labelledby="headingBasic">
+                <div class="panel-body">
+                  <div class="col-sm-12 col-md-10 offset-md-1">
+                    <div class="form-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label for="code" class="control-label col-md-4">Code
+                            </label>
+                            <div class="col-md-8">
+                              <input type="text" class="form-control" [(ngModel)]="notificationType.code" name="code">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label for="code" class="control-label col-md-4">Description
+                            </label>
+                            <div class="col-md-8">
+                              <input type="text" class="form-control" [(ngModel)]="notificationType.description"
+                                [ngClass]="" name="description">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Category</label>
+                            <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" tabindex="1" name="category"
+                                [(ngModel)]="notificationType.category">
+                                <option value="">&lt;---&gt;</option>
+                                <option *ngFor="let cat of notificationCategories" [ngValue]="cat.description">
+                                  {{cat.description}}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row" style="flex-wrap:nowrap;">
+                            <label for="code" class="control-label col-md-4">Primary Object
+                              <!-- <span class="fa fa-search" (click)="open('Primary Object')"></span> -->
+                            </label>
+                            <div class="col-md-8">
+                              <input type="text" class="form-control" [(ngModel)]="notificationType.primaryObject"
+                                [ngClass]="" name="primaryObject">
+                            </div>
+                            <div class="col-md-1" style="padding: 0;">
+                              <img src="../../assets/icons/Group 135.svg" (click)="open('Primary Object')" alt="add">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Recipient Category</label>
+                            <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" tabindex="1" name="category"
+                                [(ngModel)]="notificationType.category">
+                                <option value="">&lt;---&gt;</option>
+                                <option *ngFor="let recipientCat of recipientCategory" value="recipientCat">
+                                  {{recipientCat}}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Priority</label>
+                            <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" tabindex="1" name="priority"
+                                [(ngModel)]="notificationType.priority">
+                                <option value="">&lt;---&gt;</option>
+                                <option *ngFor="let p of priority" value="p">{{p}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Ad Hoc Generation</label>
+                            <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" tabindex="1" name="adHocGeneration"
+                                [(ngModel)]="notificationType.adHocGeneration">
+                                <option value="">&lt;---&gt;</option>
+                                <option *ngFor="let  of adhocGeneration" value="adHocGen">{{adHocGen}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-default">
+              <div class="panel-heading" role="tab" id="headingBasic">
+                <div class="float-left form-icon text-center mr-3">
+                  <span class="flaticon-paper  primary-color"></span>
+                </div>
+                <h4 class="panel-title font-weight-bold secondary-color pt-2">Control Information </h4>
+              </div>
+              <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel"
+                aria-labelledby="headingBenInfo">
+                <div class="panel-body">
+                  <div class="col-md-10 offset-md-1">
+                    <div class="form-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label for="additionalAmtCov" class="control-label col-md-4">Effective Date &nbsp;
+                            </label>
+                            <div class="col-md-8">
+                              <input name="effectiveDate" [ngModel]="notificationType.effectiveDate|date :'yyyy-MM-dd'"
+                                type="date" id="effectiveDate" (ngModelChange)="notificationType.effectiveDate = $event"
+                                class="form-control" placeholder="">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Status</label>
+                            <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" tabindex="1" name=""
+                                [(ngModel)]="notificationType.status">
+                                <option value="">&lt;---&gt;</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                                <option value="Cancelled">Cancelled</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer text-muted">
+              <div class="row p-3">
+                <div class="col-md-8"></div>
+                <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="Cancel()"
+                    type="submit">Cancel</button>
+                </div>
+                <div class="col-md-2 text-right">
+                  <button class="btn btn-primary btn-block" type="submit" (click)="Save()">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

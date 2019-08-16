@@ -1,0 +1,21 @@
+   
+   .table i:before,
+   .table i:after{
+        font-size: 12px;
+   }
+   .table span i:before,
+   .table span i:after{
+       color :#979797;
+       font-size: 18px;
+   }
+  
+   .round-table-button{
+       border-radius: 50%;
+       padding: 0 .450rem;
+       text-align: center;
+       color: #fff !important;
+       cursor: pointer;
+
+   }
+
+   

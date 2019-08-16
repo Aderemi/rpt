@@ -1,0 +1,119 @@
+<div class="container-fluid mt-1">
+
+        <div class="row p-3 pl-4">
+                <div class="col-md-12">
+                  <h1 class="text-bold">Update Rule Category</h1>
+                  <!-- <div *ngIf="isCreated === 1">
+                         <p>{{message}}</p>
+                        </div> -->
+                </div>
+              </div>
+
+  <div class="row  p-2 pl-4">
+  
+    <div class="col-md-12">
+        <div class="card panel">
+                <div class="card-body form-card">
+
+            <!-- <div class="panel-heading"> Update Rule Category</div> -->
+            <div class="panel-heading" role="tab" id="headingBasic">
+                    <div class="float-left form-icon text-center mr-3">
+                      <span class="flaticon-paper  primary-color"></span>
+                    </div>
+                    <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                      Basic Information
+                    </h4>
+                    <p class="subtitle mb-0  ">Please fill in the appropriate data </p>
+                  </div>
+            <div class="panel-wrapper " aria-expanded="true">
+                <div class="panel-body">
+                        <div class="col-sm-12 col-md-10 offset-md-1">
+
+                        <div class="form-body">
+
+                    <!-- <form> -->
+                        <input name="id" [(ngModel)]="updaterulecategory.id" type="text" hidden>
+                        <div class="form-body">
+  
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="code" class="control-label col-md-4">Code</label>
+                                        <div class="col-md-8">
+                                            <input name="code" [(ngModel)]="updaterulecategory.code" type="text" id="code" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="name" class="control-label col-md-4">Description</label>
+                                            <div class="col-md-8">
+                                                <input name="name" [(ngModel)]="updaterulecategory.description" type="text" id="name" class="form-control">
+                                            </div>
+                                        </div>
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <!--/span-->
+
+                            </div>
+                            <div class="row">
+                                <!--/span-->
+                                <div class="col-md-6">
+                                  <div class="form-group row">
+                                      <label for="status" class="control-label col-md-4">Status</label>
+                                      <div class="col-md-8">
+                                          <input name="status" [(ngModel)]="updaterulecategory.status" type="text" id="status" class="form-control">
+                                      </div>
+                                  </div>
+                              </div>
+                              <!--/span-->  
+                              <div class="col-md-6">
+                                    <div class="form-group row">
+                                      <label for="effectiveDate" class="control-label col-md-4">Effective Date
+                                      </label>
+                
+                                      <div class="col-md-8">
+                                        <input name="effectiveDate" [ngModel]="updaterulecategory.effectiveDate | date:'yyyy-MM-dd'"  (ngModelchange)="exchangeratetype.effectiveDate = $event" type="date" id="expiryDate" class="form-control" placeholder="">
+                                      </div>
+                                    </div>
+                                  </div>                                                          
+                            </div>
+                            <div class="row">
+  
+
+                            </div>
+                            <!--/row-->
+  
+  
+  
+                        </div>
+                        <!-- <hr class="m-t-0 m-b-20">
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-info usl-btn-color" (click)="createUpdateRuleCategory()">
+                                <i class="fa fa-check"></i> Save</button>
+                            <button type="button" class="btn btn-info usl-btn-color" routerLink="/updaterulecategorys">Cancel</button>
+                        </div> -->
+                    <!-- </form> -->
+                </div>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="card-footer text-muted">
+                    <div class="row p-3">
+                      <div class="col-md-8"></div>
+                      <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="cancel()"
+                          type="submit">Cancel</button>
+                      </div>
+                      <div class="col-md-2 text-right">
+                        <button class="btn btn-primary btn-block" type="submit" (click)="save()">Save</button>
+                      </div>
+                    </div>
+                  </div>
+        </div>
+    </div>
+  </div>
+
+  </div>

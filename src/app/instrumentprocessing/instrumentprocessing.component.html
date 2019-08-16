@@ -1,0 +1,765 @@
+<div class="container-fluid mt-1">
+  <div class="row p-3 pl-4">
+    <div class="col-md-12">
+      <h1 class="text-bold">Instruments Processing</h1>
+    </div>
+  </div>
+  <div class="row p-2 pl-4">
+    <div class="col-md-3 pr-0" #sidebar>
+      <div class="position-fixed ml-0" id="fixed-side-container">
+        <div class="card panel">
+          <div classs="card-body form-card">
+            <div class="row p-4">
+              <div class="col-md-9" id="sectionDiv">
+                <h2>Section</h2>
+              </div>
+              <div class="col">
+                <a [appSidebarCollapse]='sidebar'>
+                  <i class="fa fa-arrow-left" aria-hidden="true" id="ico"></i> 
+                </a>
+              </div>
+            </div>
+            <ul class="list-group list-group-flush list-group-tradex" id="itemsDiv">
+              <li class="list-group-item">
+                <a (click)="scroll(basic)">Basic Information</a>
+              </li>
+              <li class="list-group-item">
+                <a (click)="scroll(other)">Other Information</a>
+              </li>
+              <li class="list-group-item">
+                <a  (click)="scroll(benef)">Beneficiary</a>
+              </li>
+              <li class="list-group-item">
+                <a (click)="scroll(last)">Payment</a>
+              </li>
+              <li class="list-group-item">
+                <a  (click)="scroll(second)">Goods</a>
+              </li>
+              <li class="list-group-item">
+                <a>Shipping</a>
+              </li>
+              <li class="list-group-item">
+                <a>Advicing Bank</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card panel">
+        <div class="card-body form-card">
+          <form>
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+              <div class=" panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                    Basic Information
+                  </h4>
+                  <p class="subtitle mb-0  ">Please fill in the appropriate data for this product </p>
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                  <div class="panel-body">
+
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="form-body">
+                        <!-- <input name="id" [(ngModel)]="product.id" type="text" hidden> -->
+
+                        <div class="row">
+
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Code
+                              </label>
+
+                              <div class="col-md-8">
+                                <input name="code" [disabled]="cod" [(ngModel)]="factoringProduct.code" type="text" id="code"
+                                  class="form-control" placeholder="">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="description" class="control-label col-md-4">Description
+                              </label>
+
+                              <div class="col-md-8">
+                                <input name="description" [disabled]="des" [(ngModel)]="factoringProduct.description"
+                                  type="text" id="description" class="form-control" placeholder="">
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--/span-->
+
+                          <!--/span-->
+                        </div>
+
+                        <!-- <div class="col-md-8">
+                          <input type="text" name="txtamount"  (blur)="transformAmount($event)" [(value)]="formattedAmount"/>
+          
+          
+                      </div> -->
+
+                        <!-- <div>
+                            <p>{{num|number}}</p>
+                            <p>{{num|number:'1.2'}}</p>
+                        </div> -->
+
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Product Category</label>
+                              <div class="col-md-8">
+                                <select class="form-control" name="productCategory" [disabled]="true">
+
+                                  <option [value]="productSubCategory.productCategory">{{product.productSubCategory.productCategory.description}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Product Sub Category</label>
+                              <div class="col-md-8">
+                                <select class="form-control" name="ProductSubCategory" [(ngModel)]="factoringProduct.product.productSubCategory"
+                                  [compareWith]="equals">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let psc of productSubCategorys" [ngValue]="psc">{{psc.description}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="priRefNumScheme" class="control-label col-md-4">Primary Ref Scheme
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="priRefNumScheme" [disabled]="ref" [(ngModel)]="factoringProduct.priRefNumScheme"
+                                  class="form-control" placeholder="">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let ref of disPickListItemPry" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Temporary Ref Option
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="tempRefNoOption" [disabled]="ref" [(ngModel)]="factoringProduct.tempRefNoOption"
+                                  class="form-control" placeholder="">
+                                  <option value="undefined">&lt;---&gt;</option>
+                                  <option value="yes">Yes</option>
+                                  <option value="no">No</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+
+
+                          <!--/span-->
+                          <!--/span-->
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Temporary Ref Scheme
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="tempRefNoScheme" [disabled]="ref" [(ngModel)]="factoringProduct.tempRefNoScheme"
+                                  class="form-control" placeholder="">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let ref of disPickListItemTemp" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class=" panel-default">
+                <div class="panel-heading" role="tab" id="headingBenInfo">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title secondary-color font-weight-bold pt-2" #other>
+                    Control Information
+                  </h4>
+                </div>
+                <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+                  <div class="panel-body">
+
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="form-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Effective Date
+                              </label>
+                              <div class="col-md-8">
+                                <input name="effectiveDate" [(ngModel)]="dateString" [disabled]="true" type="text" id="effectiveDate"
+                                  class="form-control" placeholder="">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Status
+                              </label>
+                              <div class="col-md-8">
+                                <select class="form-control" [(ngModel)]="factoringProduct.status" name="status">
+                                  <option>Inactive</option>
+                                  <option>Active</option>
+                                  <option>Cancelled</option>
+                                </select>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <!--/span-->
+
+                          <!--/span-->
+                        </div>
+                        <div class="row">
+
+
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class=" panel-default" >
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color mb-0" #benef>
+                    Benef Information
+                  </h4>
+                  <p class="subtitle mb-0  ">Please fill in the appropriate data for this product </p>
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                  <div class="panel-body">
+
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="form-body">
+                        <!-- <input name="id" [(ngModel)]="product.id" type="text" hidden> -->
+
+                        <div class="row">
+
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Code
+                              </label>
+
+                              <div class="col-md-8">
+                                <input name="code" [disabled]="cod" [(ngModel)]="factoringProduct.code" type="text" id="code"
+                                  class="form-control" placeholder="">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="description" class="control-label col-md-4">Description
+                              </label>
+
+                              <div class="col-md-8">
+                                <input name="description" [disabled]="des" [(ngModel)]="factoringProduct.description"
+                                  type="text" id="description" class="form-control" placeholder="">
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--/span-->
+
+                          <!--/span-->
+                        </div>
+
+                        <!-- <div class="col-md-8">
+                          <input type="text" name="txtamount"  (blur)="transformAmount($event)" [(value)]="formattedAmount"/>
+          
+          
+                      </div> -->
+
+                        <!-- <div>
+                            <p>{{num|number}}</p>
+                            <p>{{num|number:'1.2'}}</p>
+                        </div> -->
+
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Product Category</label>
+                              <div class="col-md-8">
+                                <select class="form-control" name="productCategory" [disabled]="true">
+
+                                  <option [value]="productSubCategory.productCategory">{{product.productSubCategory.productCategory.description}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Product Sub Category</label>
+                              <div class="col-md-8">
+                                <select class="form-control" name="ProductSubCategory" [(ngModel)]="factoringProduct.product.productSubCategory"
+                                  [compareWith]="equals">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let psc of productSubCategorys" [ngValue]="psc">{{psc.description}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="priRefNumScheme" class="control-label col-md-4">Primary Ref Scheme
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="priRefNumScheme" [disabled]="ref" [(ngModel)]="factoringProduct.priRefNumScheme"
+                                  class="form-control" placeholder="">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let ref of disPickListItemPry" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Temporary Ref Option
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="tempRefNoOption" [disabled]="ref" [(ngModel)]="factoringProduct.tempRefNoOption"
+                                  class="form-control" placeholder="">
+                                  <option value="undefined">&lt;---&gt;</option>
+                                  <option value="yes">Yes</option>
+                                  <option value="no">No</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+
+
+                          <!--/span-->
+                          <!--/span-->
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Temporary Ref Scheme
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="tempRefNoScheme" [disabled]="ref" [(ngModel)]="factoringProduct.tempRefNoScheme"
+                                  class="form-control" placeholder="">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let ref of disPickListItemTemp" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class=" panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color mb-0" #second>
+                    Seond to the Information
+                  </h4>
+                  <p class="subtitle mb-0  ">Please fill in the appropriate data for this product </p>
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                  <div class="panel-body">
+
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="form-body">
+                        <!-- <input name="id" [(ngModel)]="product.id" type="text" hidden> -->
+
+                        <div class="row">
+
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Code
+                              </label>
+
+                              <div class="col-md-8">
+                                <input name="code" [disabled]="cod" [(ngModel)]="factoringProduct.code" type="text" id="code"
+                                  class="form-control" placeholder="">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="description" class="control-label col-md-4">Description
+                              </label>
+
+                              <div class="col-md-8">
+                                <input name="description" [disabled]="des" [(ngModel)]="factoringProduct.description"
+                                  type="text" id="description" class="form-control" placeholder="">
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--/span-->
+
+                          <!--/span-->
+                        </div>
+
+                        <!-- <div class="col-md-8">
+                          <input type="text" name="txtamount"  (blur)="transformAmount($event)" [(value)]="formattedAmount"/>
+          
+          
+                      </div> -->
+
+                        <!-- <div>
+                            <p>{{num|number}}</p>
+                            <p>{{num|number:'1.2'}}</p>
+                        </div> -->
+
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Product Category</label>
+                              <div class="col-md-8">
+                                <select class="form-control" name="productCategory" [disabled]="true">
+
+                                  <option [value]="productSubCategory.productCategory">{{product.productSubCategory.productCategory.description}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Product Sub Category</label>
+                              <div class="col-md-8">
+                                <select class="form-control" name="ProductSubCategory" [(ngModel)]="factoringProduct.product.productSubCategory"
+                                  [compareWith]="equals">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let psc of productSubCategorys" [ngValue]="psc">{{psc.description}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="priRefNumScheme" class="control-label col-md-4">Primary Ref Scheme
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="priRefNumScheme" [disabled]="ref" [(ngModel)]="factoringProduct.priRefNumScheme"
+                                  class="form-control" placeholder="">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let ref of disPickListItemPry" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Temporary Ref Option
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="tempRefNoOption" [disabled]="ref" [(ngModel)]="factoringProduct.tempRefNoOption"
+                                  class="form-control" placeholder="">
+                                  <option value="undefined">&lt;---&gt;</option>
+                                  <option value="yes">Yes</option>
+                                  <option value="no">No</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+
+
+                          <!--/span-->
+                          <!--/span-->
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Temporary Ref Scheme
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="tempRefNoScheme" [disabled]="ref" [(ngModel)]="factoringProduct.tempRefNoScheme"
+                                  class="form-control" placeholder="">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let ref of disPickListItemTemp" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class=" panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color mb-0" #last>
+                    Last Information
+                  </h4>
+                  <p class="subtitle mb-0  ">Please fill in the appropriate data for this product </p>
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                  <div class="panel-body">
+
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="form-body">
+                        <!-- <input name="id" [(ngModel)]="product.id" type="text" hidden> -->
+
+                        <div class="row">
+
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Code
+                              </label>
+
+                              <div class="col-md-8">
+                                <input name="code" [disabled]="cod" [(ngModel)]="factoringProduct.code" type="text" id="code"
+                                  class="form-control" placeholder="">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="description" class="control-label col-md-4">Description
+                              </label>
+
+                              <div class="col-md-8">
+                                <input name="description" [disabled]="des" [(ngModel)]="factoringProduct.description"
+                                  type="text" id="description" class="form-control" placeholder="">
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--/span-->
+
+                          <!--/span-->
+                        </div>
+
+                        <!-- <div class="col-md-8">
+                          <input type="text" name="txtamount"  (blur)="transformAmount($event)" [(value)]="formattedAmount"/>
+          
+          
+                      </div> -->
+
+                        <!-- <div>
+                            <p>{{num|number}}</p>
+                            <p>{{num|number:'1.2'}}</p>
+                        </div> -->
+
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Product Category</label>
+                              <div class="col-md-8">
+                                <select class="form-control" name="productCategory" [disabled]="true">
+
+                                  <option [value]="productSubCategory.productCategory">{{product.productSubCategory.productCategory.description}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Product Sub Category</label>
+                              <div class="col-md-8">
+                                <select class="form-control" name="ProductSubCategory" [(ngModel)]="factoringProduct.product.productSubCategory"
+                                  [compareWith]="equals">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let psc of productSubCategorys" [ngValue]="psc">{{psc.description}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="priRefNumScheme" class="control-label col-md-4">Primary Ref Scheme
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="priRefNumScheme" [disabled]="ref" [(ngModel)]="factoringProduct.priRefNumScheme"
+                                  class="form-control" placeholder="">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let ref of disPickListItemPry" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Temporary Ref Option
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="tempRefNoOption" [disabled]="ref" [(ngModel)]="factoringProduct.tempRefNoOption"
+                                  class="form-control" placeholder="">
+                                  <option value="undefined">&lt;---&gt;</option>
+                                  <option value="yes">Yes</option>
+                                  <option value="no">No</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+
+
+                          <!--/span-->
+                          <!--/span-->
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Temporary Ref Scheme
+                              </label>
+                              <div class="col-md-8">
+
+                                <select name="tempRefNoScheme" [disabled]="ref" [(ngModel)]="factoringProduct.tempRefNoScheme"
+                                  class="form-control" placeholder="">
+                                  <option [ngValue]="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let ref of disPickListItemTemp" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="white-box">
+                <div class="row">
+                  <button *ngIf="modBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('modify')">
+                    Save</button>
+                  <button *ngIf="savBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('save')">
+                    Save</button>
+                  <button *ngIf="savCloBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('savenclose')">
+                    Save &amp; Close</button>
+                  <button *ngIf="appBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('approve')">
+                    Approve</button>
+                  <button *ngIf="canBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('cancel')">
+                    Cancel</button>
+
+                  <button *ngIf="cloBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('close')">
+                    Close</button>
+                </div>
+              </div> -->
+
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

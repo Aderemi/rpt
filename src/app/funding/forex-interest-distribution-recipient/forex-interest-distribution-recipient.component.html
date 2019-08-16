@@ -1,0 +1,310 @@
+<!-- the accordion, dispalying the add form  -->
+<div class="col-sm-12" *ngIf="view === 0">
+    <div class="white-box">
+
+
+        <table id="myTable7" class="table table-striped">
+            <thead style="background-color:#eaf4f8;">
+                <tr>
+
+                    <th>Instrument Ref</th>
+                    <th>Customer Name</th>
+                    <th>Warrant Ref</th>
+                    <th>Instrument Start Date</th>
+                    <th>Expiry Date</th>
+                    <th>Interest Amount</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let fxRec of fxIntDisRecItems" (click)="set($event, fxRec)" [class.active]="fxRec ===fxIntDistRec ">
+                    <td>{{fxRec.instrumentRef}}</td>
+                    <td>{{fxRec.customer.name}}</td>
+                    <td>{{fxRec.warrantRef}}</td>
+                    <td>{{fxRec.dateAllocated}}</td>
+                    <td>{{fxRec.finalUtilDate}}</td>
+                    <td>{{fxRec.interestAmt}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+
+
+            <button [disabled]="enableFromParent" class="btn btn-info  usl-btn-color-sm" (click)="openFx(interestRecipient)">Add</button>
+            <button [disabled]="enableFromParent" (click)="openDocumentEdit(bidRequest)" class="btn btn-info  usl-btn-color-sm">Modify</button>
+            <button [disabled]="enableFromParent" (click)="openConfirmationDialog(bidRequest)" class="btn btn-info  usl-btn-color-sm">Delete</button>
+            <button [disabled]="enableFromParent" (click)="openDocumentView(bidRequest)" class="btn btn-info  usl-btn-color-sm">View</button>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+<!--  -->
+
+<ng-template #interestRecipient let-c="close" let-d="dismiss">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Forex Interest Distribution Recipients
+                        <span>
+                            <button type="button" style="color:#F00; font-weight: bold;" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </span>
+                    </div>
+    
+    
+                </div>
+                <div class="panel-group" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingBasicFx">
+                            <h4 class="panel-title">
+                                <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasicFx" aria-expanded="false"
+                                    aria-controls="collapseBasicFx" style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+                            </h4>
+                        </div>
+                        <div id="collapseBasicFx" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasicFx">
+                            <div class="panel-body">
+    
+                                    <div class="form-body">
+                                            <!-- <input name="id" [(ngModel)]="product.id" type="text" hidden> -->
+                
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label for="code" class="control-label col-md-4">Instrument Reference
+                                                        </label>
+                
+                                                        <div class="col-md-8">
+                                                            <input name="instrumentRef" [disabled]="cod" [(ngModel)]="fxInterestDistRecipient.instrumentRef" type="text"
+                                                                id="code" class="form-control" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                
+                                            </div>
+                
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Customer
+                                                            &nbsp; <span class="fa fa-search" (click)="open('customer')"></span>
+                                                        </label>
+                                                        <div class="col-md-3">
+                                                            <input type="text" class="form-control" [disabled]="true" [(ngModel)]="fxInterestDistRecipient.customer.customerNumber"
+                                                                [ngClass]="" name="">
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="text" class="form-control" [disabled]="true" [(ngModel)]="fxInterestDistRecipient.customer.name"
+                                                                [ngClass]="" name="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label for="code" class="control-label col-md-4">Warrant Reference
+                                                        </label>
+                
+                                                        <div class="col-md-8">
+                                                            <input name="warrantRef" [disabled]="cod" [(ngModel)]="fxInterestDistRecipient.warrantRef" type="text"
+                                                                id="warrantRef" class="form-control" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                
+                                            </div>
+                
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Recipient Acct. No
+                                                            &nbsp; <span class="fa fa-search" (click)="open('Accounts')"></span>
+                                                        </label>
+                                                        <div class="col-md-3">
+                                                            <input type="text" class="form-control" [disabled]="true" [(ngModel)]="fxInterestDistRecipient.recAcctNum.accountNumber"
+                                                                [ngClass]="" name="product">
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="text" class="form-control" [disabled]="true" [(ngModel)]="fxInterestDistRecipient.recAcctNum.accountName"
+                                                                [ngClass]="" name="product">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label for="localCurrEqui" class="control-label col-md-4">Allocated Amount</label>
+                                                        <div class="col-md-4">
+                                                            <select class="col-md-9" [disabled]="true" name="allocatedAmtCurr" class="form-control"
+                                                                data-placeholder="Choose a Category" tabindex="1" [(ngModel)]="fxInterestDistRecipient.allocatedAmtCurr"
+                                                                [compareWith]="equals">
+                                                                <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+                                                            </select>
+                
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input name="allocatedAmt" [disabled]="true" (blur)="transformLocalCurrAmount()"
+                                                                [(ngModel)]="fxInterestDistRecipient.allocatedAmt" type="text" id="allocatedAmt"
+                                                                class="form-control" placeholder="">
+                                                        </div>
+                
+                
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label for="additionalAmtCov" class="control-label col-md-4">Date Allocated
+                                                            &nbsp;
+                
+                                                        </label>
+                
+                                                        <div class="col-md-8">
+                                                          
+                                                                <input type="date"  class="form-control"  [ngClass]="" name="dateAllocated" [ngModel]="fxInterestDistRecipient.dateAllocated | date:'yyyy-MM-dd'" (ngModelChange)="fxInterestDistRecipient.dateAllocated = $event">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label for="additionalAmtCov" class="control-label col-md-4">Final Utilization
+                                                            Date
+                
+                
+                                                        </label>
+                
+                                                        <div class="col-md-8">
+                                                            <input name="finalUtilDate" [disabled]="true" [(ngModel)]="fxInterestDistRecipient.finalUtilDate" type="date"
+                                                                id="finalUtilDate" class="form-control" placeholder="">
+                
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label for="localCurrEqui" class="control-label col-md-4">Interest Amount</label>
+                                                        <div class="col-md-4">
+                                                            <select class="col-md-9" [disabled]="true" name="interestAmtCurr" class="form-control"
+                                                                data-placeholder="Choose a Category" tabindex="1" [(ngModel)]="fxInterestDistRecipient.interestAmtCurr"
+                                                                [compareWith]="equals">
+                                                                <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+                                                            </select>
+                
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input name="interestAmt" [disabled]="true" (blur)="transformLocalCurrAmount()"
+                                                                [(ngModel)]="fxInterestDistRecipient.interestAmt" type="text" id="interestAmt"
+                                                                class="form-control" placeholder="">
+                                                        </div>
+                
+                
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                        </div>
+                            </div>
+    
+                            <!-- <div class="modal-footer">
+                                <div class="form-actions">
+                                    <button [disabled]="enableFromParent" type="button" class="btn btn-success" (click)="c('Close click')">
+                                        <li class="fa fa-check-o"></li> Save</button>
+                                    <button [disabled]="enableFromParent" type="button" class="btn btn-default" (click)="d('Cross click')">Cancel</button>
+                                </div>
+                            </div> -->
+    
+                        </div>
+    
+    
+    
+    
+    
+                    </div>
+    
+    
+                        <div class="panel-heading" role="tab" id="headingControlInfo">
+                            <h4 class="panel-title">
+                                <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseControlInfo" aria-expanded="false"
+                                    aria-controls="collapseControlInfo" style="color :#2b2b2b;font-weight: bold;">Control Information </a>
+                            </h4>
+                        </div>
+                        <div id="collapseControlInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingControlInfo">
+                            <div class="panel-body">
+    
+    
+                                <div class="form-body">
+                                    <div class="row">
+    
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label for="actual" class="control-label col-md-4">Effective Date</label>
+                                                <div class="col-md-8">
+                                                    <input type="date"  class="form-control"  [ngClass]="" name="fxInterestDistRecipient" [ngModel]="fxInterestDistRecipient.effectiveDate | date:'yyyy-MM-dd'" (ngModelChange)="fxInterestDistRecipient.effectiveDate = $event">
+
+                                                </div>
+    
+                                            </div>
+                                        </div>
+    
+    
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label for="involvementValue" class="control-label col-md-4">Status</label>
+                                                <div class="col-md-8">
+                                                    <select class="col-md-9" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="status" [(ngModel)]="fxInterestDistRecipient.status">
+                                                        <option value="">-Please Select-</option>
+                                                        <option value="active">Active</option>
+                                                        <option value="inactive">Inactive</option>
+    
+    
+                                                    </select>
+    
+    
+    
+                                                </div>
+    
+    
+                                            </div>
+                                        </div>
+    
+                                    </div>
+    
+                                    <div class="modal-footer">
+                                        <div class="form-actions">
+                                            <button type="button" class="btn btn-success" (click)="c('Close click')">
+                                                <li class="fa fa-check-o"></li> Save</button>
+                                            <button type="button" class="btn btn-default" (click)="d('Cross click')">Cancel</button>
+                                        </div>
+                                    </div>
+    
+    
+                                </div>
+                            </div>
+                        </div>
+    
+    
+                    </div> 
+                </div>
+           
+        </div>
+    </ng-template>

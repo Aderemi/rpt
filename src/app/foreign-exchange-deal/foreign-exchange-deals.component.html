@@ -1,0 +1,610 @@
+<!-- ......<div class="col-sm-12">
+    <div class="white-box">
+        <div class="form-body">
+            <div class="table-responsive">
+                <table id="myTable7" class="table table-striped">
+                    <thead style="background-color:#eaf4f8;">
+                        <tr>
+                            <th>Type</th>
+                            <th>Reference</th>
+                            <th>Buy ccy</th>
+                            <th>Buy Amount</th>
+                            <th>Sell ccy</th>
+                            <th>Sell Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let fxD of fxDs" (click)="set($event, fxD)"
+                            [ngClass]="{'selected' : fxD === selectedFxDeal}"> -->
+                            <!-- <tr *ngFor="let fx of fxDeals" (click)="setFx(fx)" [class.active]="selectedFx == fx"> -->
+                            <!-- ....<td>{{fxD.type}}</td>
+                            <td>{{fxD.reference}}</td>
+                            <td>{{fxD.buyCcy}}</td>
+                            <td>{{fxD.buyAmt}}</td>
+                            <td>{{fxD.sellCcy}}</td>
+                            <td>{{fxD.sellAmt}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+
+                <button [disabled]="enableFromParent" class="btn btn-info  usl-btn-color-sm"
+                    (click)="openFxDeals(fxDeals)">Create</button>
+
+                <button [disabled]="enableFromParent" (click)="openFxDealEdit(fxDeals)"
+                    class="btn btn-info  usl-btn-color-sm">Modify</button>
+                <button [disabled]="enableFromParent" (click)="openConfirmationDialog(fxDeal)"
+                    class="btn btn-info  usl-btn-color-sm">Delete</button>
+
+                <button [disabled]="enableFromParent" (click)="openFxDealView(fxDeals)"
+                    class="btn btn-info  usl-btn-color-sm">View</button>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+<div class="row p-2 pl-2 mt-5">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="xc">
+            <div class="panel-body">
+              <table class="table alt-table table-borderless">
+                <thead>
+                    <th>Type</th>
+                    <th>Reference</th>
+                    <th>Buy ccy</th>
+                    <th>Buy Amount</th>
+                    <th>Sell ccy</th>
+                    <th>Sell Amount</th>
+                  <th></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let fxD of fxDs" (click)="set($event, fxD)"
+                    [ngClass]="{'selected' : fxD === selectedFxDeal}">
+                    <!-- <tr *ngFor="let fx of fxDeals" (click)="setFx(fx)" [class.active]="selectedFx == fx"> -->
+                    <td>{{fxD.type}}</td>
+                    <td>{{fxD.reference}}</td>
+                    <td>{{fxD.buyCcy}}</td>
+                    <td>{{fxD.buyAmt}}</td>
+                    <td>{{fxD.sellCcy}}</td>
+                    <td>{{fxD.sellAmt}}</td>
+                    <td>
+                      <button class="btn btn-danger round-table-button">&mdash;</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!--Template for Foreign Exchange Deals-->
+<ng-template #fxDeals let-c="close" let-d="dismiss">
+    <!-- ....<div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">Foreign Exchange Deals
+                    <span>
+                        <button type="button" style="color:#F00; font-weight: bold;" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </span>
+                </div>
+
+            </div>
+            <div class="panel-group row" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingBasicFx">
+                        <h4 class="panel-title">
+                            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasicFx" aria-expanded="false"
+                                aria-controls="collapseBasicFx" style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+                        </h4>
+                    </div>
+                    <div id="collapseBasicFx" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasicFx">
+                        <div class="panel-body">
+
+
+                            <div class="form-body">
+                                <input name="id" [(ngModel)]="forex.id" type="text" hidden>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="reference" class="control-label col-md-4">Deal Reference</label>
+                                            <div class="col-md-8">
+                                                <input name="reference" [(ngModel)]="forex.reference" type="text" id="ref" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="type" class="control-label col-md-4">Deal Type</label>
+                                            <div class="col-md-8">
+                                                <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="type" [(ngModel)]="forex.type">
+                                                    <option value="">---Please select---</option>
+                                                    <option value="spot">Spot</option>
+                                                    <option value="forward">Forward</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                           
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="countertype" class="control-label col-md-4">Counterparty Type</label>
+                                            <div class="col-md-8">
+                                                <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="countertype" [(ngModel)]="forex.counterPartyType">
+                                                    <option value="">---Please select---</option>
+                                                    <option value="bank">Bank</option>
+                                                    <option value="customer">Customer</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="counterparty" class="control-label col-md-4">Counterparty Code/Name &nbsp;
+                                                <span class="fa fa-search" style="color: blue;"></span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input name="counterparty" [(ngModel)]="forex.counterPartyCode" type="text" id="counterparty" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input name="counterName" [(ngModel)]="forex.counterPartyName" type="text" id="counterName" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="sellA" class="control-label col-md-4">Sell Amount</label>
+                                            <div class="col-md-4">
+                                                <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="sellA">
+                                                    <option value="">---Please select---</option>
+                                                    <option *ngFor="let currency of currencies">{{currency.code}}</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" name="sell" [(ngModel)]="forex.sellAmt" id="sell" class="form-control" placeholder="">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="exchangeRate" class="control-label col-md-4">Exchange Rate</label>
+                                            <div class="col-md-8">
+                                                <input type="text" name="exchangeRate" [(ngModel)]="forex.exchangeRate" id="exchangeRate" class="form-control" placeholder="Exchange Rate">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="buysellcurr" class="control-label col-md-4">Buy/Sell Currencies</label>
+                                            <div class="col-md-4">
+                                                <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="sellCcy" [(ngModel)]="forex.sellCcy">
+                                                    <option value="">---Please select---</option>
+                                                    <option *ngFor="let currenc of currencies">{{currenc.code}}</option>
+
+                                                </select>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="buyCcy" [(ngModel)]="forex.buyCcy">
+                                                    <option value="">---Please select---</option>
+                                                    <option *ngFor="let curr of currencies">{{curr.code}}</option>
+
+
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="buyAmt" class="control-label col-md-4">Buy Amount</label>
+                                            <div class="col-md-4">
+                                                <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1" >
+                                                    <option value="">---Please select---</option>
+                                                    <option *ngFor="let currency of currencies">{{currency.code}}</option>
+
+
+
+                                                </select>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" name="buyAmt" [(ngModel)]="forex.buyAmt" id="buyAmt" class="form-control" placeholder="">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="dealDate" class="control-label col-md-4">Deal Date</label>
+                                            <div class="col-md-8">
+                                                <input name="dealDate" [(ngModel)]="forex.dealDate" type="date" id="dealDate" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="maturityDate" class="control-label col-md-4">Maturity Date</label>
+                                            <div class="col-md-8">
+                                                <input name="maturityDate" [(ngModel)]="forex.maturityDate" type="date" id="maturityDate" class="form-control" placeholder="Deal Reference">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="remarks" class="control-label col-md-4">Remarks</label>
+
+                                            <div class="col-md-8">
+                                                <textarea type="text" name="remarks" rows="4" class="form-control" [(ngModel)]="forex.remarks"></textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <div class="form-actions">
+                                <button [disabled]="enableFromParent" type="button" class="btn btn-success" (click)="c('Close click')">
+                                    <li class="fa fa-check-o"></li> Save</button>
+                                <button [disabled]="enableFromParent" type="button" class="btn btn-default" (click)="d('Cross click')">Cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div> -->
+
+
+    <!-- <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingControlInfo">
+                        <h4 class="panel-title">
+                            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseControlInfo" aria-expanded="false"
+                                aria-controls="collapseControlInfo" style="color :#2b2b2b;font-weight: bold;">Control Information </a>
+                        </h4>
+                    </div>
+                    <div id="collapseControlInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingControlInfo">
+                        <div class="panel-body">
+
+
+                            <div class="form-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="actual" class="control-label col-md-4">Effective Date</label>
+                                            <div class="col-md-8">
+                                                <input type="date" name="actual" [(ngModel)]="fxDeal.effectiveDate" id="actual" class="form-control" placeholder="Actual">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="involvementValue" class="control-label col-md-4">Status</label>
+                                            <div class="col-md-8">
+                                                <select class="col-md-9" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="involvementValue" [(ngModel)]="fxDeal.involvementValue">
+                                                    <option value="">-Please Select-</option>
+                                                    <option value="active">Active</option>
+                                                    <option value="inactive">Inactive</option>
+
+
+                                                </select>
+
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <div class="form-actions">
+                                        <button type="button" class="btn btn-success" (click)="c('Close click')">
+                                            <li class="fa fa-check-o"></li> Save</button>
+                                        <button type="button" class="btn btn-default" (click)="d('Cross click')">Cancel</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div> -->
+    <!-- ...</div>
+        </div>
+    </div> -->
+
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-12 p-0">
+
+                <div class="card-body form-card">
+                    <div class="panel-heading" role="tab" id="headingBasic">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="float-left form-icon text-center mr-3">
+                                    <span class="flaticon-paper  primary-color"></span>
+                                </div>
+                                <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                                    Charges
+                                </h4>
+                                <p class="subtitle mb-0">Please fill in the appropriate information </p>
+                            </div>
+
+                            <div class="col-md-3">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body p-0">
+            <div class="container p-2">
+                <div class="col-md-12">
+                    <div class="form-body">
+                        <input name="id" [(ngModel)]="forex.id" type="text" hidden>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="reference" class="control-label col-md-4">Deal Reference</label>
+                                    <div class="col-md-8">
+                                        <input name="reference" [(ngModel)]="forex.reference" type="text" id="ref"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="type" class="control-label col-md-4">Deal Type</label>
+                                    <div class="col-md-8">
+                                        <select class="col-md-8" class="form-control"
+                                            data-placeholder="Choose a Category" tabindex="1" name="type"
+                                            [(ngModel)]="forex.type">
+                                            <option value="">---Please select---</option>
+                                            <option value="spot">Spot</option>
+                                            <option value="forward">Forward</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="countertype" class="control-label col-md-4">Counterparty Type</label>
+                                    <div class="col-md-8">
+                                        <select class="col-md-8" class="form-control"
+                                            data-placeholder="Choose a Category" tabindex="1" name="countertype"
+                                            [(ngModel)]="forex.counterPartyType">
+                                            <option value="">---Please select---</option>
+                                            <option value="bank">Bank</option>
+                                            <option value="customer">Customer</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="counterparty" class="control-label col-md-4">Counterparty Code/Name
+                                        &nbsp;
+                                        <!-- <span class="fa fa-search" style="color: blue;"></span> -->
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input name="counterparty" [(ngModel)]="forex.counterPartyCode" type="text"
+                                            id="counterparty" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input name="counterName" [(ngModel)]="forex.counterPartyName" type="text"
+                                            id="counterName" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="sellA" class="control-label col-md-4">Sell Amount</label>
+                                    <div class="col-md-4">
+                                        <select class="col-md-8" class="form-control"
+                                            data-placeholder="Choose a Category" tabindex="1" name="sellA">
+                                            <option value="">---Please select---</option>
+                                            <option *ngFor="let currency of currencies">{{currency.code}}</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="sell" [(ngModel)]="forex.sellAmt" id="sell"
+                                            class="form-control" placeholder="">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="exchangeRate" class="control-label col-md-4">Exchange Rate</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="exchangeRate" [(ngModel)]="forex.exchangeRate"
+                                            id="exchangeRate" class="form-control" placeholder="Exchange Rate">
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="buysellcurr" class="control-label col-md-4">Buy/Sell Currencies</label>
+                                    <div class="col-md-4">
+                                        <select class="col-md-8" class="form-control"
+                                            data-placeholder="Choose a Category" tabindex="1" name="sellCcy"
+                                            [(ngModel)]="forex.sellCcy">
+                                            <option value="">---Please select---</option>
+                                            <option *ngFor="let currenc of currencies">{{currenc.code}}</option>
+
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="col-md-8" class="form-control"
+                                            data-placeholder="Choose a Category" tabindex="1" name="buyCcy"
+                                            [(ngModel)]="forex.buyCcy">
+                                            <option value="">---Please select---</option>
+                                            <option *ngFor="let curr of currencies">{{curr.code}}</option>
+
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="buyAmt" class="control-label col-md-4">Buy Amount</label>
+                                    <div class="col-md-4">
+                                        <select class="col-md-8" class="form-control"
+                                            data-placeholder="Choose a Category" tabindex="1">
+                                            <option value="">---Please select---</option>
+                                            <option *ngFor="let currency of currencies">{{currency.code}}</option>
+
+
+
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="buyAmt" [(ngModel)]="forex.buyAmt" id="buyAmt"
+                                            class="form-control" placeholder="">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="dealDate" class="control-label col-md-4">Deal Date</label>
+                                    <div class="col-md-8">
+                                        <input name="dealDate" [(ngModel)]="forex.dealDate" type="date" id="dealDate"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="maturityDate" class="control-label col-md-4">Maturity Date</label>
+                                    <div class="col-md-8">
+                                        <input name="maturityDate" [(ngModel)]="forex.maturityDate" type="date"
+                                            id="maturityDate" class="form-control" placeholder="Deal Reference">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="remarks" class="control-label col-md-4">Remarks</label>
+
+                                    <div class="col-md-8">
+                                        <textarea type="text" name="remarks" rows="4" class="form-control"
+                                            [(ngModel)]="forex.remarks"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" [disabled]="enableFromParent"
+                (click)="d('Cross click')">Cancel</button>
+            <button type="button" class="btn btn-primary" [disabled]="enableFromParent"
+                (click)="c('Close click')">Save</button>
+        </div>
+    </div>
+
+</ng-template>

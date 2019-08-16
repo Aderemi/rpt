@@ -1,0 +1,848 @@
+<!-- <div class="col-sm-12"> -->
+
+
+<!-- <div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+
+
+            <label for="instructionCode" class="control-label col-md-6">Party Category</label>
+            <div class="col-md-6">
+                <select class="form-control" [disabled]="isView" data-placeholder="Choose a Category" tabindex="1"
+                    name="party" [(ngModel)]="party.partyCategory">
+                    <option value="">&lt;---&gt;</option>
+
+
+                </select>
+            </div>
+
+        </div>
+        <br>
+    </div>
+</div> ......-->
+<!-- <div class="m-b-40"></div> -->
+
+<!-- <table id="myTable7" class="table table-striped">
+    <thead style="background-color:#eaf4f8;">
+        <tr>
+
+            <th>Party Name</th>
+            <th>Party Type</th>
+            <th>Party Code</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let party of parties" (click)="set($event, party)"
+            [ngClass]="{'selected' : party === selectedPartyCategory}">
+
+            <td>{{party.partyName}}</td>
+            <td>{{party.partyType}}</td>
+            <td>{{party.partyCode}}</td>
+
+        </tr>
+    </tbody>
+</table>
+<div class="row">
+    <button [disabled]="enableFromParent" class="btn btn-info  usl-btn-color-sm"
+        (click)="openPartyCategory(partyCategory)">Create</button>
+    <button [disabled]="enableFromParent" (click)="openPartyCategoryEdit(partyCategory)"
+        class="btn btn-info  usl-btn-color-sm">Modify</button>
+    <button [disabled]="enableFromParent" (click)="openConfirmationDialog(party)"
+        class="btn btn-info  usl-btn-color-sm">Delete</button>
+    <button [disabled]="enableFromParent" (click)="openPartyCategoryView(partyCategory)"
+        class="btn btn-info  usl-btn-color-sm">View</button>
+
+</div> -->
+
+
+
+
+
+
+<div class="row p-2 pl-2 mt-5">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="xc">
+                <div class="panel-body">
+                  <table class="table alt-table table-borderless">
+                    <thead>
+                        <th>Party Name</th>
+                        <th>Party Type</th>
+                        <th>Party Code</th>
+                      <th></th>
+                    </thead>
+                    <tbody>
+                      <tr>                        
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>
+                          <button class="btn btn-danger round-table-button">&mdash;</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>
+                          <button class="btn btn-danger round-table-button" >&mdash;</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!--    
+</div> -->
+
+<!--Template for party categories-->
+<ng-template #partyCategory let-c="close" let-d="dismiss">
+    <!-- <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading"> Party Category
+                    <span>
+                        <button type="button" style="color:#F00; font-weight: bold;" class="close" aria-label="Close"
+                            (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </span>
+                </div>
+
+
+            </div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingBasic">
+                        <h4 class="panel-title">
+                            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseBasic" aria-expanded="false" aria-controls="collapseBasic"
+                                style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+                        </h4>
+                    </div>
+                    <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel"
+                        aria-labelledby="headingBasic">
+                        <div class="panel-body">
+
+
+                            <div class="form-body">
+
+
+
+                                <input name="id" [(ngModel)]="party.id" type="text" hidden>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="partyCategory" class="control-label col-md-6">Party
+                                                Category</label>
+                                            <div class="col-md-8">
+                                                <select class="form-control" [disabled]="isView"
+                                                    data-placeholder="Choose a Category" tabindex="1" name="partyCat"
+                                                    [(ngModel)]="party.partyCat">
+                                                    <option value="">-Please Select-</option>
+                                                    <option value="Zenith">Zenith Bank</option>
+                                                    <option value="UBA">UBA</option>
+
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="partType" class="control-label col-md-6">Party Type</label>
+                                                <div class="col-md-8">
+                                                    <select class="col-md-6" [disabled]="isView" class="form-control"
+                                                        data-placeholder="Choose a Category" tabindex="1" name="partType"
+                                                        [(ngModel)]="party.partyType">
+                                                        <option value="">-Please Select-</option>
+                                                        <option value="Zenith">Zenith Bank</option>
+                                                        <option value="UBA">UBA</option>
+    
+                                                    </select>
+    
+    
+    
+                                                </div>
+    
+                                            </div>
+                                        </div>
+
+                                </div>
+
+                             
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="partyCode/Name" class="control-label col-md-6">Party Code/Name
+                                                &nbsp;
+                                                <span class="fa fa-search"></span>
+                                            </label>
+                                            <div class="row pl-3">
+
+                                            <div class="col-md-6">
+                                                <input name="partyCode" [disabled]="isView"
+                                                    [(ngModel)]="party.partyCode" type="text" class="form-control"
+                                                    placeholder="">
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input name="partyName" [disabled]="isView"
+                                                    [(ngModel)]="party.partyName" type="text" class="form-control"
+                                                    placeholder="">
+
+                                            </div>
+
+
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="location" class="control-label col-md-6">Location</label>
+                                                <div class="row pl-3">
+
+                                                <div class="col-md-12">
+                                                    <input name="location" [disabled]="isView" [(ngModel)]="party.location"
+                                                        type="text" class="form-control" placeholder="">
+    
+                                                </div>
+    
+    
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                </div>
+
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="location" class="control-label col-md-6">Address</label>
+                                            <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <textarea name="location" rows="4" [disabled]="isView"
+                                                    [(ngModel)]="party.address" type="text" class="form-control"
+                                                    placeholder=""></textarea>
+
+                                            </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="reference" class="control-label col-md-6">Reference</label>
+                                                <div class="row pl-3">
+
+                                                <div class="col-md-12">
+                                                    <input name="reference" [disabled]="isView"
+                                                        [(ngModel)]="party.reference" type="text" class="form-control"
+                                                        placeholder="">
+    
+                                                </div>
+                                                </div>
+    
+                                            </div>
+                                        </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="involvementType" class="control-label col-md-6">Fin. Involvement
+                                                Type</label>
+                                                <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <select class="col-md-12" [disabled]="isView" class="form-control"
+                                                    (change)="enable()" data-placeholder="Choose a Category"
+                                                    tabindex="1" name="financialInvolvementType"
+                                                    [(ngModel)]="party.financialInvolvementType">
+                                                    <option value="">-Please Select-</option>
+                                                    <option value="Zenith">Shared Liability</option>
+                                                    <option value="N/A">N/A</option>
+
+                                                </select>
+
+
+
+                                            </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="involvementType" class="control-label col-md-6">Fin. Involvement
+                                                    Quotation</label>
+                                                    <div class="row pl-3">
+
+                                                <div class="col-md-12">
+                                                    <select class="col-md-12" [disabled]="isDisabled" class="form-control"
+                                                        [disabled]="isView" data-placeholder="Choose a Category"
+                                                        tabindex="1" name="involvementQuotation"
+                                                        [(ngModel)]="party.involvementQuotation">
+                                                        <option value="">-Please Select-</option>
+                                                        <option value="amount">Amount</option>
+                                                        <option value="percent">Percent</option>
+    
+                                                    </select>
+    
+    
+                                                </div>
+                                                </div>
+    
+                                            </div>
+                                        </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="involvementValue" class="control-label col-md-6">Fin.
+                                                Involvement Value</label>
+                                                <div class="row pl-3">
+
+                                            <div class="col-md-6">
+                                                <select [disabled]="isDisabled" class="col-md-12" [disabled]="isView"
+                                                    class="form-control" data-placeholder="Choose a Category"
+                                                    tabindex="1" name="involvementValCurr"
+                                                    [(ngModel)]="party.involvementValCurr">
+                                                    <option value="">&lt;---&gt;</option>
+                                                    <option *ngFor="let curr of currencies" [ngValue]="curr.code">
+                                                        {{curr.code}}</option>
+
+
+                                                </select>
+
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input [disabled]="isDisabled" name="involvementValue"
+                                                    [(ngModel)]="party.involvementValue" [disabled]="isView" type="text"
+                                                    class="form-control" placeholder="">
+
+                                            </div>
+
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingPendingChange">
+                        <h4 class="panel-title">
+                            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                                href="#collapsePendingChange" aria-expanded="false"
+                                aria-controls="collapsePendingChange" style="color :#2b2b2b; font-weight: bold;">Pending
+                                Change Information </a>
+                        </h4>
+                    </div>
+                    <div id="collapsePendingChange" class="panel-collapse collapse show" role="tabpanel"
+                        aria-labelledby="headingPendingChange">
+                        <div class="panel-body">
+
+
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="pendingChangeType" class="control-label col-md-6">Pending Change
+                                                Type</label>
+                                                <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <select class="col-md-12" [disabled]="isDisabled" class="form-control"
+                                                    [disabled]="isView" data-placeholder="Choose a Category"
+                                                    tabindex="1" name="pendingChangeType"
+                                                    [(ngModel)]="party.pendingChangeType">
+                                                    <option value="">-Please Select-</option>
+                                                    <option [ngValue]="increase">increase</option>
+                                                    <option [ngValue]="decrease">decrease</option>
+                                                    <option [ngValue]="N/A">N/A</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="pendingChangeValue" class="control-label col-md-6">Pending
+                                                    Change Value</label>
+
+                                                    <div class="row pl-3">
+
+                                                <div class="col-md-6">
+                                                    <select class="col-md-12" [disabled]="isDisabled" class="form-control"
+                                                        [disabled]="isView" data-placeholder="Choose a Category"
+                                                        tabindex="1" name="pendingChangeValCurr"
+                                                        [(ngModel)]="party.pendingChangeValCurr">
+                                                        <option value="">&lt;---&gt;</option>
+                                                        <option *ngFor="let curr of currencies" [ngValue]="curr.code">
+                                                            {{curr.code}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input [disabled]="isDisabled" name="pendingChangeValue"
+                                                        [disabled]="isView" [(ngModel)]="party.pendingChangeValue"
+                                                        type="text" class="form-control" placeholder="">
+    
+                                                </div>
+    
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="remarks" class="control-label col-md-6">Remarks</label>
+                                            <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <textarea type="text" [disabled]="isView" name="remarks" rows="4"
+                                                    class="form-control" [(ngModel)]="party.remarks"></textarea>
+                                            </div>
+
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer" style="float: left;">
+                            <div class="form-actions">
+                                <div class="row">
+                                    <button [disabled]="enableFromParent" type="button" class="btn btn-success"
+                                        (click)="c('Close click')">
+                                        <li class="fa fa-check-o"></li> Save
+                                    </button>
+                                    <button [disabled]="enableFromParent" type="button" class="btn btn-default"
+                                        (click)="d('Cross click')">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+
+    <div class="modal-content m-5">
+            <div class="modal-header">
+                <div class="col-md-12 p-0">
+
+                    <div class="card-body form-card">
+                        <div class="panel-heading" role="tab" id="headingBasic">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="float-left form-icon text-center mr-3">
+                                        <span class="flaticon-paper  primary-color"></span>
+                                    </div>
+                                    <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                                        Party Category
+                                    </h4>
+                                    <p class="subtitle mb-0">Please fill in the appropriate information </p>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body p-0">
+                <div class="container p-2">
+                    <div class="col-md-12">
+
+                        <div class="form-body">
+
+
+
+                            <input name="id" [(ngModel)]="party.id" type="text" hidden>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="partyCategory" class="control-label col-md-6">Party
+                                            Category</label>
+                                        <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <select class="form-control" [disabled]="isView"
+                                                    data-placeholder="Choose a Category" tabindex="1" name="partyCat"
+                                                    [(ngModel)]="party.partyCat">
+                                                    <option value="">-Please Select-</option>
+                                                    <option value="Zenith">Zenith Bank</option>
+                                                    <option value="UBA">UBA</option>
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="partType" class="control-label col-md-6">Party Type</label>
+                                        <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <select class="col-md-12" [disabled]="isView" class="form-control"
+                                                    data-placeholder="Choose a Category" tabindex="1" name="partType"
+                                                    [(ngModel)]="party.partyType">
+                                                    <option value="">-Please Select-</option>
+                                                    <option value="Zenith">Zenith Bank</option>
+                                                    <option value="UBA">UBA</option>
+
+                                                </select>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="partyCode/Name" class="control-label col-md-6">Party Code/Name
+                                            &nbsp;
+                                            <span class="fa fa-search"></span>
+                                        </label>
+                                        <div class="row pl-3">
+
+                                            <div class="col-md-6">
+                                                <input name="partyCode" [disabled]="isView"
+                                                    [(ngModel)]="party.partyCode" type="text" class="form-control"
+                                                    placeholder="">
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input name="partyName" [disabled]="isView"
+                                                    [(ngModel)]="party.partyName" type="text" class="form-control"
+                                                    placeholder="">
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="location" class="control-label col-md-6">Location</label>
+                                        <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <input name="location" [disabled]="isView" [(ngModel)]="party.location"
+                                                    type="text" class="form-control" placeholder="">
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="location" class="control-label col-md-6">Address</label>
+                                        <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <textarea name="location" rows="4" [disabled]="isView"
+                                                    [(ngModel)]="party.address" type="text" class="form-control"
+                                                    placeholder=""></textarea>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="reference" class="control-label col-md-6">Reference</label>
+                                        <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <input name="reference" [disabled]="isView"
+                                                    [(ngModel)]="party.reference" type="text" class="form-control"
+                                                    placeholder="">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="involvementType" class="control-label col-md-6">Fin. Involvement
+                                            Type</label>
+                                        <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <select class="col-md-12" [disabled]="isView" class="form-control"
+                                                    (change)="enable()" data-placeholder="Choose a Category"
+                                                    tabindex="1" name="financialInvolvementType"
+                                                    [(ngModel)]="party.financialInvolvementType">
+                                                    <option value="">-Please Select-</option>
+                                                    <option value="Zenith">Shared Liability</option>
+                                                    <option value="N/A">N/A</option>
+
+                                                </select>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="involvementType" class="control-label col-md-6">Fin. Involvement
+                                            Quotation</label>
+                                        <div class="row pl-3">
+
+                                            <div class="col-md-12">
+                                                <select class="col-md-12" [disabled]="isDisabled" class="form-control"
+                                                    [disabled]="isView" data-placeholder="Choose a Category"
+                                                    tabindex="1" name="involvementQuotation"
+                                                    [(ngModel)]="party.involvementQuotation">
+                                                    <option value="">-Please Select-</option>
+                                                    <option value="amount">Amount</option>
+                                                    <option value="percent">Percent</option>
+
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="involvementValue" class="control-label col-md-6">Fin.
+                                            Involvement Value</label>
+                                        <div class="row pl-3">
+
+                                            <div class="col-md-6">
+                                                <select [disabled]="isDisabled" class="col-md-12" [disabled]="isView"
+                                                    class="form-control" data-placeholder="Choose a Category"
+                                                    tabindex="1" name="involvementValCurr"
+                                                    [(ngModel)]="party.involvementValCurr">
+                                                    <option value="">&lt;---&gt;</option>
+                                                    <option *ngFor="let curr of currencies" [ngValue]="curr.code">
+                                                        {{curr.code}}</option>
+
+
+                                                </select>
+
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input [disabled]="isDisabled" name="involvementValue"
+                                                    [(ngModel)]="party.involvementValue" [disabled]="isView" type="text"
+                                                    class="form-control" placeholder="">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="panel-default form-card">
+                            <div class="panel-heading" role="tab" id="headingBenInfo">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="float-left form-icon text-center mr-3">
+                                            <span class="flaticon-paper  primary-color"></span>
+                                        </div>
+                                        <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                                            Pending Change Information </h4>
+                                        <p class="subtitle mb-0">Please fill in the appropriate information </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel"
+                                aria-labelledby="headingBenInfo">
+                                <div class="panel-body">
+
+
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="pendingChangeType"
+                                                        class="control-label col-md-6">Pending Change
+                                                        Type</label>
+                                                    <div class="row pl-3">
+
+                                                        <div class="col-md-12">
+                                                            <select class="col-md-12" [disabled]="isDisabled"
+                                                                class="form-control" [disabled]="isView"
+                                                                data-placeholder="Choose a Category" tabindex="1"
+                                                                name="pendingChangeType"
+                                                                [(ngModel)]="party.pendingChangeType">
+                                                                <option value="">-Please Select-</option>
+                                                                <option [ngValue]="increase">increase</option>
+                                                                <option [ngValue]="decrease">decrease</option>
+                                                                <option [ngValue]="N/A">N/A</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="pendingChangeValue"
+                                                        class="control-label col-md-6">Pending
+                                                        Change Value</label>
+
+                                                    <div class="row pl-3">
+
+                                                        <div class="col-md-6">
+                                                            <select class="col-md-12" [disabled]="isDisabled"
+                                                                class="form-control" [disabled]="isView"
+                                                                data-placeholder="Choose a Category" tabindex="1"
+                                                                name="pendingChangeValCurr"
+                                                                [(ngModel)]="party.pendingChangeValCurr">
+                                                                <option value="">&lt;---&gt;</option>
+                                                                <option *ngFor="let curr of currencies"
+                                                                    [ngValue]="curr.code">
+                                                                    {{curr.code}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input [disabled]="isDisabled" name="pendingChangeValue"
+                                                                [disabled]="isView"
+                                                                [(ngModel)]="party.pendingChangeValue" type="text"
+                                                                class="form-control" placeholder="">
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="remarks" class="control-label col-md-6">Remarks</label>
+                                                    <div class="row pl-3">
+
+                                                        <div class="col-md-12">
+                                                            <textarea type="text" [disabled]="isView" name="remarks"
+                                                                rows="4" class="form-control"
+                                                                [(ngModel)]="party.remarks"></textarea>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button [disabled]="enableFromParent" type="button" class="btn btn-primary"
+                    (click)="c('Close click')">Save</button>
+                <button [disabled]="enableFromParent" type="button" class="btn btn-secondary"
+                    (click)="d('Cross click')">Cancel</button>
+            </div>
+        </div>
+
+
+</ng-template>

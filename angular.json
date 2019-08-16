@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "tradex-new-ui": {
+    "angular-tradex-new-ui": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tradex-new-ui",
+            "outputPath": "dist/angular-tradex-new-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,9 +23,27 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/quill/dist/quill.core.css",
+               "node_modules/quill/dist/quill.snow.css",
+               "node_modules/quill/dist/quill.bubble.css",
+               "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+              "node_modules/ngx-quill/bundles/ngx-quill.umd.js",
+              "node_modules/quill/dist/quill.js",
+              "node_modules/jspdf/dist/jspdf.min.js",             
+              "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js",
+              "node_modules/datatables.net-select/js/dataTables.select.js",
+              "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+              "node_modules/datatables.net-buttons/js/buttons.flash.js",
+              "node_modules/datatables.net-buttons/js/buttons.html5.js",
+              "node_modules/datatables.net-buttons/js/buttons.print.js"
+             
+            ]
           },
           "configurations": {
             "production": {
@@ -57,18 +75,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "tradex-new-ui:build"
+            "browserTarget": "angular-tradex-new-ui:build",
+            "port": 4200
           },
           "configurations": {
             "production": {
-              "browserTarget": "tradex-new-ui:build:production"
+              "browserTarget": "angular-tradex-new-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tradex-new-ui:build"
+            "browserTarget": "angular-tradex-new-ui:build"
           }
         },
         "test": {
@@ -102,7 +121,7 @@
         }
       }
     },
-    "tradex-new-ui-e2e": {
+    "angular-tradex-new-ui-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -111,11 +130,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "tradex-new-ui:serve"
+            "devServerTarget": "angular-tradex-new-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "tradex-new-ui:serve:production"
+              "devServerTarget": "angular-tradex-new-ui:serve:production"
             }
           }
         },
@@ -131,5 +150,5 @@
       }
     }
   },
-  "defaultProject": "tradex-new-ui"
+  "defaultProject": "angular-tradex-new-ui"
 }

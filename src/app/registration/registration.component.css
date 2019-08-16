@@ -1,0 +1,15 @@
+select.form-control {
+    padding: .175rem .15rem;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 0;
+    height: 38px !important;
+    border-radius: .25rem;
+    border-color: #efefef;
+}
+
+input[type=text], input[type=number]{
+    height : 38px !important;
+    border-radius: .25rem;
+    line-height: 0;
+}

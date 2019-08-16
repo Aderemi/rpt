@@ -1,0 +1,14 @@
+tr, td{
+    padding: 0.2rem 0.4rem;
+}
+
+thead th{
+    padding: 0.4rem !important;
+}
+
+.col-md-6{
+    padding-left: 20px !important;
+}
+.col-md-1{
+    margin-left: -5px;
+}

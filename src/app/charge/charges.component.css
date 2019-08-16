@@ -1,0 +1,13 @@
+tr, td{
+    padding: 0.2rem 0.4rem;
+}
+
+thead th{
+    padding: 0.4rem !important;
+}
+.round-table-button {
+    height: 23px;
+    width: 21px;
+ }
+ 
+ 

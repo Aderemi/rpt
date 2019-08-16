@@ -1,0 +1,335 @@
+<div class="container mt-1">
+
+    <div class="row p-4">
+        <div class="col-md-12">
+          <h1>Outward Cash Letter Cheque Inquiry</h1>
+        </div>
+      </div>
+
+<div style="float: right;width: 10px;height: 13px; margin-right: 10px;">
+    <span class="right-side-toggle">
+      <a class="waves-effect waves-light" href="{{url}}#popup">
+        <i style="margin-top: 5px;font-size: 18px;color: black;text-align: center; padding-left: 3px;"
+          class="fa  fa-cog"></i>
+      </a>
+    </span>
+  
+  </div>
+
+  <div class="row" *ngIf="!view">
+    <div class="col-md-12 white-box ml-4">
+      <div class="panel-group" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBasic">
+              <h6 class="panel-title" style="font-weight: bold;">Basic Information</h6>
+          </div>
+          <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+            <div class="panel-body">
+  
+                <div class="col-md-10 offset-md-1">
+
+              <div class="form-body">
+                <div class="row" *ngIf="errors.length > 0">
+  
+                  <div class="col-md-6">
+                    <ul>
+  
+                      <li *ngFor="let error of errorMsg; let i = index" class="error-list">
+                        <span class='fa fa-close'></span>
+                        <i>
+                          <span (click)="setFocus(i)">{{error}}</span>
+                        </i>
+                      </li>
+                    </ul>
+                  </div>
+  
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row ">
+                      <label for="payeeAccNum" class="control-label col-md-4">Payee Account Number
+                        <span class="fa fa-search" (click)="open('Warrant Reference')"></span>
+                      </label>
+                      <div class="col-md-3">
+                        <input name="payeeAccNum" [(ngModel)]="import.payeeAccNum.accountName" type="text" id="payeeAccNum"
+                          class="form-control" placeholder="" style="text-align: right;">
+                      </div>
+                      <div class="col-md-5">
+                        <input name="payeeAccNum" [(ngModel)]="import.payeeAccNum.accountNumber" type="text" id="payeeAccNum"
+                          class="form-control" placeholder="" style="text-align: right;">
+                      </div>
+  
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="chequeNum" class="control-label col-md-4">Cheque Number
+                      </label>
+  
+                      <div class="col-md-8">
+                        <input name="chequeNum" [disabled]='true' [(ngModel)]="import.chequeNum" type="text"
+                          id="chequeNum" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+  
+  
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="chequeAmount" class="control-label col-md-4">Cheque Amount</label>
+                      <div class="col-md-4">
+                        <select class="col-md-9" class="form-control" data-placeholder="Choose a Category" tabindex="1"
+                          name="chequeAmount" [(ngModel)]="import.chequeAmount" [compareWith]="equals">
+                          <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <input name="chequeAmount" [disabled]="true" [(ngModel)]="import.chequeAmount"
+                          style="text-align: right;" type="text" id="chequeAmount" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="chequeDate" class="control-label col-md-4">Cheque Date</label>
+                      <div class="col-md-8">
+                        <input name="chequeDate" [ngModel]="import.chequeDate | date:'yyyy-MM-dd'"
+                          (ngModelChange)="import.chequeDate = $event" type="date" id="chequeDate" class="form-control"
+                          placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="chequeSortCode" class="control-label col-md-4">Cheque Sort Code
+                      </label>
+                      <div class="col-md-8">
+                        <input name="chequeSortCode" [(ngModel)]="chequeSortCode" type="text" id="chequeSortCode"
+                          class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <div class="form-group row ">
+                      <label for="payerBank" class="control-label col-md-4">Payer Bank
+                        <span class="fa fa-search" (click)="open('Warrant Reference')"></span>
+                      </label>
+                      <div class="col-md-3">
+                        <input name="payerBank" [(ngModel)]="import.payerBank.name" type="text" id="payerBank"
+                          class="form-control" placeholder="" style="text-align: right;">
+                      </div>
+                      <div class="col-md-5">
+                        <input name="payerBank" [(ngModel)]="import.payerBank.code" type="text" id="payerBank"
+                          class="form-control" placeholder="" style="text-align: right;">
+                      </div>
+  
+                    </div>
+                  </div>
+  
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="payerAccNum" class="control-label col-md-4">Payer Account Number
+                      </label>
+                      <div class="col-md-8">
+                        <input name="payerAccNum" [(ngModel)]="payerAccNum.accountName" type="text" id="payerAccNum"
+                          class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="payerName" class="control-label col-md-4">Payer Name
+                      </label>
+                      <div class="col-md-8">
+                        <input name="payerName" [(ngModel)]="payerName" type="text" id="payerName" class="form-control"
+                          placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="country" class="control-label col-md-4">Country</label>
+                      <div class="col-md-8">
+                        <select class="form-control" data-placeholder="Choose a Category" tabindex="1" name="country"
+                          [(ngModel)]="import.country" [compareWith]="equals">
+                          <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+            </div>
+  
+            <div class="panel panel-default" id="goodsInfo">
+              <div class="panel-heading" role="tab" id="headingRemittanceDet">
+                <h6 class="panel-title">
+                  <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseRemittanceDet" aria-expanded="false" aria-controls="collapseRemittanceDet"
+                    style="color :#2b2b2b;font-weight: bold;">Negotiating Infomation</a>
+                </h6>
+              </div>
+              <div id="collapseRemittanceDet" class="panel-collapse collapse show" role="tabpanel"
+                aria-labelledby="headingRemittanceDet">
+                <div class="panel-body">
+                    <div class="col-md-10 offset-md-1">
+
+                  <div class="form-body">
+  
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="chequeNegotiated" class="control-label col-md-4">Cheque Negotiated</label>
+                          <div class="col-md-8">
+                            <select class="form-control" data-placeholder="Choose a Category" tabindex="1"
+                              name="chequeNegotiated" [(ngModel)]="import.chequeNegotiated" [compareWith]="equals">
+                              <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="discountRate" class="control-label col-md-4">Discount Rate
+                          </label>
+                          <div class="col-md-8">
+                            <input name="discountRate" [(ngModel)]="import.discountRate" type="text" id="discountRate"
+                              class="form-control" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="negotiatedAmount" class="control-label col-md-4">Negotiated Amount</label>
+                          <div class="col-md-4">
+                            <select class="col-md-9" class="form-control" data-placeholder="Choose a Category"
+                              tabindex="1" name="negotiatedAmount" [(ngModel)]="import.negotiatedAmount"
+                              [compareWith]="equals">
+                              <option value="">---&nbsp;---</option>
+                              <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+                              <option value="">---Yes---</option>
+                              <option value="">---No---</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <input name="negotiatedAmount" [disabled]="true" [(ngModel)]="import.negotiatedAmount"
+                              style="text-align: right;" type="text" id="negotiatedAmount" class="form-control"
+                              placeholder="">
+                          </div>
+                        </div>
+                      </div>
+  
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="dateNegotiated" class="control-label col-md-4">Cheque Date</label>
+                          <div class="col-md-8">
+                            <input name="dateNegotiated" [ngModel]="import.dateNegotiated | date:'yyyy-MM-dd'"
+                              (ngModelChange)="import.dateNegotiated = $event" type="date" id="dateNegotiated"
+                              class="form-control" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+  
+            <div class="panel panel-default" id="benInfo">
+              <div class="panel-heading" role="tab" id="headingBenInfo">
+                <h6 class="panel-title">
+                  <a class="collapsed " role="button" data-toggle="collapse" data-parent=""
+                    href="#collapseBenInfo" aria-expanded="false" aria-controls="collapseBenInfo"
+                    style="color :#2b2b2b; font-weight: bold;">Control Information </a>
+                </h6>
+              </div>
+              <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel"
+                aria-labelledby="headingBenInfo">
+                <div class="panel-body">
+                    <div class="col-md-10 offset-md-1">
+
+  
+                  <div class="form-body">
+  
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                             <label for="effectiveDate" class="control-label col-md-4">Effective Date</label>
+                             <div class="col-md-8">
+                               <input name="effectiveDate" [ngModel]="import.effectiveDate | date:'yyyy-MM-dd'"
+                                 (ngModelChange)="import.effectiveDate = $event" type="date" id="effectiveDate"
+                                 class="form-control" placeholder="">
+                             </div>
+                           </div>
+                         </div>
+  
+                         <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="status" class="control-label col-md-4">Status
+                              </label>
+                              <div class="col-md-8">
+                                  <input name="status" [(ngModel)]="import.status" type="text"
+                                    id="status" class="form-control" placeholder="" disabled>
+                                </div>
+                            </div>
+                          </div>
+  
+                    </div>
+                    </div>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+          <div class="panel panel-default" style="padding-bottom:50px;">
+              <div class="panel-heading" role="tab" id="headingBasic">
+              </div>
+              <div class="panel-body">
+                  <div class="row px-4">
+                      <div class="col-md-8"></div>
+                      <div class="col-md-2 text-right"><button
+                              class="btn btn-outline-primary btn-block" type="submit">Cancel</button>
+                      </div>
+                      <div class="col-md-2 text-right">
+                          <button class="btn btn-primary btn-block" type="submit">Save</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <!-- <div class="white-box">
+            <div class="row">
+              <button type="button" class="btn btn-info usl-btn-color" (click)="save()">Save</button>
+              <button type="button" class="btn btn-info usl-btn-color" (click)="cancel()">Cancel</button>
+            </div>
+          </div> -->
+      </div>
+
+    </div>

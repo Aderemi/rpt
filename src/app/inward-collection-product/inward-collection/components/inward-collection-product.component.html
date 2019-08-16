@@ -1,0 +1,491 @@
+<!-- the charge pop up -->
+
+
+
+<!-- charges template -->
+<ng-template #chargesTemp let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <div class="panel-heading"> CHARGES </div>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      <div class="col-md-12">
+
+
+          <div class="panel-wrapper collapse in" aria-expanded="true">
+              <div class="row">
+
+
+
+                  <div class="col-md-12">
+                      <div class="form-body">
+
+
+                          <!--/span-->
+                         
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+
+
+
+      </div>
+  </div>
+
+
+
+  <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="c('Close click', $event)">
+          <li class="fa fa-plus"></li> Add To Product</button>
+
+  </div>
+</ng-template>
+
+<!-- currency template -->
+<ng-template #currenciesTemp let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <div class="panel-heading"> CURRENCY </div>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      <div class="col-md-12">
+
+
+          <div class="panel-wrapper  in" aria-expanded="true">
+              <div class="row">
+
+
+
+                  <div class="col-md-12">
+                      <div class="form-body">
+
+
+                          <!--/span-->
+                          
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+
+
+
+      </div>
+  </div>
+
+
+
+  <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="c('Close click', $event)">
+          <li class="fa fa-plus"></li> Add To Product</button>
+
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+<!-- the accordion, dispalying the add form  -->
+
+<div class="col-md-10">
+  <div class="panel-group" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBasic">
+              <h4 class="panel-title">
+                  <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic" aria-expanded="false"
+                      aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+              </h4>
+          </div>
+          <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+              <div class="panel-body">
+
+
+                  <div class="form-body">
+                      <!-- <input name="id" [(ngModel)]="product.id" type="text" hidden> -->
+
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="code" class="control-label col-md-4">Code
+                                  </label>
+
+                                  <div class="col-md-8">
+                                      <input name="code" [disabled]="cod" [(ngModel)]="inwardCollectionProduct.code" type="text" id="code" class="form-control"
+                                          placeholder="">
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!--/span-->
+
+                          <!--/span-->
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="description" class="control-label col-md-4">Description
+                                  </label>
+
+                                  <div class="col-md-8">
+                                      <input name="description" [disabled]="des" [(ngModel)]="inwardCollectionProduct.description" type="text" id="description"
+                                          class="form-control" placeholder="">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label class="control-label col-md-4">Product Category</label>
+                                  <div class="col-md-8">
+                                      <select class="form-control" [disabled]="true" name="productCategory" [(ngModel)]="inwardCollectionProduct.product.productSubCategory.productCategory"
+                                          [compareWith]="equals">
+                                          <option [ngValue]="productSubCategory.productCategory" >{{productSubCategory.productCategory.description}}</option>
+                                        </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label class="control-label col-md-4">Product Sub Category</label>
+                                  <div class="col-md-8">
+                                      <select class="form-control" name="ProductSubCategory" [(ngModel)]="inwardCollectionProduct.product.productSubCategory"  [compareWith] = "equals">
+                                          <option [ngValue]="undefined">&lt;---&gt;</option>
+                                          <option *ngFor="let psc of productSubCategorys" [ngValue]="psc">{{psc.description}}</option>
+                                        </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="code" class="control-label col-md-4">Primary Ref Number Scheme
+                                  </label>
+                                  <div class="col-md-8">
+
+                                      <select name="priRefNumScheme" [disabled]="ref" [(ngModel)]="inwardCollectionProduct.priRefNumScheme" class="form-control"
+                                          placeholder="">
+                                          <option [ngValue]="undefined">&lt;---&gt;</option>
+                                          <option *ngFor="let p of disPickListItemPry" [ngValue]="p.itemDecription">{{p.itemDecription}}</option>
+
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="code" class="control-label col-md-4">Temporary Ref Number Option
+                                  </label>
+                                  <div class="col-md-8">
+
+                                      <select name="tempRefNoOption" [disabled]="ref" [(ngModel)]="inwardCollectionProduct.tempRefNoOption" class="form-control"
+                                          placeholder="">
+                                          <option value="undefined">&lt;---&gt;</option>
+                                          <option value="yes">Yes</option>
+                                          <option value="no">No</option>
+
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="code" class="control-label col-md-4">Temporary Ref Number Scheme
+                                  </label>
+                                  <div class="col-md-8">
+
+                                      <select name="tempRefNoScheme" [disabled]="ref" [(ngModel)]="inwardCollectionProduct.tempRefNoScheme" class="form-control"
+                                          placeholder="">
+                                          <option [ngValue]="undefined">&lt;---&gt;</option>
+                                          <option *ngFor="let ref of disPickListItemTemp" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                      </div>
+
+
+
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="warrantReq" class="control-label col-md-4">Warrant Required
+                                  </label>
+                                  <div class="col-md-8">
+
+                                      <select name="warrantReq" (change)="enable($event.target.value)" [(ngModel)]="inwardCollectionProduct.warrantReq" class="form-control"
+                                          placeholder="">
+                                          <option [ngValue]="undefined">&lt;---&gt;</option>
+                                          <option value="mandatory">Mandatory</option>
+                                          <option value="desirable">Desirable</option>
+
+                                          <option value="optional">Optional</option>
+                                          <option value="N/A">N/A</option>
+
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                      </div>
+
+                      <div class="row" *ngIf="isDisabled">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="code" class="control-label col-md-4">Warrant Type
+                                  </label>
+                                  <div class="col-md-8">
+
+                                      <select name="warrantType" [(ngModel)]="inwardCollectionProduct.warrantType" class="form-control" placeholder="">
+                                          <option value="undefined">&lt;---&gt;</option>
+                                          <option value="warrant_product1">warrant_product1</option>
+                                          <option value="warrant_product2">warrant_product2</option>
+
+
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="code" class="control-label col-md-4">Basic Foreign Curr Equi. Tracking
+                                  </label>
+                                  <div class="col-md-8">
+
+                                      <select name="basForCurrEquiTrack" [(ngModel)]="inwardCollectionProduct.basForCurrEquiTrack" class="form-control" placeholder="">
+                                          <option value="undefined">&lt;---&gt;</option>
+                                          <option value="mandatory">Mandatory</option>
+                                          <option value="desirable">Desirable</option>
+
+                                          <option value="optional">Optional</option>
+                                          <option value="N/A">N/A</option>
+
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="code" class="control-label col-md-4">Local Curr Equi. Tracking
+                                  </label>
+                                  <div class="col-md-8">
+
+                                      <select name="localCurrEquiTrack" [(ngModel)]="inwardCollectionProduct.localCurrEquiTrack" class="form-control" placeholder="">
+                                          <option value="undefined">&lt;---&gt;</option>
+                                          <option value="mandatory">Mandatory</option>
+                                          <option value="desirable">Desirable</option>
+                                          <option value="optional">Optional</option>
+                                          <option value="N/A">N/A</option>
+
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!--/span-->
+                          <!--/span-->
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBenInfo">
+              <h4 class="panel-title">
+                  <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBenInfo" aria-expanded="false"
+                      aria-controls="collapseBenInfo" style="color :#2b2b2b; font-weight: bold;">Default Information </a>
+              </h4>
+          </div>
+          <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+              <div class="panel-body">
+
+
+                  <div class="form-body">
+
+                      <div class="row">
+
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="code" class="control-label col-md-4">Message Delivery Channel
+                                  </label>
+                                  <div class="col-md-8">
+                                      <select class="form-control" [(ngModel)]="inwardCollectionProduct.msgDelChan" name="msgDelChan">
+                                          <option value="undefined">&lt;---&gt;</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="Telex">Telex</option>
+                                          <option value="Airmail">Airmail</option>
+                                      </select>
+                                  </div>
+
+                              </div>
+                          </div>
+
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBenInfo">
+              <h4 class="panel-title">
+                  <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBenInfo" aria-expanded="false"
+                      aria-controls="collapseBenInfo" style="color :#2b2b2b; font-weight: bold;">Control Information </a>
+              </h4>
+          </div>
+          <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+              <div class="panel-body">
+
+
+                  <div class="form-body">
+                      <div class="row">
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="code" class="control-label col-md-4">Effective Date
+                                  </label>
+                                  <div class="col-md-8">
+                                      <input name="effectiveDate" [(ngModel)]="dateString" [disabled]="true" type="text" id="effectiveDate" class="form-control"
+                                          placeholder="">
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!--/span-->
+
+                          <!--/span-->
+                      </div>
+                      <div class="row">
+
+                          <div class="col-md-9">
+                              <div class="form-group">
+                                  <label for="code" class="control-label col-md-4">Status
+                                  </label>
+                                  <div class="col-md-8">
+                                      <select class="form-control" [ngModel]="inwardCollectionProduct.status" name="status">
+                                          <option>Inactive</option>
+                                          <option>Active</option>
+                                          <option>Cancelled</option>
+                                      </select>
+                                  </div>
+
+                              </div>
+                          </div>
+
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="white-box" >
+          <div class="row">
+          <button *ngIf="modBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('modify')">
+          Save</button>
+          <button *ngIf="savBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('save')">
+          Save</button>
+          <button *ngIf="savCloBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('savenclose')">
+          Save &amp; Close</button>
+          <button *ngIf="appBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('approve')">
+          Approve</button>
+          <button *ngIf="canBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('cancel')">
+          Cancel</button>
+
+          <button *ngIf="cloBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('close')">
+          Close</button>
+</div>
+      </div>
+
+  </div>
+
+
+</div>
+<!-- end of the add form -->
+
+
+<!--  the charges related task starts here-->
+
+<!-- The charges related task ends here -->
+
+<!-- the currency related task is starts here -->
+
+<!--product Curency Display  -->
+
+<!-- <div class="col-md-10" *ngIf="relatedTaskNum == 3">
+
+  <app-assigned-currency></app-assigned-currency>
+
+
+</div> -->
+<!-- End display product currency -->
+
+
+
+
+<!-- The currency related task ends here -->
+
+
+
+
+
+<!-- Related Task Menu bar only displayed when relatedTaskSave == 1 -->
+<!-- 
+<div class="col-md-2 white-box"  id="relTask" *ngIf="relatedTaskFlag">
+
+
+
+
+        <app-related-task-bar [product]="product" [operation]="operation"></app-related-task-bar>
+
+
+
+
+</div> -->
+
+<!-- Related Task Menu Ends -->

@@ -1,0 +1,268 @@
+<!-- 
+<div class="col-sm-12">
+  <div class="white-box">
+  
+      <div class="col-md-6">....... -->
+             <!-- <div class="form-group row">
+                  <label for="docCategory" class="control-label col-md-3">Charges</label>
+                  <div class="col-md-9">
+                      <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="docCategory" [(ngModel)]="outwardCustPayment.docCategory">
+                          <option value="">---Select---</option>
+
+                      </select>
+                      <br>
+
+                  </div>
+                  <br>
+                  <br>
+              </div>-->
+          <!-- </div>
+    
+    <table id="myTable7"class="table table-striped">
+        <thead style="background-color:#eaf4f8;">
+          <tr>
+            <th>Code</th>
+                          <th>Description</th>
+                          <th>Requirements</th>
+                          <th>Response</th>  
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let checklist of checklists" (click)="set($event, checklist)" [ngClass]="{'selected' : checklist === selectedChecklist}">
+            <td>{{checklist.code}}</td>
+                    <td>{{checklist.description}}</td>
+                    <td>{{checklist.response}}</td>
+                    <td>{{checklist.requirements}}</td>
+                   
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="row">...... -->
+   
+          <!-- <button class="btn btn-info  usl-btn-color"  (click) = "openChecklist(checklist)" >Create</button> -->
+          <!-- <button (click) = "editChecklist()" class="btn btn-info  usl-btn-color-sm" >Modify</button>..... -->
+          <!-- <button (click) = "openConfirmationDialog(checklist)" class="btn btn-info  usl-btn-color" >Delete</button> -->
+          <!-- <button (click) = "viewCharge()" class="btn btn-info  usl-btn-color-sm" >View</button>
+        </div>
+
+  </div>
+</div>  ............. -->
+
+
+
+
+
+<div class="row p-2 pl-2 mt-5">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="xc">
+                <div class="panel-body">
+                  <table class="table alt-table table-borderless">
+                    <thead>
+                        <th>Code</th>
+                        <th>Description</th>
+                        <th>Requirements</th>
+                        <th>Response</th>  
+                      <th></th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>
+                          <button class="btn btn-danger round-table-button">&mdash;</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>
+                          <button class="btn btn-danger round-table-button" >&mdash;</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+<!--Template for checklist-->
+<ng-template #checklist let-c="close" let-d="dismiss">
+  <!-- <div class="row">
+      <div class="col-md-12">
+          <div class="panel panel-info">
+              <div class="panel-heading"> Check List</div>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="panel-wrapper collapse in" aria-expanded="true">
+                  <div class="panel-body">
+                      <form>
+                          <div class="form-body">
+
+                              <input name="id" [(ngModel)]="checklist.id" type="text" hidden>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group row">
+                                          <label for="code" class="control-label col-md-3">Code</label>
+                                          <div class="col-md-9">
+                                              <input name="code" [(ngModel)]="checklist.code" type="text" id="code" class="form-control" placeholder="code">
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group row">
+                                          <label for="description" class="control-label col-md-3">Description</label>
+                                          <div class="col-md-9">
+                                              <input name="description" [(ngModel)]="checklist.description" type="text" id="description" class="form-control" placeholder="description">
+                                          </div>
+                                          <br>
+                                          <br>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group row ">
+                                          <label for="requirement" class="control-label col-md-3">Requirement</label>
+                                          <div class="col-md-9">
+                                              <input name="requirement" [(ngModel)]="checklist.requirements" type="text" id="requirement" class="form-control" placeholder="">
+                                          </div>
+
+                                      </div>
+                                  </div>
+
+                                  <div class="col-md-6">
+                                      <div class="form-group row">
+                                          <label for="response" class="control-label col-md-3">Response</label>
+                                          <div class="col-md-9">
+                                              <input name="response" [(ngModel)]="checklist.response" type="text" class="form-control" placeholder="">
+
+                                          </div>
+                                          <br>
+                                          <br>
+                                      </div>
+                                  </div>
+
+                              </div>
+
+                          </div>
+                          <br>
+                          <br>
+                          <div class="form-actions">
+                              <button type="submit" class="btn btn-success" (click)="openChecklist()">
+                                  <i class="fa fa-check"></i> Save</button>
+                              <button type="button" class="btn btn-default" (click)="d('Cross click')">Cancel</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div> -->
+  <div class="modal-content">
+        <div class="modal-header">
+                    <div class="col-md-12 p-0">
+
+                            <div class="card-body form-card">
+                                    <div class="panel-heading" role="tab" id="headingBasic">
+                                        <div class="row">
+                                                <div class="col-md-9">
+                                                        <div class="float-left form-icon text-center mr-3">
+                                                            <span class="flaticon-paper  primary-color"></span>
+                                                        </div>
+                                                        <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                                                                Check List
+                                                        </h4>
+                                                        <p class="subtitle mb-0">Please fill in the appropriate information </p>
+                                                </div>
+                                                 
+                                                    <div class="col-md-3">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                    </div>
+                                        </div>
+                                            
+                                </div>
+                            </div>
+                    </div>
+        </div>
+        <div class="modal-body p-0">
+          <div class="container p-2">
+                <div class="col-md-12">
+                  
+                      <div class="form-body">
+
+                            <input name="id" [(ngModel)]="checklist.id" type="text" hidden>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="code" class="control-label col-md-3">Code</label>
+                                        <div class="col-md-9">
+                                            <input name="code" [(ngModel)]="checklist.code" type="text" id="code" class="form-control" placeholder="code">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="description" class="control-label col-md-3">Description</label>
+                                        <div class="col-md-9">
+                                            <input name="description" [(ngModel)]="checklist.description" type="text" id="description" class="form-control" placeholder="description">
+                                        </div>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row ">
+                                        <label for="requirement" class="control-label col-md-3">Requirement</label>
+                                        <div class="col-md-9">
+                                            <input name="requirement" [(ngModel)]="checklist.requirements" type="text" id="requirement" class="form-control" placeholder="">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label for="response" class="control-label col-md-3">Response</label>
+                                        <div class="col-md-9">
+                                            <input name="response" [(ngModel)]="checklist.response" type="text" class="form-control" placeholder="">
+
+                                        </div>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+            
+              <button class="btn btn-primary" (click)="openChecklist()"> Save</button>
+                <button type="button" class="btn btn-secondary"  data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+
+</ng-template>

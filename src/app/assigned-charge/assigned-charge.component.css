@@ -1,0 +1,16 @@
+tr, td{
+    /* height: 0px !important; */
+    padding: 0.2rem 0.4rem;
+   
+}
+
+thead th{
+    padding: 0.4rem !important;
+    /* background-color: #8687a3; */
+    /* height: 0px !important; */
+    /* color: #fff; */
+}
+
+td{
+    /* cursor: pointer; */
+}

@@ -1,0 +1,96 @@
+
+<div  *ngIf = "isCreated === 1"> <p>{{message}}</p></div>
+<div class="row" >
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading"> Documents</div>
+            <div class="panel-wrapper collapse in" aria-expanded="true">
+                <div class="panel-body">
+                    <form >
+                        <div class="form-body">
+                           
+                                <input name="id" [(ngModel)] = "document.id" type="text" hidden>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for = "reference" class="control-label col-md-3">Reference</label>
+                                        <div class="col-md-9">
+                                            <input name="reference" [(ngModel)] = "document.reference" type="text" id="reference" class="form-control" placeholder="Reference">
+                                        </div>
+                                         </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for = "documentType" class="control-label col-md-3">Document Type</label>
+                                        <div class="col-md-9">
+                                                <input name = "documentType" [(ngModel)] = "document.documentType" type="text" id="documentType" class="form-control" placeholder="Document Type">
+                                        </div>
+                                        <br><br>
+                                         </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                    <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label for="currency" class="control-label col-md-3">Original Copy</label>
+                                                <div class="col-md-9">
+                                                        <input name="originalCopy" [(ngModel)] = "document.originalCopy" type="text" id="originalCopy" class="form-control" placeholder="Currency">
+                                                </div>
+                                                
+                                        </div>
+                                        </div> 
+
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="expected" class="control-label col-md-3">Copies</label>
+                                                    <div class="col-md-9">
+                                                            <input name="expected" [(ngModel)] = "document.copies" type="text" class="form-control" placeholder="Expected">
+            
+                                                    </div>
+                                                   <br><br>
+                                                </div>
+                                            </div>
+                         
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="scanned" class="control-label col-md-3">Scanned</label>
+                                            <div class="col-md-9">
+                                                    <input type="text" name="scanned" [(ngModel)] = "document.scanned" id="scanned" class="form-control" placeholder="Actual">
+                                            </div>
+                                            
+                                             </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="status" class="control-label col-md-3">Status</label>
+                                            <div class="col-md-9">
+                                                    <input type="text" name="status" [(ngModel)] = "document.status"id="status" class="form-control" placeholder="Status">
+
+                                            </div>
+                                        <br><br>
+                                             </div>
+                                    </div>
+                            </div>
+                            <!--/row-->
+                           
+          
+                        </div><br><br>
+                        <div class="form-actions">
+                            <button [disabled]="enableFromParent" type="submit" class="btn btn-success"  (click)="createDocument()"> <i class="fa fa-check"></i> Save</button>
+                            <button  [disabled]="enableFromParent" type="button" class="btn btn-default" (click) = "cancel()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    

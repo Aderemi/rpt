@@ -1,0 +1,6 @@
+<div class="card-body text-center" style="margin-top:50px">
+        <img src="/assets/images/no-record.png" style="background-image: url('/assets/images/circle.png'); background-size:cover" alt="no record found">
+        <h5 class="display-5">{{ message }}</h5>
+        <p *ngIf="showLead" class="lead">{{ lead }}</p>
+        <button class="btn btn-primary" routerLink="{{url}}" >{{ buttonText }}</button>
+</div>

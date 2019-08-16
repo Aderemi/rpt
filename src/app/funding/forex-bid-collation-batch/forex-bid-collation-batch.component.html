@@ -1,0 +1,504 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="panel-group" role="tablist" aria-multiselectable="true">
+  
+       
+  
+  
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBasic">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic" aria-expanded="false"
+                aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+            </h4>
+          </div>
+          <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+            <div class="panel-body">
+  
+  
+              <div class="form-body">
+                <!-- <input name="id" [(ngModel)]="elc.id" type="text" hidden> -->
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="code" class="control-label col-md-6">Reference Number 
+    
+                        </label>
+                        <div class="col-md-6">
+                          <input name="referenceNum" [disabled] = "true"   [(ngModel)]="fxBidCollationBatch.referenceNum" type="text" id="reference" class="form-control" placeholder="">
+                        </div>
+    
+                      </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="code" class="control-label col-md-6">Bid Currency
+                            
+                          </label>
+                          <div class="col-md-6">
+                              <select class="col-md-8" class="form-control" [(ngModel)]="fxBidCollationBatch.bidCurrency" (change)="getBidCurrency(fxBidCollationBatch.bidCurrency)" data-placeholder="Choose a Category"
+                              tabindex="1" name="bidCurrency" [compareWith]="equals">
+                              <option value="undefined">&lt;---&gt;</option>
+                              <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+      
+                            </select>    
+                          </div>
+                         
+      
+                        </div>
+                      </div>
+    
+                  </div>
+                 
+    
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label col-md-6">Product
+                          <a routerLink="/product" routerLinkActive="active">
+                            
+                          </a>
+                        </label>
+                        <div class="col-md-6">
+                          <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="productName" [ngClass]="" name="product">
+                          <!-- <span class="help-block" >{{error.swiftBic}}</span> -->
+                        </div>
+       
+                      </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="control-label col-md-6">Forex Source</label>
+                          <div class="col-md-6">
+                              <select class="col-md-8" class="form-control" [(ngModel)]="fxBidCollationBatch.forexSource" data-placeholder="Choose a Category"
+                              tabindex="1" name="repatriationAmtCurr" [compareWith]="equals">
+                              <option value="undefined">&lt;---&gt;</option>
+                              <option *ngFor="let fxSource of fxSources" [ngValue]="fxSource">{{fxSource.description}}</option>
+  
+                            </select>     
+                          </div>
+                         
+      
+                        </div>
+                      </div>
+                  </div>
+                
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="code" class="control-label col-md-6">Total Request Amount</label>
+                      <div class="col-md-2">
+             
+                        <input name="totalReqAmtCurr" [(ngModel)]="fxBidCollationBatch.totalReqAmtCurr" [disabled]="true" style="text-align: right" (blur)="transformTotalRequestAmount()"
+                        type="text" id="totalReqAmt" class="form-control" placeholder="">
+                      </div>
+                      <div class="col-md-4">
+                        <input name="totalReqAmt" [disabled] = "true" [(ngModel)]="fxBidCollationBatch.totalReqAmt" style="text-align: right" (blur)="transformTotalRequestAmount()"
+                          type="text" id="totalReqAmt" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="code" class="control-label col-md-6">Number of Requests</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" [disabled] = "true"  [(ngModel)]="fxBidCollationBatch.numOfRequests" [ngClass]="" name="numOfRequests">
+
+    
+                        </div>
+                       
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="row">
+                  
+                </div>
+  
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="code" class="control-label col-md-6">Highest Exchange Rate</label>
+                      <div class="col-md-2">
+             
+                        <input name="totalReqAmtCurr" [(ngModel)]="fxBidCollationBatch.highestExchRateCurr" [disabled]="true" style="text-align: right"
+                        type="text" id="totalReqAmt" class="form-control" placeholder="">
+                      </div>
+                      <div class="col-md-4">
+                        <input name="highestExchRate" [(ngModel)]="fxBidCollationBatch.highestExchRate" style="text-align: right" [disabled] = "true"
+                          type="text" id="baseForeignCurrEquiAmt" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="code" class="control-label col-md-6">Lowest Exchange Rate</label>
+                        <div class="col-md-2">
+             
+                          <input name="totalReqAmtCurr" [(ngModel)]="fxBidCollationBatch.lowestExchRateCurr" [disabled]="true" style="text-align: right" 
+                          type="text" id="totalReqAmt" class="form-control" placeholder="">
+                        </div>
+                        <div class="col-md-4">
+                          <input name="lowestExchRate" [(ngModel)]="fxBidCollationBatch.lowestExchRate" style="text-align: right" [disabled] = "true"
+                            type="text" id="localCurrEquiAmt" class="form-control" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="code" class="control-label col-md-6">Average Exchange Rate</label>
+                      <div class="col-md-2">
+             
+                        <input name="totalReqAmtCurr" [(ngModel)]="fxBidCollationBatch.avgExchRateCurr" [disabled]="true" style="text-align: right" 
+                        type="text" id="totalReqAmt" class="form-control" placeholder="">
+                      </div>
+                      <div class="col-md-4">
+                        <input name="avgExchRate" [(ngModel)]="fxBidCollationBatch.avgExchRate" style="text-align: right" [disabled] = "true" type="text"
+                          id="avgExchRate" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="additionalAmtCov" class="control-label col-md-6">Collation date &nbsp;
+                       
+                        </label>
+    
+                        <div class="col-md-6">
+                          <input name="collationDate"  [ngModel]="fxBidCollationBatch.collationDate|date :'yyyy-MM-dd'" type="date" id="collationDate" (ngModelChange) = "fxBidCollationBatch.collationDate = $event" class="form-control" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+  
+  
+                <div class="row">
+  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="additionalAmtCov" class="control-label col-md-6">Remarks
+                        </label>
+    
+                        <div class="col-md-6">
+                          <textarea  name="remarks"  [(ngModel)]="fxBidCollationBatch.remarks" type="text" id="warntRef" class="form-control" placeholder=""></textarea>
+                        </div>
+                      </div>
+                    </div>
+    
+                  
+    
+    
+                  </div>
+  
+             
+  
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingCurrReporting">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCurrReporting" aria-expanded="false"
+                aria-controls="collapseCurrReporting" style="color :#2b2b2b;font-weight: bold;">Currency Reporting</a>
+            </h4>
+          </div>
+          <div id="collapseCurrReporting" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingCurrReporting">
+            <div class="panel-body">
+  
+  
+              <div class="form-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="instructionCode" class="control-label col-md-6">Base Foreign Ccy equiv /rate</label>
+                      <div class="col-md-2">
+                        <input  name="baseForCurrEqui"  [disabled] = "true"  style="text-align: right" [(ngModel)]="fxBidCollationBatch.baseForCurrEqui" type="text"
+                               id="" class="form-control" placeholder="">
+  
+  
+  
+                      </div>
+                      <div class="col-md-4">
+                        <input [disabled] = "true" name="baseForCurrEquiAmt"  style="text-align: right" [(ngModel)]="fxBidCollationBatch.baseForCurrEquiAmt" type="text"
+                          id="" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <input type="text" id="baseForeignCurrEquiRate" class="form-control" placeholder="" name="exchRate">
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-info  usl-btn-color">Exchange Rate</button>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="localCurrEqui" class="control-label col-md-6">Local Ccy equiv /rate</label>
+                      <div class="col-md-2">
+                        <input type="text"  name="baseForCurrEqui"
+                               [disabled] = "true"  style="text-align: right" [(ngModel)]="fxBidCollationBatch.localCurrEqui" type="text"
+                               id="" class="form-control" placeholder="">
+  
+                      </div>
+                      <div class="col-md-4">
+                        <input name="localCurrEqui" [disabled] = "true"  style="text-align: right" [(ngModel)]="fxBidCollationBatch.localCurrEquiAmt" type="text" id="localCurrEquiVal"
+                          class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <input name="localCurrEquiRate" type="text" id="localCurrEquiRate" class="form-control" placeholder="">
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-info  usl-btn-color">Exchange Rate</button>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+  
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+  
+  
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBidRequest">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseParty" aria-expanded="false"
+                aria-controls="collapseParty" style="color :#2b2b2b;font-weight: bold;">Bid Requests</a>
+            </h4>
+          </div>
+          <div id="collapseParty" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBidRequest">
+            <div class="panel-body">
+              <!-- <app-forex-bid-collation-batch-request *ngIf= "fxBidCollationBatch.id" [forexBidCollationBatch] = "fxBidCollationBatch" [bidCurrencyCode] = "bidCurrencyCode" (emitService)="setNumOfRequests($event)"></app-forex-bid-collation-batch-request> -->
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingParty">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseParty" aria-expanded="false"
+                aria-controls="collapseParty" style="color :#2b2b2b;font-weight: bold;">Additional Parties</a>
+            </h4>
+          </div>
+          <div id="collapseParty" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingParty">
+            <div class="panel-body">
+  
+              <!-- <app-party-categories ></app-party-categories> -->
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingDocuments">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDocuments" aria-expanded="false"
+                aria-controls="collapseDocuments" style="color :#2b2b2b;font-weight: bold;">Documents</a>
+            </h4>
+          </div>
+          <div id="collapseDocuments" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingDocuments">
+            <div class="panel-body">
+  
+  
+              <!-- <app-documents ></app-documents> -->
+  
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingChecklist">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseChecklist" aria-expanded="false"
+                aria-controls="collapseChecklist" style="color :#2b2b2b;font-weight: bold;">Checklists</a>
+            </h4>
+          </div>
+          <div id="collapseChecklist" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingChecklist">
+            <div class="panel-body">
+  
+  
+              <!-- <app-checklists ></app-checklists> -->
+  <!--  -->
+            </div>
+          </div>
+  
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingControl">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseControl" aria-expanded="false"
+                aria-controls="collapseControl" style="color :#2b2b2b;font-weight: bold;">Control Information</a>
+            </h4>
+          </div>
+          <div id="collapseControl" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingControl">
+            <div class="panel-body">
+  
+  
+              <div class="form-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="servicingBranch" class="control-label col-md-4">Servicing Branch</label>
+  
+                      <div class="col-md-8">
+                        <input name="servicingBranch" [disabled] = "true" [(ngModel)]="fxBidCollationBatch.servicingBranch" type="text" id="servicingBranch" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="homeBranch" class="control-label col-md-4">Home Branch</label>
+  
+                      <div class="col-md-8">
+                        <input name="homeBranch" [disabled] = "true" [(ngModel)]="fxBidCollationBatch.homeBranch" type="text" id="homeBranch" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="servicingBranch" class="control-label col-md-4">Relationship Management</label>
+  
+                      <div class="col-md-8">
+                        <input name="relatioinshipMgt" [disabled] = "true" [(ngModel)]="fxBidCollationBatch.relatioinshipMgt" type="text" id="relationshipManagement" class="form-control"
+                          placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="effectiveDate" class="control-label col-md-4">Effective Date</label>
+  
+                      <div class="col-md-8">
+                        <input name="effectiveDate"  [ngModel]="fxBidCollationBatch.effectiveDate|date :'yyyy-MM-dd'" type="date" id="collationDate" (ngModelChange) = "fxBidCollationBatch.effectiveDate = $event" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="status" class="control-label col-md-4">Status</label>
+  
+                      <div class="col-md-8">
+                        <input name="status" [disabled] = "true" [(ngModel)]="fxBidCollationBatch.status" type="text" id="status" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+  
+                  <!-- <div class="col-md-6" *ngIf="isInTransit">
+                    <div class="form-group">
+                      <label for="rejectQueueId" class="control-label col-md-4">Reject Queue</label>
+                      <div class="col-md-8">
+  
+                        <select class="form-control" data-placeholder="rejectQueueId" tabindex="1" name="rejectQueueId" [(ngModel)]="elc.rejectQueueId">
+                          <option *ngFor="let step of rejectSteps" value={{step.id}} selected="test.rejectQueueId==step.id? true : null">
+                            {{step.description}}
+                          </option>
+                        </select>
+  
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+  
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+        <div class="modal-footer" style="float: left;">
+          <div class="form-actions">
+            <div class="form-actions">
+  
+              <div class="row">
+                <div class="form-actions" >
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="createFxBidCollationBatch()">
+                    <li class="fa fa-check-o"></li> Save</button>&nbsp;
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="createFxBidCollationBatch()">
+                    <li class="fa fa-check-o"></li> Submit</button>&nbsp;
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="d('Cross click')">Cancel</button>
+                </div>
+                <div class="form-actions" *ngIf="isInTransit">
+                  <button type="submit" class="btn btn-info usl-btn-color" (click)="approve(elc)">
+                    <i class="fa fa-check"></i> Ok</button>
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="reject(elc)">Reject</button>
+                </div>
+  
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+  
+  
+  
+      </div>
+  
+  
+    </div>

@@ -1,0 +1,740 @@
+<!--Forex Registration Table-->
+<!-- <div class="row" *ngIf="view === 0">
+
+    <div class="col-md-12">
+        <div class="panel-group" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                    <h4 class="panel-title">
+                        <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic" aria-expanded="false"
+                            aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Basic Filter Criteria </a>
+                    </h4>
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                    <div class="panel-body">
+
+
+                        <div class="form-body"> .....-->
+<!-- <input name="id" [(ngModel)]="regist.id" type="text" hidden> -->
+
+<!-- <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="code" class="control-label col-md-4">Reference
+                                        </label>
+
+                                        <div class="col-md-8">
+                                            <input name="reference" [(ngModel)]="fxRequest.referenceNum" type="text" id="code" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                </div> -->
+<!-- 
+                           
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="description" class="control-label col-md-4">Customer
+                                        </label>
+
+                                        <div class="col-md-8">
+                                            <input name="customer" [(ngModel)]="fxRequest.customer" type="text" id="description" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Product Category</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control" name="productCategory" [(ngModel)]="fxRequest.product.productSubCategory.productCategory">
+                                                <option *ngFor="let pc of productCategorys" [ngValue]="pc">{{pc.description}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn secondary usl-btn-color-default" (click)="getRegister()">
+                                        <li class="fa fa-search"></li> Search</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+    <hr class="m-t-0 m-b-40">
+    <div class="table-responsive">
+        <table id="myTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Reference</th>
+                    <th>Customer</th>
+                    <th>Rate</th>
+                    <th style="text-align: right">Requested Amount</th>
+                    <th style="text-align: right">Allocated Amount</th>
+                    <th style="text-align: right">Pending Amount</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let fx of forexRequests" (click)="set(fx)" [class.active]="fx === selectedFxRequests">
+                    <td>{{fx.referenceNum}}</td>
+                    <td>{{fx.customer}}</td>
+                    <td>{{fx.exchRateAmt}}</td>
+                    <td style="text-align: right">{{fx.requestAmount | number:'1.2'}}</td>
+                    <td style="text-align: right">{{fx.allocatedAmt | number:'1.2'}}</td>
+                    <td style="text-align: right">{{fx.pendingAmt | number:'1.2'}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <button (click)="operation($event)" class="btn btn-info  usl-btn-color">Add</button>
+        <button (click)="operation($event)" class="btn btn-info  usl-btn-color">Activate</button>
+        <button (click)="operation($event)" class="btn btn-info  usl-btn-color">View</button>
+        <button (click)="close()" class="btn btn-info usl-btn-color">Close</button>
+    </div>
+</div> -->
+
+
+
+<div class="container-fluid mt-1" *ngIf="view === 0">
+    <div class="row p-3 pl-4">
+        <div class="col-md-6">
+            <h1 class="text-bold">Basic Filter Criteria</h1>
+        </div>
+
+        <div class="col-md-2 offset-md-4 pr-0">
+            <button class="btn btn-block btn-primary " (click)="operation($event)">Add</button>
+        </div>
+    </div>
+    <div class="row p-2 pl-4 mt-5">
+        <div class="col-md-12">
+            <div class="row mb-2">
+                <div class="form-group col-md-3 pr-0 mb-0">
+                    <input name="reference" [(ngModel)]="fxRequest.referenceNum" type="text" id="reference"
+                        class="form-control search" placeholder="Search by reference">
+
+                </div>
+                <div class="form-group col-md-3 pr-0 mb-0">
+                    <input name="customer" [(ngModel)]="fxRequest.customer" type="text" id="customer"
+                        class="form-control search" placeholder="Search by customer">
+                </div>
+                <div class="form-group col-md-3 pr-0 mb-0">
+                    <input type="text" [(ngModel)]="fxRequest.product.productSubCategory.productCategory" name=""
+                        class="form-control search" placeholder="Search by product category" id="category">
+                </div>
+                <div class="col-md-1 pr-0 mb-0">
+                    <button class="btn btn-block btn-success hover-raise" (click)="getRegister()">Search</button>
+                </div>
+                <div class="form-group col-md-2  mb-0">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <label class="pr-2">Showing</label>
+                            <select name="" id="">
+                                <option value="">5</option>
+                                <option value="">10</option>
+                                <option value="">15</option>
+                                <option value="">20</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>Reference</th>
+                                        <th>Customer</th>
+                                        <th>Rate</th>
+                                        <th style="text-align: right">Requested Amount</th>
+                                        <th style="text-align: right">Allocated Amount</th>
+                                        <th style="text-align: right">Pending Amount</th>
+                                        <th></th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let fx of forexRequests" (click)="set(fx)"
+                                        [class.active]="fx === selectedFxRequests">
+                                        <td>{{fx.referenceNum}}</td>
+                                        <td>{{fx.customer}}</td>
+                                        <td>{{fx.exchRateAmt}}</td>
+                                        <td style="text-align: right">{{fx.requestAmount | number:'1.2'}}</td>
+                                        <td style="text-align: right">{{fx.allocatedAmt | number:'1.2'}}</td>
+                                        <td style="text-align: right">{{fx.pendingAmt | number:'1.2'}}</td>
+                                        <td><button class="btn-outline-primary">view</button></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <img src="/assets/three-dots-more-indicator.svg" alt="Ellipse"
+                                                    class=" btn secondary dropdown-toggle" id="dropdownMenu2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    <a class="dropdown-item" (click)="edit()">Edit</a>
+                                                    <a class="dropdown-item" (click)="dDialog()">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="clearfix p-2">
+                        <p class="text-secondary ml-1 float-left">20 records found</p>
+                        <div class="float-right">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination pg-blue">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link">1</a></li>
+                                    <li class="page-item active">
+                                        <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- 
+<div class="row" *ngIf="view === 1">
+
+    <div class="white-box col-md-12">
+        <h3 class="box-title m-b-0">Forex Registration</h3>
+        <div class="col-md-12">
+
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="col-sm-12">
+
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwoz">
+                        <h4 class="panel-title">
+                            <a class="collapsed font-bold" role="button" data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseTwoz" aria-expanded="false" aria-controls="collapseTwoz"> Basic
+                                Information </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwoz" class="panel-collapse collapse show" role="tabpanel"
+                        aria-labelledby="headingTwoz">
+                        <div class="panel-body">
+                            <div class="form-body">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-4">Product
+
+                                                <span class="fa fa-search" (click)="open('product')"></span>
+
+                                            </label>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" [disabled]="true"
+                                                    [(ngModel)]="fxRegister.product.code" [ngClass]="" name="product">
+                                            </div>
+                                            <div class="col-md-5">
+
+                                                <input type="text" class="form-control" [disabled]="true"
+                                                    [(ngModel)]="fxRegister.product.description" [ngClass]="" name="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-4">Customer
+
+                                                <span class="fa fa-search" (click)="open('customer')"></span>
+
+                                            </label>
+                                            <div class="col-md-3">
+                                                <input type="text" [disabled]="true" class="form-control"
+                                                    [(ngModel)]="fxRegister.customer.customerNumber">
+                                            </div>
+                                            <div class="col-md-5">
+
+                                                <input type="text" [disabled]="true" class="form-control"
+                                                    [(ngModel)]="fxRegister.customer.fullname" [ngClass]="" name="">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-4">Product Sub-Category</label>
+
+                                            <div class="col-md-8">
+                                                <select class="form-control"
+                                                    [(ngModel)]="fxRegister.product.productSubCategory" name=""
+                                                    [compareWith]="equals">
+                                                    <option [ngValue]="undefined">&lt;---&gt;</option>
+
+                                                    <option *ngFor="let psc of productSubCategory" [ngValue]="psc">
+                                                        {{psc.description}}</option>
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingControl">
+                        <h4 class="panel-title">
+                            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseControl" aria-expanded="false" aria-controls="collapseControl"
+                                style="color :#2b2b2b;font-weight: bold;">Control Information</a>
+                        </h4>
+                    </div>
+                    <div id="collapseControl" class="panel-collapse collapse show" role="tabpanel"
+                        aria-labelledby="headingControl">
+                        <div class="panel-body">
+
+
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="servicingBranch" class="control-label col-md-4">Servicing
+                                                Branch</label>
+
+                                            <div class="col-md-8">
+                                                <select class="form-control" name="servicingBranch"
+                                                    [(ngModel)]="fxRegister.servicingBranch">
+                                                    <option *ngFor="let br of branches" [ngValue]="br.name">{{br.name}}
+                                                    </option>
+
+
+                                                </select>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="homeBranch" class="control-label col-md-4">Home Branch</label>
+
+                                            <div class="col-md-8">
+                                                <select class="form-control" name="homeBranch"
+                                                    [(ngModel)]="fxRegister.homeBranch">
+                                                    <option *ngFor="let br of branches" [ngValue]="br.name">{{br.name}}
+                                                    </option>
+
+
+                                                </select>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                               
+
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="servicingBranch" class="control-label col-md-4">Relationship
+                                                Management</label>
+
+                                            <div class="col-md-8">
+                                                <input name="relatioinshipMgt" [(ngModel)]="fxRegister.relatioinshipMgt"
+                                                    type="text" id="relationshipManagement" class="form-control"
+                                                    placeholder="">
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="effectiveDate" class="control-label col-md-4">Effective
+                                                Date</label>
+
+                                            <div class="col-md-8">
+                                                <input type="date" class="form-control" [ngClass]=""
+                                                    name="effectiveDate"
+                                                    [ngModel]="fxRegister.effectiveDate | date:'yyyy-MM-dd'"
+                                                    (ngModelChange)="fxRegister.effectiveDate = $event">
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                              
+
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="status" class="control-label col-md-4">Status</label>
+
+                                            <div class="col-md-8">
+                                                <input name="status" [disabled]="true" [(ngModel)]="fxRegister.status"
+                                                    type="text" id="status" class="form-control" placeholder="">
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <button class="btn btn-info usl-btn-color" (click)="registerForex()">
+                        <li class="fa fa-check"></li> Register
+                    </button>
+                    <button type="submit" class="btn btn-info usl-btn-color" (click)="cancelfx()">
+                        <li class="fa fa-times"></li> Cancel
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div> -->
+
+
+
+
+
+<div class="container-fluid mt-1" *ngIf="view === 1">
+    <div class="row p-3 pl-4">
+      <div class="col-md-12">
+        <h1 class="text-bold">Forex Registration Form</h1>
+      </div>
+    </div>
+  
+    <div class="col-md">
+      <div class="card panel">
+        <div class="card-body form-card">
+          <form>
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                    Forex Registration Details
+                  </h4>
+                  <p class="subtitle mb-0  ">Please fill in the appropriate data </p>
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingBasic">
+                  <div class="panel-body">
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                        <div class="form-body">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- <div class="form-group row">
+                                        <label class="control-label col-md-4">Product
+
+                                            <span class="fa fa-search" (click)="open('product')"></span>
+
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" [disabled]="true"
+                                                [(ngModel)]="fxRegister.product.code" [ngClass]="" name="product">
+                                        </div>
+                                        <div class="col-md-5">
+
+                                            <input type="text" class="form-control" [disabled]="true"
+                                                [(ngModel)]="fxRegister.product.description" [ngClass]="" name="">
+
+                                        </div>
+                                    </div> -->
+
+
+                                    <div class="form-group row" style="flex-wrap:nowrap;">
+                                        <label for="code" class="control-label col-md-4">Product
+                                          <!-- <span class="fa fa-search"></span> -->
+                                        </label>
+            
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" [disabled]="true"
+                                                [(ngModel)]="fxRegister.product.code" [ngClass]="" name="product">
+                                        </div>
+                                        <div class="col-md-5">
+
+                                            <input type="text" class="form-control" [disabled]="true"
+                                                [(ngModel)]="fxRegister.product.description" [ngClass]="" name="">
+
+                                        </div>
+                                        <div class="col-md-1" style="padding: 0;">
+                                          <img src="../../assets/icons/Group 135.svg" (click)="open('product')" alt="info"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="click on the icon to search for product">
+            
+                                        </div>
+                                      </div>
+                                </div>
+
+                                
+
+                                <div class="col-md-6 pl-5">
+                                    <!-- <div class="form-group row">
+                                        <label class="control-label col-md-4">Customer
+
+                                            <span class="fa fa-search" (click)="open('customer')"></span>
+
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="text" [disabled]="true" class="form-control"
+                                                [(ngModel)]="fxRegister.customer.customerNumber">
+                                        </div>
+                                        <div class="col-md-5">
+
+                                            <input type="text" [disabled]="true" class="form-control"
+                                                [(ngModel)]="fxRegister.customer.fullname" [ngClass]="" name="">
+
+
+                                        </div>
+                                    </div> -->
+
+                                    <div class="form-group row" style="flex-wrap:nowrap;">
+                                        <label for="code" class="control-label col-md-4">Customer
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="text" [disabled]="true" class="form-control"
+                                                [(ngModel)]="fxRegister.customer.customerNumber">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="text" [disabled]="true" class="form-control"
+                                                [(ngModel)]="fxRegister.customer.fullname" [ngClass]="" name="">
+                                        </div>
+                                        <div class="col-md-1" style="padding: 0;">
+                                          <img src="../../assets/icons/Group 135.svg" (click)="open('customer')" alt="add">
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                          
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-4">Product Sub-Category</label>
+
+                                        <div class="col-md-8">
+                                            <select class="form-control"
+                                                [(ngModel)]="fxRegister.product.productSubCategory" name=""
+                                                [compareWith]="equals">
+                                                <option [ngValue]="undefined">&lt;---&gt;</option>
+
+                                                <option *ngFor="let psc of productSubCategory" [ngValue]="psc">
+                                                    {{psc.description}}</option>
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color pt-2">Control Information </h4>
+                </div>
+                <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingBenInfo">
+                  <div class="panel-body">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="servicingBranch" class="control-label col-md-4">Servicing
+                                            Branch</label>
+
+                                        <div class="col-md-8">
+                                            <select class="form-control" name="servicingBranch"
+                                                [(ngModel)]="fxRegister.servicingBranch">
+                                                <option *ngFor="let br of branches" [ngValue]="br.name">{{br.name}}
+                                                </option>
+
+
+                                            </select>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="homeBranch" class="control-label col-md-4">Home Branch</label>
+
+                                        <div class="col-md-8">
+                                            <select class="form-control" name="homeBranch"
+                                                [(ngModel)]="fxRegister.homeBranch">
+                                                <option *ngFor="let br of branches" [ngValue]="br.name">{{br.name}}
+                                                </option>
+
+
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                           
+
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="servicingBranch" class="control-label col-md-4">Relationship
+                                            Management</label>
+
+                                        <div class="col-md-8">
+                                            <input name="relatioinshipMgt" [(ngModel)]="fxRegister.relatioinshipMgt"
+                                                type="text" id="relationshipManagement" class="form-control"
+                                                placeholder="">
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="effectiveDate" class="control-label col-md-4">Effective
+                                            Date</label>
+
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" [ngClass]=""
+                                                name="effectiveDate"
+                                                [ngModel]="fxRegister.effectiveDate | date:'yyyy-MM-dd'"
+                                                (ngModelChange)="fxRegister.effectiveDate = $event">
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                          
+
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="status" class="control-label col-md-4">Status</label>
+
+                                        <div class="col-md-8">
+                                            <input name="status" [disabled]="true" [(ngModel)]="fxRegister.status"
+                                                type="text" id="status" class="form-control" placeholder="">
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="card-footer text-muted">
+                <div class="row p-3">
+                  <div class="col-md-8"></div>
+                  <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="cancelfx()"
+                      type="submit">Cancel</button>
+                  </div>
+                  <div class="col-md-2 text-right">
+                    <button class="btn btn-primary btn-block" type="submit"  (click)="registerForex()">Register</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

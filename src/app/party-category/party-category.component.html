@@ -1,0 +1,96 @@
+
+<div  *ngIf = "isCreated === 1"> <p>{{message}}</p></div>
+<div class="row" >
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading"> Charges</div>
+            <div class="panel-wrapper collapse in" aria-expanded="true">
+                <div class="panel-body">
+                    <form >
+                        <div class="form-body">
+                           
+                                <input name="id" [(ngModel)] = "party.id" type="text" hidden>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for = "party" class="control-label col-md-3">Name</label>
+                                        <div class="col-md-9">
+                                            <input name="party" [(ngModel)] = "party.name" type="text" id="party" class="form-control" placeholder="code">
+                                        </div>
+                                         </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for = "role" class="control-label col-md-3">Role</label>
+                                        <div class="col-md-9">
+                                                <input name = "role" [(ngModel)] = "party.role" type="text" id="role" class="form-control" placeholder="Role">
+                                        </div>
+                                        <br><br>
+                                         </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                    <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label for="refernce" class="control-label col-md-3">Reference</label>
+                                                <div class="col-md-9">
+                                                        <input name="reference" [(ngModel)] = "party.reference" type="text" id="currency" class="form-control" placeholder="Currency">
+                                                </div>
+                                                
+                                        </div>
+                                        </div> 
+
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="amount" class="control-label col-md-3">Amount</label>
+                                                    <div class="col-md-9">
+                                                            <input name="amount" [(ngModel)] = "party.amount" type="text" class="form-control"  placeholder="Amount">
+            
+                                                    </div>
+                                                   <br><br>
+                                                </div>
+                                            </div>
+                         
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="actual" class="control-label col-md-3">Actual</label>
+                                            <div class="col-md-9">
+                                                    <input type="text" name="actual" [(ngModel)] = "charge.actual" id="actual" class="form-control" placeholder="Actual">
+                                            </div>
+                                            
+                                             </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="status" class="control-label col-md-3">Status</label>
+                                            <div class="col-md-9">
+                                                    <input type="text" name="emailAddress" [(ngModel)] = "charge.status"id="status" class="form-control" placeholder="Status">
+
+                                            </div>
+                                        <br><br>
+                                             </div>
+                                    </div>
+                            </div>
+                            <!--/row-->
+                           
+          
+                        </div><br><br>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success"  (click)="createParty()"> <i class="fa fa-check"></i> Save</button>
+                            <button type="button" class="btn btn-default" (click) = "cancel()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    

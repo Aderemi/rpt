@@ -1,0 +1,463 @@
+<!-- ...<div *ngIf="isCreated === 1">
+    <p>{{message}}</p>
+</div>
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading"> Collateral </div>
+            <div class="panel-wrapper collapse in" aria-expanded="true">
+                <div class="panel-body">
+
+                    <form>
+                        <input name="id" [(ngModel)]="collateral.id" type="text" hidden>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingBasicInfo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseBasicInfo" aria-expanded="false"
+                                        aria-controls="collapseBasicInfo"
+                                        style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+                                </h4>
+                            </div>
+                            <div id="collapseBasicInfo" class="panel-collapse collapse show" role="tabpanel"
+                                aria-labelledby="headingBasicInfo">
+                                <div class="panel-body">
+                                    <div class="form-body">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="margintype" class="control-label col-md-4">Collateral
+                                                        Type</label>
+                                                    <div class="col-md-8">
+                                                        <select class="col-md-2" class="form-control"
+                                                            [(ngModel)]="collateral.margintype"
+                                                            data-placeholder="Choose a Currency" tabindex="1"
+                                                            name="margintype" [compareWith]="equals">
+                                                            <option value="undefined">&lt;---&gt;</option>
+                                                            <option *ngFor="let margintype of margintypes"
+                                                                [ngValue]="margintype">{{margintype.code}}</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="reference"
+                                                        class="control-label col-md-4">Reference</label>
+                                                    <div class="col-md-8">
+                                                        <input name="reference" [(ngModel)]="collateral.reference"
+                                                            type="text" id="code" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="name" class="control-label col-md-4">Amount</label>
+                                                    <div class="col-md-2">
+                                                        <select class="form-control "
+                                                            [(ngModel)]="collateral.currencyId"
+                                                            data-placeholder="Choose a Currency" tabindex="1"
+                                                            name="currencyId" [compareWith]="equals">
+                                                            <option value="undefined">&lt;---&gt;</option>
+                                                            <option *ngFor="let currenc of currencies"
+                                                                [ngValue]="currenc">{{currenc.code}}</option>
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <input name="amount" style="text-align : right"
+                                                            [(ngModel)]="collateral.amount" type="text" id="amount"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="accountNo" class="control-label col-md-4">Account No
+                                                        <span class="fa fa-search"></span>
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <input name="accountNo" [(ngModel)]="collateral.accountNo"
+                                                            type="text" id="accountNo" class="form-control"
+                                                            placeholder="">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="changeType" class="control-label col-md-4">Pending
+                                                        Change</label>
+                                                    <div class="col-md-8">
+                                                        <select class="form-control" [(ngModel)]="collateral.changeType"
+                                                            data-placeholder="Choose a Change Type" tabindex="1"
+                                                            name="pendcurrency" [compareWith]="equals">
+                                                            <option value="">Not Applicable</option>
+                                                            <option value="INCREASE">Increase</option>
+                                                            <option value="DECREASE">Decrease</option>
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="pendcurrency" class="control-label col-md-4">Pending
+                                                        Amount</label>
+                                                    <div class="col-md-2">
+                                                        <select class="form-control "
+                                                            [(ngModel)]="collateral.pendcurrency"
+                                                            data-placeholder="Choose a Currency" tabindex="1"
+                                                            name="pendcurrency" [compareWith]="equals">
+                                                            <option value="undefined">&lt;---&gt;</option>
+                                                            <option *ngFor="let currenc of currencies"
+                                                                [ngValue]="currenc">{{currenc.code}}</option>
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <input name="changeAmount" style="text-align : right"
+                                                            [(ngModel)]="collateral.changeAmount" type="text"
+                                                            id="changeAmount" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="remarks" class="control-label col-md-4">Remarks</label>
+                                                    <div class="col-md-8">
+                                                        <textarea class="form-control" [(ngModel)]="collateral.remarks"
+                                                            name="remarks"></textarea>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div> -->
+                                       
+
+                                        <!--app-margin-deposit-type></app-margin-deposit-type-->
+                                    <!-- ...</div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingCorrespondingInfo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseCorrespondingInfo" aria-expanded="false"
+                                        aria-controls="collapseCorrespondingInfo"
+                                        style="color :#2b2b2b;font-weight: bold;">Control Information </a>
+                                </h4>
+                            </div>
+                            <div id="collapseCorrespondingInfo" class="panel-collapse collapse show" role="tabpanel"
+                                aria-labelledby="headingCorrespondingInfo">
+                                <div class="panel-body">
+
+
+                                    <div class="form-body">
+
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="status" class="control-label col-md-4">Status</label>
+                                                    <div class="col-md-8">
+                                                        <input name="status" [(ngModel)]="collateral.status" type="text"
+                                                            id="status" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="effectiveDate" class="control-label col-md-4">Effective
+                                                        Date
+                                                    </label>
+
+                                                    <div class="col-md-8">
+                                                        <input name="effectiveDate"
+                                                            [ngModel]="collateral.effectiveDate | date:'yyyy-MM-dd'"
+                                                            (ngModelchange)="collateral.effectiveDate = $event"
+                                                            type="date" id="effectiveDate" class="form-control"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <hr class="m-t-0 m-b-20">
+                        <div class="form-actions"> -->
+                            <!--button type="submit" class="btn btn-info usl-btn-color" (click)="createcollateral()" -->
+                            <!-- ...<button type="submit" class="btn btn-info usl-btn-color" (click)="createcollateral()">
+                                <i class="fa fa-check"></i> Save</button> -->
+                            <!--button type="button" class="btn btn-info usl-btn-color" routerLink="/collaterals">Cancel</button-->
+                            <!--... <button type="button" class="btn btn-info usl-btn-color"
+                                (click)="_activeModal.close('Cross click')">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+<div class="container-fluid mt-1">
+    <div class="row p-3 pl-4">
+        <div class="col-md-12">
+            <h1 class="text-bold"> Collateral </h1>
+            <div *ngIf="isCreated === 1">
+                <p>{{message}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row p-2 pl-4">
+
+        <div class="col-md-12">
+            <div class="card pane">
+                <div class="card-body form-card">
+                    <div class="panel-heading" role="tab" id="headingBasic">
+                        <div class="float-left form-icon text-center mr-3">
+                            <span class="flaticon-paper  primary-color"></span>
+                        </div>
+                        <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                            Basic Information
+                        </h4>
+                        <p class="subtitle mb-0  ">Please fill in the appropriate data </p>
+                    </div>
+
+                    <div class="panel-wrapper  in" aria-expanded="true">
+                        <div class="panel-body">
+                            <div class="col-sm-12 col-md-10 offset-md-1">
+                                <div class="form-body">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="margintype" class="control-label col-md-4">Collateral
+                                                    Type</label>
+                                                <div class="col-md-8">
+                                                    <select class="col-md-2" class="form-control"
+                                                        [(ngModel)]="collateral.margintype"
+                                                        data-placeholder="Choose a Currency" tabindex="1"
+                                                        name="margintype" [compareWith]="equals">
+                                                        <option value="undefined">&lt;---&gt;</option>
+                                                        <option *ngFor="let margintype of margintypes"
+                                                            [ngValue]="margintype">{{margintype.code}}</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="reference" class="control-label col-md-4">Reference</label>
+                                                <div class="col-md-8">
+                                                    <input name="reference" [(ngModel)]="collateral.reference"
+                                                        type="text" id="code" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                  
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="name" class="control-label col-md-4">Amount</label>
+                                                <div class="col-md-2">
+                                                    <select class="form-control " [(ngModel)]="collateral.currencyId"
+                                                        data-placeholder="Choose a Currency" tabindex="1"
+                                                        name="currencyId" [compareWith]="equals">
+                                                        <option value="undefined">&lt;---&gt;</option>
+                                                        <option *ngFor="let currenc of currencies" [ngValue]="currenc">
+                                                            {{currenc.code}}</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <input name="amount" style="text-align : right"
+                                                        [(ngModel)]="collateral.amount" type="text" id="amount"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="accountNo" class="control-label col-md-4">Account No
+                                                    <!-- <span class="fa fa-search"></span> -->
+                                                </label>
+                                                <div class="col-md-7">
+                                                    <input name="accountNo" [(ngModel)]="collateral.accountNo"
+                                                        type="text" id="accountNo" class="form-control" placeholder="">
+                                                </div>
+                                                <div class="col-md-1 pl-0">
+                                                    <button class="round-table-button btn btn-primary" tooltip = "add acount" placement="right" show-delay="300">+</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="changeType" class="control-label col-md-4">Pending
+                                                    Change</label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" [(ngModel)]="collateral.changeType"
+                                                        data-placeholder="Choose a Change Type" tabindex="1"
+                                                        name="pendcurrency" [compareWith]="equals">
+                                                        <option value="">Not Applicable</option>
+                                                        <option value="INCREASE">Increase</option>
+                                                        <option value="DECREASE">Decrease</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="pendcurrency" class="control-label col-md-4">Pending
+                                                    Amount</label>
+                                                <div class="col-md-2">
+                                                    <select class="form-control " [(ngModel)]="collateral.pendcurrency"
+                                                        data-placeholder="Choose a Currency" tabindex="1"
+                                                        name="pendcurrency" [compareWith]="equals">
+                                                        <option value="undefined">&lt;---&gt;</option>
+                                                        <option *ngFor="let currenc of currencies" [ngValue]="currenc">
+                                                            {{currenc.code}}</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <input name="changeAmount" style="text-align : right"
+                                                        [(ngModel)]="collateral.changeAmount" type="text"
+                                                        id="changeAmount" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="remarks" class="control-label col-md-4">Remarks</label>
+                                                <div class="col-md-8">
+                                                    <textarea class="form-control" [(ngModel)]="collateral.remarks"
+                                                        name="remarks"></textarea>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!--app-margin-deposit-type></app-margin-deposit-type-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-heading" role="tab" id="headingBasic">
+                        <div class="float-left form-icon text-center mr-3">
+                            <span class="flaticon-paper  primary-color"></span>
+                        </div>
+                        <h4 class="panel-title  font-weight-bold secondary-color pt-2">
+                            Control Information
+                        </h4>
+                    </div>
+                    <div id="collapseBenInfo" class="panel-collapse show" role="tabpanel"
+                        aria-labelledby="headingBenInfo">
+                        <div class="panel-body">
+                            <div class="col-md-10 offset-md-1">
+
+                                <div class="form-body">
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="status" class="control-label col-md-4">Status</label>
+                                                <div class="col-md-8">
+                                                    <input name="status" [(ngModel)]="collateral.status" type="text"
+                                                        id="status" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="effectiveDate" class="control-label col-md-4">Effective Date
+                                                </label>
+
+                                                <div class="col-md-8">
+                                                    <input name="effectiveDate"
+                                                        [ngModel]="collateral.effectiveDate | date:'yyyy-MM-dd'"
+                                                        (ngModelchange)="collateral.effectiveDate = $event" type="date"
+                                                        id="effectiveDate" class="form-control" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer text-muted">
+                    <div class="row p-3">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block"
+                                (click)="_activeModal.close('Cross click')">Cancel</button>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <button class="btn btn-primary btn-block" (click)="createcollateral()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

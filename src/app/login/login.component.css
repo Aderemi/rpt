@@ -1,0 +1,146 @@
+
+/* .card-group{
+    height: 100vh;
+    width: 100%;
+    /* flex-grow: 1 0 0% 
+.card-body{
+    margin: 20% 20%;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+/* p, h1{
+    margin-left: -15px;
+} 
+
+.cost{
+    background-color: rgb(110, 182, 3);
+    border: rgb(110, 182, 3);
+}
+
+.btn{
+    margin-left: -15px;
+}
+
+input{
+    border-radius: 5px;
+    border: 1px solid
+}
+
+.slider { */
+    /* max-width: 100%; */
+    /* height: 100%; */
+    /* margin: 20px auto; */
+    /* position: absolute;
+  }
+  .slide1,.slide2,.slide3,.slide4,.slide5 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .slide1 {
+    background: url('../../assets/images/kachasi-new.png')
+    no-repeat center;
+        background-size: cover;       
+      animation:fade 15s infinite;
+  -webkit-animation:fade 15s infinite;
+  
+  } 
+  .slide2 {
+    background: url('../../assets/images/kachasi-background.png')
+    no-repeat center;
+        background-size: cover;
+      animation:fade2 15s infinite;
+  -webkit-animation:fade2 15s infinite;
+  }
+  .slide3 {
+      background: url('../../assets/images/kachasi-background.png')
+      no-repeat center;
+        background-size: cover;
+      animation:fade3 15s infinite;
+  -webkit-animation:fade3 15s infinite;
+  }
+  @keyframes fade
+  {
+    0%   {opacity:1}
+    33.333% { opacity: 0}
+    66.666% { opacity: 0}
+    100% { opacity: 1}
+  }
+  @keyframes fade2
+  {
+    0%   {opacity:0}
+    33.333% { opacity: 1}
+    66.666% { opacity: 0 }
+    100% { opacity: 0}
+  }
+  @keyframes fade3
+  {
+    0%   {opacity:0}
+    33.333% { opacity: 0}
+    66.666% { opacity: 1}
+    100% { opacity: 0}
+  }
+
+  .hero-text-box1{
+    position: absolute;
+    background-color: rgba(10,0,0,0.1);
+    width: 450px;
+    padding:0 auto;
+    top: 10%;
+    left: 55%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+  .hero-text-box {
+    position: absolute;
+    background-color: rgba(10,0,0,0.1);
+    width: 450px;
+    padding:0 auto;
+    top: 80%;
+    left: 60%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.hero-text-box h1{
+    margin-left: 60px !important;
+    font-family: monospace;
+    color: rgb(161, 161, 161);
+}
+.hero-text-box h3{
+    margin-left: 20px !important;
+} */
+
+/* /login styles */
+.login-bg{
+    background: url('../../assets/images/gradient_bg.png');    
+    background-position: top right;
+    height: 100vh;
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
+
+.font-size-33{
+    font-size: 33px;
+}
+.logo{
+    max-width:250px;
+}
+.title-color{
+    color:#21408a !important
+}
+
+.row.info-label {
+    font-size: 14px;
+}
+.login-btn{
+    height: 45px;
+    vertical-align: middle;
+    border-radius: 5px;
+}

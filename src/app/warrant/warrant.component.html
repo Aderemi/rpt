@@ -1,0 +1,508 @@
+<div class="container-fluid mt-1">
+    <div class="row p-3 pl-4">
+      <div class="col-md-12">
+        <h1 class="text-bold">Warrant</h1>
+      </div>
+    </div>
+    <div class="row p-2 pl-4">
+      <div class="col-md-3 pr-0" #sidebar>
+        <div class="position-fixed ml-0" id="fixed-side-container">
+          <div class="card panel">
+            <div classs="card-body form-card">
+              <div class="row p-4">
+                <div class="col-md-9" id="sectionDiv">
+                  <h2>Section</h2>
+                </div>
+                <div class="col float-right">
+                  <a [appSidebarCollapse]='sidebar'>
+                    <i class="fa fa-arrow-left" aria-hidden="true" id="ico"></i> 
+                  </a>
+                </div>
+              </div>
+              <ul class="list-group list-group-flush list-group-tradex" id="itemsDiv">
+                <li class="list-group-item">
+                  <a (click)="scroll(basic)">Basic Information</a>
+                </li>                        
+                <li class="list-group-item">
+                  <a (click)="scroll(parties)">Additional Parties</a>
+                </li>
+                <li class="list-group-item">
+                  <a (click)="scroll(documents)">Documents</a>
+                </li>
+                <li class="list-group-item">
+                  <a (click)="scroll(foreign)">Fgn Exchange Deals</a>
+                </li>
+                <li class="list-group-item">
+                  <a (click)="scroll(charges)">Charges</a>
+                </li>
+                <li class="list-group-item">
+                  <a (click)="scroll(checklists)">Checklists</a>
+                </li>
+                <li class="list-group-item">
+                  <a (click)="scroll(control)">Control Information</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card panel">
+          <div class="card-body form-card">
+            <!-- <form> -->
+              <div class="panel-group" role="tablist" aria-multiselectable="true">
+                <div class=" panel-default">
+                  <div class="panel-heading" role="tab" id="headingBasic">
+                    <div class="float-left form-icon text-center mr-3">
+                      <span class="flaticon-paper  primary-color"></span>
+                    </div>
+                    <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                      Basic Information
+                    </h4>
+                    <p class="subtitle mb-0  ">Please fill in the appropriate data for this product </p>
+                  </div>
+                  <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                    <div class="panel-body">
+  
+                      <div class="col-sm-12 col-md-10 offset-md-1">
+                        <div class="form-body">
+  
+                          <div class="row">
+  
+                          <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="control-label col-md-4">Reference Number</label>
+                                <div class="col-md-8">
+                                  <input type="text" formControlName="refNum" class="form-control">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label for="code" class="control-label col-md-4">Product</label>
+          
+                                <div class="col-md-8">
+                                  <input  type="text" id="product" name="product"  formControlName="prodDesc" class="form-control" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+  
+                           
+                          </div>
+  
+                       
+  
+                          <div class="row">
+  
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label for="code" class="control-label col-md-4">Customer</label>
+              
+                                    <div class="col-md-8">
+                                      <input  type="text" id="product"   formControlName="customerName" class="form-control" placeholder="">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                      <label class="control-label col-md-4">Requested Amount</label>
+                
+                                      <div class="col-md-4">
+                                        <select class="col-md-8" class="form-control" formControlName="requestedAmountCcy" tabindex="1">
+                                          <option value="undefined"></option>
+                                          <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+                
+                                        </select>
+                
+                                      </div>
+                                      <div class="col-md-4">
+                                        <input type="text" class="form-control" formControlName="requestedAmount" style="text-align: right">
+                                      </div>
+                                    </div>
+                                  </div>
+                          </div>
+                          <div class="row">
+  
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label for="code" class="control-label col-md-4">Approved Amount</label>
+                                    <div class="col-md-4">
+                                      <select class="col-md-8" class="form-control" formControlName="approvedAmountCcy" tabindex="1">
+                                        <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+              
+                                      </select>
+              
+                                    </div>
+                                    <div class="col-md-4">
+                                      <input type="text" class="form-control" [value]="warrantForm.get('approvedAmount').value"
+                                        formControlName="approvedAmount" style="text-align: right">
+                                    </div>
+              
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                      <label class="control-label col-md-4">Date Approved</label>
+                                      <div class="col-md-8">
+                                        <input type="date" formControlName="dateApproved" class="form-control">
+                                      </div>
+                                    </div>
+                                  </div>
+  
+                          </div>
+  
+                          <div class="row">
+  
+  
+                          </div>
+  
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label class="control-label col-md-4">Validity Period</label>
+                                    <div class="col-md-4">
+                                      <input type="text" formControlName="valPeriod" class="form-control">
+                                    </div>
+                                    <div class="col-md-4">
+                                      <select class="col-md-8" class="form-control" formControlName="valPeriodType" tabindex="1">
+                                        <option *ngFor="let sect of vals" [ngValue]="sect">{{sect}}</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                      <label class="control-label col-md-4">Expiry Date</label>
+                                      <div class="col-md-8">
+                                        <input type="date" formControlName="expiryDate" class="form-control">
+                                      </div>
+                                    </div>
+                                  </div>
+  
+                          </div>
+
+                          <div class="row">
+
+                              <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label for="code" class="control-label col-md-4">Purpose Code</label>
+                                    <div class="col-md-8">
+                                      <select class="col-md-8" class="form-control" tabindex="1">
+                                        <option [ngValue]="undefined">&lt;---&gt;</option>
+                                        <option *ngFor="let sect of purposes" [ngValue]="sect">{{sect}}</option>
+                                      </select>
+              
+                                    </div>
+              
+                                  </div>
+                                </div>
+        
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                      <label class="control-label col-md-4">Charges Account Number</label>
+                                      <div class="col-md-8">
+                                        <input type="text" formControlName="chargeAccNo" id="customer" class="form-control">
+                                      </div>
+                                    </div>
+                                  </div>
+        
+                          </div>
+
+                          
+                             
+
+                                
+
+                                 
+                        
+  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                      <div class=" panel-default">
+                            <div class="panel-heading" role="tab" id="headingBasic">
+                                    <div class="float-left form-icon text-center mr-3">
+                                            <span class="flaticon-paper  primary-color"></span>
+                                            </div>
+                                            <h4 class="panel-title secondary-color font-weight-bold pt-2" #parties>
+                                                Additional Parties
+                                            </h4>
+                            </div>
+                            <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                              <div class="panel-body">
+                        
+                                <div class="col-sm-12 col-md-10 offset-md-1">
+                                                              
+                                        <br>
+                                        <div class="form-body" *ngIf="setChildren">
+                                            <!-- <app-party-categories [instrumentRegister]="instrumentRegister"></app-party-categories> -->
+                                        </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class=" panel-default">
+                                <div class="panel-heading" role="tab" id="headingBasic">
+                                        <div class="float-left form-icon text-center mr-3">
+                                                <span class="flaticon-paper  primary-color"></span>
+                                                </div>
+                                                <h4 class="panel-title secondary-color font-weight-bold pt-2" #documents>
+                                                    Documents
+                                                </h4>
+                                </div>
+                                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                                  <div class="panel-body">
+                            
+                                    <div class="col-sm-12 col-md-10 offset-md-1">
+                            
+                                            <br>
+                                            <div class="form-body" *ngIf="setChildren">
+                      
+                                                <!-- <app-documents [instrumentRegister]="instrumentRegister"></app-documents> -->
+                                            </div>
+                            
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class=" panel-default">
+                                    <div class="panel-heading" role="tab" id="headingBasic">
+                                            <div class="float-left form-icon text-center mr-3">
+                                                    <span class="flaticon-paper  primary-color"></span>
+                                                    </div>
+                                                    <h4 class="panel-title secondary-color font-weight-bold pt-2" #foreign>
+                                                        Fgn Exchange Deals 
+                                                    </h4>
+                                    </div>
+                                    <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                                      <div class="panel-body">
+                                
+                                        <div class="col-sm-12 col-md-10 offset-md-1">
+                                
+                                                <div class="panel-body" *ngIf="setChildren">
+                                                        <!-- <app-foreign-exchange-deals [instrumentRegister]="instrumentRegister"></app-foreign-exchange-deals> -->
+                                  
+                                  
+                                                    </div>
+                                
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                      <div class=" panel-default">
+                            <div class="panel-heading" role="tab" id="headingBasic">
+                                    <div class="float-left form-icon text-center mr-3">
+                                            <span class="flaticon-paper  primary-color"></span>
+                                            </div>
+                                            <h4 class="panel-title secondary-color font-weight-bold pt-2" #charges>
+                                                Charges
+                                            </h4>
+                            </div>
+                            <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                              <div class="panel-body">
+            
+                                <div class="col-sm-12 col-md-10 offset-md-1">
+      
+                                        <div class="panel-body" *ngIf="setChildren">
+                                                <!-- <app-charges [instrumentRegister]="instrumentRegister"></app-charges> -->
+                                                <div class="table-responsive">
+                                                  <table id="myTable" class="table table-striped">
+                                                      <thead>
+                                                          <tr>
+                                                                
+                                                                  <th>Charge Type</th>
+                                                                  <th>Charge Currency</th>
+                                                                  <th>Charge Amount</th>
+                                                                  <th>Pay Amount</th>
+                                                                  <th>Tax Amount</th>
+                                                                  <th></th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody >
+                                                          <tr *ngFor = "let charge of CalculatedCharges">
+                                                                  
+                                                            <td>{{charge.chargeType}}</td>
+                                                            <td>{{charge.chargeCurrency}}</td>
+                                                            <td>{{charge.chargeAmount}}</td>
+                                                            <td>{{charge.payAmount}}</td>
+                                                            <td>{{charge.taxAmount}}</td>
+                                                            <td> <input class="pull-right fcbtn btn btn-success btn-outline btn-1f" type="button" value="Update" (click)="UpdateCharge(charge.id)"/></td>
+                                                          </tr>
+                                                         
+                                                        
+                                                      </tbody>
+                                                  </table>
+                                              </div> 
+                                                
+                                            </div>
+      
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class=" panel-default">
+                                <div class="panel-heading" role="tab" id="headingBasic">
+                                        <div class="float-left form-icon text-center mr-3">
+                                                <span class="flaticon-paper  primary-color"></span>
+                                                </div>
+                                                <h4 class="panel-title secondary-color font-weight-bold pt-2" #checklists>
+                                                   Checklists
+                                                </h4>
+                                </div>
+                                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                                  <div class="panel-body">
+                            
+                                    <div class="col-sm-12 col-md-10 offset-md-1">
+                            
+                                            <div class="form-body" *ngIf="setChildren">
+
+                                                    <!-- <app-checklists></app-checklists> -->
+
+                                                    </div>
+                            
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                <div class=" panel-default">
+                  <div class="panel-heading" role="tab" id="headingBasic">
+                        <div class="float-left form-icon text-center mr-3">
+                                <span class="flaticon-paper  primary-color"></span>
+                                </div>
+                                <h4 class="panel-title secondary-color font-weight-bold pt-2" #control>
+                                   Control Information 
+                                </h4>
+                  </div>
+                  <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                    <div class="panel-body">
+  
+                      <div class="col-sm-12 col-md-10 offset-md-1">
+                            <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="servicingBranch" class="control-label col-md-4">Servicing Branch</label>
+          
+                                                <div class="col-md-8">
+                                                    <input name="servicingBranch" [(ngModel)]="inward.servicingBranch" type="text" id="servicingBranch" class="form-control"
+                                                        placeholder="">
+                                                </div>
+          
+          
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="homeBranch" class="control-label col-md-4">Home Branch</label>
+          
+                                                <div class="col-md-8">
+                                                    <input name="homeBranch" [(ngModel)]="inward.homeBranch" type="text" id="baseFgnCurrEquiRate" class="form-control" placeholder="">
+                                                </div>
+          
+          
+                                            </div>
+                                        </div>
+          
+          
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="servicingBranch" class="control-label col-md-4">Relationship Management</label>
+          
+                                                <div class="col-md-8">
+                                                    <input name="relationshipManagement"  [(ngModel)]="inward.relationshipManagement" type="text" id="relationshipManagement"
+                                                        class="form-control" placeholder="">
+                                                </div>
+          
+          
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="effectiveDate" class="control-label col-md-4">Effective Date</label>
+          
+                                                <div class="col-md-8">
+                                                    <input name="effectiveDate"  [ngModel]="inward.effectiveDate | date:'yyyy-MM-dd'" (ngModelChange)="inward.effectiveDate = $event" type="date" id="effectiveDate" class="form-control" placeholder="">
+                                                </div>
+          
+          
+                                            </div>
+                                        </div>
+          
+          
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="status" class="control-label col-md-4">Status</label>
+          
+                                                <div class="col-md-8">
+                                                    <input name="status" [disabled]='true' [(ngModel)]="inward.status" type="text" id="status" class="form-control" placeholder="">
+                                                </div>
+          
+          
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" *ngIf="isInTransit">
+                                                <div class="form-group row">
+                                                    <label for="rejectQueueId" class="control-label col-md-4">Reject Queue</label>
+                                                    <div class="col-md-8">
+                                                            
+                                                        <select class="form-control" data-placeholder="rejectQueueId" tabindex="1" name="rejectQueueId" [(ngModel)]="inwardAmend.rejectQueueId">
+                                                            <option *ngFor="let step of rejectSteps" value={{step.id}} selected="test.rejectQueueId==step.id? true : null">
+                                                                {{step.description}}
+                                                            </option>
+                                                        </select>
+                                                    
+                                                </div>
+                                                </div>
+                                            </div>
+          
+                                        
+                                    </div>
+          
+                                </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-footer text-muted">
+                        <div class="row p-3">
+                          <div class="col-md-8"></div>
+                          <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="cancel()"
+                              type="submit">Cancel</button>
+                          </div>
+                          <div class="col-md-2 text-right">
+                            <button class="btn btn-primary btn-block" type="submit" (click)="save()">Save</button>
+                          </div>
+                        </div>
+                      </div>
+                
+  
+              </div>
+            <!-- </form> -->
+  
+  
+          </div>
+        </div>
+      </div>
+  
+  
+    </div>
+  </div>
+

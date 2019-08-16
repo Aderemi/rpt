@@ -1,0 +1,506 @@
+<!-- <div class="col-sm-12" *ngIf = "showForm === 0" >
+  <div class="white-box">
+
+      <p class="text-muted m-b-30">FOREX Sources</p>
+
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="control-label col-md-3">Code</label>
+                  <div class="col-md-9">
+                      <input type="text" name="code" [disabled] = "code" class="form-control" [(ngModel)]="fxSource.code" placeholder="">
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="control-label col-md-3">Status</label>
+                  <div class="col-md-9">
+
+                      <select class="form-control" name="status" [(ngModel)]="fxSource.status">
+                        <option value="undefined">&lt;---&gt;</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="cancel">Cancel</option>
+                       
+                      </select>
+
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-2">
+              <div class="form-group">
+
+                  <div class="col-md-9">
+
+                      <button class="btn btn-secondary usl-btn-color-default" (click)="getFilter()">
+                          <li class="fa fa-search"></li> Search</button>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <hr class="m-b-30 m-t-30" />
+
+
+      <table id="myTable" class="table table-bordered color-table info-table">
+          <thead>
+              <tr>
+                  <th>Code</th>
+                  <th>Description</th>
+                  <th>Market Type</th>
+                  <th>Status</th>
+
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let fxSource of fxSources; let i = index" (click)="set(fxSource)" [class.active]="selectedFxSource == fxSource">
+                  <td>{{fxSource.code}} </td>
+                  <td>{{fxSource.description}}</td>
+                  <td>{{fxSource.marketType}}</td>
+                  <td>{{fxSource.status}}</td>
+
+              </tr>
+          </tbody>
+      </table>
+      <div class="row">
+          <div class="col-md-6">
+              <button (click)="forexSourceActions($event)" class="btn btn-info usl-btn-color ">Add</button>
+              <button (click)="forexSourceActions($event)" class="btn btn-info usl-btn-color ">Modify</button>
+              <button (click)="forexSourceActions($event)" class="btn btn-info usl-btn-color">View</button>
+              <button (click)="forexSourceActions()" class="btn btn-info usl-btn-color">Close</button>
+          </div>
+      </div>
+
+  </div>
+</div> -->
+
+
+
+
+
+<div class="container-fluid mt-1" *ngIf = "showForm === 0">
+        <div class="row p-3 pl-4">
+            <div class="col-md-6">
+                <h1 class="text-bold">FOREX Sources</h1>
+            </div>
+    
+            <div class="col-md-2 offset-md-4 pr-0">
+                <button class="btn btn-block btn-primary "(click)="forexSourceActions($event)" >Add</button>
+            </div>
+        </div>
+        <div class="row p-2 pl-4 mt-5">
+            <div class="col-md-12">
+                <div class="row mb-2">
+                    <div class="form-group col-md-3 pr-0 mb-0">
+                        <input name="code" [(ngModel)]="fxSource.code" type="text" id="reference"
+                            class="form-control search" placeholder="Search by code">
+    
+                    </div>
+                    <div class="form-group col-md-3 pr-0 mb-0">
+                            <div class="form-group row">
+                                    <!-- <label class="control-label col-md-3 ">Status</label> -->
+                                    <div class="col-md-12">                  
+                                        <select class="form-control search" name="status" [(ngModel)]="fxSource.status">
+                                          <option value="undefined" class="text-muted">Status</option>
+                                          <option value="Active">Active</option>
+                                          <option value="Inactive">Inactive</option>
+                                          <option value="cancel">Cancel</option>                                         
+                                        </select>                  
+                                    </div>
+                                </div>
+                    </div>
+                     
+                    <div class="col-md-1 pr-0 mb-0">
+                        <button class="btn btn-block btn-success hover-raise" (click)="getFilter()">Search</button>
+                    </div>
+                    <div class="form-group col-md-3 pr-0 mb-0">
+                            <!-- <input type="text" [(ngModel)]="fxRequest.product.productSubCategory.productCategory" name=""
+                                class="form-control search" placeholder="Search by product category" id="category"> -->
+                        </div>
+                    <div class="form-group col-md-2  mb-0">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <label class="pr-2">Showing</label>
+                                <select name="" id="">
+                                    <option value="">5</option>
+                                    <option value="">10</option>
+                                    <option value="">15</option>
+                                    <option value="">20</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                                <th>Code</th>
+                                                <th>Description</th>
+                                                <th>Market Type</th>
+                                                <th>Status</th>
+                                            <th></th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr *ngFor="let fxSource of fxSources; let i = index" (click)="set(fxSource)" [class.active]="selectedFxSource == fxSource">
+                                                    <td>{{fxSource.code}} </td>
+                                                    <td>{{fxSource.description}}</td>
+                                                    <td>{{fxSource.marketType}}</td>
+                                                    <td>{{fxSource.status}}</td>                                  
+                                            <td><button class="btn-outline-primary"  (click)="forexSourceActions($event)">view</button></td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <img src="/assets/three-dots-more-indicator.svg" alt="Ellipse"
+                                                        class=" btn secondary dropdown-toggle" id="dropdownMenu2"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        <a class="dropdown-item" (click)="forexSourceActions($event)">Modify</a>
+                                                        <a class="dropdown-item" (click)="forexSourceActions()">Close</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="clearfix p-2">
+                            <p class="text-secondary ml-1 float-left">20 records found</p>
+                            <div class="float-right">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination pg-blue">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" tabindex="-1">Previous</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link">1</a></li>
+                                        <li class="page-item active">
+                                            <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- <div class="col-sm-12" *ngIf = "showForm === 1" >
+  <div class="white-box">
+
+      <p>FOREX Source</p>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingBasic">
+            <h4 class="panel-title">
+                <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic" aria-expanded="false"
+                    aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+            </h4>
+        </div>
+        <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+            <div class="panel-body">
+
+
+                <div class="form-body">...... -->
+                    <!-- <input name="id" [(ngModel)]="product.id" type="text" hidden> -->
+
+                    <!-- <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="code" class="control-label col-md-4">Code
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" [(ngModel)]="fxSource.code"  name="code" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="description" class="control-label col-md-4">Description
+                                    </label>
+    
+                                    <div class="col-md-8">
+                                        <input type="text" [(ngModel)]="fxSource.description"  name="description" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                       
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                              <label for="description" class="control-label col-md-4">Market Type
+                              </label>
+
+                              <div class="col-md-8">
+                                <select [(ngModel)]="fxSource.marketType" class="form-control" name="marketType" >
+                                  <option value="undefined">&lt;---&gt;</option>
+                                  <option value="spot">Spot</option>
+                                  <option value="forward">Forward</option>
+
+                                  
+                              </select>
+                        </div>
+                          </div>
+                      </div>
+                  </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingBenInfo">
+            <h4 class="panel-title">
+                <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBenInfo" aria-expanded="false"
+                    aria-controls="collapseBenInfo" style="color :#2b2b2b; font-weight: bold;">Control Information </a>
+            </h4>
+        </div>
+        <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+            <div class="panel-body">
+
+
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="code" class="control-label col-md-4">Effective Date
+                                </label>
+                                <div class="col-md-8">
+                                    <input type="date"  class="form-control"  [ngClass]="" name="effectiveDate" [ngModel]="fxSource.effectiveDate | date:'yyyy-MM-dd'" (ngModelChange)="fxSource.effectiveDate = $event">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="code" class="control-label col-md-4">Status
+                                </label>
+                                <div class="col-md-8">
+                                    <select [(ngModel)]="fxSource.status" class="form-control" name="status" [disabled]="modifyTemp==2">
+                                        <option value="undefined">&lt;---&gt;</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="cancel">Cancel</option>
+                                       
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="col-md-3" *ngIf="showForm==1">
+                    <button class="btn btn-info usl-btn-color" type="button" (click)="createForexSource()">
+                        <span class="btn-label">
+                            <li class="fa fa-check"></li>
+                        </span> Save</button>
+                </div>
+                <div class="col-md-3" *ngIf="showForm==1">
+                    <button class="btn btn-info usl-btn-color" type="button" (click)="modifyProductCategory()">
+                        <span class="btn-label">
+                            <li class="fa fa-close"></li>
+                        </span> Cancel</button>
+                </div>
+                <div class="col-md-3" *ngIf="modifyTemp==2">
+                    <button class="btn btn-info usl-btn-color" type="button" (click)="cancel()">
+                        <span class="btn-label">
+                            <li class="fa fa-check"></li>
+                        </span> Done</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+  </div>
+</div> -->
+
+
+
+
+
+<div class="container-fluid mt-1" *ngIf="showForm === 1">
+        <div class="row p-3 pl-4">
+          <div class="col-md-12">
+            <h1 class="text-bold">FOREX Source Form</h1>
+          </div>
+        </div>
+      
+        <div class="col-md">
+          <div class="card panel">
+            <div class="card-body form-card">
+              <form>
+                <div class="panel-group" role="tablist" aria-multiselectable="true">
+                  <div class="panel-default">
+                    <div class="panel-heading" role="tab" id="headingBasic">
+                      <div class="float-left form-icon text-center mr-3">
+                        <span class="flaticon-paper  primary-color"></span>
+                      </div>
+                      <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                        Forex Registration Details
+                      </h4>
+                      <p class="subtitle mb-0  ">Please fill in the appropriate data </p>
+                    </div>
+                    <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel"
+                      aria-labelledby="headingBasic">
+                      <div class="panel-body">
+                        <div class="col-sm-12 col-md-10 offset-md-1">
+                                <div class="form-body">
+                                        <!-- <input name="id" [(ngModel)]="product.id" type="text" hidden> -->
+                    
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="code" class="control-label col-md-4">Code
+                                                    </label>
+                    
+                                                    <div class="col-md-8">
+                                                        <input type="text" [(ngModel)]="fxSource.code"  name="code" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="description" class="control-label col-md-4">Description
+                                                        </label>
+                        
+                                                        <div class="col-md-8">
+                                                            <input type="text" [(ngModel)]="fxSource.description"  name="description" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                    
+                                           
+                                        </div>
+                    
+                                        <div class="row">
+                                          <div class="col-md-6">
+                                              <div class="form-group row">
+                                                  <label for="description" class="control-label col-md-4">Market Type
+                                                  </label>
+                    
+                                                  <div class="col-md-8">
+                                                    <select [(ngModel)]="fxSource.marketType" class="form-control" name="marketType" >
+                                                      <option value="undefined">&lt;---&gt;</option>
+                                                      <option value="spot">Spot</option>
+                                                      <option value="forward">Forward</option>
+                    
+                                                      
+                                                  </select>
+                                            </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                    
+                    
+                                    </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-default">
+                    <div class="panel-heading" role="tab" id="headingBasic">
+                      <div class="float-left form-icon text-center mr-3">
+                        <span class="flaticon-paper  primary-color"></span>
+                      </div>
+                      <h4 class="panel-title font-weight-bold secondary-color pt-2">Control Information </h4>
+                    </div>
+                    <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel"
+                      aria-labelledby="headingBenInfo">
+                      <div class="panel-body">
+                        <div class="col-md-10 offset-md-1">
+                                <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="code" class="control-label col-md-4">Effective Date
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <input type="date"  class="form-control"  [ngClass]="" name="effectiveDate" [ngModel]="fxSource.effectiveDate | date:'yyyy-MM-dd'" (ngModelChange)="fxSource.effectiveDate = $event">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="code" class="control-label col-md-4">Status
+                                                        </label>
+                                                        <div class="col-md-8">
+                                                            <select [(ngModel)]="fxSource.status" class="form-control" name="status" [disabled]="modifyTemp==2">
+                                                                <option value="undefined">&lt;---&gt;</option>
+                                                                <option value="Active">Active</option>
+                                                                <option value="Inactive">Inactive</option>
+                                                                <option value="cancel">Cancel</option>
+                                                               
+                                                            </select>
+                        
+                                                        </div>
+                                                    </div>
+                        
+                        
+                                                </div>
+                    
+                                        </div>
+                                        <div class="row">
+                    
+                                           
+                                        </div>
+                                    </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="card-footer text-muted">
+                    <div class="row p-3">
+                      <div class="col-md-6"></div>
+                      <div class="col-md-2 text-right" *ngIf="showForm==1">
+                          <button class="btn btn-outline-primary btn-block" (click)="modifyProductCategory()">Cancel</button>
+                      </div>
+                      <div class="col-md-2 text-right"  *ngIf="showForm==1">
+                        <button class="btn btn-primary btn-block" type="submit"  (click)="createForexSource()">save</button>
+                      </div>
+                      <div class="col-md-2 text-right"  *ngIf="modifyTemp==2">
+                        <button class="btn btn-primary btn-block" type="submit"  (click)="cancel()">Done</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      

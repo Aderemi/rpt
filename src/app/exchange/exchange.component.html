@@ -1,0 +1,88 @@
+
+<div class="container-fluid mt-1">
+  <div class="row p-3 pl-4">
+    <div class="col-md-12">
+      <h1 class="text-bold">Exchange Rate</h1>
+    </div>
+  </div>
+  <div class="row p-2 pl-4">
+    <div class="col-md-12">
+      <div class="card panel">
+        <div class="card-body form-card">
+          <form>
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-row">
+                            <label for="code" class="control-label col-md-4">RATE &nbsp;
+                            </label>
+    
+                            <div class="col-md-8">
+                              <input type="text"  class="form-control search" (keyup)="calBoth()" [(ngModel)]="rate" name="rate">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p>The currrent rate has been set to: <i class="text-muted">{{rate}}</i></p>
+                        </div>
+                      </div>
+                  
+                </div>
+                <div class="panel-body">
+                  <div class="form-body">                     
+                    <div class="row">
+                      <div class="col-sm-12 col-md-10 offset-md-1">
+                        <div class="row">
+
+                          <div class="col-md-6">
+                            <div class="form-row">
+                              <label for="code" class="control-label col-md-4">Nigerian Naira &nbsp;</label>
+                              <div class="col-md-6 input-group">
+                                <input type="text" class="form-control search" (keyup)="calDollar()" [(ngModel)]="naira"  name="naira">
+                                  <span class="input-group-text">NGN</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class=" form-row">
+                              <label for="code" class="control-label col-md-4">US Dollars &nbsp;</label>
+                              <div class="col-md-6  input-group">
+                                <input type="text"  class="form-control search"  (keyup)="calNaira()" [(ngModel)]="dollar" name="dollar">
+                                  <span class="input-group-text">USD</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>              
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="row px-4">
+                    <div class="col-md-10"></div>                   
+                    <div class="col-md-2 text-right">
+                      <button class="btn btn-primary btn-block" type="submit" (click)="print()">Print</button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+             
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

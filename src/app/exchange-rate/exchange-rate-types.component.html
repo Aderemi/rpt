@@ -1,0 +1,185 @@
+<!-- <div class="col-sm-12">
+    <div class="white-box">
+  
+  
+        <h3 class="box-title m-b-0">Exchange Rate Types</h3>
+  
+        <hr class="m-t-0 m-b-20">
+  
+  
+        <form>
+            <div class="form-body">
+  
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="code" class="control-label col-md-5">Code</label>
+                            <div class="col-md-7">
+                                <input name="code" [(ngModel)]="exchangeRateType.code" type="text" id="code" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name" class="control-label col-md-5">Description</label>
+                            <div class="col-md-7">
+                                <input name="name" [(ngModel)]="exchangeRateType.description" type="text" id="description" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="form-actions">
+                  <button type="submit" class="btn btn-secondary usl-btn-color-default" (click)="search()">
+                    <i class="fa fa-search"></i> Search</button>
+                            </div>
+                   </div>
+                    
+                </div>
+                
+  
+            </div>   
+        </form>
+        <hr class="m-t-0 m-b-20">
+        
+        <div class="table-responsive">
+            <table id="myTable" class="table">
+                <thead>
+                    <tr>
+                       <th>#</th>
+                        <th>Code</th>
+                        <th>Description</th>
+                        <th>Status</th>
+  
+  
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let exchratetype of ExchRatetypes" (click)="set($event, exchratetype)" [ngClass]="{'selected' : exchratetype === selectedExchRatetype}">
+                          <td>{{exchratetype.id}}</td>
+                        <td>{{exchratetype.code}}</td>
+                        <td>{{exchratetype.description}}</td>
+                        <td>{{exchratetype.status}}</td>
+                    </tr>
+  
+  
+                </tbody>
+            </table>
+            <button routerLink="/exchangeratetype" class="btn btn-info usl-btn-color">Add</button>
+            <button (click)="editExchRatetype()" class="btn btn-info usl-btn-color">Modify</button>
+            <button (click)="openConfirmationDialog()" class="btn btn-info usl-btn-color">Delete</button>
+        </div>
+    </div>
+  </div>
+   -->
+
+<div class="container-fluid mt-1">
+    <div class="row p-3 pl-4">
+        <div class="col-md-6">
+            <h1 class="text-bold">Exchange Rate Types</h1>
+        </div>
+
+        <div class="col-md-2 offset-md-4 pr-0">
+            <button class="btn btn-block btn-primary " (click)="addProduct()">Add</button>
+        </div>
+    </div>
+
+    <div class="row p-2 pl-4 mt-5">
+        <div class="col-md-12">
+            <div class="row mb-2">
+
+                <div class="form-group col-md-3 pr-0 mb-0">
+                    <input type="text" [(ngModel)]="exchangeRateType.code" class="form-control search"
+                        placeholder="Search by Code" id="code">
+                </div>
+                <div class="form-group col-md-3 pr-0 mb-0">
+                    <input type="text" [(ngModel)]="exchangeRateType.description" class="form-control search"
+                        placeholder="Search by Description" id="description">
+                </div>
+                <div class="col-md-1 pr-0 mb-0">
+                    <button class="btn btn-block btn-success hover-raise">Search</button>
+                </div>
+                <div class="form-group col-md-2 offset-md-3 mb-0">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <label class="pr-2">Showing</label>
+                            <select name="" id="">
+                                <option value="">5</option>
+                                <option value="">10</option>
+                                <option value="">15</option>
+                                <option value="">20</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Code</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let exchratetype of ExchRatetypes" (click)="set($event, exchratetype)"
+                                        [ngClass]="{'selected' : exchratetype === selectedExchRatetype}">
+                                        <td>{{exchratetype.id}}</td>
+                                        <td>{{exchratetype.code}}</td>
+                                        <td>{{exchratetype.description}}</td>
+                                        <td>{{exchratetype.status}}</td>
+                                        <td><button class="btn-outline-primary">view</button></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <img src="/assets/three-dots-more-indicator.svg" alt="Ellipse"
+                                                    class=" btn secondary dropdown-toggle" id="dropdownMenu2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    <a class="dropdown-item" (click)="editSysParamCategory()">Edit</a>
+                                                    <a class="dropdown-item"
+                                                        (click)="openConfirmationDialog()">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="clearfix p-2">
+                        <p class="text-secondary ml-1 float-left">20 records found</p>
+                        <div class="float-right">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination pg-blue">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link">1</a></li>
+                                    <li class="page-item active">
+                                        <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

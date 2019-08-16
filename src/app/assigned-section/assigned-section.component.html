@@ -1,0 +1,210 @@
+<!-- <div class="col-md-10" *ngIf="relatedTaskCurrency"> -->
+
+<!-- <form action="#" (ngSubmit)="search()" class="form-horizontal">
+    <div class="form-body">
+      <hr class="m-t-0 m-b-40">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label col-md-3">Code</label>
+            <div class="col-md-9">
+              <input type="text" name="code" class="form-control" [(ngModel)]="warrant.code">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label col-md-3">Status</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" name="status" [(ngModel)]="warrant.status">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="m-t-0 m-b-40">
+
+      <div class="form-actions">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-offset-3 col-md-9">
+                <button type="submit" class="btn btn-secondary usl-btn-color-default">
+                  <i class="fa fa-search"></i> Search</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6"> </div>
+        </div>
+      </div>
+    </div>
+
+  </form> -->
+
+
+<!-- .....
+  <table id="myTable" class="table table-striped">
+    <thead>
+      <tr>
+
+        <th>Code</th>
+
+        <th>Description</th>
+
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cur of productSection; let i = index">
+
+        <td>{{cur.code}} </td>
+        <td>{{cur.description}}</td>
+        <td>{{cur.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="sectionOperation($event)" class="btn btn-info  usl-btn-color">Add</button>
+  <button (click)="sectionOperation($event)" class="btn btn-info  usl-btn-color">Modify</button>
+  <button (click)="sectionOperation($event)" class="btn btn-info  usl-btn-color">Cancel</button>
+  <button (click)="sectionOperation($event)" class="btn btn-info  usl-btn-color">View</button>
+  <button (click)="sectionOperation($event)" class="btn btn-info usl-btn-color">Close</button>
+
+</div> -->
+
+
+
+
+
+<div class="container-fluid mt-1">
+  <div class="row py-3 px-4">
+    <div class="col-md-12">
+      <h1>Outward Bank Payment</h1>
+    </div>
+  </div>
+  <div class="row py-2 px-4">
+    <div class="col-md-12">
+      <div class="card box-shad">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3" style="border-right: 1px solid rgb(216, 216, 216);">
+              <div class="row p-4">
+                <h2>Tasks</h2>
+              </div>
+              <ul class="list-group list-group-flush list-group-tradex" style="margin-right: -15px;
+                              margin-left: -15px;">
+                <li class="list-group-item">
+                  <a routerLink="/product/outward-bank-payment/dashboard/basic-information"
+                    routerLinkActive="active">Basic Information</a>
+                </li>
+                <li class="list-group-item">
+                  <a routerLink="/product/outward-bank-payment/dashboard/charges" routerLinkActive="active">Charges</a>
+                </li>
+                <li class="list-group-item">
+                  <a routerLink="/product/outward-bank-payment/dashboard/currency"
+                    routerLinkActive="active">Currency</a>
+                </li>
+                <li class="list-group-item">
+                  <a routerLink="/outward-bank-payment/dashboard/configuration"
+                    routerLinkActive="active">Configuration</a>
+                </li>
+                <li class="list-group-item">
+                  <a routerLink="/product/outward-bank-payment/dashboard/milestones"
+                    routerLinkActive="active">Milestones</a>
+                </li>
+                <li class="list-group-item">
+                  <a routerLink="/product/outward-bank-payment/dashboard/control-account"
+                    routerLinkActive="active">Control Account</a>
+                </li>
+                <li class="list-group-item">
+                  <a routerLink="/product/outward-bank-payment/dashboard/business-process"
+                    routerLinkActive="active">Business Process</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-9 mt-5" *ngIf="relatedTaskCurrency">
+              <div class="row p-3 pl-2">
+                <div class="col-md-6">
+                  <h5 class="text-bold">Section</h5>
+                  <p>set the appropriate information for the message</p>
+                </div>
+
+                <div class="col-md-3 offset-md-3 pr-0">
+                  <button class="btn btn-block btn-primary " (click)="Add()">&oplus; new section</button>
+                </div>
+              </div>
+
+              <div class="row p-2 pl-2 mt-5">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="xc">
+                        <div class="panel-body">
+                          <table class="table alt-table table-borderless">
+                            <thead>
+                              <th>Code</th>
+                              <th>Description</th>
+                              <th>Status</th>
+                              <th></th>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>wwwwww</td>
+                                <td>wwwwww</td>
+                                <td>wwwwww</td>
+                                <td>
+                                  <button class="btn btn-danger round-table-button">&mdash;</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>wwwwww</td>
+                                <td>wwwwww</td>
+                                <td>wwwwww</td>
+                                <td>
+                                  <button class="btn btn-danger round-table-button">&mdash;</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="col-md-10" *ngIf="!relatedTaskCurrency">
+
+  <!-- <app-warrant-product-section (section)="assign($event)" [prod]="prod"></app-warrant-product-section> -->
+
+  <!-- <div class="row">        
+             <button (click) = "assignSelectedCurrency()"  class="btn btn-info  usl-btn-color">Assign</button>       
+             <button (click) = "operation()"  class="btn btn-info usl-btn-color">Close</button>
+            </div> -->
+</div>
+
+
+<!-- Related Task Menu bar only displayed when relatedTaskSave == 1 -->
+
+<!-- <div class="col-md-2 white-box">  
+           
+                    
+          
+        <app-related-task-bar></app-related-task-bar>
+    
+    
+    </div> -->
+
+<!-- Related Task Menu Ends -->

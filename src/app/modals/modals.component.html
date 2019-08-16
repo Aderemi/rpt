@@ -1,0 +1,1036 @@
+<button class="btn btn-dark" data-toggle="modal" data-target="#add-holiday-modal">test0</button>
+<button class="btn btn-dark" data-toggle="modal" data-target="#text-modal">test1</button>
+<button class="btn btn-dark" data-toggle="modal" data-target="#sample-modal">test1</button>
+<button class="btn btn-dark" data-toggle="modal" data-target="#margin-modal">margin deposit</button>
+<button class="btn btn-dark" data-toggle="modal" data-target="#collateral-modal">collateral collateral</button>
+<button class="btn btn-dark" data-toggle="modal" data-target="#milestone-modal" (click)= "createMilestone()">create</button>
+<button class="btn btn-dark" data-toggle="modal" data-target="#milestone-modal" (click)= "updateMilestone()">Update</button>
+
+<!-- milestone -->
+
+
+<div class="row p-2 pl-2 mt-5">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <div class="col-md-2 text-right pl-0 pr-0" style="padding-top: 0.3rem;">
+            <h6 class="text-bold mb-0">Tiers</h6>
+          </div>
+          <div class="col-md-2">
+            <a class="btn btn-primary round-table-button" data-target="#milestone-modal" (click)="createMilestone()"
+              data-toggle="modal" title="Add new tier" theme="dark" tooltip="Tooltip" placement="right"
+              show-delay="500">+</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="xc">
+          <div class="panel-body">
+            <table class="table alt-table table-borderless">
+              <thead>
+
+                <th>id</th>
+                <th>milestoneType</th>
+                <th>eventType</th>
+                <th>basis</th>
+                <th>tracerType</th>
+                <th>notificationType</th>
+                <th>followUpCatType</th>
+                <th>followUpType</th>
+                <th>effectiveDate</th>
+                <th>status</th>
+                <th></th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let milestone of milestones">
+                  <td>{{milestone.id}}</td>
+                  <td>{{milestone.milestoneType}}</td>
+                  <td>{{milestone.eventType}}</td>
+                  <td>{{milestone.basis}}</td>
+                  <td>{{milestone.tracerType}}</td>
+                  <td>{{milestone.notificationType}}</td>
+                  <td>{{milestone.followUpCatType}}</td>
+                  <td>{{milestone.followUpType}}</td>
+                  <td>{{milestone.effectiveDate}}</td>
+                  <td>{{milestone.status}}</td>
+                  <td>
+                    <div class="dropdown">
+                      <img src="../../assets//icons/three-dots-more-indicator.svg" alt="Ellipse"
+                        class=" btn secondary dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#milestoneEdit-modal"
+                          (click)="updateMilestone(milestone)">Edit</a>
+                        <a class="dropdown-item" (click)="deleteMilestone(milestone)">Delete</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="milestoneEdit-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12 p-0">
+
+          <div class="card-body form-card">
+            <div class="panel-heading" role="tab" id="headingBasic">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                    Milestone
+                  </h4>
+                  <p class="subtitle mb-0">Please fill in the appropriate data for this rule definition </p>
+                </div>
+
+                <div class="col-md-3">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body p-0">
+        <div class="container p-2">
+          <div class="col-md-10  m-auto">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="milestoneType">milestoneType</label>
+                      <select class="form-control"[(ngModel)]="milestone.milestoneType">
+                        <option value=""> ---  option ---</option>
+                        <option *ngFor="let milestone of milestones" [ngValue]="milestone.milestoneType">{{milestone.milestoneType}}</option>
+                      </select> 
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="eventType">eventType</label>
+                      <select class="form-control"[(ngModel)]="milestone.eventType">
+                        <option *ngFor="let milestone of milestones" [ngValue]="milestone.eventType">{{milestone.eventType}}</option>
+                      </select> 
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="basis">basis</label>
+                   <select class="form-control"[(ngModel)]="milestone.basis">
+                        <option *ngFor="let milestone of milestones" [ngValue]="milestone.basis">{{milestone.basis}}</option>
+                      </select> 
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="daysNum">daysNum</label>
+                        <input type="number" name="daysNum" class="form-control" [(ngModel)]="milestone.daysNum">
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="tracerType">tracerType</label>
+                   <select class="form-control"[(ngModel)]="milestone.tracerType">
+                        <option *ngFor="let milestone of milestones" [ngValue]="milestone.tracerType">{{milestone.tracerType}}</option>
+                      </select> 
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="notificationType">notificationType</label>
+                   <select class="form-control"[(ngModel)]="milestone.notificationType">
+                        <option *ngFor="let milestone of milestones" [ngValue]="milestone.notificationType">{{milestone.notificationType}}
+                        </option>
+                      </select> 
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="followUpCatType">followUpCatType</label>
+                   <select class="form-control"[(ngModel)]="milestone.followUpCatType">
+                        <option *ngFor="let milestone of milestones" [ngValue]="milestone.followUpCatType">{{milestone.followUpCatType}}
+                        </option>
+                      </select> 
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="followUpType">followUpType</label>
+                      <select class="form-control"[(ngModel)]="milestone.followUpType">
+                        <option *ngFor="let milestone of milestones" [ngValue]="milestone.followUpType">{{milestone.followUpType}}</option>
+                      </select> 
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form group row">                    
+                        <label for="effectiveDate">effectiveDate</label>
+                        <input type="date" name="effectiveDate" class="form-control" [(ngModel)]="milestone.effectiveDate">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form group row row">                  
+                      <label for="status">status</label>
+                        <input type="text" name="status" class="form-control" [(ngModel)]="milestone.status">
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="processForm()" data-dismiss="modal">Apply</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="milestone-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12 p-0">
+
+          <div class="card-body form-card">
+            <div class="panel-heading" role="tab" id="headingBasic">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                    Milestone
+                  </h4>
+                  <p class="subtitle mb-0">Please fill in the appropriate data for this rule definition </p>
+                </div>
+
+                <div class="col-md-3">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body p-0">
+        <div class="container p-2">
+          <div class="col-md-10  m-auto">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="milestoneType">milestoneType</label>
+                    <input type="text" name="milestoneType" class="form-control" [(ngModel)]="milestone.milestoneType">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="eventType">eventType</label>
+                    <input type="text" name="eventType" class="form-control" [(ngModel)]="milestone.eventType">
+                  </div>
+
+                </div>
+              </div>
+
+
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="basis">basis</label>
+                    <input type="text" name="basis" class="form-control" [(ngModel)]="milestone.basis">
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="daysNum">daysNum</label>
+                    <input type="number" name="daysNum" class="form-control" [(ngModel)]="milestone.daysNum">
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="tracerType">tracerType</label>
+                    <input type="text" name="tracerType" class="form-control" [(ngModel)]="milestone.tracerType">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="notificationType">notificationType</label>
+                    <input type="text" name="notificationType" class="form-control"
+                      [(ngModel)]="milestone.notificationType">
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="followUpCatType">followUpCatType</label>
+                    <input type="text" name="followUpCatType" class="form-control"
+                      [(ngModel)]="milestone.followUpCatType">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="followUpType">followUpType</label>
+                    <input type="text" name="followUpType" class="form-control" [(ngModel)]="milestone.followUpType">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="effectiveDate">effectiveDate</label>
+                    <input type="date" name="effectiveDate" class="form-control" [(ngModel)]="milestone.effectiveDate">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form group row">
+                    <label for="status">status</label>
+                    <input type="text" name="status" class="form-control" [(ngModel)]="milestone.status">
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="processForm()" data-dismiss="modal">Apply</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- <div class="modal fade" id="add-holiday-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12 p-0">
+
+          <div class="card-body form-card">
+            <div class="panel-heading" role="tab" id="headingBasic">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                    Notification
+                  </h4>
+                  <p class="subtitle mb-0">Please fill in the appropriate data for this rule definition </p>
+                </div>
+
+                <div class="col-md-3">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body p-0">
+        <div class="container p-2">
+          <div class="col-md-10  m-auto">
+            <div class="form-body">
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="pcycle" class="control-label">Field Description<sup>*</sup></label>
+                    <input name="actualAmt" type="text" id="firstName" class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="pcycle" class="control-label">Dimensions (lines/columns)<sup>*</sup></label>
+                    <input type="text" id="expected" class="form-control" placeholder="">
+                  </div>
+                </div>
+
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="pcycle" class="control-label">Reserved Lines<sup>*</sup></label>
+                    <input name="actualAmt" type="text" id="firstName" class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-md-12">
+                  <textarea type="text" name="remarks" rows="10" class="form-control" id="input" #box
+                    (keyup)="onKey(box.value)"></textarea>
+                </div>
+              </div>
+
+              <div class="row offset-md-9 sub-title text-muted text-right font-weight-lighter text " id="count">
+                Characters: {{values}}
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Apply</button>
+      </div>
+    </div>
+
+  </div>
+</div> -->
+
+<!-- <div class="modal fade" id="text-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12 p-0">
+
+          <div class="card-body form-card">
+            <div class="panel-heading" role="tab" id="headingBasic">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                    Notification
+                  </h4>
+                  <p class="subtitle mb-0">Please fill in the appropriate data for this rule definition </p>
+                </div>
+
+                <div class="col-md-3">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body p-0">
+        <div class="container p-2">
+          <div class="col-md-10  m-auto">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="text"> Text field</label>
+                  <textarea type="text" name="remarks" rows="10" class="form-control" id="input" #box
+                    (keyup)="onKey(box.value)"></textarea>
+                </div>
+              </div>
+
+              <div class="row offset-md-9 sub-title text-muted text-right font-weight-lighter text " id="count">
+                Characters: {{values}}
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Apply</button>
+      </div>
+    </div>
+
+  </div>
+</div> -->
+<!-- 
+<div class="modal fade" id="sample-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12 p-0">
+
+          <div class="card-body form-card">
+            <div class="panel-heading" role="tab" id="headingBasic">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                      Configure Control Account 
+                  </h4>
+                  <p class="subtitle mb-0">Please fill in the appropriate data</p>
+                </div>
+
+                <div class="col-md-3">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body p-0">
+        <div class="container p-2">
+          <div class="col-md-10  m-auto">
+              <div class="form-body">
+    
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                              <label class="control-label col-md-5">Product Category</label>
+                              <div class="col-md-7">
+                            
+                                  <input type="text" name="category" [disabled]="true" class="form-control" [(ngModel)]="prev.ctrlAcctRef.prodCatCd">
+                              </div>
+                          </div>
+                        </div>
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                              <label class="control-label col-md-5">Description</label>
+                              <div class="col-md-7">
+                                  <input type="text" class="form-control" [disabled]="true" name="code" [(ngModel)]="prev.ctrlAcctRef.description">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                              <label class="control-label col-md-5">Real Account</label>
+                              <div class="col-md-7">
+                                  <input type="text" class="form-control" name="surfix" [(ngModel)]="prev.placeHolder">
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                              <label class="control-label col-md-5">Effective Date</label>
+                              <div class="col-md-7">
+                                  <input type="date" class="form-control" name="sequence" [ngModel]="prev.effectiveDate | date:'yyyy-MM-dd'" (ngModelChange)="cha.effectiveDate = $event">
+                              </div>
+                          </div>
+                      </div>
+
+
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                              <label class="control-label col-md-5">Status</label>
+                              <div class="col-md-7"> 
+                                  
+                                  <select  class="form-control" data-placeholder="Choose a Category" tabindex="1" name="status" [(ngModel)]="prev.status">
+                                          
+                                          <option>Inactive</option>
+                                          <option >Active</option>
+
+                                      </select>
+                              </div>
+                          </div>
+                      </div>
+
+                      
+
+                  </div>
+                                                
+              </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="d('Cross click')">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="c('Save Clicked')">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div> -->
+
+<!-- <div class="modal fade" id="margin-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12 p-0">
+
+          <div class="card-body form-card">
+            <div class="panel-heading" role="tab" id="headingBasic">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                      New Margin Deposit 
+                  </h4>
+                  <p class="subtitle mb-0">Please fill in the appropriate data</p>
+                </div>
+
+                <div class="col-md-3">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body p-0">
+        <div class="container p-2">
+          <div class="col-md-12  m-auto">
+              <div class="form-body">
+                  <input name="id" [(ngModel)]="margindeposit.id" type="text" hidden>
+                  <div class="row">
+                          <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label for="margintype" class="control-label">Margin Deposit Type</label>
+
+                                      <div class="">
+                                          <select class="col-md-2" class="form-control" [(ngModel)]="margindeposit.margintype" data-placeholder="Choose a Currency" tabindex="1"
+                                          name="margintype" [compareWith]="equals">
+                                          <option value="undefined">&lt;---&gt;</option>
+                                          <option *ngFor="let margintype of margintypes" [ngValue]="margintype">{{margintype.code}}</option>
+              
+                                      </select>
+                                      </div>
+                                  </div>
+                              </div>                               
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="reference" class="control-label">Reference</label>
+                              <div class="">
+                                  <input name="reference" [(ngModel)]="margindeposit.reference" type="text" id="code" class="form-control">
+                              </div>
+                          </div>
+                      </div>
+                      
+                  </div>
+                                            
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="name" class="control-label">Amount</label>
+                              <div class="row">
+
+                                  <div class="col-md-6">
+                                      <select  class="form-control " [(ngModel)]="margindeposit.currencyId" data-placeholder="Choose a Currency" tabindex="1"
+                                      name="currencyId" [compareWith]="equals">
+                                      <option value="undefined">&lt;---&gt;</option>
+                                      <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+              
+                                      </select>
+                                  </div>
+                                  <div class="col-md-6">
+    
+                                      <input name="amount" style="text-align : right" [(ngModel)]="margindeposit.amount" type="text" id="amount" class="form-control">
+                                  </div>
+
+                              </div>
+                              
+                          </div>
+                      </div>
+
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="accountNo" class="control-label">Account No
+                              </label>
+                              <div class="row">
+
+                                  <div class="col-md-11">
+                                      <input name="accountNo" [(ngModel)]="margindeposit.accountNo" type="text" id="accountNo" class="form-control" placeholder="">
+                                  </div>
+    
+                                  <div class="col-md-1 pl-0">
+                                      <button class="round-table-button btn btn-primary" tooltip = "add acount" placement="right" show-delay="300">+</button>
+                                  </div>
+                              </div>
+                              
+                          </div>
+                      </div>
+
+                    
+
+
+
+                      
+                  </div>   
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="changeType" class="control-label">Pending Change Type</label>
+                              <div class="">
+                                  <select  class="form-control" [(ngModel)]="margindeposit.changeType" data-placeholder="Choose a Change Type" tabindex="1"
+                                  name="changeType" [compareWith]="equals">
+                                  <option value="">Not Applicable</option>
+                                  <option value="INCREASE">Increase</option>
+                                  <option value="DECREASE">Decrease</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="name" class="control-label ">Pending Amount</label>
+                              <div class="row">
+
+                                  <div class="col-md-6">
+                                      <select  class="form-control " [(ngModel)]="margindeposit.currencyId" data-placeholder="Choose a Currency" tabindex="1"
+                                      name="currencyId" [compareWith]="equals">
+                                      <option value="undefined">&lt;---&gt;</option>
+                                      <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+          
+                                  </select>
+                                  </div>
+                                  <div class="col-md-6">
+    
+                                  <input name="changeAmount" style="text-align : right" [(ngModel)]="margindeposit.changeAmount" type="text" id="changeAmount" class="form-control">
+                                  </div>
+                              </div>
+                             
+                          </div>
+                      </div>                              
+                      
+                  </div> 
+                                                                  
+                  <div class="row">
+                      <div class="col-md-6">
+                              <div class="form-group">
+                                      <label for="remarks" class="control-label">Remarks</label>
+                                      <div class="">
+                                          <textarea class="form-control" [(ngModel)]="margindeposit.remarks" name="remarks"></textarea>
+                                      </div>
+                                  
+                                  </div>
+
+                      </div>
+                      
+                  </div>
+                  <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="status" class="control-label">Status</label>
+                                      <input name="status" [(ngModel)]="margindeposit.status" type="text"
+                                          id="status" class="form-control">
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="effectiveDate" class="control-label">Effective Date
+                                  </label>
+
+                                      <input name="effectiveDate"
+                                          [ngModel]="margindeposit.effectiveDate | date:'yyyy-MM-dd'"
+                                          (ngModelchange)="margindeposit.effectiveDate = $event" type="date"
+                                          id="effectiveDate" class="form-control" placeholder="">
+                              </div>
+                          </div>
+                      </div>                                    
+
+              </div> 
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" name="submit" id="submit"
+        value="Cancel" data-dismiss="modal" (click)="cancel()" *ngIf="isEditMode">Cancel</button>
+        <button type="button" class="btn btn-primary"name="submit" id="submit"
+        value="Update" data-dismiss="modal" (click)="createMarginDeposit()" *ngIf="isEditMode">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div> -->
+<!-- <div class="modal fade" id="collateral-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12 p-0">
+
+          <div class="card-body form-card">
+            <div class="panel-heading" role="tab" id="headingBasic">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                      New Collateral
+                  </h4>
+                  <p class="subtitle mb-0">Please fill in the appropriate data</p>
+                </div>
+
+                <div class="col-md-3">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body p-0">
+        <div class="container p-2">
+          <div class="col-md-12  m-auto">
+              <div class="form-body"> -->
+                  <!-- <form  novalidate autocomplete="off"> -->
+                          <!-- <div class="form-body">
+
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="margintype" class="control-label">Collateral
+                                                  Type</label> -->
+                                              <!-- <div class="col-md-8"> -->
+                                                  <!-- <select class="col-md-2" class="form-control"
+                                                      [(ngModel)]="collateral.collateraltype"
+                                                      data-placeholder="Choose a Currency" tabindex="1"
+                                                      name="collateraltype" [compareWith]="equals">
+                                                      <option value="undefined">&lt;---&gt;</option>
+                                                      <option *ngFor="let collateraltype of collateralTypes"
+                                                          [ngValue]="collateraltype">{{collateraltype.code}} {{collateraltype.description}}</option>
+
+                                                  </select> -->
+                                              <!-- </div> -->
+                                          <!-- </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="reference" class="control-label">Reference</label> -->
+                                              <!-- <div class="col-md-8"> -->
+                                                  <!-- <input name="reference" [(ngModel)]="collateral.reference"
+                                                      type="text" id="code" class="form-control"> -->
+                                              <!-- </div> -->
+                                          <!-- </div>
+                                      </div>
+
+                                  </div>
+                                
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="name" class="control-label">Amount</label>
+
+                                              <div class="row">                                                
+                                              <div class="col-md-4">
+                                                  <select class="form-control " [(ngModel)]="collateral.currencyId"
+                                                      data-placeholder="Choose a Currency" tabindex="1"
+                                                      name="currencyId" [compareWith]="equals">
+                                                      <option value="undefined">&lt;---&gt;</option>
+                                                      <option *ngFor="let currenc of currencies" [ngValue]="currenc">
+                                                          {{currenc.code}}</option>
+
+                                                  </select>
+                                              </div>
+                                              <div class="col-md-8">
+                                                  <input name="amount" style="text-align : right"
+                                                      [(ngModel)]="collateral.amount" DigitsOnly type="text" id="amount"
+                                                      class="form-control">
+                                              </div>
+                                          </div>
+                                          </div>
+                                      </div>
+
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="accountNo" class="control-label">Account No -->
+                                                  <!-- <span class="fa fa-search"></span> -->
+                                              <!-- </label>
+                                              <div class="row">                                                
+
+                                              <div class="col-md-11">
+                                                  <input name="accountNo" [(ngModel)]="collateral.accountNo"
+                                                      type="text" id="accountNo" class="form-control" placeholder="">
+                                              </div>
+                                              <div class="col-md-1 pl-0">
+                                                  <button class="round-table-button btn btn-primary" tooltip = "add acount" placement="right" show-delay="300">+</button>
+                                              </div>
+                                              </div>
+
+                                          </div>
+                                      </div>
+
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="changeType" class="control-label">Pending
+                                                  Change</label> -->
+                                              <!-- <div class="col-md-8"> -->
+                                                  <!-- <select class="form-control" [(ngModel)]="collateral.changeType"
+                                                      data-placeholder="Choose a Change Type" tabindex="1"
+                                                      name="pendcurrency" [compareWith]="equals">
+                                                      <option value="">Not Applicable</option>
+                                                      <option value="INCREASE">Increase</option>
+                                                      <option value="DECREASE">Decrease</option>
+
+
+                                                  </select> -->
+                                              <!-- </div> -->
+                                          <!-- </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="pendcurrency" class="control-label">Pending
+                                                  Amount</label>
+                                                  <div class="row">                                                
+
+                                              <div class="col-md-4">
+                                                  <select class="form-control " [(ngModel)]="collateral.pendcurrency"
+                                                      data-placeholder="Choose a Currency" tabindex="1"
+                                                      name="pendcurrency" [compareWith]="equals">
+                                                      <option value="undefined">&lt;---&gt;</option>
+                                                      <option *ngFor="let currenc of currencies" [ngValue]="currenc">
+                                                          {{currenc.code}}</option>
+
+                                                  </select>
+                                              </div>
+                                              <div class="col-md-8">
+
+                                                  <input name="changeAmount" DigitsOnly style="text-align : right"
+                                                      [(ngModel)]="collateral.changeAmount" type="text"
+                                                      id="changeAmount" class="form-control">
+                                              </div>
+                                          </div>
+                                          </div>
+                                      </div>
+
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="remarks" class="control-label">Remarks</label> -->
+                                              <!-- <div class="col-md-8"> -->
+                                                  <!-- <textarea class="form-control" [(ngModel)]="collateral.remarks"
+                                                      name="remarks"></textarea> -->
+                                              <!-- </div> -->
+
+                                          <!-- </div>
+
+                                      </div>
+
+                                  </div>
+                                  <div class="row">
+                                          <div class="col-md-6">
+                                              <div class="form-group">
+                                                  <label for="status" class="control-label">Status</label> -->
+                                                  <!-- <div class="col-md-8"> -->
+                                                      <!-- <input name="status" [(ngModel)]="collateral.status" type="text"
+                                                          id="status" class="form-control"> -->
+                                                  <!-- </div> -->
+                                              <!-- </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <div class="form-group">
+                                                  <label for="effectiveDate" class="control-label">Effective Date
+                                                  </label> -->
+  
+                                                  <!-- <div class="col-md-8"> -->
+                                                      <!-- <input name="effectiveDate"
+                                                          [ngModel]="collateral.effectiveDate | date:'yyyy-MM-dd'"
+                                                          (ngModelchange)="collateral.effectiveDate = $event" type="date"
+                                                          id="effectiveDate" class="form-control" placeholder=""> -->
+                                                  <!-- </div> -->
+                                              <!-- </div>
+                                          </div>
+                                      </div>                                         -->
+
+                                  <!--app-margin-deposit-type></app-margin-deposit-type-->
+                              <!-- </div> -->
+                  <!-- </form> -->
+              <!-- </div> 
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" name="submit" id="submit"
+        value="Cancel" data-dismiss="modal" (click)="cancel()" *ngIf="isEditMode">Cancel</button>
+        <button type="button" class="btn btn-primary"name="submit" id="submit"
+        value="Update" data-dismiss="modal" (click)="createMarginDeposit()" *ngIf="isEditMode">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div> -->

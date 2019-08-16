@@ -1,0 +1,95 @@
+
+<div class="row" >
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading"> Charges</div>
+            <div class="panel-wrapper collapse in" aria-expanded="true">
+                <div class="panel-body">
+                    <form >
+                        <div class="form-body">
+                           
+                                <input name="id" [(ngModel)] = "charge.id" type="text" hidden>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for = "code" class="control-label col-md-3">Code</label>
+                                        <div class="col-md-9">
+                                            <input name="code" [(ngModel)] = "charge.code" type="text" id="firstName" class="form-control" placeholder="code">
+                                        </div>
+                                         </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for = "description" class="control-label col-md-3">Description</label>
+                                        <div class="col-md-9">
+                                                <input name = "description" [(ngModel)] = "charge.description" type="text" id="description" class="form-control" placeholder="description">
+                                        </div>
+                                        <br><br>
+                                         </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                    <div class="col-md-6">
+                                            <div class="form-group row ">
+                                                <label for="currency" class="control-label col-md-3">Currency</label>
+                                                <div class="col-md-9">
+                                                        <input name="currency" [(ngModel)] = "charge.currency" type="text" id="currency" class="form-control" placeholder="Currency">
+                                                </div>
+                                                
+                                        </div>
+                                        </div> 
+
+                                        <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="expected" class="control-label col-md-3">Expected</label>
+                                                    <div class="col-md-9">
+                                                            <input name="expected" [(ngModel)] = "charge.expected" type="text" class="form-control" placeholder="Expected">
+            
+                                                    </div>
+                                                   <br><br>
+                                                </div>
+                                            </div>
+                         
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                
+                                <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="actual" class="control-label col-md-3">Actual</label>
+                                            <div class="col-md-9">
+                                                    <input type="text" name="actual" [(ngModel)] = "charge.actual" id="actual" class="form-control" placeholder="Actual">
+                                            </div>
+                                            
+                                             </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="status" class="control-label col-md-3">Status</label>
+                                            <div class="col-md-9">
+                                                    <input type="text" name="emailAddress" [(ngModel)] = "charge.status"id="status" class="form-control" placeholder="Status">
+
+                                            </div>
+                                        <br><br>
+                                             </div>
+                                    </div>
+                            </div>
+                            <!--/row-->
+                           
+          
+                        </div><br><br>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success"  (click)="createCharge()"> <i class="fa fa-check"></i> Save</button>
+                            <button type="button" class="btn btn-default" (click) = "cancel()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11.356" height="7.921" viewBox="0 0 11.356 7.921">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="11.356" height="7.921" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="icn_back_dark" clip-path="url(#clip-path)">
+    <line id="Line_17" data-name="Line 17" y1="4.45" x2="5.099" transform="translate(5.86 1.411) rotate(90)" fill="none" stroke="#a1a4ab" stroke-linecap="round" stroke-width="2"/>
+    <path id="Path_44" data-name="Path 44" d="M1.079-.035,6.127,4.449" transform="translate(10.321 0.382) rotate(90)" fill="none" stroke="#a1a4ab" stroke-linecap="round" stroke-width="2"/>
+  </g>
+</svg>

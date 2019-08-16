@@ -1,0 +1,282 @@
+<div class="container mt-1">
+
+  <div class="row p-4">
+      <div class="col-md-12">
+        <h1>Warrant Product</h1>
+      </div>
+    </div>
+    <div class="row px-4">
+        <div class="col-md-12 ">
+            <div class="card" style="border :0; min-height: 500px; width:100%;">
+                <div class="card-body form-card">
+  <div class="panel-group" role="tablist" aria-multiselectable="true">
+    <div [formGroup]="warrantProductForm">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingBasic">
+          <h4 class="panel-title">
+          Basic
+              Information
+          </h4>
+        </div>
+        <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+          <div class="panel-body">
+
+            <div class="col-md-10 offset-md-1">
+
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-4">Code
+                    </label>
+
+                    <div class="col-md-8">
+                      <input name="code" formControlName="code" type="text" id="code" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="description" class="control-label col-md-4">Description
+                    </label>
+
+                    <div class="col-md-8">
+                      <input name="description" formControlName="description" type="text" id="description" class="form-control"
+                        placeholder="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Product Category</label>
+                    <div class="col-md-8">
+                      <select class="form-control" name="productCategory" [disabled]="true">
+
+                        <option [value]="productSubCategory.productCategory">{{product.productSubCategory.productCategory.description}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Product Sub Category</label>
+                    <div class="col-md-8">
+                      <select class="form-control" name="ProductSubCategory" formControlName="productSubCategory">
+                        <option [ngValue]="undefined">&lt;---&gt;</option>
+                        <option *ngFor="let psc of productSubCategorys" [ngValue]="psc">{{psc.description}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Product Sub Category</label>
+                    <div class="col-md-8">
+                      <select class="form-control" name="productCategory">
+                        <option>Warrant</option>
+                        <option *ngFor="let pc of productCategorys" [ngValue]="pc">{{pc.description}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+             
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Primary Ref. Generation</label>
+                    <div class="col-md-8">
+                      <select class="form-control" formControlName="refNumGen" (change)="setAuto($event.target.value)">
+                        <option value="Automatic">Automatic</option>
+                        <option value="Manual">Manual</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6" *ngIf="isAuto">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Primary Ref. Scheme</label>
+                    <div class="col-md-8">
+                      <select class="form-control" formControlName="refNumScheme">
+                        <option *ngFor="let ref of pryRef" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Temporary Ref. Option</label>
+                    <div class="col-md-8">
+                      <select class="form-control" formControlName="tempRefOption">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Temporary Ref. Scheme</label>
+                    <div class="col-md-8">
+                      <select class="form-control" formControlName="tempRefScheme">
+                        <option *ngFor="let ref of disPickListItemTemp" [ngValue]="ref.itemDecription">{{ref.itemDecription}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Validity Period</label>
+                    <div class="col-md-4">
+                      <input type="text" formControlName="valPeriod" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                      <select class="col-md-8" class="form-control" formControlName="valPeriodType" tabindex="1">
+                        <option value="undefined"></option>
+                        <option *ngFor="let sect of vals" [ngValue]="sect">{{sect}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Foreign Ccy Equiv. Tracking</label>
+                    <div class="col-md-8">
+                      <select class="form-control" formControlName="baseCcyEquiv">
+                        <option *ngFor="let data of tracking" [value]="data">{{data}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Local Ccy Equiv. Tracking</label>
+                    <div class="col-md-8">
+                      <select class="form-control" formControlName="localCcyEquiv">
+                        <option *ngFor="let data of tracking" [value]="data">{{data}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingBenInfo">
+          <h4 class="panel-title">
+Control
+              Information
+          </h4>
+        </div>
+        <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+          <div class="panel-body">
+            <div class="col-md-10 offset-md-1">
+
+
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-4">Effective Date
+                    </label>
+                    <div class="col-md-8">
+                      <input name="effectiveDate" formControlName="effectiveDate" id="effectiveDate" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-4">Status
+                    </label>
+                    <div class="col-md-8">
+                      <input name="status" formControlName="status" class="form-control" [attr.disabled]="true">
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!--  <div class="white-box">
+
+      {{warrantProductForm | json}}
+      <button *ngIf="modBtn" class="btn btn-info usl-btn-color" type="button" (click)="processForm('modify')">
+        Save</button>
+      <button class="btn btn-info usl-btn-color" type="button" (click)="processForm('save')">
+        Save</button>
+      <button *ngIf="savCloBtn" class="btn btn-info usl-btn-color" type="button" (click)="processForm('savenclose')">
+        Save and Close</button>
+      <button *ngIf="appBtn" class="btn btn-info usl-btn-color" type="button" (click)="processForm('approve')">
+        Approve</button>
+      <button *ngIf="canBtn" class="btn btn-info usl-btn-color" type="button" (click)="processForm('cancel')">
+        Cancel</button>
+
+      <button *ngIf="cloBtn" class="btn btn-info usl-btn-color" type="button" (click)="processForm('close')">
+        Close</button>
+
+    </div> -->
+    <div class="white-box">
+      <div div class="row">
+        <button *ngIf="modBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('modify')"> Save</button>
+        <button *ngIf="savBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('save')"> Save</button>
+        <button *ngIf="savCloBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('savenclose')">
+          Save & Close</button>
+        <button *ngIf="appBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('approve')">
+          Approve</button>
+        <button *ngIf="canBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('cancel')">
+          Cancel</button>
+
+        <button *ngIf="cloBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('close')"> Close</button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- {{warrantProductForm.value|json}} -->
+</div>
+
+
+<!-- <div class="col-md-2 white-box" *ngIf="relatedTaskFlag">
+
+
+
+
+  <app-related-task-bar [warrant]=true [product]="product" [operation]="operation"></app-related-task-bar>
+
+
+
+</div> -->

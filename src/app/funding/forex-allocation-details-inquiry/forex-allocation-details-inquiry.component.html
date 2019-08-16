@@ -1,0 +1,642 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="panel-group" role="tablist" aria-multiselectable="true">  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBasic">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic" aria-expanded="false"
+                aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+            </h4>
+          </div>
+          <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+            <div class="panel-body">
+  
+  
+              <div class="form-body">
+                <!-- <input name="id" [(ngModel)]="elc.id" type="text" hidden> -->
+              
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="code" class="control-label col-md-4">Reference Number 
+    
+                        </label>
+                        <div class="col-md-8">
+                          <input name="referenceNum"   [(ngModel)]="domAcctFxAllocation.referenceNum" type="text" id="reference" class="form-control" placeholder="">
+                        </div>
+    
+                      </div>
+                    </div>
+  
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="control-label col-md-4">Warrant Reference</label>
+                          <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" [(ngModel)]="domAcctFxAllocation.warrantRef" data-placeholder="Choose a Category"
+                              tabindex="1" name="warrantRef" [compareWith]="equals">
+                              <option value="undefined">&lt;---&gt;</option>
+      
+                            </select>     
+                          </div>
+                         
+      
+                        </div>
+                      </div>
+    
+                 
+                  </div>
+                 
+    
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label col-md-4">Product
+                          &nbsp; <span class="fa fa-search" (click)="open('product')"></span>
+                        </label>
+                        <div class="col-md-2">
+                          <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="domAcctFxAllocation.product.code" [ngClass]="" name="product">
+                        </div>
+                        <div class="col-md-6">
+                          <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="domAcctFxAllocation.product.description" [ngClass]="" name="product">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label col-md-4">Customer
+                          &nbsp; <span class="fa fa-search" (click)="open('customer')"></span>
+                        </label>
+                        <div class="col-md-2">
+                          <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="domAcctFxAllocation.customer.customerNumber" [ngClass]="" name="customer">
+                        </div>
+                        <div class="col-md-6">
+                          <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="domAcctFxAllocation.customer.name" [ngClass]="" name="customer">
+                        </div>
+                      </div>
+                    </div>
+                 
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="code" class="control-label col-md-4">Status
+    
+                        </label>
+                        <div class="col-md-8">
+                            <select class="col-md-8" class="form-control" [(ngModel)]="domAcctFxAllocation.requestAmtCurr" data-placeholder="Choose a Category"
+                            tabindex="1" name="requestAmtCurr" [compareWith]="equals">
+                            <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+    
+                          </select>                        </div>
+    
+                      </div>
+                    </div>
+  
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="code" class="control-label col-md-4">Trade Instrument Amount</label>
+                          <div class="col-md-4">
+                            <select class="col-md-8" class="form-control" [(ngModel)]="domAcctFxAllocation.requestAmtCurr" data-placeholder="Choose a Category"
+                              tabindex="1" name="requestAmtCurr" [compareWith]="equals">
+                              <option value="undefined">&lt;---&gt;</option>
+                              <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+      
+                            </select>
+      
+                          </div>
+                          <div class="col-md-4">
+                            <input name="requestAmt" [(ngModel)]="domAcctFxAllocation.requestAmt" (blur)="transformBaseEquiAmount()"
+                              type="text" id="requestAmt" class="form-control" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+    
+                 
+                  </div>
+  
+              
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="code" class="control-label col-md-4">Request Amount</label>
+                      <div class="col-md-4">
+                        <select class="col-md-8" class="form-control" [(ngModel)]="domAcctFxAllocation.requestAmtCurr" data-placeholder="Choose a Category"
+                          tabindex="1" name="requestAmtCurr" [compareWith]="equals">
+                          <option value="undefined">&lt;---&gt;</option>
+                          <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+  
+                        </select>
+  
+                      </div>
+                      <div class="col-md-4">
+                        <input name="requestAmt" [(ngModel)]="domAcctFxAllocation.requestAmt" (blur)="transformBaseEquiAmount()"
+                          type="text" id="requestAmt" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="code" class="control-label col-md-4"> Allocated Amount</label>
+                        <div class="col-md-4">
+                          <select class="col-md-8" class="form-control" [(ngModel)]="domAcctFxAllocation.totalAllocatedAmtCurr" data-placeholder="Choose a Category"
+                            tabindex="1" name="totalAllocatedAmtCurr" [compareWith]="equals">
+                            <option value="undefined">&lt;---&gt;</option>
+                            <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+    
+                          </select>
+    
+                        </div>
+                        <div class="col-md-4">
+                          <input name="totalAllocatedAmt" [(ngModel)]="domAcctFxAllocation.totalAllocatedAmt" (blur)="transformLocalEqui()"
+                            type="text" id="localCurrEquiAmt" class="form-control" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="additionalAmtCov" class="control-label col-md-6">Request date &nbsp;
+                            
+                          </label>
+      
+                          <div class="col-md-6">
+                            <input name="bidSessionDate"  [(ngModel)]="fxBidSession.bidSessionDate" type="date" id="accName" class="form-control" placeholder="">
+                            
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="additionalAmtCov" class="control-label col-md-6">Last Allocation date &nbsp;
+                              
+                            </label>
+        
+                            <div class="col-md-6">
+                              <input name="bidSessionDate"  [(ngModel)]="fxBidSession.bidSessionDate" type="date" id="accName" class="form-control" placeholder="">
+                              
+                            </div>
+                          </div>
+                        </div>
+  
+                
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="code" class="control-label col-md-4">Allocation Shortfall Amount</label>
+                        <div class="col-md-4">
+                          <select class="col-md-8" class="form-control" [(ngModel)]="domAcctFxAllocation.requestAmtCurr" data-placeholder="Choose a Category"
+                            tabindex="1" name="requestAmtCurr" [compareWith]="equals">
+                            <option value="undefined">&lt;---&gt;</option>
+                            <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+    
+                          </select>
+    
+                        </div>
+                        <div class="col-md-4">
+                          <input name="requestAmt" [(ngModel)]="domAcctFxAllocation.requestAmt" (blur)="transformBaseEquiAmount()"
+                            type="text" id="requestAmt" class="form-control" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="code" class="control-label col-md-4"> Utilized Amount</label>
+                          <div class="col-md-4">
+                            <select class="col-md-8" class="form-control" [(ngModel)]="domAcctFxAllocation.totalAllocatedAmtCurr" data-placeholder="Choose a Category"
+                              tabindex="1" name="totalAllocatedAmtCurr" [compareWith]="equals">
+                              <option value="undefined">&lt;---&gt;</option>
+                              <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+      
+                            </select>
+      
+                          </div>
+                          <div class="col-md-4">
+                            <input name="totalAllocatedAmt" [(ngModel)]="domAcctFxAllocation.totalAllocatedAmt" (blur)="transformLocalEqui()"
+                              type="text" id="localCurrEquiAmt" class="form-control" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="code" class="control-label col-md-4">Unutilized Amount</label>
+                        <div class="col-md-4">
+                          <select class="col-md-8" class="form-control" [(ngModel)]="domAcctFxAllocation.requestAmtCurr" data-placeholder="Choose a Category"
+                            tabindex="1" name="requestAmtCurr" [compareWith]="equals">
+                            <option value="undefined">&lt;---&gt;</option>
+                            <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+    
+                          </select>
+    
+                        </div>
+                        <div class="col-md-4">
+                          <input name="requestAmt" [(ngModel)]="domAcctFxAllocation.requestAmt" (blur)="transformBaseEquiAmount()"
+                            type="text" id="requestAmt" class="form-control" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="code" class="control-label col-md-4"> Last Utilization Date</label>
+                          <div class="col-md-6">
+                              <input name="bidSessionDate"  [(ngModel)]="fxBidSession.bidSessionDate" type="date" id="accName" class="form-control" placeholder="">
+                              
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="code" class="control-label col-md-4">Funding
+      
+                          </label>
+                          <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" [(ngModel)]="domAcctFxAllocation.requestAmtCurr" data-placeholder="Choose a Category"
+                              tabindex="1" name="requestAmtCurr" [compareWith]="equals">
+                              <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+      
+                            </select>                        </div>
+      
+                        </div>
+                      </div>
+    
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="code" class="control-label col-md-4">Funding Account Number</label>
+                            <div class="col-md-4">
+                              <select class="col-md-8" class="form-control" [(ngModel)]="domAcctFxAllocation.requestAmtCurr" data-placeholder="Choose a Category"
+                                tabindex="1" name="requestAmtCurr" [compareWith]="equals">
+                                <option value="undefined">&lt;---&gt;</option>
+                                <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+        
+                              </select>
+        
+                            </div>
+                            <div class="col-md-4">
+                              <input name="requestAmt" [(ngModel)]="domAcctFxAllocation.requestAmt" (blur)="transformBaseEquiAmount()"
+                                type="text" id="requestAmt" class="form-control" placeholder="">
+                            </div>
+                          </div>
+                        </div>
+      
+                   
+                    </div>
+    
+  
+                    <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="additionalAmtCov" class="control-label col-md-3">Remarks
+                            </label>
+        
+                            <div class="col-md-6">
+                              <textarea name="additionalAmtCov" maxlength="" rows="4" [(ngModel)]="fxRequest.additionalAmtCov" type="text" id="warntRef" class="form-control"
+                                placeholder=""></textarea>
+                            </div>
+                          </div>
+                        </div>
+        
+                      </div>
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingCurrReporting">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCurrReporting" aria-expanded="false"
+                aria-controls="collapseCurrReporting" style="color :#2b2b2b;font-weight: bold;">Currency Reporting</a>
+            </h4>
+          </div>
+          <div id="collapseCurrReporting" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingCurrReporting">
+            <div class="panel-body">
+  
+  
+              <div class="form-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="instructionCode" class="control-label col-md-6">Base Foreign Ccy equiv /rate</label>
+                      <div class="col-md-3">
+                        <select class="col-md-9" [disabled] = "true" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="baseForCurrEquiRate" [(ngModel)]="domAcctFxAllocation.baseForCurrEquiRate"
+                          [compareWith]="equals">
+                          <option [ngValue]="undefined">&lt;---&gt;</option>
+                          <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+  
+  
+                        </select>
+  
+  
+  
+                      </div>
+                      <div class="col-md-3">
+                        <input [disabled] = "true" name="baseForCurrEquiRateAmt" (blur)="transformBaseCurrAmount()" [(ngModel)]="domAcctFxAllocation.baseForCurrEquiRateAmt" type="text"
+                          id="" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <input type="text" id="baseForeignCurrEquiRate" class="form-control" placeholder="" name="exchRate">
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-info  usl-btn-color">Exchange Rate</button>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="localCurrEqui" class="control-label col-md-6">Local Ccy equiv /rate</label>
+                      <div class="col-md-3">
+                        <select class="col-md-9" [disabled] = "true" name="localCurrEquiRate" class="form-control" data-placeholder="Choose a Category" tabindex="1" [(ngModel)]="domAcctFxAllocation.localCurrEquiRate"
+                          [compareWith]="equals">
+                          <option [ngValue]="undefined">&lt;---&gt;</option>
+                          <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+  
+  
+  
+                        </select>
+  
+                      </div>
+                      <div class="col-md-3">
+                        <input name="localCurrEquiRateAmt" [disabled] = "true" (blur)="transformLocalCurrAmount()" [(ngModel)]="domAcctFxAllocation.localCurrEquiRateAmt" type="text" id="localCurrEquiVal"
+                          class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <input name="localCurrEquiRate" type="text" id="localCurrEquiRate" class="form-control" placeholder="">
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-info  usl-btn-color">Exchange Rate</button>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+  
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+  
+  
+  
+  
+  
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingParty">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseParty" aria-expanded="false"
+                aria-controls="collapseParty" style="color :#2b2b2b;font-weight: bold;">Additional Parties</a>
+            </h4>
+          </div>
+          <div id="collapseParty" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingParty">
+            <div class="panel-body">
+  
+              <!-- <app-party-categories></app-party-categories> -->
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingDocuments">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDocuments" aria-expanded="false"
+                aria-controls="collapseDocuments" style="color :#2b2b2b;font-weight: bold;">Documents</a>
+            </h4>
+          </div>
+          <div id="collapseDocuments" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingDocuments">
+            <div class="panel-body">
+  
+  
+              <!-- <app-documents ></app-documents> -->
+  
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingFxDeals">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFxDeals" aria-expanded="false"
+                aria-controls="collapseFxDeals" style="color :#2b2b2b;font-weight: bold;">Foreign Exchange Deals</a>
+            </h4>
+          </div>
+          <div id="collapseFxDeals" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingFxDeals">
+            <div class="panel-body">
+              <!-- <app-foreign-exchange-deals ></app-foreign-exchange-deals> -->
+  
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingCharges">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCharges" aria-expanded="false"
+                aria-controls="collapseCharges" style="color :#2b2b2b;font-weight: bold;">Charges</a>
+            </h4>
+          </div>
+          <div id="collapseCharges" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingCharges">
+            <div class="panel-body">
+              <!-- <app-charges ></app-charges> -->
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingChecklist">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseChecklist" aria-expanded="false"
+                aria-controls="collapseChecklist" style="color :#2b2b2b;font-weight: bold;">Checklists</a>
+            </h4>
+          </div>
+          <div id="collapseChecklist" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingChecklist">
+            <div class="panel-body">
+  
+  
+              <!-- <app-checklists  ></app-checklists> -->
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingControl">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseControl" aria-expanded="false"
+                aria-controls="collapseControl" style="color :#2b2b2b;font-weight: bold;">Control Information</a>
+            </h4>
+          </div>
+          <div id="collapseControl" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingControl">
+            <div class="panel-body">
+  
+  
+              <div class="form-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="servicingBranch" class="control-label col-md-4">Servicing Branch</label>
+  
+                      <div class="col-md-8">
+                        <input name="servicingBranch" [disabled] = "true" [(ngModel)]="domAcctFxAllocation.servicingBranch" type="text" id="servicingBranch" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="homeBranch" class="control-label col-md-4">Home Branch</label>
+  
+                      <div class="col-md-8">
+                        <input name="homeBranch" [disabled] = "true" [(ngModel)]="domAcctFxAllocation.homeBranch" type="text" id="homeBranch" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="servicingBranch" class="control-label col-md-4">Relationship Management</label>
+  
+                      <div class="col-md-8">
+                        <input name="relatioinshipMgt" [disabled] = "true" [(ngModel)]="domAcctFxAllocation.relatioinshipMgt" type="text" id="relationshipManagement" class="form-control"
+                          placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="effectiveDate" class="control-label col-md-4">Effective Date</label>
+  
+                      <div class="col-md-8">
+                          <input type="date"  class="form-control"  [ngClass]="" name="effectiveDate" [ngModel]="domAcctFxAllocation.effectiveDate | date:'yyyy-MM-dd'" (ngModelChange)="domAcctFxAllocation.effectiveDate = $event">
+                        </div>
+  
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="status" class="control-label col-md-4">Status</label>
+  
+                      <div class="col-md-8">
+                        <input name="status" [disabled] = "true" [(ngModel)]="domAcctFxAllocation.status" type="text" id="status" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6" *ngIf="isInTransit">
+                    <div class="form-group">
+                      <label for="rejectQueueId" class="control-label col-md-4">Reject Queue</label>
+                      <div class="col-md-8">
+  
+                        <select class="form-control" data-placeholder="rejectQueueId" tabindex="1" name="rejectQueueId" [(ngModel)]="elc.rejectQueueId">
+                          <option *ngFor="let step of rejectSteps" value={{step.id}} selected="test.rejectQueueId==step.id? true : null">
+                            {{step.description}}
+                          </option>
+                        </select>
+  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+        <div class="modal-footer" style="float: left;">
+          <div class="form-actions">
+            <div class="form-actions">
+  
+              <div class="row">
+                <div class="form-actions" *ngIf="!isInTransit">
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="createExportLetterofCredit()">
+                    <li class="fa fa-check-o"></li> Save</button>&nbsp;
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="createExportLetterofCredit()">
+                    <li class="fa fa-check-o"></li> Submit</button>&nbsp;
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="d('Cross click')">Cancel</button>
+                </div>
+                <div class="form-actions" *ngIf="isInTransit">
+                  <button type="submit" class="btn btn-info usl-btn-color" (click)="approve(elc)">
+                    <i class="fa fa-check"></i> Ok</button>
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="reject(elc)">Reject</button>
+                </div>
+  
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+  
+  
+  
+      </div>
+  
+  
+    </div>

@@ -1,0 +1,235 @@
+
+
+
+
+<!--Product Category drop down-->
+
+
+<!-- Hide Buttons-->
+
+
+
+   
+    <!-- <div class="row">
+        <button (click)="operation($event)" class="btn btn-info  usl-btn-color">Add</button>
+       
+        <button (click)="operation($event)" *ngIf="payFlag" class="btn btn-info  usl-btn-color">Payment</button>
+        <button (click)="operation($event)" *ngIf="adjustFlag" class="btn btn-info  usl-btn-color">Adjustment</button>
+        <button (click)="operation($event)" *ngIf="amendFlag" class="btn btn-info  usl-btn-color">Amendment</button>
+        <button (click)="operation($event)" *ngIf="documentFlag" class="btn btn-info  usl-btn-color">Doc. Delivery</button>
+        <button (click)="operation($event)" *ngIf="acceptFlag" class="btn btn-info  usl-btn-color">Acceptance</button>
+        <button (click)="operation($event)" *ngIf="proceedFlag" class="btn btn-info  usl-btn-color">Proceeds</button>
+        <button (click)="operation($event)" *ngIf="repatriateFlag" class="btn btn-info  usl-btn-color">Repatriation</button>
+        <button (click)="operation($event)" *ngIf="cancelFlag" class="btn btn-info  usl-btn-color">Cancellation</button>
+        <button (click)="operation($event)" *ngIf="detailsFlag" class="btn btn-info  usl-btn-color">Details Inquiry</button>
+        <button (click)="operation($event)" *ngIf="summaryFlag" class="btn btn-info  usl-btn-color">Summary</button>
+        <button (click)="operation($event)" *ngIf="repaymentFlag" class="btn btn-info  usl-btn-color">Repayment</button>
+        <button (click)="operation($event)" *ngIf="drawdownFlag" class="btn btn-info  usl-btn-color">Drawdown</button>
+      
+        <button (click)="operation($event)" class="btn btn-info  usl-btn-color">View</button>
+        <button (click)="operation($event)"  class="btn btn-info usl-btn-color">Close</button>
+    </div> -->
+  
+
+
+
+<!-- latest instrument UI -->
+
+<div class="container-fluid mt-1">
+    <div class="row p-3 pl-4">
+      <div class="col-md-6">
+        <h1 class="text-bold">Instrument Processing</h1>
+      </div>
+      <div class="col-md-3 offset-md-3 pr-0"><a routerLink="/instrument-search">
+        <button class="btn btn-block btn-primary hover-raise"><i class='flaticon-wrong pr-3'></i>New Instrument</button>
+      </a>
+      </div>
+    </div>
+  
+  
+    <div class="row p-2 pl-4" *ngIf="!isEmpty; else showEmpty">
+      <div class="col-md-12">
+        <div class="card mt-5 mb-4">
+          <div class="row p-3">
+            <div class="form-group col-md-3 pr-0 mb-0">
+              <input type="text" class="form-control" placeholder="Search by reference or customer">
+            </div>
+            <div class="form-group col-md-2 pr-0 mb-0">
+              <select class="form-control" placeholder="Product Category">
+                <option selected disabled>Product Category</option>
+              </select>
+            </div>
+            <div *ngIf="search" class="col-md-1 pr-0 mb-0">
+              <button class="btn btn-block btn-success hover-raise">Search</button>
+            </div>
+            <div *ngIf="search" class="col-md-2 offset-md-4 mb-0 pr-0">
+              <a href="" (click)="showOthers(advanceSearch)" id="advancedSearch" data-toggle="collapse"
+                data-target="#collapseSearch">Advanced
+                Search&#x25BF;</a>
+            </div>
+            <div *ngIf="!search" class="col-md-4 offset-md-2 mb-0 pr-0">
+              <div class="row">
+                <div class="col-md-6 pr-0 mb-0">
+                  <button class="btn btn-block btn-outline-primary hover-raise"
+                    (click)="showSearch(advanceSearch)">clear</button>
+                </div>
+                <div class="col-md-6 pr-0 mb-0">
+                  <button class="btn btn-block btn-success hover-raise">Apply</button>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+  
+          <div id="collapseSearch" class="collapse hide" data-parent="#advancedSearch" #advanceSearch>
+            <hr>
+            <div class="card-body">
+              <div class=" col-md-10 offset-md-1">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label for="code" class="control-label col-md-4">Date
+                        </label>
+                        <div class="col-md-4">
+                          <input name="effectiveDate" [(ngModel)]="dateString" type="text" id="effectiveDate"
+                            class="form-control" placeholder="">
+                        </div>
+                        <div class="col-md-4">
+                          <input name="effectiveDate" [(ngModel)]="dateString" type="text" id="effectiveDate"
+                            class="form-control" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label for="code" class="control-label col-md-4">Relationship
+                          Management
+                        </label>
+                        <div class="col-md-8">
+                          <input name="effectiveDate" [(ngModel)]="dateString" type="text" id="effectiveDate"
+                            class="form-control" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label for="code" class="control-label col-md-4">Home
+                          Branch
+                        </label>
+                        <div class="col-md-8">
+                          <input name="effectiveDate" [(ngModel)]="dateString" type="text" id="effectiveDate"
+                            class="form-control" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label for="code" class="control-label col-md-4">Warrant
+                          Reference
+                        </label>
+                        <div class="col-md-8">
+                          <input name="effectiveDate" [(ngModel)]="dateString" type="text" id="effectiveDate"
+                            class="form-control" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+  
+                  </div>
+                </div>
+              </div>
+  
+  
+            </div>
+          </div>
+        </div>
+
+
+        <!-- table -->
+        <div class="row p-3 pl-4 mb-0">
+          <div class="form-group col-md-3 offset-md-9 pr-0 mb-0">
+            <div class="row mb-0">
+              <div class="col-md-12 text-right mb-0">
+                <label class="pr-2 mb-0">Showing</label>
+                <select name="" id="">
+                  <option value="">5</option>
+                  <option value="">10</option>
+                  <option value="">15</option>
+                  <option value="">20</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel card">
+              <div class="panel-body">
+
+
+
+
+                <table class="table table-borderless">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Reference</th>
+                      <th scope="col">Customer</th>
+                      <th scope="col">Product</th>
+                      <th scope="col">Date Created</th>
+                      <th scope="col">Status</th>
+                      <th scope="col"></th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                        <tr *ngFor="let reg of registrations" (click)="setSelectedProduct(reg)">
+                                <td></td>
+                                <td>{{reg.reference}}</td>
+                                <td>{{reg.customer.fullname}}</td>
+            
+                                <td>{{reg.product.description}}</td>
+                                <td>{{reg.effectiveDate | date:'dd/MM/yyyy'}}</td>
+                                <td>{{reg.status}}</td>
+                                <td><button class="btn btn-outline-primary">view</button>
+                                    <td>...</td>
+                            </tr>
+                  </tbody>
+                </table>
+
+
+
+  
+              </div>
+  
+            </div>
+            <div class="clearfix p-2 col-md-12">
+              <p class="text-secondary ml-1 float-left">showing {{firstElement}} to
+                {{numberOfElementsShowing}} of {{totalElements}}</p>
+              <div class="float-right">
+                <nav aria-label="page navigation example">
+                  <ul class="pagination pg-blue">
+                    <li class="page-item" *ngIf="showPrevious">
+                      <a tabindex="-1" class="page-link" (click)="previous($event)">Previous</a>
+                    </li>
+                    <li class="page-item" *ngFor="let p of pages; let i= index">
+                      <a class="page-link" (click)="showPages(i,$event)" [ngClass]="{'active':i == page}">{{i+1}}</a>
+                    </li>
+                    <li class="page-item" *ngIf="showNext">
+                      <a class="page-link" (click)="next($event)">Next</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+  
+  </div>

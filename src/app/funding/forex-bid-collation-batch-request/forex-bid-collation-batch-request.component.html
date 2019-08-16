@@ -1,0 +1,228 @@
+<div class="col-sm-12">
+    <div class="white-box">
+
+        <table id="myTable7" class="table table-striped">
+            <thead style="background-color:#eaf4f8;">
+                <tr>
+
+                    <th>Reference</th>
+                    <th>Customer</th>
+                    <th  style="text-align: right">Rate</th>
+                    <th style="text-align: right">Requested Amount</th>
+                    <th style="text-align: right">Allocated Amount</th>
+                    <th style="text-align: right">Pending Amount</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bidRequest of bidRequests" (click)="set($event, bidRequest,bidRequests)" [ngClass]="{'selected' : bidRequest === selectedBidReuest}">
+                    <td>{{bidRequest.referenceNum}}</td>
+                    <td>{{bidRequest.customer}}</td>
+                    <td  style="text-align: right">{{bidRequest.exchRateAmt | number:'1.2'}}</td>
+                    <td style="text-align: right">{{bidRequest.requestAmount | number:'1.2'}}</td>
+                    <td style="text-align: right">{{bidRequest.allocatedAmt | number:'1.2'}}</td>
+                    <td style="text-align: right">{{bidRequest.pendingAmt | number:'1.2'}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+
+
+            <button [disabled]="enableFromParent" class="btn btn-info  usl-btn-color-sm" (click)="openFxBidRequest(bids)">Add</button>
+            <button [disabled]="enableFromParent" (click)="openDocumentEdit(bidRequest)" class="btn btn-info  usl-btn-color-sm">Modify</button>
+            <button [disabled]="enableFromParent" (click)="delete($event)" class="btn btn-info  usl-btn-color-sm">Delete</button>
+            <button [disabled]="enableFromParent" (click)="openDocumentView(bidRequest)" class="btn btn-info  usl-btn-color-sm">View</button>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<ng-template #bids let-c="close" let-d="dismiss">
+    <div class="row">
+
+
+
+
+        <div class="col-md-12">
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="height: 30px" role="tab" id="headingBasic">
+                        <span>
+                            <button type="button" style="color:#2E3062; font-weight: bold;" class="close" aria-label="Close"
+                                (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </span>
+                        <!-- <h4 class="panel-title">
+                        <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic" aria-expanded="false"
+                            aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;"> </a>
+                    </h4> -->
+                    </div>
+                    <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                        <div class="panel-body">
+
+
+                            <div class="form-body">
+                                <!-- <input name="id" [(ngModel)]="regist.id" type="text" hidden> -->
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="code" class="control-label col-md-3">Reference
+                                            </label>
+
+                                            <div class="col-md-6">
+                                                <input name="referenceNum" [(ngModel)]="bidRequest.referenceNum" type="text"
+                                                    id="code" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--/span-->
+
+                                    <!--/span-->
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="description" class="control-label col-md-3">Rate Range
+                                            </label>
+
+                                            <div class="col-md-2">
+                                                <select class="col-md-9" class="form-control" data-placeholder="Choose a Category"
+                                                    tabindex="1" name="rateRangeCurr" [(ngModel)]="bidRequest.rateRangeCurr"
+                                                    [compareWith]="equals">
+                                                    <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                    <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+
+
+                                                </select>
+
+
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input name="lowerRateRange" style="text-align: right;" [(ngModel)]="bidRequest.lowerRateRange"
+                                                    type="text" id="" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input name="higherRateRange" style="text-align: right;" [(ngModel)]="bidRequest.higherRateRange"
+                                                    type="text" id="" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="row" style="padding-top: 3px">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="description" class="control-label col-md-3">Pending Amount
+                                                Range
+                                            </label>
+
+                                            <div class="col-md-2">
+                                                <select class="col-md-9" class="form-control" data-placeholder="Choose a Category"
+                                                    tabindex="1" name="pendingAmtRangeCurr" [(ngModel)]="bidRequest.pendingAmtRangeCurr"
+                                                    [compareWith]="equals">
+                                                    <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                    <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+
+
+                                                </select>
+
+
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input name="lowerPendingAmtRange" style="text-align: right;"
+                                                    [(ngModel)]="bidRequest.lowerPendingAmtRange" type="text" id=""
+                                                    class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input name="higherPendingAmtRange" style="text-align: right;"
+                                                    [(ngModel)]="bidRequest.higherPendingAmtRange" type="text" id=""
+                                                    class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-md-3">
+
+                                                <div class="col-md-6">
+                                                    <button type="submit" class="btn btn secondary usl-btn-color-default">
+                                                        <li class="fa fa-search"></li> Search
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="table-responsive">
+
+                <div class="col-md-12">
+                    <table id="myTable" class="table table-striped">
+                        <thead>
+                            <tr>
+
+                                <th style="text-align: left">Reference</th>
+                                <th style="text-align: center">Customer</th>
+                                <th style="text-align: center"> Rate</th>
+                                <th style="text-align: center">Currency</th>
+                                <th style="text-align: right"> Amount</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let fxRequest of sortedData" (click)="selectFxRequest($event, fxRequest)"
+                                [class.active]="fxRequest === selectedRequest">
+                                <td style="text-align: left">{{fxRequest.referenceNum}}</td>
+                                <td style="text-align: center">{{fxRequest.customer}}</td>
+                                <td style="text-align: center">{{fxRequest.exchRateAmt |number:'1.2'}}</td>
+                                <td style="text-align: center">{{fxRequest.requestAmountCurr.code}}</td>
+                                <td style="text-align: right">{{fxRequest.requestAmount |number:'1.2' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+
+
+                        <button [disabled]="enableFromParent" class="btn btn-info  usl-btn-color" (click)="c('Close click')">Select</button>
+                        <button [disabled]="enableFromParent" (click)="openDocumentEdit(bidRequest)" class="btn btn-info  usl-btn-color">View</button>
+                        <button [disabled]="enableFromParent" (click)="d('Cross click')" class="btn btn-info  usl-btn-color">Cancel</button>
+
+                    </div>
+
+                    <hr class="m-t-0 m-b-40">
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</ng-template>

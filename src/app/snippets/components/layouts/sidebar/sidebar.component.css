@@ -1,0 +1,330 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+:root{
+    --primary-color : #252A98;
+    --hover-color :#141870;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Poppins', sans-serif;
+}
+ul, li, a{
+    font-family: 'Nunito', sans-serif;
+}
+body{
+    background: #F9F9F9;
+}
+header .row{
+    border: 1px solid transparent;
+    height: 10px;
+    background-color: #fff;
+    position: relative;
+    top:0;
+    margin:0;
+    height: 80px;
+    box-shadow: 1px 1px transparent;
+}
+
+#sidebar{
+    height: 100vh;
+    width: 16.666667%;
+    background: #252A98;
+    background: var(--primary-color);
+    transition: all 500ms linear;
+    -webkit-transition: all 500ms linear;
+    -moz-transition: all 500ms linear;
+    -ms-transition: all 500ms linear;
+    -o-transition: all 500ms linear;
+}
+
+@media only screen and (max-width: 1213px) {
+    #sidebar{
+        width:5%;
+        height: 100vh;
+        top:5% !important;
+
+    }
+
+    #sidebar ul li{
+        list-style: none;
+        font-size: 10px;
+        font-weight: 400;
+        color: #fff;
+        position: relative;
+    }
+    .transform a {
+        font-size: 0;
+        padding: 16px 30% !important;
+    }
+   
+    .transform i.flaticon-arrow-right:before,
+    .transform i.flaticon-arrow-right:after,
+    .transform i.flaticon-arrow-down:before,
+    .transform i.flaticon-arrow-down:before{
+        display: none;
+    }
+    ul li .sub-class{
+        position: fixed;
+        left:5% !important;
+        width: 15%;
+        padding: 2px !important;
+    }
+    .sub-class a{
+        font-size: 13px;
+        padding: 5% !important;
+
+    }
+    img{display: none;}
+   
+
+}
+
+
+
+/* Small phones to small tablets: from 481px to 767px */
+@media only screen and (max-width: 767px) {
+
+    #sidebar{
+        display: none;
+    }
+    
+    .staticBtn{
+        display: block !important;
+        border-radius: 2px !important;
+        background: #252a98;
+        box-shadow:0px 0px 0px 1px rgb(211, 211, 211);
+        padding: 6px 8px !important;
+    }
+    .toggle-btn span{
+        display: block !important;
+        width: 15px;
+        height: 2px;
+        background: white;
+        border-color: white;
+        margin: 3px 0px;
+    }
+
+     img{
+         width:100px;
+     }
+     #sidebar.active{
+        display: block;
+        width: 10%;
+        top:5%;
+        }
+        .transform a {
+            padding-left: 15% !important;
+            padding-right: 15% !important;
+        }
+
+        ul li .sub-class{
+            position: fixed;
+            left:10% !important;
+            width: 20%;
+            padding: 0 0 !important;
+        }
+        .sub-class a{
+            font-size: 13px;
+            padding: 5% 0 !important;
+
+        }
+
+
+
+}
+
+
+.toggle-btn span{
+    width: 15px;
+    height: 2px;
+    background: white;
+    border-color: white;
+    margin: 3px 0px;
+
+}
+ 
+.staticBtn{
+    display: none;
+    border-radius: 2px !important;
+    border-color:  rgb(138, 138, 138);
+    box-shadow:0px 0px 0px 1px rgb(211, 211, 211);
+    padding: 6px 8px !important;
+}
+
+
+
+.button-row{
+    margin-left: 10%;
+    z-index: 900
+}
+
+
+
+#sidebar.active{
+    left: 0px;
+    top:7% !important;
+
+}
+
+#sidebar ul li{
+    list-style: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    position: relative;
+    
+}
+
+
+.transform:hover,
+.transform a.active
+{
+    color: #fff;
+    background-color: #141870;
+    background: var(--hover-color);
+}
+
+#sidebar ul li a
+{
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding:16px 15px;
+
+}
+#sidebar ul li a:hover,
+#sidebar ul li a.active
+{
+    color: #fff
+}
+
+#sidebar ul li.transform:hover,
+#sidebar ul li.transform a.active
+{
+     color: #fff;
+     border-left: 3px solid #fff;
+     transition:0.5s ease;
+     -webkit-transition:0.5s ease;
+     -moz-transition:0.5s ease;
+     -ms-transition:0.5s ease;
+     -o-transition:0.5s ease;
+}
+
+#sidebar ul li.transform ul li ul li a{
+    padding: 5px 20px;
+    font-size: 13px;
+}
+#sidebar ul li.transform ul li ul li a:hover{
+    text-decoration: underline;
+}
+
+/* 
+#sidebar .toggle-btn span{
+    display: block;
+    width: 30px;
+    height: 5px;
+    background: #151719;
+    margin: 5px 0px
+} */
+
+#container{
+    width: 100%;
+    height: 20%;
+    table-layout: center;
+    background: #141414;
+}
+.container{
+    margin-top: 20%;
+
+}
+.row{
+    margin: 4px;
+    padding: 5px;
+}
+
+
+ul .sub-class{
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    z-index: 520;
+    width: 200px;
+    height: 100vh;
+    background-color: #141870; 
+    background: var(--hover-color);
+  }
+ ul li .sub-class{
+    position: fixed;
+    top: 80px;
+    left: 16.65%;
+    z-index: 520;
+  }
+  
+ ul .sub-class li { float: none; }
+  
+ ul ul ul {
+    top: 0;
+    right: 0;
+  }
+  
+ ul li:hover > ul { 
+    visibility: visible; 
+    
+    }
+    .sub-class li ul {
+        background-color: #8687a3;
+    }
+    .sub-class li ul a{
+        background-color: #8687a3;
+    }
+    
+    .sub-class .row{
+        height: 50px;
+        background-color:#8687a3;
+        padding: 0;
+        margin: 0;
+
+    }
+    
+    .transform i{
+        margin-right :20px;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+    
+    }
+
+    /* #sidebar ul li.transform > a:after{ */
+        /* content: url("/assets/icons/icn_back.svg"); */
+        /* float:right; */
+        /* margin-right:20px; */
+    /* } */
+
+    .box-shad{
+        box-shadow: 2px 2px 3px 0  rgba(0, 0, 0, 0.061);
+        -webkit-box-shadow: 2px 2px 3px 0  rgba(0, 0, 0, 0.061);
+        -moz-box-shadow: 2px 2px 3px 0  rgba(0, 0, 0,0.061);
+    }
+
+    .transform i:first-of-type:before,
+    .transform i:first-of-type:after{
+        margin-left: 0;
+        font-size: 14px;
+    }
+
+    .transform i.flaticon-arrow-right:before,
+    .transform i.flaticon-arrow-right:after,
+    .transform i.flaticon-arrow-down:before,
+    .transform i.flaticon-arrow-down:before{
+        font-size: 9px;
+    }
+
+   
+/* added */
+    #sidebar ul li ul li a{
+        padding-left: 20px;
+
+    }

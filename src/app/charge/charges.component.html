@@ -1,0 +1,464 @@
+<!-- <div class="col-sm-12">
+  <div class="white-box"> -->
+
+    <!-- CHARGE TABLE DISPLAY -->
+    <!-- <div class="table-responsive">
+      <table id="myTable" class="table table-striped">
+        <thead>
+          <tr>
+
+            <th>Charge Type</th>
+            <th>Charge Currency</th>
+            <th>Charge Amount</th>
+            <th>Pay Amount</th>
+            <th>Tax Amount</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let charge of CalculatedCharges">
+
+            <td>{{charge.chargeType}}</td>
+            <td>{{charge.chargeCurrency}}</td>
+            <td>{{charge.chargeAmount}}</td>
+            <td>{{charge.payAmount}}</td>
+            <td>{{charge.taxAmount}}</td>
+            <td> <input class="pull-right fcbtn btn btn-success btn-outline btn-1f" type="button" value="Update"
+                (click)="UpdateCharge(charge.id)" /></td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <button [disabled]="enableFromParent" class="btn btn-info  usl-btn-color-sm"
+        (click)="openCharge(charge)">Create</button>
+      <button [disabled]="enableFromParent" (click)="openChargeEdit(charge)"
+        class="btn btn-info  usl-btn-color-sm">Modify</button>
+      <button [disabled]="enableFromParent" (click)="openConfirmationDialog(charge)"
+        class="btn btn-info  usl-btn-color-sm">Delete</button>
+      <button [disabled]="enableFromParent" (click)="openChargeView(charge)"
+        class="btn btn-info  usl-btn-color-sm">View</button>
+
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<div class="row p-2 pl-2 mt-5">
+  <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+              <div class="col-md-2 text-right pl-0 pr-0" style="padding-top: 0.3rem;">
+                  <h6 class="text-bold mb-0">Tiers</h6>
+              </div>
+              <div class="col-md-2">
+                <a class="btn btn-primary round-table-button" data-target="#tier-modal"
+                  data-toggle="modal" title="Add new tier" theme="dark"  tooltip="Tooltip" placement="right" show-delay="500">+</a>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="xc">
+                    <div class="panel-body">
+                      <table class="table alt-table table-borderless">
+                        <thead>
+                          <th>Charge Type</th>
+                          <th>Charge Currency</th>
+                          <th>Charge Amount</th>
+                          <th>Pay Amount</th>
+                          <th>Tax Amount</th>
+                          <th></th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>wwwwww</td>
+                            <td>wwwwww</td>
+                            <td>wwwwww</td>
+                            <td>wwwwww</td>
+                            <td>wwwwww</td>
+                            <td>
+                              <button class="btn btn-danger round-table-button" (click)="UpdateCharge(charge.id)">&mdash;</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>wwwwww</td>
+                            <td>wwwwww</td>
+                            <td>wwwwww</td>
+                            <td>wwwwww</td>
+                            <td>wwwwww</td>
+                            <td>
+                              <button class="btn btn-danger round-table-button" (click)="UpdateCharge(charge.id)">&mdash;</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+          
+                    </div>
+                  </div>
+                </div>
+          </div>
+    
+    
+  </div>
+</div>
+
+
+
+
+<!--Tempplate for Charges-->
+
+<ng-template #charge let-c="close" let-d="dismiss">
+  <!-- <div class="row pl-2">
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">Charges
+          <span>
+            <button type="button" style="color:#2E3062;  font-weight: bold;" class="close" aria-label="Close"
+              (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </span>
+        </div>
+      </div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBasicCharge">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseBasicCharge" aria-expanded="false" aria-controls="collapseBasicCharge"
+                style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+            </h4>
+          </div>
+          <div id="collapseBasicCharge" class="panel-collapse collapse show" role="tabpanel"
+            aria-labelledby="headingBasicCharge">
+            <div class="panel-body">
+
+
+              <div class="form-body">
+                <input name="id" [(ngModel)]="charg.id" type="text" hidden>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="code" class="control-label col-md-4">Charge &nbsp;
+                        <span class="fa fa-search"></span>
+                      </label>
+                      <div class="col-md-4">
+                        <input name="code" [(ngModel)]="charg.chargeCode" [disabled]="isView" type="text" id="code"
+                          class="form-control" placeholder="">
+                      </div>
+                      <div class="col-md-4">
+                        <input name="charg" [(ngModel)]="charg.charge" type="text" [disabled]="isView" id="charg"
+                          class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="code" class="control-label col-md-4">Expected Amount</label>
+                      <div class="col-md-4">
+                        <select class="col-md-8" class="form-control" [disabled]="isView"
+                          data-placeholder="Choose a Category" tabindex="1" name="expectedCurr"
+                          [(ngModel)]="charge.expectedCurr">
+                          <option value="">---Please select---</option>
+                          <option *ngFor="let currenc of currencies" [ngValue]="currenc.code">{{currenc.code}}</option>
+
+                        </select>
+
+                      </div>
+                      <div class="col-md-4">
+                        <input name="expectedVal" [(ngModel)]="charg.expectedVal" type="text" [disabled]="isView"
+                          id="expected" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+               
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="code" class="control-label col-md-4">Actual Amount</label>
+                      <div class="col-md-4">
+                        <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"
+                          [disabled]="isView" tabindex="1" name="actualCurr" [(ngModel)]="charge.actualCurr">
+                          <option value="">---Please select---</option>
+                          <option *ngFor="let currenc of currencies">{{currenc.code}}</option>
+
+                        </select>
+
+                      </div>
+                      <div class="col-md-4">
+                        <input name="actualAmt" [(ngModel)]="charg.actualAmt" type="text" id="firstName"
+                          [disabled]="isView" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="pendChanType" class="control-label col-md-4">Pending Change Type</label>
+                      <div class="col-md-8">
+                        <select class="col-md-8" class="form-control" (change)="enable()"
+                          data-placeholder="Choose a Category" [disabled]="isView" tabindex="1" name="pendChanType"
+                          [(ngModel)]="charg.pendChanType">
+                          <option value="">-Please Select-</option>
+                          <option value="increase">Increase</option>
+                          <option value="decrease">Decrease</option>
+                          <option [ngValue]="N/A">N/A</option>
+
+                        </select>
+                      </div>
+
+                    </div>
+                  </div>
+                
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="pendChanAmtCurr" class="control-label col-md-4">Pending Change Amount</label>
+                      <div class="col-md-4">
+                        <select class="col-md-6" [disabled]="isDisabled" class="form-control"
+                          data-placeholder="Choose a Category" [disabled]="isView" tabindex="1" name="pendChanAmtCurr"
+                          [(ngModel)]="charg.pendChanAmtCurr">
+                          <option value="">&lt;---&gt;</option>
+                          <option *ngFor="let curr of currencies " [ngValue]="curr.code">{{curr.code}}</option>
+                        </select>
+
+                      </div>
+                      <div class="col-md-4">
+                        <input [disabled]="isDisabled" name="pendChanAmt" [(ngModel)]="charg.pendChanAmt"
+                          [disabled]="isView" type="text" class="form-control" placeholder="">
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="remarks" class="control-label col-md-4">Remarks</label>
+
+                      <div class="col-md-8">
+                        <textarea type="text" name="remarks" rows="4" class="form-control" [disabled]="isView"
+                          [(ngModel)]="charg.remarks"></textarea>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="modal-footer" style="float: left;">
+              <div class="form-actions">
+                <div class="row">
+                  <button type="button" class="btn btn-success" (click)="c('Close click')">
+                    <li class="fa fa-check-o"></li> Save
+                  </button>
+                  <button type="button" class="btn btn-default" (click)="d('Cross click')">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div> -->
+  <div class="modal fade" id="add-holiday-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+                      <div class="col-md-12 p-0">
+  
+                              <div class="card-body form-card">
+                                      <div class="panel-heading" role="tab" id="headingBasic">
+                                          <div class="row">
+                                                  <div class="col-md-9">
+                                                          <div class="float-left form-icon text-center mr-3">
+                                                              <span class="flaticon-paper  primary-color"></span>
+                                                          </div>
+                                                          <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                                                              Charges
+                                                          </h4>
+                                                          <p class="subtitle mb-0">Please fill in the appropriate information </p>
+                                                  </div>
+                                                   
+                                                      <div class="col-md-3">
+                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                      <span aria-hidden="true">&times;</span>
+                                                              </button>
+                                                      </div>
+                                          </div>
+                                              
+                                  </div>
+                              </div>
+                      </div>
+          </div>
+          <div class="modal-body p-0">
+            <div class="container p-2">
+                  <div class="col-md-12">
+                      <div class="form-body">
+                          <input name="id" [(ngModel)]="charg.id" type="text" hidden>
+          
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="code" class="control-label col-md-6">Charge &nbsp;
+                                  <span class="fa fa-search"></span>
+                                </label>
+                                <div class="row pl-3">
+                                  <div class="col-md-6">
+                                      <input name="code" [(ngModel)]="charg.chargeCode" [disabled]="isView" type="text" id="code"
+                                        class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <input name="charg" [(ngModel)]="charg.charge" type="text" [disabled]="isView" id="charg"
+                                        class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                               
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="code" class="control-label col-md-6">Expected Amount</label>
+
+                                <div class="row pl-3">
+                                  <div class="col-md-6">
+                                      <select class="col-md-8" class="form-control" [disabled]="isView"
+                                          data-placeholder="Choose a Category" tabindex="1" name="expectedCurr"
+                                          [(ngModel)]="charge.expectedCurr">
+                                          <option value="">---Please select---</option>
+                                          <option *ngFor="let currenc of currencies" [ngValue]="currenc.code">{{currenc.code}}</option>
+              
+                                      </select>
+              
+                                      </div>
+                                      <div class="col-md-6">
+                                      <input name="expectedVal" [(ngModel)]="charg.expectedVal" type="text" [disabled]="isView"
+                                          id="expected" class="form-control" placeholder="">
+                                      </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+                          
+                          </div>
+                         
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="code" class="control-label col-md-6">Actual Amount</label>
+                                <div class="row pl-3">
+                                <div class="col-md-6">
+                                  <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"
+                                    [disabled]="isView" tabindex="1" name="actualCurr" [(ngModel)]="charge.actualCurr">
+                                    <option value="">---Please select---</option>
+                                    <option *ngFor="let currenc of currencies">{{currenc.code}}</option>
+          
+                                  </select>
+          
+                                </div>
+                                <div class="col-md-6">
+                                  <input name="actualAmt" [(ngModel)]="charg.actualAmt" type="text" id="firstName"
+                                    [disabled]="isView" class="form-control" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            </div>
+          
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="pendChanType" class="control-label col-md-6">Pending Change Type</label>
+                                <div class="row pl-3">
+
+                                <div class="col-md-12">
+                                  <select class="col-md-12" class="form-control" (change)="enable()"
+                                    data-placeholder="Choose a Category" [disabled]="isView" tabindex="1" name="pendChanType"
+                                    [(ngModel)]="charg.pendChanType">
+                                    <option value="">-Please Select-</option>
+                                    <option value="increase">Increase</option>
+                                    <option value="decrease">Decrease</option>
+                                    <option [ngValue]="N/A">N/A</option>
+          
+                                  </select>
+                                </div>
+          
+                              </div>
+                            </div>
+                            </div>
+                          
+                          </div>
+          
+                          <div class="row">
+          
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="pendChanAmtCurr" class="control-label col-md-12">Pending Change Amount</label>
+                                <div class="row pl-3">
+
+                                <div class="col-md-6">
+                                  <select class="col-md-6" [disabled]="isDisabled" class="form-control"
+                                    data-placeholder="Choose a Category" [disabled]="isView" tabindex="1" name="pendChanAmtCurr"
+                                    [(ngModel)]="charg.pendChanAmtCurr">
+                                    <option value="">&lt;---&gt;</option>
+                                    <option *ngFor="let curr of currencies " [ngValue]="curr.code">{{curr.code}}</option>
+                                  </select>
+          
+                                </div>
+                                <div class="col-md-6">
+                                  <input [disabled]="isDisabled" name="pendChanAmt" [(ngModel)]="charg.pendChanAmt"
+                                    [disabled]="isView" type="text" class="form-control" placeholder="">
+          
+                                </div>
+          
+                              </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="remarks" class="control-label col-md-6">Remarks</label>
+                                <div class="row pl-3">
+
+          
+                                <div class="col-md-12">
+                                  <textarea type="text" name="remarks" rows="4" class="form-control" [disabled]="isView"
+                                    [(ngModel)]="charg.remarks"></textarea>
+                                </div>
+          
+                              </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+  
+  </div>
+</div>
+
+
+
+</ng-template>

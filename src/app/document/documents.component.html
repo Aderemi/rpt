@@ -1,0 +1,865 @@
+<!-- <div class="col-sm-12">
+    <div class="white-box">
+       
+
+        <table id="myTable7" class="table table-striped">
+            <thead style="background-color:#eaf4f8;">
+                <tr>
+
+                    <th>Document Category</th>
+                    <th>Document Type</th>
+                    <th>Reference</th>
+                    <th>Description</th>
+                    <th>Copies Received</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let document of docs" (click)="set($event, document)" [ngClass]="{'selected' : document === selectedDocument}">
+                    <td>{{document.docCategory}}</td>
+                    <td>{{document.docType}}</td>
+                    <td>{{document.reference}}</td>
+                    <td>{{document.description}}</td>
+                    <td>{{document.copiesRec}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+
+
+            <button [disabled]="enableFromParent" class="btn btn-info  usl-btn-color-sm" (click)="openDocument(document)">Create</button>
+            <button [disabled]="enableFromParent" (click)="openDocumentEdit(document)" class="btn btn-info  usl-btn-color-sm">Modify</button>
+            <button [disabled]="enableFromParent" (click)="openConfirmationDialog(document)" class="btn btn-info  usl-btn-color-sm">Delete</button>
+            <button [disabled]="enableFromParent" (click)="openDocumentView(document)" class="btn btn-info  usl-btn-color-sm">View</button>
+
+        </div>
+
+
+
+    </div>
+</div> -->
+
+
+
+<div class="row p-2 pl-2 mt-5">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="xc">
+                <div class="panel-body">
+                  <table class="table alt-table table-borderless">
+                    <thead>
+                            <th>Document Category</th>
+                            <th>Document Type</th>
+                            <th>Reference</th>
+                            <th>Description</th>
+                            <th>Copies Received</th>
+                      <th></th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>
+                          <button class="btn btn-danger round-table-button">&mdash;</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>wwwwww</td>
+                        <td>
+                          <button class="btn btn-danger round-table-button" >&mdash;</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<ng-template #document let-c="close" let-d="dismiss">
+
+
+        <div class="modal-content m-5">
+                <div class="modal-header">
+                            <div class="col-md-12 p-0">
+        
+                                    <div class="card-body form-card">
+                                            <div class="panel-heading" role="tab" id="headingBasic">
+                                                <div class="row">
+                                                        <div class="col-md-6">
+                                                                <div class="float-left form-icon text-center mr-3">
+                                                                    <span class="flaticon-paper  primary-color"></span>
+                                                                </div>
+                                                                <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                                                                        Documents
+                                                                </h4>
+                                                                <p class="subtitle mb-0">Please fill in the appropriate information </p>
+                                                        </div>
+                                                         
+                                                            <div class="col-md-6">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                            </div>
+                                                </div>
+                                                    
+                                        </div>
+                                    </div>
+                            </div>
+                </div>
+                <div class="modal-body p-0">
+                  <div class="container p-2">
+                        <div class="col-md-12">
+                          
+                                <div class="form-body">
+                                        <input name="id" [(ngModel)]="doc.id" type="text" hidden>
+        
+        
+        
+                                        <div class="row">
+        
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="type" class="control-label col-md-6">Document Category</label>
+    
+                                                    <div class="row pl-3">
+    
+                                                         <div class="col-md-12">
+                                                        <select class="col-md-12" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="docCategory" [(ngModel)]="doc.docCategory">
+                                                            <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                            <option value="Financial">Financial</option>
+                                                            <option value="Shipping">Shipping</option>
+                                                            <option value="exchangeControl">Exchange Control</option>
+                                                            <option value="others">Others</option>
+        
+        
+                                                        </select>
+        
+                                                    </div>
+                                                    </div>
+                                                   
+        
+                                                </div>
+                                            </div>
+    
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="type" class="control-label col-md-6">Document Type</label>
+                                                        <div class="row pl-3">
+    
+                                                        <div class="col-md-12">
+                                                            <select class="col-md-12" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="docType" [(ngModel)]="doc.docType">
+                                                                <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                <option value="spot">Spot</option>
+                                                                <option value="forward">Forward</option>
+            
+                                                            </select>
+            
+                                                        </div>
+                                                        </div>
+            
+                                                    </div>
+                                                </div>
+            
+        
+                                        </div>
+        
+                                       
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="reference" class="control-label col-md-6"> Reference</label>
+                                                    <div class="row pl-3">
+                                                    <div class="col-md-12">
+                                                        <input name="reference" [(ngModel)]="doc.reference" type="text" id="ref" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="reference" class="control-label col-md-6"> Description</label>
+                                                        <div class="row pl-3">
+    
+                                                        <div class="col-md-12">
+                                                            <input name="description" [(ngModel)]="doc.description" type="text" id="ref" class="form-control" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+        
+        
+                                        </div>
+        
+                                      
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="reference" class="control-label col-md-6"> Document /Issue date</label>
+                                                    <div class="row pl-3">
+    
+                                                    <div class="col-md-12">
+                                                        <input name="docIssuedate" [(ngModel)]="doc.docIssuedate" type="date" id="ref" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="type" class="control-label col-md-6">Validity Period</label>
+                                                        <div class="row pl-3">
+    
+                                                        <div class="col-md-6">
+                                                            <input name="validityPeriod" [(ngModel)]="doc.validityPeriod" type="date" id="ref" class="form-control" placeholder="">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <select class="col-md-12" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                                <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                <option value="spot">Spot</option>
+                                                                <option value="forward">Forward</option>
+            
+                                                            </select>
+            
+                                                        </div>
+            
+                                                    </div>
+                                                    </div>
+                                                </div>
+        
+        
+                                        </div>
+        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="reference" class="control-label col-md-6"> Expiry /Maturity date</label>
+                                                    <div class="row pl-3">
+    
+                                                    <div class="col-md-12">
+                                                        <input name="expMaturityDate" [(ngModel)]="doc.expMaturityDate" type="date" id="ref" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+    
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="type" class="control-label col-md-6">Document Amount</label>
+                                                        <div class="row pl-3">
+    
+            
+                                                        <div class="col-md-6">
+                                                            <select class="col-md-12" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="docCurrency" [(ngModel)]="doc.docCurrency">
+                                                                <option value="">---Please select---</option>
+                                                                <option *ngFor = "let curr of currencies" [value]="curr.code" >Spot</option>
+                                                                
+            
+                                                            </select>
+            
+                                                        </div>
+                                                        
+            
+                                                        <div class="col-md-6">
+                                                            <input name="docAmount" [(ngModel)]="doc.docAmount" type="text" id="ref" class="form-control" placeholder="">
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+        
+                                        </div>
+        
+        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="reference" class="control-label col-md-6">Issued by</label>
+    
+                                                    <div class="row pl-3">
+    
+                                                    <div class="col-md-12">
+                                                        <input name="issuedBy" [(ngModel)]="doc.issuedBy" type="text" id="ref" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="reference" class="control-label col-md-6">Supplementary Information</label>
+                                                        <div class="row pl-3">
+    
+                                                        <div class="col-md-12">
+                                                            <textarea name="supplementInfo" [(ngModel)]="doc.supplementInfo" rows="4" type="text" id="ref" class="form-control" placeholder=""></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+            
+        
+        
+                                        </div>
+        
+                                      
+        
+        
+                                        <div class="panel-default">
+                                            <div class="panel-heading  form-card" role="tab" id="headingBenInfo">
+                                                <div class="col-md-6">
+                                                    <div class="float-left form-icon text-center mr-3">
+                                                        <span class="flaticon-paper  primary-color"></span>
+                                                    </div>
+                                                    <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                                                            Documents copies
+                                                    </h4>
+                                                    <p class="subtitle mb-0">Please fill in the appropriate information </p>
+                                            </div>
+                                            </div>
+                                            <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+                                                <div class="panel-body">
+        
+        
+                                                    <div class="form-body">
+        
+                                                        <div class="row">
+        
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="interestType" class="control-label col-md-6">Original Copy
+                                                                    </label>
+                                                                    <div class="row pl-3">
+    
+                                                                    <div class="col-md-12">
+                                                                        <select class="form-control" [(ngModel)]="doc.originalCop" name="originalCop">
+        
+                                                                            <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                            <option  [ngValue]="sighted">Sighted</option>
+                                                                            <option  [ngValue]="received">Received</option>
+        
+                                                                            <option [ngValue]="pending">Pending</option>
+                                                                            <option [ngValue]="N/A">N/A</option>
+        
+        
+        
+                                                                        </select>
+        
+                                                                    </div>
+        
+                                                                </div>
+                                                                </div>
+                                                            </div>
+    
+                                                            <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="reference" class="control-label col-md-6">Copies Received</label>
+                                                                        <div class="row pl-3">
+    
+                                                                        <div class="col-md-12">
+                                                                            <input name="copiesRec" [(ngModel)]="doc.copiesRec" type="date" id="ref" class="form-control" placeholder="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+        
+        
+                                                        </div>
+        
+                                     
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="reference" class="control-label col-md-6">Date Received</label>
+                                                                    <div class="row pl-3">
+    
+                                                                    <div class="col-md-12">
+                                                                        <input name="dateReceived" [(ngModel)]="doc.dateReceived" type="date" id="ref" class="form-control" placeholder="">
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+    
+                                                            <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="code" class="control-label col-md-6">Scanned
+                                                                        </label>
+                                                                        <div class="row pl-3">
+    
+                                                                        <div class="col-md-12">
+                                                                            <select class="form-control" [(ngModel)]="doc.scanned" name="scanned">
+                                                                                <!-- <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                                <option [ngValue]="fixd">Fixed</option>
+                                                                                <option [ngValue]="floating">Floating</option>
+                                                                                <option [ngValue]="absolute">Absolute</option> -->
+                                                                            </select>
+                                                                        </div>
+            
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+        
+        
+                                                        </div>
+                                                      
+        
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="reference" class="control-label col-md-6">Remarks</label>
+                                                                    <div class="row pl-3">
+    
+                                                                    <div class="col-md-12">
+                                                                        <textarea name="remarks" rows="4" [(ngModel)]="doc.remarks" type="date" id="ref" class="form-control" placeholder=""></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+        
+        
+                                                        </div>
+    
+        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+        
+        
+        
+        
+                                    </div>
+                            </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="c('Close click')">
+                              Submit</button>
+                            <button type="button" class="btn btn-success" (click)="c('Close click')">
+                                Scan</button>
+                            <button type="button" class="btn btn-success" (click)="c('Close click')">
+                                VIew</button>
+                            <button type="button" class="btn btn-secondary" (click)="d('Cross click')" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+    <!-- <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">Documents
+                    <span>
+                        <button type="button" style="color:#F00; font-weight: bold;" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </span>
+                </div>
+
+
+            </div>
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingBasicFx">
+                        <h4 class="panel-title">
+                            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasicFx" aria-expanded="false"
+                                aria-controls="collapseBasicFx" style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+                        </h4>
+                    </div>
+                    <div id="collapseBasicFx" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasicFx">
+                        <div class="panel-body">
+
+
+                            <div class="form-body">
+                                <input name="id" [(ngModel)]="doc.id" type="text" hidden>
+
+
+
+                                <div class="row">
+
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="type" class="control-label col-md-4">Document Category</label>
+                                            <div class="col-md-8">
+                                                <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="docCategory" [(ngModel)]="doc.docCategory">
+                                                    <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                    <option value="Financial">Financial</option>
+                                                    <option value="Shipping">Shipping</option>
+                                                    <option value="exchangeControl">Exchange Control</option>
+                                                    <option value="others">Others</option>
+
+
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="type" class="control-label col-md-4">Document Type</label>
+                                            <div class="col-md-8">
+                                                <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="docType" [(ngModel)]="doc.docType">
+                                                    <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                    <option value="spot">Spot</option>
+                                                    <option value="forward">Forward</option>
+
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="reference" class="control-label col-md-4"> Reference</label>
+                                            <div class="col-md-8">
+                                                <input name="reference" [(ngModel)]="doc.reference" type="text" id="ref" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="reference" class="control-label col-md-4"> Description</label>
+                                            <div class="col-md-8">
+                                                <input name="description" [(ngModel)]="doc.description" type="text" id="ref" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="reference" class="control-label col-md-4"> Document /Issue date</label>
+                                            <div class="col-md-8">
+                                                <input name="docIssuedate" [(ngModel)]="doc.docIssuedate" type="date" id="ref" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="type" class="control-label col-md-4">Validity Period</label>
+                                            <div class="col-md-4">
+                                                <input name="validityPeriod" [(ngModel)]="doc.validityPeriod" type="date" id="ref" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                    <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                    <option value="spot">Spot</option>
+                                                    <option value="forward">Forward</option>
+
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="reference" class="control-label col-md-4"> Expiry /Maturity date</label>
+                                            <div class="col-md-8">
+                                                <input name="expMaturityDate" [(ngModel)]="doc.expMaturityDate" type="date" id="ref" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="type" class="control-label col-md-4">Document Amount</label>
+
+                                            <div class="col-md-4">
+                                                <select class="col-md-8" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="docCurrency" [(ngModel)]="doc.docCurrency">
+                                                    <option value="">---Please select---</option>
+                                                    <option *ngFor = "let curr of currencies" [value]="curr.code" >Spot</option>
+                                                    
+
+                                                </select>
+
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input name="docAmount" [(ngModel)]="doc.docAmount" type="text" id="ref" class="form-control" placeholder="">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="reference" class="control-label col-md-4">Issued by</label>
+                                            <div class="col-md-8">
+                                                <input name="issuedBy" [(ngModel)]="doc.issuedBy" type="text" id="ref" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="reference" class="control-label col-md-4">Supplementary Information</label>
+                                            <div class="col-md-8">
+                                                <textarea name="supplementInfo" [(ngModel)]="doc.supplementInfo" rows="4" type="text" id="ref" class="form-control" placeholder=""></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingBenInfo">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBenInfo" aria-expanded="false"
+                                                aria-controls="collapseBenInfo" style="color :#2b2b2b; font-weight: bold;">Document Copies </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+                                        <div class="panel-body">
+
+
+                                            <div class="form-body">
+
+                                                <div class="row">
+
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <label for="interestType" class="control-label col-md-4">Original Copy
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <select class="form-control" [(ngModel)]="doc.originalCop" name="originalCop">
+
+                                                                    <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                    <option  [ngValue]="sighted">Sighted</option>
+                                                                    <option  [ngValue]="received">Received</option>
+
+                                                                    <option [ngValue]="pending">Pending</option>
+                                                                    <option [ngValue]="N/A">N/A</option>
+
+
+
+                                                                </select>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <label for="reference" class="control-label col-md-4">Copies Received</label>
+                                                            <div class="col-md-8">
+                                                                <input name="copiesRec" [(ngModel)]="doc.copiesRec" type="date" id="ref" class="form-control" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <label for="reference" class="control-label col-md-4">Date Received</label>
+                                                            <div class="col-md-8">
+                                                                <input name="dateReceived" [(ngModel)]="doc.dateReceived" type="date" id="ref" class="form-control" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <label for="code" class="control-label col-md-4">Scanned
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <select class="form-control" [(ngModel)]="doc.scanned" name="scanned"> -->
+                                                                    <!-- <option [ngValue]="undefined">&lt;---&gt;</option>
+                                                                    <option [ngValue]="fixd">Fixed</option>
+                                                                    <option [ngValue]="floating">Floating</option>
+                                                                    <option [ngValue]="absolute">Absolute</option> -->
+                                                                <!-- .....</select>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="form-group">
+                                                            <label for="reference" class="control-label col-md-4">Remarks</label>
+                                                            <div class="col-md-8">
+                                                                <textarea name="remarks" rows="4" [(ngModel)]="doc.remarks" type="date" id="ref" class="form-control" placeholder=""></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-success" (click)="c('Close click')">
+                                    <li class="fa fa-check-o"></li> Submit</button>
+                                <button type="button" class="btn btn-success" (click)="c('Close click')">
+                                    <li class="fa fa-check-o"></li> Scan</button>
+                                <button type="button" class="btn btn-success" (click)="c('Close click')">
+                                    <li class="fa fa-check-o"></li> VIew</button>
+                                <button type="button" class="btn btn-default" (click)="d('Cross click')">Cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div> -->
+
+
+                <!-- <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingControlInfo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseControlInfo" aria-expanded="false"
+                                        aria-controls="collapseControlInfo" style="color :#2b2b2b;font-weight: bold;">Control Information </a>
+                                </h4>
+                            </div>
+                            <div id="collapseControlInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingControlInfo">
+                                <div class="panel-body">
+        
+        
+                                    <div class="form-body">
+                                        <div class="row">
+        
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="actual" class="control-label col-md-4">Effective Date</label>
+                                                    <div class="col-md-8">
+                                                        <input type="date" name="actual" [(ngModel)]="fxDeal.effectiveDate" id="actual" class="form-control" placeholder="Actual">
+                                                    </div>
+        
+                                                </div>
+                                            </div>
+        
+        
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="involvementValue" class="control-label col-md-4">Status</label>
+                                                    <div class="col-md-8">
+                                                        <select class="col-md-9" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="involvementValue" [(ngModel)]="fxDeal.involvementValue">
+                                                            <option value="">-Please Select-</option>
+                                                            <option value="active">Active</option>
+                                                            <option value="inactive">Inactive</option>
+        
+        
+                                                        </select>
+        
+        
+        
+                                                    </div>
+        
+        
+                                                <!-- ......</div>
+                                            </div>
+        
+                                        </div>
+        
+                                        <div class="modal-footer">
+                                            <div class="form-actions">
+                                                <button type="button" class="btn btn-success" (click)="c('Close click')">
+                                                    <li class="fa fa-check-o"></li> Save</button>
+                                                <button type="button" class="btn btn-default" (click)="d('Cross click')">Cancel</button>
+                                            </div>
+                                        </div>
+        
+        
+                                    </div>
+                                </div>
+                            </div>
+        
+        
+                        </div>
+            </div>
+        </div>
+    </div> -->
+</ng-template>

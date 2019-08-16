@@ -1,0 +1,125 @@
+<!-- ...<div class="col-sm-12">
+  <div class="white-box">
+
+
+
+
+
+      <form>
+          <div class="form-body"> -->
+
+              <!--div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                            <label for="collateraltype" class="control-label col-md-5">Collateral Type</label>
+                            <div class="col-md-7">
+                                <select class="col-md-2" class="form-control" [(ngModel)]="collateral.collateraltype" data-placeholder="Choose a Collateral" tabindex="1"
+                                name="collateraltype" [compareWith]="equals">
+                                <option value="undefined">&lt;---&gt;</option>
+                                <option *ngFor="let collateraltype of colTypes" [ngValue]="collateraltype">{{collateraltype.code}}</option>
+    
+                            </select>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+             
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label for="reference" class="control-label col-md-5">Reference</label>
+                          <div class="col-md-7">
+                              <input name="reference" [(ngModel)]="collateral.reference" type="text" id="reference" class="form-control">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                          <div class="form-actions">
+                <button type="submit" class="btn btn-secondary usl-btn-color-default" (click)="search()">
+                  <i class="fa fa-search"></i> Search</button>
+                          </div>
+                 </div>
+                  
+              </div-->
+              
+              
+<!-- ...
+          </div>   
+      </form>
+      <hr class="m-t-0 m-b-20">
+      
+      <div class="table-responsive">
+          <table id="myTable" class="table">
+              <thead>
+                  <tr>
+                     <th>#</th>
+                      <th>Collateral Type</th>
+                      <th>Reference</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+
+
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let collateral of Collaterals" (click)="set($event, collateral)" [ngClass]="{'selected' : collateral === selectedCollateral}">
+                        <td>{{collateral.id}}</td>
+                      <td>{{collateral.collateraltype.code}}-{{collateral.collateraltype.description}}</td>
+                      <td>{{collateral.reference}}</td>
+                      <td>{{collateral.currencyId.code}} {{collateral.amount}}</td>
+                      <td>{{collateral.status}}</td>
+                  </tr>
+
+
+              </tbody>
+          </table>
+          <button  (click)="openCollateral()" class="btn btn-info usl-btn-color">Add</button>
+          <button (click)="editCollateral()" class="btn btn-info usl-btn-color">Modify</button>
+          <button (click)="openConfirmationDialog()" class="btn btn-info usl-btn-color">Delete</button>
+      </div>
+  </div>
+</div> -->
+
+
+
+<div class="row p-2 pl-2 mt-5">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="xc">
+            <div class="panel-body">
+              <table class="table alt-table table-borderless">
+                <thead>
+                    <th>Collateral Type</th>
+                      <th>Reference</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                  <th></th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>wwwwww</td>
+                    <td>wwwwww</td>
+                    <td>wwwwww</td>
+                    <td>wwwwww</td>
+                    <td>
+                      <button class="btn btn-danger round-table-button">&mdash;</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>wwwwww</td>
+                    <td>wwwwww</td>
+                    <td>wwwwww</td>
+                    <td>wwwwww</td>
+                    <td>
+                      <button class="btn btn-danger round-table-button" >&mdash;</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

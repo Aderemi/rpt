@@ -1,0 +1,549 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="panel-group" role="tablist" aria-multiselectable="true">  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBasic">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic" aria-expanded="false"
+                aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
+            </h4>
+          </div>
+          <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+            <div class="panel-body">
+  
+  
+              <div class="form-body">
+                <!-- <input name="id" [(ngModel)]="elc.id" type="text" hidden> -->
+              
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="code" class="control-label col-md-6">Reference Number 
+    
+                        </label>
+                        <div class="col-md-6">
+                          <input name="referenceNum" [disabled]= "true"  [(ngModel)]="fxIntDistribution.referenceNum" type="text" id="reference" class="form-control" placeholder="">
+                        </div>
+    
+                      </div>
+                    </div>
+  
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="control-label col-md-6">Correspondent Bank
+                              &nbsp; <span class="fa fa-search" (click)="open('Banks')"></span>
+
+                          </label>
+                          <div class="col-md-2">
+                            <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="fxIntDistribution.correspondentBank.code" [ngClass]="" name="">
+                          </div>
+                          <div class="col-md-4">
+                            <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="fxIntDistribution.correspondentBank.name" [ngClass]="" name="">
+                          </div>
+                        </div>
+                      </div>
+    
+                 
+                  </div>
+                 
+    
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="control-label col-md-6">Product
+                              &nbsp; <span class="fa fa-search" (click)="open('product')"></span>
+                            </label>
+                            <div class="col-md-2">
+                              <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="fxIntDistribution.product.code" [ngClass]="" name="product">
+                            </div>
+                            <div class="col-md-4">
+                              <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="fxIntDistribution.product.description" [ngClass]="" name="product">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="control-label col-md-6">Source Account
+                                  &nbsp; <span class="fa fa-search" (click)="open('Accounts')"></span>
+
+                              </label>
+                              <div class="col-md-2">
+                                <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="fxIntDistribution.sourceAccount.accountNumber" [ngClass]="" name="">
+                              </div>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control" [disabled] = "true" [(ngModel)]="fxIntDistribution.sourceAccount.accountName" [ngClass]="" name="">
+                              </div>
+                            </div>
+                          </div>
+    
+                 
+                  </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="code" class="control-label col-md-6">Total Distributable Amount</label>
+                      <div class="col-md-2">
+                        <select class="col-md-8" class="form-control" [(ngModel)]="fxIntDistribution.totalDistAmtCurr" data-placeholder="Choose a Category"
+                          tabindex="1" name="totalDistAmtCurr" [compareWith]="equals">
+                          <option value="undefined">&lt;---&gt;</option>
+                          <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+  
+                        </select>
+  
+                      </div>
+                      <div class="col-md-4">
+                        <input name="totalDistAmt" [(ngModel)]="fxIntDistribution.totalDistAmt" (blur)="transfornTotalDistAmt()"
+                          type="text" id="totalDistAmt" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="code" class="control-label col-md-6">Exchange Rate</label>
+                        <div class="col-md-2">
+                          <select class="col-md-8" class="form-control" [(ngModel)]="fxIntDistribution.exchRateCurr" data-placeholder="Choose a Category"
+                            tabindex="1" name="exchRateCurr" [compareWith]="equals">
+                            <option value="undefined">&lt;---&gt;</option>
+                            <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+    
+                          </select>
+    
+                        </div>
+                        <div class="col-md-4">
+                          <input name="exchRate" [(ngModel)]="fxIntDistribution.exchRate" (blur)="transformExchRate()"
+                            type="text" id="baseForeignCurrEquiAmt" class="form-control" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="row">
+                  
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="code" class="control-label col-md-6">Local Currency Equiv Amount</label>
+                      <div class="col-md-2">
+                          <input name="localCurrEqui" [(ngModel)]="fxIntDistribution.localCurrEqui" [disabled]="true"  type="text"
+                          id="lCAmntVal" class="form-control" placeholder="">
+  
+                      </div>
+                      <div class="col-md-4">
+                        <input name="localCurrAquiAmt" [(ngModel)]="fxIntDistribution.localCurrAquiAmt" [disabled]="true" (blur)="transformLocalCurrencyEquivalence()" type="text"
+                          id="lCAmntVal" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="additionalAmtCov" class="control-label col-md-6">Interest Period Start Date &nbsp;
+                          
+                        </label>
+    
+                        <div class="col-md-6">
+                            <input name="intPeriodStartDate"  [ngModel]="fxIntDistribution.intPeriodStartDate | date:'yyyy-MM-dd'" (ngModelChange)="fxIntDistribution.intPeriodStartDate  = $event" type="date" id="intPeriodStartDate" class="form-control" placeholder="">
+                          
+                        </div>
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="additionalAmtCov" class="control-label col-md-6">Interest Period End Date &nbsp;
+                            
+                          </label>
+      
+                          <div class="col-md-6">
+                            <input name="intPeriodEndDate"  [ngModel]="fxIntDistribution.intPeriodEndDate | date:'yyyy-MM-dd'" (ngModelChange)="fxIntDistribution.intPeriodEndDate  = $event" type="date" id="intPeriodEndDate" class="form-control" placeholder="">
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="additionalAmtCov" class="control-label col-md-6">Interest Distribution Date &nbsp;
+                              
+                            </label>
+        
+                            <div class="col-md-6">
+                                <input name="intDistributionDate"  [ngModel]="fxIntDistribution.intDistributionDate | date:'yyyy-MM-dd'" (ngModelChange)="fxIntDistribution.intDistributionDate  = $event" type="date" id="intDistributionDate" class="form-control" placeholder="">
+                              
+                            </div>
+                          </div>
+                        </div>
+                </div>
+                <div class="row">
+  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="additionalAmtCov" class="control-label col-md-6">Remarks &nbsp; 
+                            <span class="fa fa-file"  (click)="open('remarks')"></span>
+                        </label>
+                      
+                        <div class="col-md-6">
+                          <!-- <app-notepad ></app-notepad> -->
+                          <textarea rows="4" name="remarks" [disabled] = "true"  [(ngModel)]="fxIntDistribution.remarks" type="text" id="remarks" class="form-control" placeholder=""></textarea>
+                        </div>
+                      </div>
+                    </div>
+    
+                  
+    
+    
+                  </div>
+  
+             
+  
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingCurrReporting">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCurrReporting" aria-expanded="false"
+                aria-controls="collapseCurrReporting" style="color :#2b2b2b;font-weight: bold;">Currency Reporting</a>
+            </h4>
+          </div>
+          <div id="collapseCurrReporting" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingCurrReporting">
+            <div class="panel-body">
+  
+  
+              <div class="form-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="instructionCode" class="control-label col-md-6">Base Foreign Ccy equiv /rate</label>
+                      <div class="col-md-3">
+                        <select class="col-md-9" [disabled] = "true" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="baseForCurrEqui" [(ngModel)]="fxIntDistribution.baseForCurrEqui"
+                          [compareWith]="equals">
+                          <option [ngValue]="undefined">&lt;---&gt;</option>
+                          <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+  
+  
+                        </select>
+  
+  
+  
+                      </div>
+                      <div class="col-md-3">
+                        <input [disabled] = "true" name="baseForCurrEquiVal" (blur)="transformBaseCurrAmount()" [(ngModel)]="fxIntDistribution.baseForCurrEquiVal" type="text"
+                          id="" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <input type="text" id="baseForeignCurrEquiRate" class="form-control" placeholder="" name="exchRate">
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-info  usl-btn-color">Exchange Rate</button>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="localCurrEqui" class="control-label col-md-6">Local Ccy equiv /rate</label>
+                      <div class="col-md-3">
+                        <select class="col-md-9" [disabled] = "true" name="localCurrEqui" class="form-control" data-placeholder="Choose a Category" tabindex="1" [(ngModel)]="fxIntDistribution.localCurrEqui"
+                          [compareWith]="equals">
+                          <option [ngValue]="undefined">&lt;---&gt;</option>
+                          <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+                        </select>
+  
+                      </div>
+                      <div class="col-md-3">
+                        <input name="localCurrEquiVal" [disabled] = "true" (blur)="transformLocalCurrAmount()" [(ngModel)]="fxIntDistribution.localCurrEquiVal" type="text" id="localCurrEquiVal"
+                          class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <input name="localCurrEquiRate" type="text" id="localCurrEquiRate" class="form-control" placeholder="">
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-info  usl-btn-color">Exchange Rate</button>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+  
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+  
+  
+  
+  
+  
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingInterest">
+              <h4 class="panel-title">
+                <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseInterest" aria-expanded="false"
+                  aria-controls="collapseInterest" style="color :#2b2b2b;font-weight: bold;">Interest Recipients</a>
+              </h4>
+            </div>
+            <div id="collapseInterest" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingInterest">
+              <div class="panel-body">
+    
+                <!-- <app-forex-interest-distribution-recipient *ngIf= "forexIntDistribution.id" [forexIntDistribution] = "forexIntDistribution"  (emitService)="listOfRecipients($event)"></app-forex-interest-distribution-recipient> -->
+    
+              </div>
+            </div>
+    
+    
+          </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingParty">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseParty" aria-expanded="false"
+                aria-controls="collapseParty" style="color :#2b2b2b;font-weight: bold;">Additional Parties</a>
+            </h4>
+          </div>
+          <div id="collapseParty" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingParty">
+            <div class="panel-body">
+  
+              <!-- <app-party-categories></app-party-categories> -->
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingDocuments">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDocuments" aria-expanded="false"
+                aria-controls="collapseDocuments" style="color :#2b2b2b;font-weight: bold;">Documents</a>
+            </h4>
+          </div>
+          <div id="collapseDocuments" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingDocuments">
+            <div class="panel-body">
+  
+  
+              <!-- <app-documents ></app-documents> -->
+  
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingFxDeals">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFxDeals" aria-expanded="false"
+                aria-controls="collapseFxDeals" style="color :#2b2b2b;font-weight: bold;">Foreign Exchange Deals</a>
+            </h4>
+          </div>
+          <div id="collapseFxDeals" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingFxDeals">
+            <div class="panel-body">
+              <!-- <app-foreign-exchange-deals ></app-foreign-exchange-deals> -->
+  
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingCharges">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCharges" aria-expanded="false"
+                aria-controls="collapseCharges" style="color :#2b2b2b;font-weight: bold;">Charges</a>
+            </h4>
+          </div>
+          <div id="collapseCharges" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingCharges">
+            <div class="panel-body">
+              <!-- <app-charges ></app-charges> -->
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingChecklist">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseChecklist" aria-expanded="false"
+                aria-controls="collapseChecklist" style="color :#2b2b2b;font-weight: bold;">Checklists</a>
+            </h4>
+          </div>
+          <div id="collapseChecklist" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingChecklist">
+            <div class="panel-body">
+  
+  
+              <!-- <app-checklists  ></app-checklists> -->
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingControl">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseControl" aria-expanded="false"
+                aria-controls="collapseControl" style="color :#2b2b2b;font-weight: bold;">Control Information</a>
+            </h4>
+          </div>
+          <div id="collapseControl" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingControl">
+            <div class="panel-body">
+  
+  
+              <div class="form-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="servicingBranch" class="control-label col-md-4">Servicing Branch</label>
+  
+                      <div class="col-md-8">
+                        <input name="servicingBranch" [disabled] = "true" [(ngModel)]="fxIntDistribution.servicingBranch" type="text" id="servicingBranch" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="homeBranch" class="control-label col-md-4">Home Branch</label>
+  
+                      <div class="col-md-8">
+                        <input name="homeBranch" [disabled] = "true" [(ngModel)]="fxIntDistribution.homeBranch" type="text" id="homeBranch" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="servicingBranch" class="control-label col-md-4">Relationship Management</label>
+  
+                      <div class="col-md-8">
+                        <input name="relatioinshipMgt" [disabled] = "true" [(ngModel)]="fxIntDistribution.relatioinshipMgt" type="text" id="relationshipManagement" class="form-control"
+                          placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="effectiveDate" class="control-label col-md-4">Effective Date</label>
+  
+                      <div class="col-md-8">
+                        <input name="effectiveDate" [disabled] = "true" [(ngModel)]="fxIntDistribution.effectiveDate" type="date" id="effectiveDate" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="status" class="control-label col-md-4">Status</label>
+  
+                      <div class="col-md-8">
+                        <input name="status" [disabled] = "true" [(ngModel)]="fxIntDistribution.status" type="text" id="status" class="form-control" placeholder="">
+                      </div>
+  
+  
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6" *ngIf="isInTransit">
+                    <div class="form-group">
+                      <label for="rejectQueueId" class="control-label col-md-4">Reject Queue</label>
+                      <div class="col-md-8">
+  
+                        <select class="form-control" data-placeholder="rejectQueueId" tabindex="1" name="rejectQueueId" [(ngModel)]="elc.rejectQueueId">
+                          <option *ngFor="let step of rejectSteps" value={{step.id}} selected="test.rejectQueueId==step.id? true : null">
+                            {{step.description}}
+                          </option>
+                        </select>
+  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+        <div class="modal-footer" style="float: left;">
+          <div class="form-actions">
+            <div class="form-actions">
+  
+              <div class="row">
+                <div class="form-actions" *ngIf="!isInTransit">
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="createForexInterestDistributions()">
+                    <li class="fa fa-check-o"></li> Save</button>&nbsp;
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="createForexInterestDistributions()">
+                    <li class="fa fa-check-o"></li> Submit</button>&nbsp;
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="d('Cross click')">Cancel</button>
+                </div>
+                <div class="form-actions" *ngIf="isInTransit">
+                  <button type="submit" class="btn btn-info usl-btn-color" (click)="approve(fxIntDistribution)">
+                    <i class="fa fa-check"></i> Ok</button>
+                  <button type="button" class="btn btn-info usl-btn-color" (click)="reject(fxIntDistribution)">Reject</button>
+                </div>
+  
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+  
+  
+  
+      </div>
+  
+  
+    </div>

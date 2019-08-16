@@ -1,0 +1,775 @@
+<!-- <div class="col-sm-12" *ngIf="view === 0">
+  <div class="white-box">
+
+
+    <h3 class="box-title m-b-0">Notification Template </h3>
+
+    <div class="form-body">
+      <hr class="m-t-0 m-b-40">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="control-label col-md-4">Code</label>
+            <div class="col-md-8">
+              <input type="text" name="" class="form-control" [(ngModel)]="searchNotificationTemplate.code">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group row">
+                <label class="control-label col-md-4">Delivery Method</label>
+                <div class="col-md-8">
+                  <input type="text" name="" class="form-control" [(ngModel)]="searchNotificationTemplate.deliveryMethod">
+                </div>
+              </div>
+            </div>
+
+      </div>
+     
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="control-label col-md-4">Status</label>
+          <div class="col-md-8">
+            <select class="col-md-8" class="form-control" tabindex="1" name="" [(ngModel)]="searchNotificationTemplate.status">
+              <option value="">&lt;---&gt;</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Cancelled">Cancelled</option>
+
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+
+          <div class="col-md-8">
+            <button class="btn btn-secondary usl-btn-color-default" type="button" (click)="search()">
+              <i class="fa fa-search"></i> Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+<br>
+    <hr class="m-t-0 m-b-40">
+
+
+  </div>
+  <div class="table-responsive">
+      <table id="myTable" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Delivery Method</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let notTemp of notificationTemplates" (click)="set($event, notTemp)" [class.active]="notTemp === notificationTemplate">
+            <td>{{notTemp.code}}</td>
+            <td>{{notTemp.deliveryMethod}}</td>
+            <td>{{notTemp.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="Add()" class="btn btn-info usl-btn-color">Add</button>
+      <button (click)="edit()" class="btn btn-info usl-btn-color">Modify</button>
+      <button (click)="dDialog()" class="btn btn-info usl-btn-color">Delete</button>
+    </div>
+
+</div>
+
+
+
+
+
+  <br />
+
+  
+</div> -->
+
+
+<!-- view for table new -->
+
+<div class="container-fluid mt-1" *ngIf="view === 0">
+  <div class="row p-3 pl-4">
+    <div class="col-md-6">
+      <h1 class="text-bold">Notification Template</h1>
+    </div>
+
+    <div class="col-md-2 offset-md-4 pr-0">
+      <button class="btn btn-block btn-primary " (click)="Add()">Add</button>
+    </div>
+  </div>
+  <div class="row p-2 pl-4 mt-5">
+    <div class="col-md-12">
+      <div class="row mb-2">
+        <div class="form-group col-md-3 pr-0 mb-0">
+          <input type="text" [(ngModel)]="searchNotificationTemplate.code" class="form-control search"
+            placeholder="Search by code" id="notificationTemplate">
+        </div>
+        <div class="form-group col-md-3 pr-0 mb-0">
+          <input type="text" [(ngModel)]="searchNotificationTemplate.deliveryMethod" [ngClass]="" name=""
+            class="form-control search" placeholder="Search by delivery method" id="deliveryMethod">
+        </div>
+        <div class="form-group col-md-3 pr-0 mb-0">
+          <input type="text" [(ngModel)]="searchNotificationType.status" [ngClass]="" name=""
+            class="form-control search" placeholder="Search by status" id="status">
+        </div>
+        <div class="col-md-1 pr-0 mb-0">
+          <button class="btn btn-block btn-success hover-raise" (click)="search()">Search</button>
+        </div>
+        <div class="form-group col-md-2  mb-0">
+          <div class="row">
+            <div class="col-md-12 text-right">
+              <label class="pr-2">Showing</label>
+              <select name="" id="">
+                <option value="">5</option>
+                <option value="">10</option>
+                <option value="">15</option>
+                <option value="">20</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel">
+            <div class="panel-body">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Delivery Method</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let notTemp of notificationTemplates" (click)="set($event, notTemp)"
+                    [class.active]="notTemp === notificationTemplate">
+                    <td>{{notTemp.code}}</td>
+                    <td>{{notTemp.deliveryMethod}}</td>
+                    <td>{{notTemp.status}}</td>
+                    <td><button class="btn-outline-primary">view</button></td>
+                    <td>
+                      <div class="dropdown">
+                        <img src="/assets/three-dots-more-indicator.svg" alt="Ellipse"
+                          class=" btn secondary dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <a class="dropdown-item" (click)="edit()">Edit</a>
+                          <a class="dropdown-item" (click)="dDialog()">Delete</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="clearfix p-2">
+            <p class="text-secondary ml-1 float-left">20 records found</p>
+            <div class="float-right">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination pg-blue">
+                  <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link">1</a></li>
+                  <li class="page-item active">
+                    <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="col-md-12" *ngIf="view === 1">
+  <div class="panel-group" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingBasic">
+        <h4 class="panel-title">
+          <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic"
+            aria-expanded="false" aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Notification
+            Template
+          </a>
+        </h4>
+      </div>
+      <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+        <div class="panel-body">
+
+
+          <div class="form-body">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Notification Type</label>
+                  <div class="col-md-3">
+                    <input type="text" class="form-control" [ngModel]="notificationTypeCode" name="">
+
+                  </div>
+                  <div class="col-md-5">
+                    <select class="col-md-8" class="form-control" tabindex="1" name=""
+                      (change)="changeNotificationTypes(notificationTemplate.notificationType)"
+                      [(ngModel)]="notificationTemplate.notificationType">
+                      <option value="">&lt;---&gt;</option>
+                      <option *ngFor="let notTypes of notificationTypes" [ngValue]="notTypes">{{notTypes.description}}
+                      </option>
+
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Delivery Method</label>
+                  <div class="col-md-8">
+                    <select class="col-md-8" class="form-control" tabindex="1" name="deliveryMethod"
+                      (change)="changeDelMethod()" [(ngModel)]="notificationTemplate.deliveryMethod">
+                      <option value="">&lt;---&gt;</option>
+                      <option *ngFor="let del of deliveryMethod" value="{{del}}">{{del}}</option>
+
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="row" *ngIf="enableAdviseTemplate === true">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="code" class="control-label col-md-4">Advice Template
+                  </label>
+
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" [(ngModel)]="notificationTemplate.adviceTemplate"
+                      [ngClass]="" name="adviceTemplate">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row" *ngIf="enableMsgTemplate">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="code" class="control-label col-md-4">Message Template
+                    <span class="fa fa-edit" (click)="open('message')"></span>
+
+                  </label>
+
+                  <div class="col-md-8">
+                    <textarea type="text" class="form-control" rows="4"
+                      [(ngModel)]="notificationTemplate.messageTemplate" [ngClass]=""
+                      name="messageTemplate"> </textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row" *ngIf="enableSpecialPrinter">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Use Special Printer</label>
+                  <div class="col-md-8">
+                    <select class="col-md-8" class="form-control" tabindex="1" name="specialPrinter"
+                      [(ngModel)]="notificationTemplate.specialPrinter">
+                      <option value="">&lt;---&gt;</option>
+                      <option *ngFor="let sp of specialPrinter" value="{{sp}}">{{sp}}</option>
+
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" *ngIf="enableSpecialPrinterClass">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Special Printer Class </label>
+                  <div class="col-md-8">
+                    <select class="col-md-8" class="form-control" tabindex="1" name="specialPrinterClass"
+                      [(ngModel)]="notificationTemplate.specialPrinterClass">
+                      <option value="">&lt;---&gt;</option>
+                      <option *ngFor="let spc of specialPrinterClass" value="{{spc}}">{{spc}}</option>
+
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" *ngIf="enablePrinterPrompt">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Print Prompt Message </label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" [(ngModel)]="notificationTemplate.printPromptMsg"
+                      [ngClass]="" name="printPromptMsg">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingBenInfo">
+        <h4 class="panel-title">
+          <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBenInfo"
+            aria-expanded="false" aria-controls="collapseBenInfo" style="color :#2b2b2b; font-weight: bold;">Control
+            Information </a>
+        </h4>
+      </div>
+      <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+        <div class="panel-body">
+
+
+          <div class="form-body">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="additionalAmtCov" class="control-label col-md-4">Effective Date &nbsp;
+
+                  </label>
+
+                  <div class="col-md-8">
+                    <input name="effectiveDate" [ngModel]="notificationTemplate.effectiveDate|date :'yyyy-MM-dd'"
+                      type="date" id="effectiveDate" (ngModelChange)="notificationTemplate.effectiveDate = $event"
+                      class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="control-label col-md-4">Status</label>
+                  <div class="col-md-8">
+                    <select class="col-md-8" class="form-control" tabindex="1" name=""
+                      [(ngModel)]="notificationTemplate.status">
+                      <option value="">&lt;---&gt;</option>
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                      <option value="Cancelled">Cancelled</option>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="white-box">
+      <div class="row">
+        <button class="btn btn-info  usl-btn-color" type="button" (click)="Save()">
+          Save</button>
+
+        <button class="btn btn-info  usl-btn-color" type="button" (click)="Cancel()">
+          Cancel</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<ng-template #msg let-c="close" let-d="dismiss">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">Notification Message Template
+          <span>
+            <button type="button" style="color:#F00; font-weight: bold;" class="close" aria-label="Close"
+              (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </span>
+        </div>
+
+
+      </div>
+      <div class="panel-group" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingBasicFx">
+            <h4 class="panel-title">
+              <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseBasicFx" aria-expanded="false" aria-controls="collapseBasicFx"
+                style="color :#2b2b2b;font-weight: bold;"> </a>
+            </h4>
+          </div>
+          <div id="collapseBasicFx" class="panel-collapse collapse show" role="tabpanel"
+            aria-labelledby="headingBasicFx">
+            <div class="panel-body">
+
+
+              <div class="form-body">
+
+                <div class="row">
+                  <div class="col-md-3">
+                    <button class="btn btn-info  usl-btn-color" type="button">
+                      Send</button>
+                  </div>
+
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <button class="btn btn-info  usl-btn-color" type="button">
+                          To</button>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" name="">
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-2">
+                        <button class="btn btn-info  usl-btn-color" type="button">
+                          To</button>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" name="">
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-2">
+                        <button class="btn btn-info  usl-btn-color" type="button">
+                          To</button>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" name="">
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-2">
+                        <label class="col-md-2">
+                          Subject
+                        </label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" name="">
+
+                      </div>
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-11">
+
+                    <textarea rows="8"></textarea>
+
+                  </div>
+
+                </div>
+
+
+
+
+
+
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <div class="form-actions">
+                <button type="button" class="btn btn-success" (click)="c('Close click')">
+                  <li class="fa fa-check-o"></li> Submit
+                </button>
+                <button type="button" class="btn btn-success" (click)="c('Close click')">
+                  <li class="fa fa-check-o"></li> Scan
+                </button>
+                <button type="button" class="btn btn-success" (click)="c('Close click')">
+                  <li class="fa fa-check-o"></li> VIew
+                </button>
+                <button type="button" class="btn btn-default" (click)="d('Cross click')">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
+
+<!-- view for form new -->
+
+<div class="container-fluid mt-1" *ngIf="view === 1">
+  <div class="row p-3 pl-4">
+    <div class="col-md-12">
+      <h1 class="text-bold">Notification Template Form</h1>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="card panel">
+      <div class="card-body form-card">
+        <form>
+          <div class="panel-group" role="tablist" aria-multiselectable="true">
+            <div class="panel-default">
+              <div class="panel-heading" role="tab" id="headingBasic">
+                <div class="float-left form-icon text-center mr-3">
+                  <span class="flaticon-paper  primary-color"></span>
+                </div>
+                <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                  Notification Details
+                </h4>
+                <p class="subtitle mb-0  ">Please fill in the appropriate data </p>
+              </div>
+              <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel"
+                aria-labelledby="headingBasic">
+                <div class="panel-body">
+                  <div class="col-sm-12 col-md-10 offset-md-1">
+                    <div class="form-body">
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Notification Type</label>
+                            <div class="col-md-3">
+                              <input type="text" class="form-control" [ngModel]="notificationTypeCode" name="">
+          
+                            </div>
+                            <div class="col-md-5">
+                              <select class="col-md-8" class="form-control" tabindex="1" name=""
+                                (change)="changeNotificationTypes(notificationTemplate.notificationType)"
+                                [(ngModel)]="notificationTemplate.notificationType">
+                                <option value="">&lt;---&gt;</option>
+                                <option *ngFor="let notTypes of notificationTypes" [ngValue]="notTypes">{{notTypes.description}}
+                                </option>
+          
+          
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Delivery Method</label>
+                            <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" tabindex="1" name="deliveryMethod"
+                                (change)="changeDelMethod()" [(ngModel)]="notificationTemplate.deliveryMethod">
+                                <option value="">&lt;---&gt;</option>
+                                <option *ngFor="let del of deliveryMethod" value="{{del}}">{{del}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+          
+                      </div>
+          
+          
+          
+                      <div class="row">
+                        <div class="col-md-6" *ngIf="enableAdviseTemplate === true">
+                          <div class="form-group row">
+                            <label for="code" class="control-label col-md-4">Advice Template
+                            </label>
+          
+                            <div class="col-md-8">
+                              <input type="text" class="form-control" [(ngModel)]="notificationTemplate.adviceTemplate"
+                                [ngClass]="" name="adviceTemplate">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="enableMsgTemplate">
+                          <div class="form-group row">
+                            <label for="code" class="control-label col-md-4">Message Template
+                              <span class="fa fa-edit" (click)="open('message')"></span>
+          
+                            </label>
+          
+                            <div class="col-md-8">
+                              <textarea type="text" class="form-control" rows="4"
+                                [(ngModel)]="notificationTemplate.messageTemplate" [ngClass]=""
+                                name="messageTemplate"> </textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="enableSpecialPrinter">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Use Special Printer</label>
+                            <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" tabindex="1" name="specialPrinter"
+                                [(ngModel)]="notificationTemplate.specialPrinter">
+                                <option value="">&lt;---&gt;</option>
+                                <option *ngFor="let sp of specialPrinter" value="{{sp}}">{{sp}}</option>
+          
+          
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="row">
+                       
+                        <div class="col-md-6" *ngIf="enableSpecialPrinterClass">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Special Printer Class </label>
+                            <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" tabindex="1" name="specialPrinterClass"
+                                [(ngModel)]="notificationTemplate.specialPrinterClass">
+                                <option value="">&lt;---&gt;</option>
+                                <option *ngFor="let spc of specialPrinterClass" value="{{spc}}">{{spc}}</option>
+          
+          
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="enablePrinterPrompt">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Print Prompt Message </label>
+                            <div class="col-md-8">
+                              <input type="text" class="form-control" [(ngModel)]="notificationTemplate.printPromptMsg"
+                                [ngClass]="" name="printPromptMsg">
+          
+                            </div>
+                          </div>
+                        </div>
+                      </div>         
+          
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-default">
+              <div class="panel-heading" role="tab" id="headingBasic">
+                <div class="float-left form-icon text-center mr-3">
+                  <span class="flaticon-paper  primary-color"></span>
+                </div>
+                <h4 class="panel-title font-weight-bold secondary-color pt-2">Control Information </h4>
+              </div>
+              <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel"
+                aria-labelledby="headingBenInfo">
+                <div class="panel-body">
+                  <div class="col-md-10 offset-md-1">
+                    <div class="form-body">
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label for="additionalAmtCov" class="control-label col-md-4">Effective Date &nbsp;
+          
+                            </label>
+          
+                            <div class="col-md-8">
+                              <input name="effectiveDate" [ngModel]="notificationTemplate.effectiveDate|date :'yyyy-MM-dd'"
+                                type="date" id="effectiveDate" (ngModelChange)="notificationTemplate.effectiveDate = $event"
+                                class="form-control" placeholder="">
+                            </div>
+                          </div>
+                        </div>
+          
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="control-label col-md-4">Status</label>
+                            <div class="col-md-8">
+                              <select class="col-md-8" class="form-control" tabindex="1" name=""
+                                [(ngModel)]="notificationTemplate.status">
+                                <option value="">&lt;---&gt;</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                                <option value="Cancelled">Cancelled</option>
+          
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+          
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer text-muted">
+              <div class="row p-3">
+                <div class="col-md-8"></div>
+                <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="Cancel()"
+                    type="submit">Cancel</button>
+                </div>
+                <div class="col-md-2 text-right">
+                  <button class="btn btn-primary btn-block" type="submit" (click)="Save()">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

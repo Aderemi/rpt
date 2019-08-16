@@ -1,0 +1,306 @@
+<!-- <div class="col-md-12">
+    <table id="myTable" class="table table-striped">
+    <thead>
+      <tr>
+          <th>Code</th>        
+          <th>Description</th>       
+          <th>Event Type</th>     
+          <th>Basic</th>     
+          <th>Num of Days</th>  
+              
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mil of productMilestoneRef; let i = index">
+          <td>{{mil.code}}</td>
+          <td>{{mil.description}}</td>
+          <td>{{mil.eventType}}</td>        
+          <td>{{mil.basic}}</td>
+          <td>{{mil.numOfDays}}</td>
+      </tr>
+    </tbody>
+    </table> .........-->
+    <!-- <button (click) = "milestoneOperation($event)"  class="btn btn-info  usl-btn-color">Add</button> -->
+    <!-- <button (click) = "milestoneOperation($event)"  class="btn btn-info  usl-btn-color">Modify</button> -->
+    <!-- <button (click) = "milestoneOperation($event)"  class="btn btn-info  usl-btn-color">Cancel</button> -->
+    <!-- <button (click) = "milestoneOperation($event)"  class="btn btn-info  usl-btn-color">View</button> -->
+    <!-- .....<button (click) = "milestoneOperation($event)"  class="btn btn-info usl-btn-color">Close</button>
+    
+    </div>
+     -->
+    
+
+
+
+    <div class="container-fluid mt-1">
+        <div class="row py-3 px-4">
+          <div class="col-md-12">
+            <h1>Outward Bank Payment</h1>
+          </div>
+        </div>
+        <div class="row py-2 px-4">
+          <div class="col-md-12">
+            <div class="card box-shad">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-3" style="border-right: 1px solid rgb(216, 216, 216);">
+                    <div class="row p-4">
+                      <h2>Tasks</h2>
+                    </div>
+                    <ul class="list-group list-group-flush list-group-tradex" style="margin-right: -15px;
+                                    margin-left: -15px;">
+                      <li class="list-group-item">
+                        <a routerLink="/product/outward-bank-payment/dashboard/basic-information"
+                          routerLinkActive="active">Basic Information</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a routerLink="/product/outward-bank-payment/dashboard/charges"
+                         routerLinkActive="active">Charges</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a routerLink="/product/outward-bank-payment/dashboard/currency"
+                          routerLinkActive="active">Currency</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a routerLink="/outward-bank-payment/dashboard/configuration"
+                          routerLinkActive="active">Configuration</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a routerLink="/product/outward-bank-payment/dashboard/milestones"
+                          routerLinkActive="active">Milestones</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a routerLink="/product/outward-bank-payment/dashboard/control-account"
+                          routerLinkActive="active">Control Account</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a routerLink="/product/outward-bank-payment/dashboard/business-process"
+                          routerLinkActive="active">Business Process</a>
+                      </li>
+                    </ul>
+                  </div>
+      
+                  <div class="col-md-9 mt-5" *ngIf="relatedTaskMilestone">
+                    <div class="row p-3 pl-2">
+                      <div class="col-md-6">
+                        <h5 class="text-bold">Milestone</h5>
+                        <p>set the appropriate information for the message</p>
+                      </div>
+      
+                      <div class="col-md-3 offset-md-3 pr-0">
+                        <button class="btn btn-block btn-primary " (click)="Add()">&oplus; new milestone</button>
+                      </div>
+                    </div>
+      
+                    <div class="row p-2 pl-2 mt-5">
+                      <div class="col-md-12">      
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="xc">
+                              <div class="panel-body">
+                                <table class="table alt-table table-borderless">
+                                  <thead>
+                                    <th>Code</th>        
+                                    <th>Description</th>       
+                                    <th>Event Type</th>     
+                                    <th>Basic</th>     
+                                    <th>Num of Days</th>  
+                                    <th></th>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>wwwwww</td>
+                                      <td>wwwwww</td>
+                                      <td>wwwwww</td>
+                                      <td>wwwwww</td>
+                                      <td>wwwwww</td>
+                                      <td>
+                                        <button class="btn btn-danger round-table-button">&mdash;</button>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>wwwwww</td>
+                                      <td>wwwwww</td>
+                                      <td>wwwwww</td>
+                                      <td>wwwwww</td>
+                                      <td>wwwwww</td>
+                                      <td>
+                                        <button class="btn btn-danger round-table-button">&mdash;</button>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    
+    
+    
+    <div class="col-md-10" *ngIf="!relatedTaskMilestone">
+        <div class="row white-box">
+         <div class="col-md-12" >
+            
+                 <!-- <app-attach-milestone [product]="product" #attachMilestone></app-attach-milestone> -->
+     </div>
+     </div>
+     <div class="row">        
+             <button (click) = "attachMilestone.saveAssignedMilestonetoDB()"  class="btn btn-info  usl-btn-color">Assign</button>       
+             <button (click) = "operationClose()"  class="btn btn-info usl-btn-color">Close</button>
+            </div>
+     </div>
+    
+     
+    <!-- Related Task Menu bar only displayed when relatedTaskSave == 1 -->
+    
+    <!-- <div class="col-md-2 white-box">  
+       
+                
+      
+        <app-related-task-bar></app-related-task-bar>
+
+
+</div> -->
+    
+      <!-- Related Task Menu Ends -->
+      <ng-template #modifyMilestone let-c="close" let-d="dismiss">
+
+
+        <div class="white-box">
+                      <div class="col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading"> Configure Milestone</div>
+                            <div class="panel-wrapper in" aria-expanded="true">
+                                <div class="panel-body">
+                              
+                                    <form class="form-horizontal">
+                                        <div class="form-body">
+                
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Product Category</label>
+                                                        <div class="col-md-7">
+                                                      
+                                                            <input type="text" name="code" [disabled]="true" class="form-control" [(ngModel)]="selCha?.serviceRef.prodCatCd">
+                                                            <!-- <span class="help-block" >{{error.code}}</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Service</label>
+                                                        <div class="col-md-7">
+                                                            <input type="text" class="form-control" [disabled]="true" name="code" [(ngModel)]="selCha.serviceRef.code">
+                                                            <!-- <span class="help-block" >{{error.swiftBic}}</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                
+                                            <!-- row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Surfix</label>
+                                                        <div class="col-md-7">
+                                                            <input type="text" class="form-control" name="surfix" [(ngModel)]="prev.surfix">
+                                                            <!-- <span class="help-block" >{{error.name}}</span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Sequence</label>
+                                                        <div class="col-md-7">
+                                                            <input type="text" class="form-control" name="sequence" [(ngModel)]="prev.seqnce">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                
+                
+                                            </div>
+                
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Delimeter</label>
+                                                        <div class="col-md-7"> 
+                                                            <!-- <span class="help-block" >{{error.country}}</span> -->
+                                                            <input type="text" class="form-control" name="delim" [(ngModel)]="prev.delim">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-5">Increment</label>
+                                                        <div class="col-md-7">
+                                                            <input type="text" class="form-control" name="incrment" [(ngModel)]="prev.incrment">
+                                                           
+                                                        </div>
+                
+                                                    </div>
+                                                </div>
+                                         
+                                            </div>
+                                            <div class="row">
+                                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="currency" class="control-label col-md-5">Business Process</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="workflowProcessSetup" [(ngModel)]="descr">
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                            </div>
+                
+                                         
+                
+                                            <hr class="m-t-0 m-b-20">
+                                          
+                
+                                            <div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-9">
+                                                                <button type="submit" class="btn btn-info usl-btn-color" (click)="onSave()">
+                                                                    <li class="fa fa-check"></li>Save</button>
+                                                                <button type="button" class="btn btn-info usl-btn-color" (click)="d('Cross click')">
+                                                                    <li class="fa fa-cancel" ></li>Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6"> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               
+        </div>
+        
+            </ng-template>

@@ -1,0 +1,17 @@
+tr, td{
+    padding: 0.2rem 0.4rem;
+   
+}
+
+thead th{
+    padding: 0.4rem !important;
+    height: 0px !important;
+}
+
+td{
+    cursor: pointer;
+}
+
+.row{
+    padding: 5px 0px;
+}

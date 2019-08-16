@@ -1,0 +1,272 @@
+
+<div class="container-fluid mt-1" *ngIf="toview === 0">
+  <div class="row p-3 pl-4">
+    <div class="col-md-6">
+      <h1 class="text-bold">Report Sheets</h1>
+    </div>
+
+    <div class="col-md-2 offset-md-4 pr-0">
+      <button class="btn btn-block btn-primary " (click)="Add()">
+        <i class="flaticon-add mr-3"></i> New</button>
+    </div>
+  </div>
+
+  <div class="row p-2 pl-4 mt-5">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel">
+            <div class="panel-body">           
+              <table id="example1" class="  table table-borderless" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>title</th>
+                        <th>description</th>
+                        <th>template</th>
+                        <th>templateType</th>
+                        <th>defaultExportType</th>
+                        <th>Actions</th>
+                        <th></th>
+            
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of reports">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.title}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.template}}</td>
+                        <td>{{item.templateType}}</td>
+                        <td>{{item.defaultExportType}}</td>
+                        <td><a (click)="updateReport(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
+                        <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
+                    </tr>
+                    
+          
+                </tbody>
+                
+            </table>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="modal fade" id="milestone-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12 p-0">
+
+          <div class="card-body form-card">
+            <div class="panel-heading" role="tab" id="headingBasic">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                    Download Details
+                  </h4>
+                  <p class="subtitle mb-0">Please fill in the appropriate data for this rule definition </p>
+                </div>
+
+                <div class="col-md-3">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body p-0">
+        <div class="container p-2">
+          <div class="col-md-10  m-auto">
+           <div class="form-body">
+             <div class="row">
+               <label for="">Download Type</label>             
+             <select name="" id="" class="form-control">
+               <option value="">&lt;-------&gt;</option>
+               <option value="">pdf</option>
+               <option value="">csv</option>
+               <option value="">txt</option>
+               <option value="">doc</option>
+             </select>
+            </div>
+
+
+            <div class="row">
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customControlValidation1" (change)="handleSelected($event)">
+                    <label class="custom-control-label" for="customControlValidation1">Send To Emails</label>
+                  </div>
+            </div>
+
+           
+            <div class="row" *ngIf="view === 1">
+              <label for="email-category">Emails</label>
+              <select (change)="onChange($event)"  class="form-control">
+                  <option value="">&lt;-------&gt;</option>
+                  <option *ngFor="let v of values" [value]="v.id">{{v.name}}</option>
+              </select>
+            </div>
+
+            <div class="row"  *ngIf="views === 1">
+                <input type="text" value="" name="emails" id="emails">
+            </div>
+
+           </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="processForm()" data-dismiss="modal">Apply</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container-fluid mt-1" *ngIf="toview === 1">
+    <div class="row p-3 pl-4">
+      <div class="col-md-12">
+        <h1 class="text-bold">Report Sheets Form</h1>
+      </div>
+    </div>
+  
+    <div class="col-md">
+      <div class="card panel">
+        <div class="card-body form-card">
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                    Report Sheets Details
+                  </h4>
+                  <p class="subtitle mb-0  ">Please fill in the appropriate data </p>
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingBasic">
+                  <div class="panel-body">
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="form-body">
+  
+                      
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Title</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input class="form-control" type="text" [(ngModel)]="rep.title">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Description</label>
+                            </div>
+                            <div class="col-md-8">
+                               <input class="form-control" type="text" [(ngModel)]="rep.description">
+                            </div>
+                          </div>
+                        </div>                    
+                         
+                        </div>
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="table" >Group ID</label>
+                            </div>
+                            <div class="col-md-8">
+                               <select name="name" id="" class="form-control" [(ngModel)]="reportgroups.name" (change)="Change($event)">
+                                 <option value="">&gt;----------- &gt;</option>
+                                 <option value="item" *ngFor="let item of reportgroups.data">{{item.name}}</option>
+                               </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row form-group">
+                              <div class="col-md-4">
+                                  <label for="table" >Template ID</label>
+                              </div>
+                              <div class="col-md-8">
+                                 <select name="" id="" class="form-control">
+                                   <option value=""></option>
+                                 </select>
+                              </div>
+                            </div>
+                          </div>               
+                         
+                        </div>
+                      <div class="row">
+
+                          <div class="col-md-6">
+                              <div class="row form-group">
+                                <div class="col-md-4">
+                                    <label for="table" >Report Query ID</label>
+                                </div>
+                                <div class="col-md-8">
+                                   <select name="" id="" class="form-control">
+                                     <option value=""></option>
+                                   </select>
+                                </div>
+                              </div>
+                            </div>
+
+                                     
+                         
+                        </div>
+                     
+                      
+  
+  
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+              <div class="card-footer text-muted">
+                <div class="row p-3">
+                  <div class="col-md-8"></div>
+                  <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="Cancel()"
+                      type="submit">Cancel</button>
+                  </div>
+                  <div class="col-md-2 text-right">
+                    <button class="btn btn-primary btn-block" type="submit" (click)="processForm()">Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>

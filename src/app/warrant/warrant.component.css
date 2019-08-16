@@ -1,0 +1,6 @@
+#fixed-side-container{
+    width: 19%;
+    max-height: calc(100vh - 9rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+   }

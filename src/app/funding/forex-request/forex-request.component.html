@@ -1,0 +1,1377 @@
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="panel-group" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingBenInfo">
+          <h4 class="panel-title">
+            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBenInfo"
+              aria-expanded="false" aria-controls="collapseBenInfo" style="color :#2b2b2b; font-weight: bold;">Basic
+              Information -- {{startQueue}}</a>
+          </h4>
+        </div>
+
+        <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+          <div class="panel-body">
+
+
+            <div class="form-body">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Reference Number
+
+                    </label>
+                    <div class="col-md-6">
+                      <input name="reference" [disabled]="true" [(ngModel)]="fxRequest.referenceNum" type="text" id="reference"
+                        class="form-control" placeholder="">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Customer
+
+                    </label>
+                    <div class="col-md-6">
+                      <input type="text" [disabled]="true" class="form-control" [(ngModel)]="fxRequest.customer" name="customer">
+
+                    </div>
+
+
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-6">Product
+
+
+                    </label>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" [disabled]="true" [(ngModel)]="fxRequest.prod" [ngClass]=""
+                        name="prod">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="control-label col-md-6">Product Sub-Category</label>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" [disabled]="true" [(ngModel)]="fxRequest.productSubCat"
+                        name="productSubCat">
+
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Warrant Reference
+                      <span class="fa fa-search" (click)="open('Warrant Reference')"></span>
+
+                    </label>
+                    <div class="col-md-6">
+                      <input name="" [(ngModel)]="fxRequest.warrantRef.refNum" type="text" id="" class="form-control"
+                        placeholder="">
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Trade Instrument Amount &nbsp;
+                    </label>
+
+                    <div class="col-md-2">
+                      <input name="tradeInstrumentCurr" [disabled]="true" [(ngModel)]="fxRequest.tradeInstrumentCurr"
+                        type="text" id="" class="form-control" placeholder="">
+
+
+                    </div>
+                    <div class="col-md-4">
+                      <input name="tradeInstrumentAmt" [disabled]="true" style="text-align: right;" [(ngModel)]="fxRequest.tradeInstrumentAmt"
+                        type="text" id="" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Exchange Rate Type </label>
+                    <div class="col-md-6">
+                      <select class="form-control" (change)="enableCustomerRate()" [(ngModel)]="fxRequest.exchTypeRate"
+                        name="preAdviceReq">
+                        <option value="undefined">&lt;---&gt;</option>
+                        <option value="Customer_rate">Customer Rate</option>
+                        <option value="Bank_Rate">Bank Rate</option>
+
+                      </select>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Request Amount &nbsp;
+                    </label>
+
+                    <div class="col-md-2">
+                      <select class="col-md-2" class="form-control" [(ngModel)]="fxRequest.requestAmountCurr"
+                        data-placeholder="Choose a Category" tabindex="1" name="lCAmntCurr" [compareWith]="equals">
+                        <option value="undefined">&lt;---&gt;</option>
+                        <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+
+                      </select>
+
+                    </div>
+                    <div class="col-md-4">
+                      <input name="requestAmount" [(ngModel)]="fxRequest.requestAmount" style="text-align: right;" (blur)="transformRequestAmount()"
+                        type="text" id="lCAmntVal" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+              </div>
+
+
+              <div class="row">
+
+                <div class="col-md-6" *ngIf="isCustomerRate">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Exchange Rate &nbsp;
+                    </label>
+
+                    <div class="col-md-2">
+                      <select class="col-md-2" class="form-control" [(ngModel)]="fxRequest.exchRateCurr" (change)="getExchRateCurr(fxRequest.exchRateCurr)"
+                        data-placeholder="Choose a Category" tabindex="1" name="exchRateCurr" [compareWith]="equals">
+                        <option value="undefined">&lt;---&gt;</option>
+                        <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+
+                      </select>
+
+                    </div>
+                    <div class="col-md-4">
+                      <input name="exchRateAmt" [(ngModel)]="fxRequest.exchRateAmt" style="text-align: right;" (blur)="transformExchRate()"
+                        type="text" id="lCAmntVal" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6" *ngIf="isCustomerRate">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Tentative Local Currency Equiv.</label>
+                    <div class="col-md-2">
+                      <input name="tentLocalCurrEqui" [disabled]="true" [(ngModel)]="fxRequest.tentLocalCurrEqui" style="text-align: right;"
+                        (blur)="transformTentativeLocalCurrency()" type="text" id="lCAmntVal" class="form-control"
+                        placeholder="">
+
+                    </div>
+                    <div class="col-md-4">
+                      <input name="tentLocalCurrEquiAmt" [disabled]="true" [(ngModel)]="fxRequest.tentLocalCurrEquiAmt"
+                        style="text-align: right;" (blur)="transformTentativeLocalCurrency()" type="text" id="lCAmntVal"
+                        class="form-control" placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Request Date
+                    </label>
+                    <div class="col-md-6">
+                      <input name="requestDate" [ngModel]="fxRequest.requestDate|date :'yyyy-MM-dd'" type="date" id="collationDate"
+                        (ngModelChange)="fxRequest.requestDate = $event" class="form-control" placeholder="">
+
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Forex Source </label>
+                    <div class="col-md-6">
+                      <select class="form-control" [(ngModel)]="fxRequest.forexSource" [compareWith]="equals">
+                        <option [ngValue]="undefined">&lt;---&gt;</option>
+                        <option *ngFor="let fxSources of forexSource" [ngValue]="fxSources">{{fxSources.description}}</option>
+
+
+                      </select>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Funding </label>
+                    <div class="col-md-6">
+                      <select class="form-control" [(ngModel)]="fxRequest.funding" name="funding">
+                        <option value="undefined">&lt;---&gt;</option>
+                        <option value="upfront">Upfront</option>
+                        <option value="arrears">Arrears</option>
+
+                      </select>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="customer" class="control-label col-md-6">Funding Account Number &nbsp;
+                      &nbsp; <span class="fa fa-search" (click)="open('Accounts')"></span>
+                    </label>
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" [(ngModel)]="fxRequest.fundingAcctNum.accountNumber">
+                    </div>
+                    <div class="col-md-3">
+
+                      <input type="text" class="form-control" [(ngModel)]="fxRequest.fundingAcctNum.accountName"
+                        [ngClass]="" name="">
+
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="additionalAmtCov" class="control-label col-md-6">Remarks
+                    </label>
+
+                    <div class="col-md-6">
+                      <textarea name="additionalAmtCov" maxlength="" rows="4" [(ngModel)]="fxRequest.additionalAmtCov"
+                        type="text" id="warntRef" class="form-control" placeholder=""></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="code" class="control-label col-md-6">Event</label>
+                    <div class="col-md-6">
+                      <select class="form-control" data-placeholder="Choose a Event" tabindex="1" name="busProEventId"
+                        [(ngModel)]="fxRequest.busProEventId" (change)="getCalculatedCharges()">
+                        <option value="">&lt;---&gt;</option>
+                        <option *ngFor="let event of Events" value={{event.id}} selected="fxRequest.busProEventId==event.id? true : null">
+                          {{event.description}}
+                        </option>
+
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default" id="currencyReporting">
+        <div class="panel-heading" role="tab" id="headingCurrReporting">
+          <h4 class="panel-title">
+            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCurrReporting"
+              aria-expanded="false" aria-controls="collapseCurrReporting" style="color :#2b2b2b;font-weight: bold;">Currency
+              Reporting</a>
+          </h4>
+        </div>
+        <div id="collapseCurrReporting" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingCurrReporting">
+          <div class="panel-body">
+
+
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="instructionCode" class="control-label col-md-6">Base Foreign Ccy equiv /rate</label>
+                    <div class="col-md-3">
+                      <select class="col-md-9" class="form-control" data-placeholder="Choose a Category" tabindex="1"
+                        name="baseForCurrEqui" [(ngModel)]="fxRequest.baseForCurrEqui" [compareWith]="equals">
+                        <option [ngValue]="undefined">&lt;---&gt;</option>
+                        <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+
+
+                      </select>
+
+
+
+                    </div>
+                    <div class="col-md-3">
+                      <input name="baseForCurrEquiVal" style="text-align: right;" (blur)="transformBaseCurrAmount()"
+                        [(ngModel)]="fxRequest.baseForCurrEquiVal" type="text" id="" class="form-control" placeholder="">
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <input type="text" id="baseForeignCurrEquiRate" class="form-control" placeholder="" name="exchRate">
+                    </div>
+                    <div class="col-md-6">
+                      <button class="btn btn-info  usl-btn-color">Exchange Rate</button>
+                    </div>
+
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="localCurrEqui" class="control-label col-md-6">Local Ccy equiv /rate</label>
+                    <div class="col-md-3">
+                      <select class="col-md-9" name="localCurrEqui" class="form-control" data-placeholder="Choose a Category"
+                        tabindex="1" [(ngModel)]="fxRequest.localCurrEqui" [compareWith]="equals">
+                        <option [ngValue]="undefined">&lt;---&gt;</option>
+                        <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+
+
+
+                      </select>
+
+                    </div>
+                    <div class="col-md-3">
+                      <input name="localCurrEquiVal" style="text-align: right" (blur)="transformLocalCurrAmount()"
+                        [(ngModel)]="fxRequest.localCurrEquiVal" type="text" id="localCurrEquiVal" class="form-control"
+                        placeholder="">
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <input name="localCurrEquiRate" type="text" id="localCurrEquiRate" class="form-control"
+                        placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                      <button class="btn btn-info  usl-btn-color">Exchange Rate</button>
+                    </div>
+
+                  </div>
+                </div>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="panel panel-default" id="partyInfo">
+        <div class="panel-heading" role="tab" id="headingParty">
+          <h4 class="panel-title">
+            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseParty"
+              aria-expanded="false" aria-controls="collapseParty" style="color :#2b2b2b;font-weight: bold;">Additional
+              Parties</a>
+          </h4>
+        </div>
+        <div id="collapseParty" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingParty">
+          <div class="panel-body">
+
+            <!-- <app-party-categories></app-party-categories> -->
+
+          <!-- </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="panel panel-default" id="documentsInfo">
+        <div class="panel-heading" role="tab" id="headingDocuments">
+          <h4 class="panel-title">
+            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDocuments"
+              aria-expanded="false" aria-controls="collapseDocuments" style="color :#2b2b2b;font-weight: bold;">Documents</a>
+          </h4>
+        </div>
+        <div id="collapseDocuments" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingDocuments">
+          <div class="panel-body">
+
+
+            <!-- <app-documents></app-documents> -->
+
+<!-- 
+          </div>
+        </div>
+
+
+      </div>
+
+     
+      <div class="panel panel-default" id="fxDeals">
+        <div class="panel-heading" role="tab" id="headingFxDeals">
+          <h4 class="panel-title">
+            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFxDeals"
+              aria-expanded="false" aria-controls="collapseFxDeals" style="color :#2b2b2b;font-weight: bold;">Foreign
+              Exchange Deals</a>
+          </h4>
+        </div>
+        <div id="collapseFxDeals" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingFxDeals">
+          <div class="panel-body">
+            <!-- <app-foreign-exchange-deals></app-foreign-exchange-deals> -->
+
+<!-- 
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="panel panel-default" id="charges">
+        <div class="panel-heading" role="tab" id="headingCharges">
+          <h4 class="panel-title">
+            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCharges"
+              aria-expanded="false" aria-controls="collapseCharges" style="color :#2b2b2b;font-weight: bold;">Charges</a>
+          </h4>
+        </div>
+        <div id="collapseCharges" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingCharges">
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table id="myTable" class="table table-striped">
+              <thead>
+              <tr>
+               
+              <th>Charge Type</th>
+              <th>Charge Currency</th>
+              <th>Charge Amount</th>
+              <th>Pay Amount</th>
+              <th>Tax Amount</th>
+              <th></th>
+              </tr>
+              </thead>
+              <tbody >
+              <tr *ngFor = "let charge of CalculatedCharges">
+               
+              <td>{{charge.chargeType}}</td>
+              <td>{{charge.chargeCurrency}}</td>
+              <td>{{charge.chargeAmount}}</td>
+              <td>{{charge.payAmount}}</td>
+              <td>{{charge.taxAmount}}</td>
+              <td> <input class="pull-right fcbtn btn btn-success btn-outline btn-1f" type="button" value="Update" (click)="UpdateCharge(charge.id)"/></td>
+              </tr>
+               
+               
+              </tbody>
+              </table>
+              </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="panel panel-default" id="checklists">
+        <div class="panel-heading" role="tab" id="headingChecklist">
+          <h4 class="panel-title">
+            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseChecklist"
+              aria-expanded="false" aria-controls="collapseChecklist" style="color :#2b2b2b;font-weight: bold;">Checklists</a>
+          </h4>
+        </div>
+        <div id="collapseChecklist" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingChecklist">
+          <div class="panel-body">
+
+
+            <!-- <app-checklists></app-checklists> -->
+<!-- 
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="panel panel-default" id="controlInfo">
+        <div class="panel-heading" role="tab" id="headingControl">
+          <h4 class="panel-title">
+            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseControl"
+              aria-expanded="false" aria-controls="collapseControl" style="color :#2b2b2b;font-weight: bold;">Control
+              Information</a>
+          </h4>
+        </div>
+        <div id="collapseControl" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingControl">
+          <div class="panel-body">
+
+
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="servicingBranch" class="control-label col-md-6">Servicing Branch</label>
+
+                    <div class="col-md-6">
+                      <input name="servicingBranch" [disabled]="true" [(ngModel)]="fxRequest.servicingBranch" type="text"
+                        id="servicingBranch" class="form-control" placeholder="">
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="homeBranch" class="control-label col-md-6">Home Branch</label>
+
+                    <div class="col-md-6">
+                      <input name="homeBranch" [disabled]="true" [(ngModel)]="fxRequest.homeBranch" type="text" id="homeBranch"
+                        class="form-control" placeholder="">
+                    </div>
+
+
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="servicingBranch" class="control-label col-md-6">Relationship Management</label>
+
+                    <div class="col-md-6">
+                      <input name="relatioinshipMgt" [disabled]="true" [(ngModel)]="fxRequest.relatioinshipMgt" type="text"
+                        id="relationshipManagement" class="form-control" placeholder="">
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="effectiveDate" class="control-label col-md-6">Effective Date</label>
+
+                    <div class="col-md-6">
+                      <input name="effectiveDate" [ngModel]="fxRequest.effectiveDate|date :'yyyy-MM-dd'" type="date" id="effectiveDate"
+                        (ngModelChange)="fxRequest.effectiveDate = $event" class="form-control" placeholder="">
+
+                    </div>
+
+
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label for="status" class="control-label col-md-6">Status</label>
+
+                    <div class="col-md-6">
+                      <input name="status" [(ngModel)]="fxRequest.status" [disabled]="true" type="text" id="status"
+                        class="form-control" placeholder="">
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <div class="col-md-6" *ngIf="isInTransit">
+                  <div class="form-group row">
+                    <label for="rejectQueueId" class="control-label col-md-6">Reject Queue</label>
+                    <div class="col-md-6">
+
+                      <select class="form-control" data-placeholder="rejectQueueId" tabindex="1" name="rejectQueueId"
+                        [(ngModel)]="fxRequest.rejectQueueId">
+                        <option *ngFor="let step of rejectSteps" value={{step.id}} selected="test.rejectQueueId==step.id? true : null">
+                          {{step.description}}
+                        </option>
+                      </select>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="modal-footer" style="float: left;">
+        <div class="form-actions">
+          <div class="form-actions">
+
+            <div class="row">
+              <div class="form-actions" *ngIf="!isInTransit">
+                <button type="button" class="btn btn-info usl-btn-color" (click)="createForexRequests()">
+                  <li class="fa fa-check-o"></li> Save
+                </button>&nbsp;
+                <button type="button" class="btn btn-info usl-btn-color" (click)="createForexRequests()">
+                  <li class="fa fa-check-o"></li> Submit
+                </button>&nbsp;
+                <button type="button" class="btn btn-info usl-btn-color" (click)="d('Cross click')">Cancel</button>
+              </div>
+              <div class="form-actions" *ngIf="isInTransit">
+                <button type="submit" class="btn btn-info usl-btn-color" (click)="approve(fxRequest)">
+                  <i class="fa fa-check"></i> Ok</button>
+                <button type="button" class="btn btn-info usl-btn-color" (click)="reject(fxRequest)">Reject</button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div> -->
+
+
+
+<div class="container-fluid mt-1">
+    <div class="row p-3 pl-4">
+      <div class="col-md-12">
+        <h1 class="text-bold">FOREX Request Form</h1>
+      </div>
+    </div>
+  
+    <div class="col-md">
+      <div class="card panel">
+        <div class="card-body form-card">
+          <form>
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                      Basic Information -- {{startQueue}}
+                  </h4>
+                  <p class="subtitle mb-0  ">Please fill in the appropriate data </p>
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingBasic">
+                  <div class="panel-body">
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                        <div class="form-body">
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Reference Number
+              
+                                  </label>
+                                  <div class="col-md-6">
+                                    <input name="reference" [disabled]="true" [(ngModel)]="fxRequest.referenceNum" type="text" id="reference"
+                                      class="form-control" placeholder="">
+                                  </div>
+              
+                                </div>
+                              </div>
+              
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Customer
+              
+                                  </label>
+                                  <div class="col-md-6">
+                                    <input type="text" [disabled]="true" class="form-control" [(ngModel)]="fxRequest.customer" name="customer">
+              
+                                  </div>
+              
+              
+                                </div>
+                              </div>
+              
+                            </div>
+              
+              
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="control-label col-md-6">Product
+              
+              
+                                  </label>
+                                  <div class="col-md-6">
+                                    <input type="text" class="form-control" [disabled]="true" [(ngModel)]="fxRequest.prod" [ngClass]=""
+                                      name="prod">
+                                  </div>
+              
+                                </div>
+                              </div>
+              
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="control-label col-md-6">Product Sub-Category</label>
+                                  <div class="col-md-6">
+                                    <input type="text" class="form-control" [disabled]="true" [(ngModel)]="fxRequest.productSubCat"
+                                      name="productSubCat">
+              
+                                  </div>
+              
+              
+                                </div>
+                              </div>
+                            </div>
+              
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row"  style="flex-wrap:nowrap;">
+                                  <label for="code" class="control-label col-md-6">Warrant Reference
+                                    <!-- <span class="fa fa-search" (click)="open('Warrant Reference')"></span> -->
+              
+                                  </label>
+                                  <div class="col-md-6">
+                                    <input name="" [(ngModel)]="fxRequest.warrantRef.refNum" type="text" id="" class="form-control"
+                                      placeholder="">
+              
+                                  </div>
+                                  <div class="col-md-1" style="padding: 0;">
+                                      <img src="../../assets/icons/Group 135.svg"  (click)="open('Warrant Reference')" alt="add">
+  
+                                    </div>
+              
+                                </div>
+                              </div>
+              
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Trade Instrument Amount &nbsp;
+                                  </label>
+              
+                                  <div class="col-md-2">
+                                    <input name="tradeInstrumentCurr" [disabled]="true" [(ngModel)]="fxRequest.tradeInstrumentCurr"
+                                      type="text" id="" class="form-control" placeholder="">
+              
+              
+                                  </div>
+                                  <div class="col-md-4">
+                                    <input name="tradeInstrumentAmt" [disabled]="true" style="text-align: right;" [(ngModel)]="fxRequest.tradeInstrumentAmt"
+                                      type="text" id="" class="form-control" placeholder="">
+                                  </div>
+                                </div>
+                              </div>
+              
+              
+              
+                            </div>
+              
+                            <div class="row">
+              
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Exchange Rate Type </label>
+                                  <div class="col-md-6">
+                                    <select class="form-control" (change)="enableCustomerRate()" [(ngModel)]="fxRequest.exchTypeRate"
+                                      name="preAdviceReq">
+                                      <option value="undefined">&lt;---&gt;</option>
+                                      <option value="Customer_rate">Customer Rate</option>
+                                      <option value="Bank_Rate">Bank Rate</option>
+              
+                                    </select>
+                                  </div>
+              
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Request Amount &nbsp;
+                                  </label>
+              
+                                  <div class="col-md-2">
+                                    <select class="col-md-2" class="form-control" [(ngModel)]="fxRequest.requestAmountCurr"
+                                      data-placeholder="Choose a Category" tabindex="1" name="lCAmntCurr" [compareWith]="equals">
+                                      <option value="undefined">&lt;---&gt;</option>
+                                      <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+              
+                                    </select>
+              
+                                  </div>
+                                  <div class="col-md-4">
+                                    <input name="requestAmount" [(ngModel)]="fxRequest.requestAmount" style="text-align: right;" (blur)="transformRequestAmount()"
+                                      type="text" id="lCAmntVal" class="form-control" placeholder="">
+                                  </div>
+                                </div>
+                              </div>
+              
+              
+              
+              
+                            </div>
+              
+              
+                            <div class="row">
+              
+                              <div class="col-md-6" *ngIf="isCustomerRate">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Exchange Rate &nbsp;
+                                  </label>
+              
+                                  <div class="col-md-2">
+                                    <select class="col-md-2" class="form-control" [(ngModel)]="fxRequest.exchRateCurr" (change)="getExchRateCurr(fxRequest.exchRateCurr)"
+                                      data-placeholder="Choose a Category" tabindex="1" name="exchRateCurr" [compareWith]="equals">
+                                      <option value="undefined">&lt;---&gt;</option>
+                                      <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+              
+                                    </select>
+              
+                                  </div>
+                                  <div class="col-md-4">
+                                    <input name="exchRateAmt" [(ngModel)]="fxRequest.exchRateAmt" style="text-align: right;" (blur)="transformExchRate()"
+                                      type="text" id="lCAmntVal" class="form-control" placeholder="">
+                                  </div>
+                                </div>
+                              </div>
+              
+                              <div class="col-md-6" *ngIf="isCustomerRate">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Tentative Local Currency Equiv.</label>
+                                  <div class="col-md-2">
+                                    <input name="tentLocalCurrEqui" [disabled]="true" [(ngModel)]="fxRequest.tentLocalCurrEqui" style="text-align: right;"
+                                      (blur)="transformTentativeLocalCurrency()" type="text" id="lCAmntVal" class="form-control"
+                                      placeholder="">
+              
+                                  </div>
+                                  <div class="col-md-4">
+                                    <input name="tentLocalCurrEquiAmt" [disabled]="true" [(ngModel)]="fxRequest.tentLocalCurrEquiAmt"
+                                      style="text-align: right;" (blur)="transformTentativeLocalCurrency()" type="text" id="lCAmntVal"
+                                      class="form-control" placeholder="">
+                                  </div>
+                                </div>
+                              </div>
+              
+                            </div>
+              
+                            <div class="row">
+              
+              
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Request Date
+                                  </label>
+                                  <div class="col-md-6">
+                                    <input name="requestDate" [ngModel]="fxRequest.requestDate|date :'yyyy-MM-dd'" type="date" id="collationDate"
+                                      (ngModelChange)="fxRequest.requestDate = $event" class="form-control" placeholder="">
+              
+              
+                                  </div>
+              
+                                </div>
+                              </div>
+              
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Forex Source </label>
+                                  <div class="col-md-6">
+                                    <select class="form-control" [(ngModel)]="fxRequest.forexSource" [compareWith]="equals">
+                                      <option [ngValue]="undefined">&lt;---&gt;</option>
+                                      <option *ngFor="let fxSources of forexSource" [ngValue]="fxSources">{{fxSources.description}}</option>
+              
+              
+                                    </select>
+                                  </div>
+              
+                                </div>
+                              </div>
+                            </div>
+              
+              
+                            <div class="row">
+              
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Funding </label>
+                                  <div class="col-md-6">
+                                    <select class="form-control" [(ngModel)]="fxRequest.funding" name="funding">
+                                      <option value="undefined">&lt;---&gt;</option>
+                                      <option value="upfront">Upfront</option>
+                                      <option value="arrears">Arrears</option>
+              
+                                    </select>
+                                  </div>
+              
+                                </div>
+                              </div>
+              
+                              <div class="col-md-6">
+                                <div class="form-group row" style="flex-wrap:nowrap;">
+                                  <label for="customer" class="control-label col-md-6">Funding Account Number &nbsp;
+                                    <!-- &nbsp; <span class="fa fa-search" (click)="open('Accounts')"></span> -->
+                                  </label>
+                                  <div class="col-md-3">
+                                    <input type="text" class="form-control" [(ngModel)]="fxRequest.fundingAcctNum.accountNumber">
+                                  </div>
+                                  <div class="col-md-3">
+              
+                                    <input type="text" class="form-control" [(ngModel)]="fxRequest.fundingAcctNum.accountName"
+                                      [ngClass]="" name="">          
+                                  </div>
+                                  <div class="col-md-1" style="padding: 0;">
+                                      <img src="../../assets/icons/Group 135.svg"   (click)="open('Accounts')" alt="add">  
+                                    </div>
+                                </div>
+                              </div>
+              
+                            </div>
+              
+              
+              
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="additionalAmtCov" class="control-label col-md-6">Remarks
+                                  </label>
+              
+                                  <div class="col-md-6">
+                                    <textarea name="additionalAmtCov" maxlength="" rows="4" [(ngModel)]="fxRequest.additionalAmtCov"
+                                      type="text" id="warntRef" class="form-control" placeholder=""></textarea>
+                                  </div>
+                                </div>
+                              </div>
+              
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="code" class="control-label col-md-6">Event</label>
+                                  <div class="col-md-6">
+                                    <select class="form-control" data-placeholder="Choose a Event" tabindex="1" name="busProEventId"
+                                      [(ngModel)]="fxRequest.busProEventId" (change)="getCalculatedCharges()">
+                                      <option value="">&lt;---&gt;</option>
+                                      <option *ngFor="let event of Events" value={{event.id}} selected="fxRequest.busProEventId==event.id? true : null">
+                                        {{event.description}}
+                                      </option>
+              
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+              
+              
+                            </div>
+              
+              
+              
+              
+                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="currencyReporting">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color pt-2">Currency Reporting</h4>
+                </div>
+                <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingCurrReporting">
+                  <div class="panel-body">
+                    <div class="col-md-10 offset-md-1">                           
+
+                        <div class="form-body">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="instructionCode" class="control-label col-md-6">Base Foreign Ccy equiv /rate</label>
+                                  <div class="col-md-3">
+                                    <select class="col-md-9" class="form-control" data-placeholder="Choose a Category" tabindex="1"
+                                      name="baseForCurrEqui" [(ngModel)]="fxRequest.baseForCurrEqui" [compareWith]="equals">
+                                      <option [ngValue]="undefined">&lt;---&gt;</option>
+                                      <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+              
+              
+                                    </select>
+              
+              
+              
+                                  </div>
+                                  <div class="col-md-3">
+                                    <input name="baseForCurrEquiVal" style="text-align: right;" (blur)="transformBaseCurrAmount()"
+                                      [(ngModel)]="fxRequest.baseForCurrEquiVal" type="text" id="" class="form-control" placeholder="">
+                                  </div>
+              
+              
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <div class="col-md-6">
+                                    <input type="text" id="baseForeignCurrEquiRate" class="form-control" placeholder="" name="exchRate">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <button class="btn btn-primary  exchangeBtn">Exchange Rate</button>
+                                  </div>
+              
+                                </div>
+                              </div>
+              
+              
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="localCurrEqui" class="control-label col-md-6">Local Ccy equiv /rate</label>
+                                  <div class="col-md-3">
+                                    <select class="col-md-9" name="localCurrEqui" class="form-control" data-placeholder="Choose a Category"
+                                      tabindex="1" [(ngModel)]="fxRequest.localCurrEqui" [compareWith]="equals">
+                                      <option [ngValue]="undefined">&lt;---&gt;</option>
+                                      <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
+              
+              
+              
+                                    </select>
+              
+                                  </div>
+                                  <div class="col-md-3">
+                                    <input name="localCurrEquiVal" style="text-align: right" (blur)="transformLocalCurrAmount()"
+                                      [(ngModel)]="fxRequest.localCurrEquiVal" type="text" id="localCurrEquiVal" class="form-control"
+                                      placeholder="">
+                                  </div>
+              
+              
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <div class="col-md-6">
+                                    <input name="localCurrEquiRate" type="text" id="localCurrEquiRate" class="form-control"
+                                      placeholder="">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <button class="btn btn-primary  exchangeBtn">Exchange Rate</button>
+                                  </div>
+              
+                                </div>
+                              </div>
+              
+              
+                            </div>
+              
+                          </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingParty">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color pt-2">Additional Parties </h4>
+                </div>
+                <div id="collapseParty" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingParty">
+                  <div class="panel-body">
+                    <div class="col-md-10 offset-md-1">
+                            
+            <!-- <app-party-categories></app-party-categories> -->
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingDocuments">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color pt-2">Documents </h4>
+                </div>
+                <div id="collapseDocuments" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingDocuments">
+                  <div class="panel-body">
+                    <div class="col-md-10 offset-md-1">
+                                  <!-- <app-documents></app-documents> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingFxDeals">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color pt-2">Foreign Exchange Deals</h4>
+                </div>
+                <div id="collapseFxDeals" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingFxDeals">
+                  <div class="panel-body">
+                    <div class="col-md-10 offset-md-1">
+                            
+            <!-- <app-foreign-exchange-deals></app-foreign-exchange-deals> -->
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingCharges">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color pt-2">Charges </h4>
+                </div>
+                <div id="collapseCharges" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingCharges">
+                  <div class="panel-body">
+                    <div class="col-md-10 offset-md-1">
+                      <div class="row">
+                          <table class="table alt-table table-borderless">
+                              <thead>
+                                <th>Charge Type</th>
+                                <th>Charge Currency</th>
+                                <th>Charge Amount</th>
+                                <th>Pay Amount</th>
+                                <th>Tax Amount</th>
+                                <th></th>
+                              </thead>
+                              <tbody>
+                                <tr>                        
+                                  <td>wwwwww</td>
+                                  <td>wwwwww</td>
+                                  <td>wwwwww</td>
+                                  <td>wwwwww</td>
+                                  <td>wwwwww</td>
+                                  <td>
+                                    <button class="btn btn-danger round-table-button">&mdash;</button>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>wwwwww</td>
+                                  <td>wwwwww</td>
+                                  <td>wwwwww</td>
+                                  <td>wwwwww</td>
+                                  <td>wwwwww</td>
+                                  <td>
+                                    <button class="btn btn-danger round-table-button" >&mdash;</button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                      </div>
+                            
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingChecklist">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color pt-2">Checklists</h4>
+                </div>
+                <div id="collapseChecklist" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingChecklist">
+                  <div class="panel-body">
+                    <div class="col-md-10 offset-md-1">
+                            
+            <!-- <app-checklists></app-checklists> -->
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color pt-2">Control Information </h4>
+                </div>
+                <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel"
+                  aria-labelledby="headingBenInfo">
+                  <div class="panel-body">
+                    <div class="col-md-10 offset-md-1">                           
+
+                        <div class="form-body">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="servicingBranch" class="control-label col-md-6">Servicing Branch</label>
+              
+                                  <div class="col-md-6">
+                                    <input name="servicingBranch" [disabled]="true" [(ngModel)]="fxRequest.servicingBranch" type="text"
+                                      id="servicingBranch" class="form-control" placeholder="">
+                                  </div>
+              
+              
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="homeBranch" class="control-label col-md-6">Home Branch</label>
+              
+                                  <div class="col-md-6">
+                                    <input name="homeBranch" [disabled]="true" [(ngModel)]="fxRequest.homeBranch" type="text" id="homeBranch"
+                                      class="form-control" placeholder="">
+                                  </div>
+              
+              
+                                </div>
+                              </div>
+              
+              
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="servicingBranch" class="control-label col-md-6">Relationship Management</label>
+              
+                                  <div class="col-md-6">
+                                    <input name="relatioinshipMgt" [disabled]="true" [(ngModel)]="fxRequest.relatioinshipMgt" type="text"
+                                      id="relationshipManagement" class="form-control" placeholder="">
+                                  </div>
+              
+              
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="effectiveDate" class="control-label col-md-6">Effective Date</label>
+              
+                                  <div class="col-md-6">
+                                    <input name="effectiveDate" [ngModel]="fxRequest.effectiveDate|date :'yyyy-MM-dd'" type="date" id="effectiveDate"
+                                      (ngModelChange)="fxRequest.effectiveDate = $event" class="form-control" placeholder="">
+              
+                                  </div>
+              
+              
+                                </div>
+                              </div>
+              
+              
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label for="status" class="control-label col-md-6">Status</label>
+              
+                                  <div class="col-md-6">
+                                    <input name="status" [(ngModel)]="fxRequest.status" [disabled]="true" type="text" id="status"
+                                      class="form-control" placeholder="">
+                                  </div>
+              
+              
+                                </div>
+                              </div>
+              
+                              <div class="col-md-6" *ngIf="isInTransit">
+                                <div class="form-group row">
+                                  <label for="rejectQueueId" class="control-label col-md-6">Reject Queue</label>
+                                  <div class="col-md-6">
+              
+                                    <select class="form-control" data-placeholder="rejectQueueId" tabindex="1" name="rejectQueueId"
+                                      [(ngModel)]="fxRequest.rejectQueueId">
+                                      <option *ngFor="let step of rejectSteps" value={{step.id}} selected="test.rejectQueueId==step.id? true : null">
+                                        {{step.description}}
+                                      </option>
+                                    </select>
+              
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+              
+                          </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="card-footer text-muted">
+                <div class="row p-3">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-2 text-right" *ngIf="showForm==1">
+                      <button class="btn btn-outline-primary btn-block" (click)="d('Cross click')">Cancel</button>
+                  </div>
+                  <div class="col-md-2 text-right"  *ngIf="!isInTransit">
+                    <button class="btn btn-primary btn-block"   (click)="createForexRequests()">save</button>
+                  </div>
+                  <div class="col-md-2 text-right"  *ngIf="modifyTemp==2">
+                    <button class="btn btn-primary btn-block" (click)="createForexRequests()">submit</button>
+                  </div>
+                  <div class="col-md-2 text-right" *ngIf="isInTransit">
+                    <button class="btn btn-primary btn-block" type="submit"  (click)="approve(fxRequest)">OK</button>
+                  </div>
+                  <div class="col-md-2 text-right"  *ngIf="modifyTemp==2">
+                    <button class="btn btn-primary btn-block" (click)="reject(fxRequest)">Reject</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

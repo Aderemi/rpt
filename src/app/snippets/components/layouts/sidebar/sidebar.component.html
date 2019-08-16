@@ -1,0 +1,107 @@
+<div class="button-row position-fixed">
+  <button (click)="toggleSidebar()" class="toggle-btn btn staticBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</div>
+
+
+<div id="sidebar" class="position-fixed">
+  <div class="row d-sm-block">
+    <img src="/assets/images/white.png" alt="usl LOGO">
+  </div>
+  <div class="container bg-tdx-primary">
+
+    <div class="accordion" id="accordionExample">
+
+      <ul>
+        <li class="transform">
+          <a href="#"><i class='flaticon-home pr-3'></i>Dashboard <i
+              class="float-right flaticon-arrow-right mr-3"></i></a>
+        </li>
+        <li class="transform">
+          <a href="#"><i class='flaticon-layers pr-3'></i>Static Reference <i
+              class="float-right flaticon-arrow-right mr-3"></i></a>
+        </li>
+        <li class="transform">
+          <a href="#"><i class='flaticon-suitcase pr-3'></i>Instruments <i
+              class="float-right flaticon-arrow-right mr-3"></i></a>
+        </li>
+        <li class="transform">
+          <a href="#"><i class='flaticon-customer-support pr-3'></i> Services <i
+              class="float-right flaticon-arrow-right mr-3"></i></a>
+        </li>
+        <li class="transform">
+          <a routerLink="/product" routerLinkActive="active"><i class='flaticon-package-cube-box-for-delivery pr-3'></i> Configure Product <i
+              class="float-right flaticon-arrow-right mr-3"></i></a>
+          <ul class="sub-class">
+            <div class="row" style="margin-bottom:50px;"></div>
+            <li class="first-sub">
+              <a data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                aria-controls="collapseOne">Payment<i class="float-right flaticon-arrow-down mr-3"></i></a>
+              <ul id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <li><a routerLink="/product/outward-bank-payment">Outward Bank</a></li>
+                <li class=""><a href="#">Inward Customer</a></li>
+                <li class=""><a href="#">Outward Customer</a></li>
+                <li class=""><a href="#">Inward Bank</a></li>
+              </ul>
+            </li>
+            <li class="collapsed">
+              <a data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                aria-controls="collapseTwo">letter of Credit<i class="float-right flaticon-arrow-down mr-3"></i></a>
+              <ul id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <li><a routerLink="/product/outward-bank-payment">Outward Bank</a></li>
+                <li class=""><a href="#">Inward Customer</a></li>
+                <li class=""><a href="#">Outward Customer</a></li>
+                <li class=""><a href="#">Inward Bank</a></li>
+              </ul>
+            </li>
+            <li class="collapsed">
+              <a data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                aria-controls="collapseThree">Payment 3<i class="float-right flaticon-arrow-down mr-3"></i></a>
+              <ul id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <li><a routerLink="/product/outward-bank-payment">Outward Bank</a></li>
+                <li class=""><a href="#">Inward Customer</a></li>
+                <li class=""><a href="#">Outward Customer</a></li>
+                <li class=""><a href="#">Inward Bank</a></li>
+              </ul>
+            </li>
+            <li class="second-sub"><a href="#">Collections</a></li>
+            <li class="second-sub"><a href="#">Cash Letter</a></li>
+            <li class="second-sub"><a href="#">Guarantee</a></li>
+            <li class="second-sub"><a href="#">Others</a></li>
+          </ul>
+        </li>
+        <li class="transform">
+          <a href="#"><i class='flaticon-workflow pr-3'></i> Workflow <i
+              class="float-right flaticon-arrow-right mr-3"></i></a>
+        </li>
+        <li class="transform">
+          <a href="#"><i class='flaticon-tax pr-3'></i> Charge <i
+              class="float-right flaticon-arrow-right mr-3"></i></a>
+        </li>
+        <li class="transform">
+          <a href="#"><i class='flaticon-box pr-3'></i> Custom Duty <i
+              class="float-right flaticon-arrow-right mr-3"></i></a>
+        </li>
+        <li class="transform">
+          <a href="#"><i class='flaticon-law pr-3'></i> Rules <i class="float-right flaticon-arrow-right mr-3"></i></a>
+        </li>
+        <li class="transform">
+          <a routerLink="/product" routerLinkActive="active"><i class='flaticon-excel pr-3'></i> Report <i
+              class="float-right flaticon-arrow-right mr-3"></i></a>
+          <ul class="sub-class">
+            <div class="row" style="margin-bottom:50px;"></div>     
+            <li class="second-sub"><a [routerLink]="['/querybuilder']" routerLinkActive="router-link-active" >Query Builder</a></li>
+            <li class="second-sub"><a [routerLink]="['/reporttemplate']" routerLinkActive="router-link-active" >Template</a></li>
+            <li class="second-sub"><a [routerLink]="['/reportgroup']" routerLinkActive="router-link-active" >Report Group</a></li>
+            <li class="second-sub"><a [routerLink]="['/reportconnection']" routerLinkActive="router-link-active" >Report Connection</a></li>
+            <li class="second-sub"><a [routerLink]="['/report']" routerLinkActive="router-link-active" >Report Sheets</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

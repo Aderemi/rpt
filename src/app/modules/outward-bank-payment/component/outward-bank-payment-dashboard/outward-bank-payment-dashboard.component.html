@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row pt-4 pl-4 pr-4">
+    <div class="col-md-12">
+      <h1>Outward Bank Payment</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 p-4">
+      <div class="card box-shad" style="min-height: 500px; width:100%">
+        <div class="container-fluid">
+          <div class="row">
+                <div class="col-md-3">
+                  <div class="row p-4">
+                      <h2>Tasks</h2>
+                  </div>
+                      <ul class="list-group list-group-flush list-group-tradex" style="margin-right: -15px;
+                      margin-left: -15px;">
+                        <li class="list-group-item">
+                          <a 
+                          routerLink="/outward-bank-payment/dashboard/basic-information"
+                          routerLinkActive="active"
+                          >Basic Information</a>
+                        </li>
+                        <li class="list-group-item">
+                          <a
+                          routerLink="/outward-bank-payment/dashboard/charges"
+                          routerLinkActive="active"
+                          >Charges</a>
+                        </li>
+                        <li class="list-group-item">
+                          <a 
+                          routerLink="/outward-bank-payment/dashboard/currency"
+                          routerLinkActive="active"
+                          >Currency</a>
+                        </li>
+                        <li class="list-group-item">
+                          <a 
+                          routerLink="/outward-bank-payment/dashboard/configuration"
+                          routerLinkActive="active"
+                          >Configuration</a>
+                        </li>
+                        <li class="list-group-item">
+                          <a
+                          routerLink="/outward-bank-payment/dashboard/milestones"
+                          routerLinkActive="active"
+                          >Milestones</a>
+                        </li>
+                        <li class="list-group-item">
+                          <a
+                          routerLink="/outward-bank-payment/dashboard/control-account"
+                          routerLinkActive="active"
+                          >Control Account</a>
+                        </li>
+                        <li class="list-group-item">
+                          <a
+                          routerLink="/outward-bank-payment/dashboard/business-process"
+                          routerLinkActive="active"
+                          >Business Process</a>
+                        </li>
+                      </ul>
+                </div>
+                <div class="col-md-9" style="background-color:#f9f9f9">
+                  <router-outlet></router-outlet>
+                </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

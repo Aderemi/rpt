@@ -1,0 +1,998 @@
+<div class="container-fluid mt-1">
+  <div class="row p-3 pl-4">
+      <div class="col-md-12">
+      <h1 class="text-bold">Invoice</h1>
+    </div>
+</div>
+<div class="row p-2 pl-4">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="card-body">
+          <!-- <form> -->
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
+              <div class="panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                    <div class="float-left form-icon text-center mr-3">
+                        <span class="flaticon-paper  primary-color"></span>
+                      </div>
+                      <h4 class="panel-title font-weight-bold secondary-color mb-0">
+                        Basic Information
+                      </h4>
+                      <!-- <p class="subtitle mb-0  ">Please fill in the appropriate data for new instrument</p> -->
+                    </div>
+              <div class="panel-body">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group form-row">
+                            <div class="col-md-6">
+                            <label for="code" >Code</label>
+                            </div>
+
+                            <div class="col-md-6">
+                              <label for="code value"  class="text-bold" >Code value</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-row">
+                                <div class="col-md-6">
+                                <label for="code" >Description</label>
+                                </div>
+    
+                                <div class="col-md-6">
+                                  <label for="code value"  class="text-bold" >Description</label>
+                                </div>
+                              </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-12 col-md-10 offset-md-1">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group form-row">
+                              <div class="col-md-6">
+                              <label for="code" >Product Category</label>
+                              </div>
+  
+                              <div class="col-md-6">
+                                <label for="code value"  class="text-bold" >Product Category value</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group form-row">
+                                  <div class="col-md-6">
+                                  <label for="code" >Product Sub-Category</label>
+                                  </div>
+      
+                                  <div class="col-md-6">
+                                    <label for="code value"   class="text-bold">Product Sub-Category</label>
+                                  </div>
+                                </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+  
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-10 offset-md-1">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group form-row">
+                                <div class="col-md-6">
+                                <label for="code" >Primary Ref Scheme</label>
+                                </div>
+    
+                                <div class="col-md-6">
+                                  <label for="code value"  class="text-bold" >Primary Ref Scheme value</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-row">
+                                    <div class="col-md-6">
+                                    <label for="code" >Temporary Ref Scheme</label>
+                                    </div>
+        
+                                    <div class="col-md-6">
+                                      <label for="code value"   class="text-bold">Temporary Ref Scheme</label>
+                                    </div>
+                                  </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+    
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12 col-md-10 offset-md-1">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group form-row">
+                                  <div class="col-md-6">
+                                  <label for="code" >Temporary Ref Scheme</label>
+                                  </div>
+      
+                                  <div class="col-md-6">
+                                    <label for="code value"  class="text-bold">Temporary Ref Scheme value</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group form-row">
+                                      <div class="col-md-6">
+                                      <label for="code" >Message Channel</label>
+                                      </div>
+          
+                                      <div class="col-md-6">
+                                        <label for="code value"  class="text-bold" >Message Channel</label>
+                                      </div>
+                                    </div>
+                              </div>
+                              
+                            </div>
+                          </div>
+      
+                        </div>
+
+                </div>
+              </div> 
+             
+
+            </div>
+
+            
+            <div class="panel-default">
+                  <div class="panel-heading" role="tab" id="headingBasic">
+                     <div class="float-left form-icon text-center mr-3">
+                         <span class="flaticon-paper  primary-color"></span>
+                       </div>
+                       <h4 class="panel-title font-weight-bold secondary-color pt-2">Transaction Information </h4>
+                     </div>
+                   <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
+                       <div class="panel-body">
+       
+       
+                           <div class="form-body">
+
+                              <div class="row">
+                                  <div class="col-sm-12 col-md-10 offset-md-1">
+                                    <div class="row">
+                                      <div class="col-md-6">
+                                        <div class="form-group form-row">
+                                          <div class="col-md-6">
+                                          <label for="code" >Warrant Required</label>
+                                          </div>
+              
+                                          <div class="col-md-6">
+                                            <label for="code value"  class="text-bold" >Warrant Required value</label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <div class="form-group form-row">
+                                              <div class="col-md-6">
+                                              <label for="code" >Warrant Type</label>
+                                              </div>
+                  
+                                              <div class="col-md-6">
+                                                <label for="code value"  class="text-bold" >Warrant Type</label>
+                                              </div>
+                                            </div>
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+              
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-10 offset-md-1">
+                                      <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="form-group form-row">
+                                            <div class="col-md-6">
+                                            <label for="code" >Foreign curr Tracking</label>
+                                            </div>
+                
+                                            <div class="col-md-6">
+                                              <label for="code value"   class="text-bold">Foreign curr Tracking value</label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group form-row">
+                                                <div class="col-md-6">
+                                                <label for="code" >Local curr Tracking</label>
+                                                </div>
+                    
+                                                <div class="col-md-6">
+                                                  <label for="code value"   class="text-bold"> Tracking value</label>
+                                                </div>
+                                              </div>
+                                        </div>
+                                        
+                                      </div>
+                                    </div>
+                
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-sm-12 col-md-10 offset-md-1">
+                                        <div class="row">
+                                          <div class="col-md-6">
+                                            <div class="form-group form-row">
+                                              <div class="col-md-6">
+                                              <label for="code" >Effective Date</label>
+                                              </div>
+                  
+                                              <div class="col-md-6">
+                                                <label for="code value"   class="text-bold">03/06/2019</label>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <div class="form-group form-row">
+                                                  <div class="col-md-6">
+                                                  <label for="code" >Status</label>
+                                                  </div>
+                      
+                                                  <div class="col-md-6">
+                                                    <label for="code value"  class="text-bold" >Inactive</label>
+                                                  </div>
+                                                </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                  
+                                    </div>
+       
+                           </div>
+                   </div>
+                   </div>
+               </div>
+
+               <div class="card-footer text-muted">
+                     <div class="row px-4">
+                       <div class="col-md-9"></div>
+                       <div class="col-md-3 text-right">
+                         <button class="btn btn-primary cost">Edit</button>
+                       </div>
+                     </div>
+                   </div>
+
+          
+          </div>
+        <!-- </form> -->
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<div class="container-fluid mt-1" id = "instrument_page">
+  <div class="row p-3 pl-4">
+    <div class="col-md-12">
+      <h1 class="text-bold">{{title}}</h1>
+    </div>
+  </div>
+  <div class="row p-2 pl-4">
+    <!-- <div class="col-md-3 pr-0" #sidebar>
+          <div class="position-fixed ml-0" id="fixed-side-container">
+            <div class="card panel">
+              <div classs="card-body form-card">
+                <div class="row p-4">
+                  <div class="col-md-9" id="sectionDiv">
+                    <h2>Section</h2>
+                  </div>
+                  <div class="col float-right">
+                    <a [appSidebarCollapse]='sidebar'>
+                      <i class="fa fa-arrow-left" aria-hidden="true" id="ico"></i> 
+                    </a>
+                  </div>
+                </div>
+                <ul class="list-group list-group-flush list-group-tradex" id="itemsDiv">
+                  <li class="list-group-item">
+                    <a (click)="scroll(basic)">Basic Information</a>
+                  </li>                        
+                  <li class="list-group-item">
+                    <a (click)="scroll(parties)">Additional Parties</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a (click)="scroll(documents)">Documents</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a (click)="scroll(foreign)">Fgn Exchange Deals</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a (click)="scroll(charges)">Charges</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a (click)="scroll(checklists)">Checklists</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a (click)="scroll(control)">Control Information</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div> -->
+    <div class="col-md-1">
+
+      <!--  -->
+
+
+      <div class="col-md-6 m-0 p-0">
+        <div class="dropdown">
+          <button class="toggle-btn btn staticBtn">
+            <i class="flaticon-layers"></i>
+          </button>
+          <div class="dropdown-content position-fixed mt--5 sidespace bg-white" id="fixed-side-container">
+            <ul class="list-group list-group-flush list-group-tradex" id="itemsDiv">
+
+
+              <li class="list-group-item">
+                <a (click)="openEnquiry('SWIFT')">Swift</a>
+              </li>
+              <li class="list-group-item">
+                <a (click)="openEnquiry('POSTING')">Posting</a>
+              </li>
+              <li class="list-group-item">
+                <a (click)="openEnquiry('CHARGE')">Charges</a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="mt-5 ml-0">
+        <div class="dropdown">
+          <button class="toggle-btn btn staticBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="dropdown-content position-fixed ml-0 bg-white" id="fixed-side-container">
+
+            <ul class="list-group list-group-flush list-group-tradex" id="itemsDiv">
+              <li class="list-group-item">
+                <a (click)="scroll(basic)">Basic Information</a>
+              </li>
+              <li class="list-group-item">
+                <a (click)="scroll(parties)">Additional Parties</a>
+              </li>
+              <li class="list-group-item">
+                <a (click)="scroll(documents)">Documents</a>
+              </li>
+              <li class="list-group-item">
+                <a (click)="scroll(foreign)">Fgn Exchange Deals</a>
+              </li>
+              <li class="list-group-item">
+                <a (click)="scroll(charges)">Charges</a>
+              </li>
+              <li class="list-group-item">
+                <a (click)="scroll(checklists)">Checklists</a>
+              </li>
+              <li class="list-group-item">
+                <a (click)="scroll(control)">Control Information</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-md">
+      <div class="card panel">
+        <div class="card-body form-card">
+          <!-- <form> -->
+          <div class="panel-group" role="tablist" aria-multiselectable="true">
+            <div [formGroup]="warrantForm">
+
+              <div class=" panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <!-- <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div> -->
+                  <span  *ngIf="isInTransit===true" class="float-right badge badge-pill badge-success">&nbsp; {{destStep}} Queue &nbsp;</span>
+                <span *ngIf="isInTransit===false" class="float-right badge badge-pill badge-success"> &nbsp;{{startQueue}} Queue &nbsp; </span>
+                <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                    Basic Information
+                    <span  *ngIf="isInTransit===true">(&nbsp;{{referenceNumber}}&nbsp;) </span>
+                    <span  *ngIf="isInTransit===false">(&nbsp;{{referenceNumber}}&nbsp;)</span>
+                  </h4>
+                  <!-- <p class="subtitle mb-0  ">Please fill in the appropriate data for this Warrant </p> -->
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                  <div class="panel-body">
+
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="form-body">
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Reference Number</label>
+                              <div class="col-md-8 font-weight-bold">
+                                <!-- <input type="text" [attr.disabled]="true" formControlName="refNum" class="form-control"> -->
+                                {{refNum}}
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Product</label>
+
+                              <div class="col-md-8">
+                                <!-- <input type="text" id="product" [attr.disabled]="true" name="product" formControlName="prodDesc" class="form-control" placeholder=""> -->
+                                {{prodDesc}}
+                              </div>
+                            </div>
+                          </div>
+
+
+                        </div>
+
+
+
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Customer</label>
+
+                              <div class="col-md-8 font-weight-bold">
+                                <!-- <input type="text" id="product" [attr.disabled]="true" formControlName="customerName" class="form-control" placeholder=""> -->
+                                {{customerName}}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4 pr-0">Requested Amount</label>
+
+                              <div class="col-md-4 font-weight-bold pr-0">
+                                <!-- <select class="col-md-8" class="form-control" [compareWith]="equals" formControlName="requestedAmountCcy" tabindex="1">
+                                  <option value="undefined"></option>
+                                  <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}
+                                  </option>
+
+                                </select> -->
+                               {{ requestedAmountCcy.code}}
+
+                              </div>
+                              <div class="col-md-4 font-weight-bold">
+                                <!-- <input type="text" class="form-control" DigitsOnly formControlName="requestedAmount"> -->
+                                {{requestedAmount}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4 ">Approved Amount</label>
+                              <div class="col-md-4 font-weight-bold pr-0">
+                                <!-- <select class="col-md-8" [compareWith]="equals" class="form-control" formControlName="approvedAmountCcy" tabindex="1">
+                                  <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}
+                                  </option>
+
+                                </select> -->
+                                {{approvedAmountCcy.code}}
+
+                              </div>
+                              <div class="col-md-4 font-weight-bold">
+                                <!-- <input type="text" class="form-control" DigitsOnly formControlName="approvedAmount"> -->
+                                {{approvedAmount}}
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Date Approved</label>
+                              <div class="col-md-8 font-weight-bold">
+    
+                                <!-- <input type="date" formControlName="dateApproved" class="form-control"> -->
+                                {{dateApproved}}
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4 pr-o">Validity Period</label>
+                              <div class="col-md-4 font-weight-bold pr-0">
+                                <!-- <input type="text" formControlName="valPeriod" class="form-control"> -->
+                                {{valPeriod}}
+                              </div>
+                              <div class="col-md-4">
+                                <!-- <select class="col-md-8" class="form-control" formControlName="valPeriodType" tabindex="1">
+                                  <option *ngFor="let sect of vals" [ngValue]="sect">{{sect}}</option>
+                                </select> -->
+                                {{valPeriodType.sect}}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Expiry Date</label>
+                              <div class="col-md-8 font-weight-bold">
+                                <!-- <input type="text" formControlName="expiryDate" class="form-control"> -->
+                                {{expiryDate}}
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Purpose Code</label>
+                              <div class="col-md-8  font-weight-bold">
+                                <!-- <select class="col-md-8" class="form-control" tabindex="1">
+                                  <option value="undefined">&lt;---&gt;</option>
+                                  <option *ngFor="let sect of purposes" [ngValue]="sect.itemDecription">
+                                    {{sect.itemDecription}}</option>
+                                </select> -->
+                                {{purposes.itemDecription}}
+
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4">Charges Account Number</label>
+                              <div class="col-md-7  font-weight-bold">
+                                <!-- <input type="text" hidden formControlName="chargeAccNo" class="form-control"> -->
+                                {{chargeAccNo}} {{chargeAccName}}
+
+                                <!-- <input type="text" formControlName="chargeAccName" class="form-control"> -->
+                              </div>
+                              <!-- <div class="col-md-1" style="padding: 0;">
+                                <img src="../../assets/icons/Group 135.svg" (click)="open('Accounts')" alt="add">
+                              </div> -->
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="code" class="control-label col-md-4">Event</label>
+                              <div class="col-md-8 font-weight-bold">
+                                <!-- <select class="form-control" data-placeholder="Choose a Event" tabindex="1" name="" formControlName="busProEventId" (change)="getCalculatedCharges()">
+                                  <option value="">---</option>
+                                  <option *ngFor="let event of Events" value={{event.id}} selected="import.busProEventId==event.id? true : null">
+                                    {{event.description}}
+                                  </option> -->
+                                  {{event.description}}
+
+                                <!-- </select> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div *ngFor="let sect of sections" class="panel-default">
+                <div class="panel-heading" role="tab" id="headingRemittanceDet">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                    {{sect.description}}
+                  </h4>
+                  <p class="subtitle mb-0  ">Please fill in the appropriate data for this {{sect.description}} section
+                  </p>
+
+                </div>
+                <div id="collapseRemittanceDet" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingRemittanceDet">
+                  <div class="panel-body">
+
+                    <div class="" [ngClass]="{'col-md-10 offset-md-1': sect.description !== 'Goods','col-md-12': sect.description === 'Goods'}">
+
+
+                      <div class="form-body">
+
+                        <!-- <div *ngIf="sect.id === field.formSection.id"> -->
+                        <!-- <div *ngIf="field.dataType === 'Text'"> -->
+
+                        <div class="row">
+
+                          <div class="col-md-6" [class.pl-5]="sect.description === 'Goods'" *ngFor="let field of fieldsOf(sect.id)">
+                            <div class="form-group row">
+                              <label class="control-label col-md-4" [class.pl-0]="sect.description === 'Goods'">{{field.label}}</label>
+                              <!-- <h4 class="panel-title font-weight-bold secondary-color mb-0" [class.pl-0]= "sect.description === 'Goods'" #basic>
+                                    {{field.label}}
+                                  </h4> -->
+                              <div class="col-md-8  font-weight-bold">
+
+                                <!-- <input *ngIf="field.dataType === 'Text'" type="{{field.dataType}}" formControlName="{{'field'+ getFieldIndex(field.id)}}"
+                                  id="customer" class="form-control"> -->
+                                  {{'field'+ getFieldIndex(field.id)}}
+
+                                <!-- <textarea *ngIf="field.dataType === 'Textarea'" rows="2" formControlName="{{'field'+ getFieldIndex(field.id)}}" class="form-control"></textarea> -->
+                                {{'field'+ getFieldIndex(field.id)}}
+                                <!-- <input *ngIf="field.dataType === 'Date'" type="{{field.dataType}}" formControlName="{{'field'+ getFieldIndex(field.id)}}"
+                                  id="customer" class="form-control"> -->
+                                  {{'field'+ getFieldIndex(field.id)}}
+
+                                <div class=" font-weight-bold" *ngIf="field.dataType === 'Currency'">
+                                  <!-- <select class="" [compareWith]="equals" formControlName="{{'field'+ getFieldIndex(field.id)}}" class="form-control" tabindex="1">
+                                    <option value="">&lt;---&gt;</option>
+
+                                    <option *ngFor="let currenc of currencies" value="{{currenc.code}}">
+                                      {{currenc.code}}</option>
+                                  </select> -->
+                                  {{'field'+ getFieldIndex(field.id).code}}
+                                </div>
+                                <div class=" font-weight-bold" *ngIf="field.dataType === 'Country'">
+                                  <!-- <select class="" formControlName="{{'field'+ getFieldIndex(field.id)}}" class="form-control" tabindex="1">
+                                    <option value="">&lt;---&gt;</option>
+
+                                    <option *ngFor="let country of countries" value="{{country.code}}">
+                                      {{country.code}}</option>
+                                  </select> -->
+                                  {{'field'+ getFieldIndex(field.id).code}}
+                                </div>
+                                <div class=" font-weight-bold" *ngIf="field.dataType === 'Branch'">
+                                  <!-- <select class="col-md-8" formControlName="{{'field'+ getFieldIndex(field.id)}}" class="form-control" tabindex="1">
+                                    <option value="">&lt;---&gt;</option>
+
+                                    <option *ngFor="let branch of branches" value="{{branch.code}}">
+                                      {{branch.code}}</option>
+                                  </select> -->
+                                  {{'field'+ getFieldIndex(field.id).code}}
+
+                                </div>
+
+                                <div class=" font-weight-bold" *ngIf="field.dataType === 'Picklist' ">
+                                  <!-- <select class="" class="form-control" [compareWith]="equals" formControlName="{{'field'+ getFieldIndex(field.id)}}" tabindex="1">
+                                    <option value="">&lt;---&gt;</option>
+                                    <option *ngFor="let items of  fetchPickListByCode(field.pickListCode)" value="{{items.itemDecription}}">{{items.itemDecription}}</option>
+                                  </select> -->
+                                  {{'field'+ getFieldIndex(field.id).itemDecription}}
+
+                                </div>
+
+
+                                <div class="row" *ngIf="field.dataType === 'Amount'">
+                                  <div class="col-md-4  font-weight-bold pr-0">
+                                    <!-- <select class="" [compareWith]="equals" formControlName="{{'field'+ getFieldIndex(field.id)}}" class="form-control" tabindex="1">
+                                      <option value="">&lt;---&gt;</option>
+
+                                      <option *ngFor="let currenc of currencies" value="{{currenc.code}}">
+                                        {{currenc.code}}</option>
+                                    </select> -->
+                                    {{'field'+ getFieldIndex(field.id).code}}
+                                  </div>
+                                  <div class="col-md-8  font-weight-bold">
+                                    <!-- <input type="{{field.dataType}}" formControlName="{{'field'+ getFieldIndex(field.id)}}" id="customer" class="form-control"> -->
+                                    {{'field'+ getFieldIndex(field.id)}}
+                                  </div>
+
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="isInTransit===false && sect.description === 'Goods'" class="row pt-2">
+                          <!-- <app-warrant-table class="container-fluid px-0 grey-bg" [warrant]="warrant" (emitService)="getAttachedGoods($event)"></app-warrant-table> -->
+
+                        </div>
+                       
+                        <div class="row pt-2" *ngIf="isInTransit===true && sect.description === 'Goods'">
+                          <div class="row" class="container-fluid px-0 grey-bg">
+                            <div class="col-md-12">
+                              <div class="xc">
+                                <table class="table alt-table table-borderless">
+                                  <thead>
+                                    <th scope="col">HS Code</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Country of Origin</th>
+                                    <th scope="col">Sectorial Purpose</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Units</th>
+                                    <th scope="col"> Price</th>
+                                    <th scope="col">FOB Value</th>
+                                    <th></th>
+                                    <th></th>
+                                  </thead>
+                                  <tbody>
+
+                                    <tr *ngFor="let warrantTable of warrantForm.get('attachedWarrantItems').value" (click)="set($event, warrant)" [ngClass]="{'selected' : warrant === selectedPartyCategory}">
+                                      <td>{{warrantTable.hsCode}}</td>
+                                      <td>{{warrantTable.descriptionOfGoods}}</td>
+                                      <td>{{warrantTable.countryOfOrigin.name}}</td>
+                                      <td>{{warrantTable.sectorialPurpose}}</td>
+                                      <td>{{warrantTable.quantity}}</td>
+                                      <td>{{warrantTable.units}}</td>
+                                      <td>{{warrantTable.unitPrice}}</td>
+                                      <td>{{warrantTable.fobValue}}</td>
+                                      <td>
+                                        <button class="btn btn-danger round-table-button" (click)="delete($event, warrant,attachedWarrantItems)">&mdash;</button>
+                                      </td>
+
+
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+
+              </div>
+
+
+              <div class=" panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <!-- <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div> -->
+                  <h4 class="panel-title secondary-color font-weight-bold pt-2" #documents>
+                    Documents
+                  </h4>
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                  <div class="panel-body">
+
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+
+                      <br>
+                      <div class="form-body" *ngIf="setChildren">
+
+                        <!-- <app-documents [instrumentRegister]="instrumentRegister"></app-documents> -->
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class=" panel-default">
+                  <div class="panel-heading" role="tab" id="headingBasic">
+                    <!-- <div class="float-left form-icon text-center mr-3">
+                      <span class="flaticon-paper  primary-color"></span>
+                    </div> -->
+                    <h4 class="panel-title font-weight-bold secondary-color pt-2" #charge>
+                      Charges
+                    </h4>
+                  </div>
+                  <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel"
+                    aria-labelledby="headingBasic">
+                    <div class="panel-body">
+    
+                      <div class="col-sm-12 col-md-10 offset-md-1">
+                        <!-- <div class="panel-body" *ngIf="setChildren">
+                              <app-charges [instrumentRegister]="instrumentRegister"></app-charges>
+      
+                          </div> -->
+                        <div>
+    
+                          <button class="btn btn-primary round-table-button" title="Add new collateral" theme="dark"
+                            (click)='openCollateral()' tooltip="Tooltip" placement="right" show-delay="500">+</button>
+                        </div>
+    
+    
+    
+    
+    
+                        <table id="myTable" class="table alt-table table-borderless">
+                          <thead>
+                            <tr>
+    
+                              <th>Charge Type</th>
+                              <th>Charge Currency</th>
+                              <th>Charge Amount</th>
+                              <th>Pay Amount</th>
+                              <th>Tax Amount</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let charge of CalculatedCharges">
+    
+                              <td>{{charge.chargeType}}</td>
+                              <td>{{charge.chargeCurrency}}</td>
+                              <td>{{charge.chargeAmount}}</td>
+                              <td>{{charge.payAmount}}</td>
+                              <td>{{charge.taxAmount}}</td>
+                              <td> <input class="pull-right fcbtn btn btn-success btn-outline btn-1f" type="button"
+                                  value="Update" (click)="UpdateCharge(charge.id)" /></td>
+                            </tr>
+    
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <div class=" panel-default">
+                <div class="panel-heading" role="tab" id="headingBasic">
+                  <!-- <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div> -->
+                  <h4 class="panel-title secondary-color font-weight-bold pt-2" #control>
+                    Control Information
+                  </h4>
+                </div>
+                <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
+                  <div class="panel-body">
+
+                    <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="form-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="servicingBranch" class="control-label col-md-4">Servicing Branch</label>
+
+                              <div class="col-md-8 font-weight-bold">
+                                <!-- <input formControlName="servicingBranch" type="text" id="servicingBranch" class="form-control"> -->
+                                {{servicingBranch}}
+                              </div>
+
+
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="homeBranch" class="control-label col-md-4">Home Branch</label>
+
+                              <div class="col-md-8 font-weight-bold">
+                                <!-- <input type="text" class="form-control" formControlName="homeBranch"> -->
+                                {{homeBranch}}
+                              </div>
+
+
+                            </div>
+                          </div>
+
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="servicingBranch" class="control-label col-md-4">Relationship Management
+                              </label>
+
+                              <div class="col-md-8 font-weight-bold">
+                                <!-- <input formControlName="relationshipManagement" type="text" id="relationshipManagement" class="form-control"> -->
+                                {{relationshipManagement}}
+                              </div>
+
+
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="effectiveDate" class="control-label col-md-4">Effective Date</label>
+                              <div class="col-md-8 font-weight-bold">
+                                <!-- <input type="text" class="form-control" formControlName="effectiveDate"> -->
+                                {{effectiveDate}}
+                              </div>
+
+
+                            </div>
+                          </div>
+
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="status" class="control-label col-md-4">Status</label>
+
+                              <div class="col-md-8 font-weight-bold">
+                                <!-- <input type="text" id="status" class="form-control" formControlName="status"> -->
+                                {{status}}
+                              </div>
+
+
+                            </div>
+                          </div>
+
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card-footer">
+              <!-- <div class="row p-3">
+                <div class="col-md-8"></div>
+                <div class="col-md-2 text-right">
+                  <button class="btn btn-outline-primary btn-block" (click)="processForm('cancel')" type="submit">Cancel</button>
+                </div>
+                <div class="col-md-2 text-right" *ngIf="!isInTransit">
+                  <button class="btn btn-primary btn-block" type="submit" (click)="processForm()">Save</button>
+                </div>
+                <div class="col-md-2 text-right" *ngIf="isInTransit">
+
+                </div>
+                <div class="col-md-2 text-right" *ngIf="isInTransit">
+                  <button type="submit" class="btn btn-primary btn-block" (click)="approve(warrant)">
+                    Accept</button>
+                  <button type="button" class="btn btn-primary btn-block" (click)="reject(warrant)">Reject</button>
+                </div>
+              </div> -->
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
