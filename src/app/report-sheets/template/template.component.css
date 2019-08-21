@@ -16,14 +16,33 @@ td{
     padding: 5px 0px;
 }
 
-.nav-item{
+ .nav-item{
+    padding: 0.7rem
+} 
+/* .nav-item a , */
+.put{
     padding: 0.5rem;
+    border-right: 2px solid #dddddd;
+}
+.mut{
+    border-left: 2px solid #dddddd;
+}
+/* .nav-item:hover,  */
+.active{
+    background-color: #d1d1d1;
 }
 .dropdown{
-    width: 200px;
+    /* width: 200px; */
 }
 
 .dropdown-toggle::after {
-    margin-left: 3.255em !important;
+    margin-left: 4.255em !important;
    
+}
+.bond::after {
+    margin-left: 8.255em !important;
+   
+}
+.navbar-collapse{
+    padding-left: 5.68rem;
 }
