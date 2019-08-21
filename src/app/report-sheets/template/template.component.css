@@ -20,5 +20,10 @@ td{
     padding: 0.5rem;
 }
 .dropdown{
-    width: 100px;
+    width: 200px;
+}
+
+.dropdown-toggle::after {
+    margin-left: 3.255em !important;
+   
 }
