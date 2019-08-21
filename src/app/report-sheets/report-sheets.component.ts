@@ -8,13 +8,14 @@ import { CustomService } from '../custom.service';
 // import { saveAs } from 'file-saver';
 // declare var jsPDF: any;
 import * as $ from 'jquery';
+// declare var $:any;
 import { ReportService } from '../service/report.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Report } from '../class/report';
+import { Report, ReportGroup } from '../class/report';
 declare const require: any;
 const jsPDF = require('jspdf');
 // require('jspdf-autotable');
-// import 'datatables.net'
+// import 'datatables.net-bs4'
 require('jszip');
 require('pdfmake');
 require('datatables.net-bs4');
@@ -41,10 +42,16 @@ export class ReportSheetsComponent implements OnInit {
   toview;
   tableWidget;
   datas;
-  reports
-  rep
-  report: Report = new Report();
-  reportgroups
+  reports: Report[];
+  report: Report;
+  reportgroups: ReportGroup[];
+  radio;
+  showChecked;
+  drone = 'Individual'
+  isManual;
+  isIndividual;
+  isGroup
+
 
   constructor(
     //  private http:HttpClient, 
@@ -64,6 +71,10 @@ export class ReportSheetsComponent implements OnInit {
     this.toview = 0
     this.getReports();
     this.getReportGroups();
+    this.radio =0;
+    this.showChecked = 0;
+    this.isIndividual =  false;
+    this.isGroup = false
 
     $(document).ready(function () {
       var table =
@@ -120,7 +131,7 @@ export class ReportSheetsComponent implements OnInit {
   }
   getReportGroups() {
     this.reportserv.getReportGroups().subscribe(response => {
-      this.reportgroups = response;
+      this.reportgroups = response.data;
       console.log(this.reportgroups);
     })
   }
@@ -137,22 +148,22 @@ export class ReportSheetsComponent implements OnInit {
 
   updateReport(reportId) {
     this.reportserv.getReport(reportId).subscribe((res) => {
-      this.rep = res.data
-      console.log(this.rep)
+      this.report = res.data
+      console.log(this.report)
     });
     this.toview = 1;
   }
 
   Change(event) { 
     const subValue = event.target.value;
-    this.reportgroups.data[name]= subValue;
+    this.reportgroups[name]= subValue;
     console.log(subValue)
   }
 
   processForm() {
-    console.log(this.rep)
+    console.log(this.report)
     if (this.report.id == undefined) {
-      this.reportserv.createReport(this.rep).subscribe((report) => {
+      this.reportserv.createReport(this.report).subscribe((report) => {
         this.toview = 1;
         console.log(report);
         this.ngOnInit();
@@ -160,7 +171,7 @@ export class ReportSheetsComponent implements OnInit {
         console.log(error);
       });
     } else {
-      this.reportserv.updateReport(this.rep).subscribe((report) => {
+      this.reportserv.updateReport(this.report).subscribe((report) => {
         console.log(report);
         this.toview = 1;
         this.ngOnInit();
@@ -170,13 +181,42 @@ export class ReportSheetsComponent implements OnInit {
     }
   }
   Add() {
-    this.rep = {}
+    this.report = {}
     this.toview = 1
   }
   Cancel() {
     this.toview = 0
     this.ngOnInit();
   }
+
+  checkValue(event: any){
+    console.log(event);
+    if(event == 'A'){
+      this.showChecked = 1
+    }else {
+      this.showChecked = 0
+      this.isIndividual =  false;
+      this.isGroup = false
+    }
+ }
+  
+ private selectedLink        
+  
+  setradio(e: string): void{  
+    this.selectedLink = e; 
+    console.log(e) 
+    if(e == 'Individual'){
+      this.isIndividual =  true;
+      this.isGroup = false
+    }else{
+      this.isGroup = true;
+      this.isIndividual = true;
+    }
+          
+  }  
+    isSelected(name: string): boolean {  
+        return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
+    } 
 
   // values = [
   //   { id: 3432, name: "ENTER_MANUALLY" },

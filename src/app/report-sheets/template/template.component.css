@@ -15,3 +15,10 @@ td{
 .row{
     padding: 5px 0px;
 }
+
+.nav-item{
+    padding: 0.5rem;
+}
+.dropdown{
+    width: 100px;
+}

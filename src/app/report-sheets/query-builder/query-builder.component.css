@@ -11,6 +11,9 @@ thead th{
 td{
     cursor: pointer;
 }
+.table, tr, td,thead,tbody,th{
+  background-color: transparent !important;
+}
 
 .row{
     padding: 5px 0px;
@@ -85,5 +88,19 @@ td{
     margin: .4rem;
 }
 .largetext{
-  background-color: #ccc;
+  background-color: rgb(238, 238, 238);
 }
+.m{
+  margin: auto 0!important;
+}
+input.search{
+  border-color: #ced4da!important;
+}
+.build{
+  border-top: 1px dashed #ccc
+}
+#nav-tab a{
+  margin-right: 50px;
+}
+
+
