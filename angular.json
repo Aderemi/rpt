@@ -28,20 +28,25 @@
                "node_modules/quill/dist/quill.snow.css",
                "node_modules/quill/dist/quill.bubble.css",
                "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css",
+               "node_modules/ngx-select-dropdown/dist/assets/style.css",
+               "node_modules/bootstrap-select/dist/css/bootstrap-select.css",
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery/dist/jquery.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
-              "node_modules/ngx-quill/bundles/ngx-quill.umd.js",
               "node_modules/quill/dist/quill.js",
+              "node_modules/ngx-quill/bundles/ngx-quill.umd.js",
               "node_modules/jspdf/dist/jspdf.min.js",             
               "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js",
               "node_modules/datatables.net-select/js/dataTables.select.js",
               "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
               "node_modules/datatables.net-buttons/js/buttons.flash.js",
               "node_modules/datatables.net-buttons/js/buttons.html5.js",
-              "node_modules/datatables.net-buttons/js/buttons.print.js"
+              "node_modules/datatables.net-buttons/js/buttons.print.js",
+              "node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"
              
             ]
           },

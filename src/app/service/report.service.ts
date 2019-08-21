@@ -12,7 +12,7 @@ export class ReportService {
   // private query: ReportQueries;
   private query: ReportQueries = new ReportQueries();
   private connection:ReportConnection = new ReportConnection();
-  baseUrl:String = `http://192.168.1.149:8081/api`;
+  baseUrl:String = `http://192.168.1.154:8081/api`;
   
   // private report:Report = new Report();
   // private reportconn:ReportConnection = new ReportConnection();

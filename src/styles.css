@@ -812,7 +812,7 @@ button:focus, button.focus{
     border-right: none;
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link{
-    color: #5d5d5d;
+    color: #b3b1b1;
     font-weight: bold;
     
 }
@@ -869,3 +869,7 @@ input.form-search:focus{
     padding: 6px 3px !important;
     font-size: 11px;
 }
+
+/* .ngx-dropdown-container, .ngx-dropdown-list-container,.ngx-dropdown-button{
+    width: 300px !important;
+  } */

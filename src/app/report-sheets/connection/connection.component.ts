@@ -23,6 +23,8 @@ export class ConnectionComponent implements OnInit {
     this.getConnections();
     this.getDBMS();
     this.view = 0
+   
+    
   }
   getDBMS(){
     this.reportserv.getDBMS().subscribe(response=>{
@@ -44,7 +46,19 @@ export class ConnectionComponent implements OnInit {
     this.connection.dbms = subValue;
     console.log(subValue)
   }
+  status = 'Disabled';
 
+
+  checkValue(event: any){
+    console.log(event);
+    if(event == 'A'){
+      this.status = 'Enabled'
+    }else {
+      this.status = 'Disabled'
+    }
+ }
+
+  
   Delete(connectionId){
     this.reportserv.deleteConnection(connectionId).subscribe((response=>{
       this.connections = this.connections.filter(connection => connection.id != connectionId);

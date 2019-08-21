@@ -85,6 +85,7 @@ import { QueryBuilderComponent } from './report-sheets/query-builder/query-build
 import { TemplateComponent } from './report-sheets/template/template.component';
 import { ConnectionComponent } from './report-sheets/connection/connection.component';
 import { GroupComponent } from './report-sheets/group/group.component';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 // import { NotificationMessageTemplateComponent } from './notification-message-template/notification-message-template.component';
 // import {form}
@@ -180,6 +181,7 @@ NavbarComponent,
     HttpClientModule,
     CommonModule,
     BrowserModule,
+    SelectDropDownModule,
     QuillModule.forRoot({
       modules: {
         syntax: true,
