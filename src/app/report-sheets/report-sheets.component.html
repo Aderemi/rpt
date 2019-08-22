@@ -1,7 +1,7 @@
 <div class="container-fluid mt-1" *ngIf="toview === 0">
 
   <div class="row py-3 px-4">
-   
+
       <div class="col-md-12">
               <h1 class="text-bold">Report Sheets <span *ngIf="errorExists"style="cursor : pointer" class="flaticon-info text-danger ml-3" (click)="loadErrors()"></span></h1>
             </div>
@@ -25,15 +25,15 @@
                                               </h6>
                                               <!-- <p class="subtitle mb-0  ">Set the appropriate information</p> -->
                                   </div>
-                                  
+
                           </div>
                           <div class="row px-4  mb-0">
                                   <div class="col-10"></div>
                                   <div class="col">
                                     <button class="btn btn-block btn-primary " (click)="Add()"><i class="flaticon-add mr-2"></i>New</button>
                                   </div>
-                                  
-                          </div> 
+
+                          </div>
                           <div class="row p-4">
                               <div class="col-md-12">
                                   <table id="example1" class="table alt-table table-borderless">
@@ -59,12 +59,12 @@
                                           <td><a data-toggle="modal" data-target="#milestone-modal"> <span><i class="flaticon-download-1"></i></span></a></td>
                                           <td><a (click)="updateReport(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
                                           <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
-                                      </tr>                                       
+                                      </tr>
                                       </tbody>
                                   </table>
                               </div>
                           </div>
-                      
+
               </div>
           </div>
 
@@ -89,8 +89,8 @@
 
   <div class="row p-2 pl-4 mt-5">
     <div class="col-md-12">
-     
-            <div class="panel-body">           
+
+            <div class="panel-body">
               <table id="example1" class=" alt-table table table-borderless" style="width:100%">
                 <thead>
                     <tr>
@@ -103,7 +103,7 @@
                         <th></th>
                         <th></th>
                         <th></th>
-            
+
                     </tr>
                 </thead>
                 <tbody>
@@ -163,7 +163,7 @@
         <div class="container p-2">
           <div class="col-md-10  m-auto">
            <div class="form-body">
-            
+
 
 
             <div class="row">
@@ -181,13 +181,11 @@
                       <label class="custom-control-label" for="customControlValidation2">Email as Attachment</label>
                       </div>
                   </div>
-                    
-                    
             </div>
 
              <div class="row">
                <div class="col-md-5">
-                  <label for="">Format <sup>*</sup></label>             
+                  <label for="">Format <sup>*</sup></label>
                   <select name="" id="" class="form-control search">
                     <option value="">&lt;-------&gt;</option>
                     <option value="">pdf</option>
@@ -209,10 +207,10 @@
                         </div>
                       </div>
                </div>
-              
+
             </div>
 
-           
+
             <div class="row">
 
               <div class="col-md-5" *ngIf="isIndividual">
@@ -227,10 +225,10 @@
                       <option *ngFor="let v of values" [value]="v.id">{{v.name}}</option>
                   </select>
               </div>
-             
+
             </div>
 
-           
+
 
            </div>
           </div>
@@ -252,7 +250,7 @@
         <h1 class="text-bold">Report Sheets Form</h1>
       </div>
     </div>
-  
+
     <div class="col-md">
       <div class="card panel">
         <div class="card-body form-card">
@@ -260,7 +258,7 @@
               <div class="panel-default">
                 <div class="panel-heading" role="tab" id="headingBasic">
                   <div class="float-left form-icon text-center mr-3">
-                    <span class="flaticon-paper  primary-color"></span>
+                    <span class="flaticon-paper primary-color"></span>
                   </div>
                   <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
                     Report Sheets Details
@@ -272,8 +270,8 @@
                   <div class="panel-body">
                     <div class="col-sm-12 col-md-10 offset-md-1">
                       <div class="form-body">
-  
-                      
+
+
                       <div class="row">
 
                         <div class="col-md-6">
@@ -296,8 +294,8 @@
                                <input class="form-control" type="text" [(ngModel)]="report.description">
                             </div>
                           </div>
-                        </div>                    
-                         
+                        </div>
+
                         </div>
                       <div class="row">
 
@@ -326,8 +324,8 @@
                           </div>
                         </div>
 
-                                 
-                         
+
+
                         </div>
                       <div class="row">
 
@@ -355,21 +353,21 @@
                                      </select>
                                   </div>
                                 </div>
-                              </div>      
+                              </div>
 
-                                     
-                         
+
+
                         </div>
-                     
-                      
-  
-  
-  
+
+
+
+
+
                     </div>
                   </div>
                 </div>
               </div>
-             
+
               <div class="card-footer text-muted">
                 <div class="row p-3">
                   <div class="col-md-8"></div>

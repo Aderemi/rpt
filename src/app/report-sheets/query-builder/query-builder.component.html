@@ -1,7 +1,7 @@
 <div class="container-fluid mt-1" *ngIf="view === 0">
 
   <div class="row py-3 px-4">
-   
+
       <div class="col-md-12">
               <h1 class="text-bold">Query Builder <span *ngIf="errorExists"style="cursor : pointer" class="flaticon-info text-danger ml-3" (click)="loadErrors()"></span></h1>
             </div>
@@ -25,21 +25,21 @@
                                               </h6>
                                               <!-- <p class="subtitle mb-0  ">Set the appropriate information</p> -->
                                   </div>
-                                  
+
                           </div>
                           <div class="row px-4  mb-0">
                                   <div class="col-10"></div>
                                   <div class="col">
                                     <button class="btn btn-block btn-primary " (click)="configure()"><i class="flaticon-add mr-2"></i>Configure</button>
                                   </div>
-                                  
-                          </div> 
+
+                          </div>
                           <div class="row p-4">
                               <div class="col-md-12">
                                   <table id="myTable" class="table alt-table table-borderless">
                                       <thead>
                                         <th>Title</th>
-                                        <th> Description</th>
+                                        <th>Description</th>
                                         <th>Content</th>
                                         <th>Actions</th>
                                         <th></th>
@@ -51,12 +51,12 @@
                                           <td>{{item.content}}</td>
                                           <td><a (click)="updateQuery(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
                                           <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
-                                        </tr>                                        
+                                        </tr>
                                       </tbody>
                                   </table>
                               </div>
                           </div>
-                      
+
               </div>
           </div>
 
@@ -152,17 +152,17 @@
                       <div class="col-md-4">
                         <div class="form-group row mr-2">
                           <label for="Connections">Connections</label>
-                          <!-- <select  id="mySelect" [(ngModel)]="connections.title" class="form-control search" >
+                           <select  id="connections" [(ngModel)]="que.connectionId" class="form-control search" (change)="getTables($event.target.value)">
                                     <option value="">&lt;-------&gt;</option>
-                                    <option *ngFor="let v of connections" [value]="v.title">{{v.title}}</option>
-                                </select> -->
+                                    <option *ngFor="let v of connections" [value]="v.id">{{v.title}}</option>
+                                </select>
                         </div>
                       </div>
 
                       <div class="col-md-4">
                         <div class="form-group row ml-2">
                           <label for="title"> Title</label>
-                          <!-- <input type="text" name="title" class="form-control" [(ngModel)]="que.title" class="search"> -->
+                          <input type="text" name="title" class="form-control" [(ngModel)]="que.title" class="search">
                         </div>
                       </div>
                     </div>
@@ -172,7 +172,7 @@
                       <div class="col-md-8">
                         <div class="form-group row">
                           <label for="title"> Description</label>
-                          <!-- <textarea name="description" id="" class="form-control search" [(ngModel)]="que.description"></textarea> -->
+                          <textarea name="description" id="" class="form-control search" [(ngModel)]="que.description"></textarea>
                         </div>
                       </div>
                     </div>
@@ -185,7 +185,7 @@
                           <label class="switch">
                               <input type="checkbox" [(ngModel)]="booleanVal" (ngOnChange)="onChange($event)">
                               <span class="slider round"></span>
-                            </label>      
+                            </label>
                       </div>                       -->
 
                       <div class="col-md-2">
@@ -210,7 +210,7 @@
 
 
             <div class="form-body" *ngIf="isManual">
-              <textarea class="m-0 p-5 largetext col-md-12" rows="12"></textarea>
+              <textarea class="m-0 p-5 largetext col-md-12" rows="12" id="content" name="content" [(ngModel)]="que.content"></textarea>
             </div>
 
 
@@ -243,10 +243,10 @@
 
                       <div class="row">
                         <div class="col-md-3">
-                          <label for="Connections">Table <sup>*</sup></label>
-                          <select id="mySelect" class="form-control search">
-                            <option value="">&lt;-------&gt;</option>
-                            <option>-----------</option>
+                          <label for="tables">Table <sup>*</sup></label>
+                          <select id="tables" class="form-control search" (change)="getColumns($event.target.value)">
+                             <option value="">&lt;-------&gt;</option>
+                             <option *ngFor="let t of tables" [value]="t">{{toTopicCase(t)}}</option>
                           </select>
                         </div>
 
@@ -268,7 +268,7 @@
                           <div class="col-md-6">
                             <div class="form-group row">
                               <div class="col-md-4">
-                                <label for="Connections">Local Key(optional)</label>
+                                <label for="Connections">Join Column (optional)</label>
                               </div>
                               <div class="col-md-8">
                                 <select id="mySelect" class="form-control search">
@@ -370,9 +370,10 @@
                               <label for="Connections">Column<sup>*</sup></label>
                             </div>
                             <div class="col-md-8">
-                              <select id="mySelect" class="form-control search">
+                              <select id="columns" class="form-control search"  (change)="addColumn($event.target.value, null)">
                                 <option value="">&lt;-------&gt;</option>
-                                <option>-----------</option>
+                                    <option value="*">All</option>
+                                    <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
                               </select>
                             </div>
 
@@ -403,7 +404,7 @@
                             <div class="col-md-8">
                               <select id="mySelect" class="form-control search">
                                 <option value="">&lt;-------&gt;</option>
-                                <option>-----------</option>
+                                <option *ngFor="let u of aggregateValues.keys" [value]="u">{{aggregateValues.keys[u]}}</option>
                               </select>
                             </div>
                           </div>
@@ -496,7 +497,7 @@
                             <label for="Connections">Group by</label>
                              <!-- <select  id="mySelect" class="form-control search" >
                                                       <option value="">&lt;-------&gt;</option>
-                                                       <option ></option> 
+                                                       <option ></option>
                           </select> -->
 
                           <!-- <select class="selectpicker"  (change)="selectionChanged($event)"  multiple data-live-search="true">
@@ -505,13 +506,13 @@
                             <option>Relish</option>
                           </select> -->
                           <ngx-select-dropdown class="search"
-                         
-                          [config]="config" 
-                          [options]="options" 
-                          [(ngModel)]="dataModel" 
+
+                          [config]="config"
+                          [options]="options"
+                          [(ngModel)]="dataModel"
                           [multiple]="true" >
                         </ngx-select-dropdown>
-                       
+
                           </div>
                         </div>
 
@@ -528,7 +529,7 @@
 
                     </div>
 
-                     
+
                       <div class=" tab-pane fade" id="nav-order-by" role="tabpanel" aria-labelledby="nav-profile-tab">
 
 
@@ -540,7 +541,7 @@
                         nothing
                       </div>
 
-                   
+
 
                   </div>
                 </div>
@@ -697,6 +698,9 @@
             </div>
 
 
+            <div class="row pl-4" id="preview-box">
+            &nbsp;
+            </div>
 
             <div class="card-footer text-muted">
               <div class="row p-3">
@@ -704,9 +708,9 @@
                 <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="Cancel()"
                     type="submit">Cancel</button>
                 </div>
-                <!-- <div class="col-md-2 text-right"><button class="btn btn-primary btn-block" (click)="populate()"
+                <div class="col-md-2 text-right"><button class="btn btn-primary btn-block" (click)="preview()"
           type="submit">preview</button>
-      </div> -->
+      </div>
                 <div class="col-md-2 text-right">
                   <button class="btn btn-success btn-block" type="submit" (click)="processForm()">Save</button>
                 </div>

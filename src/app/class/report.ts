@@ -40,50 +40,38 @@ export class ReportConnection{
 }
 
 export interface ReportQueries{
-    id:number;
-    title: string;
-    description: string;
-    content: string;
-    select: string;
-    group: string;
-    limit: string;
-    sort: string;
-    where: string;
-    from: string;
-    type: string;
+    id?: number;
+    connectionId?: number;
+    title?: string;
+    description?: string;
+    content?: string;
+    prevContent?: string;
+    select?: string;
+    group?: string;
+    limit?: string;
+    sort?: string;
+    where?: string;
+    from?: string;
+    type?: string;
 }
 
 export interface Response<T>{
-    status:string;
-    code:number;
+    status: string;
+    code: number;
     data?: T[];
     message: string;
 }
 
 export interface SingleDataResponse<T>{
-    status:string;
-    code:number;
+    status: string;
+    code: number;
     data?: T;
     message: string;
 }
 
-export class ReportQueries{
-    id:number;
-    title: string;
-    description: string;
-    content: string;
-    select: string;
-    group: string;
-    limit: string;
-    sort: string;
-    where: string;
-    from: string;
-    type: string;
-}
-
 export interface ReportGroup{
-    id?:number;
-    name?:string;
+    id?: number;
+    name?: string;
 }
 
 export interface ReportTemplate{

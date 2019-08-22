@@ -24,8 +24,8 @@ require('datatables.net-buttons/js/buttons.flash.js');
 require('datatables.net-buttons/js/buttons.html5.js');
 require('datatables.net-buttons/js/buttons.print.js');
 require('datatables.net-select-bs4');
-var pdfMake = require('pdfmake/build/pdfmake.js');
-var pdfFonts = require('pdfmake/build/vfs_fonts.js');
+let pdfMake = require('pdfmake/build/pdfmake.js');
+let pdfFonts = require('pdfmake/build/vfs_fonts.js');
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -37,6 +37,12 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class ReportSheetsComponent implements OnInit {
 
+
+  constructor(
+    //  private http:HttpClient,
+    private reportserv: ReportService, private router: Router, private route: ActivatedRoute,
+    private cust: CustomService) { }
+
   view;
   views;
   toview;
@@ -47,17 +53,13 @@ export class ReportSheetsComponent implements OnInit {
   reportgroups: ReportGroup[];
   radio;
   showChecked;
-  drone = 'Individual'
+  drone = 'Individual';
   isManual;
   isIndividual;
-  isGroup
-
-
-  constructor(
-    //  private http:HttpClient, 
-    private reportserv: ReportService, private router: Router, private route: ActivatedRoute,
-    private cust: CustomService) { }
+  isGroup;
   dtOptions: any = {};
+
+ private selectedLink;
 
 
 
@@ -66,42 +68,42 @@ export class ReportSheetsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.view = 0
-    this.views = 0
-    this.toview = 0
+    this.view = 0;
+    this.views = 0;
+    this.toview = 0;
     this.getReports();
     this.getReportGroups();
-    this.radio =0;
+    this.radio = 0;
     this.showChecked = 0;
     this.isIndividual =  false;
-    this.isGroup = false
+    this.isGroup = false;
 
-    $(document).ready(function () {
-      var table =
-        $('#example1').DataTable({
-
-          dom: 'Bfrtip',
-          buttons: [
-            'print',
-
-            'csvHtml5',
-            'pdfHtml5',
-          ]
-        });
-
-      //     $('#example1 tbody').on( 'click', 'tr', function () {
-      //       if ( $(this).hasClass('selected') ) {
-      //           $(this).removeClass('selected');
-      //       }
-      //       else {
-      //           table.$('tr.selected').removeClass('selected');
-      //           $(this).addClass('selected');
-      //       }
-      //   } );
-      // //   $('#example1 tbody').on( 'click', 'tr', function () {
-      // //     $(this).toggleClass('selected');
-      // // } );
-    });
+    // $(document).ready(function () {
+    //   let table =
+    //     $('#example1').DataTable({
+    //
+    //       dom: 'Bfrtip',
+    //       buttons: [
+    //         'print',
+    //
+    //         'csvHtml5',
+    //         'pdfHtml5',
+    //       ]
+    //     });
+    //
+    //   //     $('#example1 tbody').on( 'click', 'tr', function () {
+    //   //       if ( $(this).hasClass('selected') ) {
+    //   //           $(this).removeClass('selected');
+    //   //       }
+    //   //       else {
+    //   //           table.$('tr.selected').removeClass('selected');
+    //   //           $(this).addClass('selected');
+    //   //       }
+    //   //   } );
+    //   // //   $('#example1 tbody').on( 'click', 'tr', function () {
+    //   // //     $(this).toggleClass('selected');
+    //   // // } );
+    // });
 
 
 
@@ -127,13 +129,14 @@ export class ReportSheetsComponent implements OnInit {
     this.reportserv.getReports().subscribe(response => {
       this.reports = response.data;
       console.log(this.reports);
-    })
+    });
   }
+
   getReportGroups() {
     this.reportserv.getReportGroups().subscribe(response => {
       this.reportgroups = response.data;
       console.log(this.reportgroups);
-    })
+    });
   }
 
 
@@ -148,20 +151,20 @@ export class ReportSheetsComponent implements OnInit {
 
   updateReport(reportId) {
     this.reportserv.getReport(reportId).subscribe((res) => {
-      this.report = res.data
-      console.log(this.report)
+      this.report = res.data;
+      console.log(this.report);
     });
     this.toview = 1;
   }
 
-  Change(event) { 
+  Change(event) {
     const subValue = event.target.value;
-    this.reportgroups[name]= subValue;
-    console.log(subValue)
+    this.reportgroups[name] = subValue;
+    console.log(subValue);
   }
 
   processForm() {
-    console.log(this.report)
+    console.log(this.report);
     if (this.report.id == undefined) {
       this.reportserv.createReport(this.report).subscribe((report) => {
         this.toview = 1;
@@ -181,42 +184,40 @@ export class ReportSheetsComponent implements OnInit {
     }
   }
   Add() {
-    this.report = {}
-    this.toview = 1
+    this.report = {};
+    this.toview = 1;
   }
   Cancel() {
-    this.toview = 0
+    this.toview = 0;
     this.ngOnInit();
   }
 
-  checkValue(event: any){
+  checkValue(event: any) {
     console.log(event);
-    if(event == 'A'){
-      this.showChecked = 1
-    }else {
-      this.showChecked = 0
+    if (event == 'A') {
+      this.showChecked = 1;
+    } else {
+      this.showChecked = 0;
       this.isIndividual =  false;
-      this.isGroup = false
+      this.isGroup = false;
     }
  }
-  
- private selectedLink        
-  
-  setradio(e: string): void{  
-    this.selectedLink = e; 
-    console.log(e) 
-    if(e == 'Individual'){
+
+  setradio(e: string): void {
+    this.selectedLink = e;
+    console.log(e);
+    if (e == 'Individual') {
       this.isIndividual =  true;
-      this.isGroup = false
-    }else{
+      this.isGroup = false;
+    } else {
       this.isGroup = true;
       this.isIndividual = true;
     }
-          
-  }  
-    isSelected(name: string): boolean {  
-        return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
-    } 
+
+  }
+    isSelected(name: string): boolean {
+        return (this.selectedLink === name); // if current radio button is selected, return true, else return false
+    }
 
   // values = [
   //   { id: 3432, name: "ENTER_MANUALLY" },
@@ -252,7 +253,7 @@ export class ReportSheetsComponent implements OnInit {
   //   console.log(newVal, this.values[0].id);
   // }
 
- 
+
   // downloadFile() {
   //   //this.http.get('https://contactsapi.apispark.net/v1/companies/').subscribe(
   //   this.http.get('https://mapapi.apispark.net/v1/images/Granizo.pdf').subscribe(
