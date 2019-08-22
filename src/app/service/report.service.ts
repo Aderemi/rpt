@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Response, Report, ReportConnection, ReportQueries, SingleDataResponse, ReportGroup } from '../class/report';
+import { Response, Report, ReportConnection, ReportQueries, SingleDataResponse, ReportGroup, ReportTemplate } from '../class/report';
 
 
 
@@ -12,7 +12,7 @@ export class ReportService {
   // private query: ReportQueries;
   private query: ReportQueries = new ReportQueries();
   private connection:ReportConnection = new ReportConnection();
-  baseUrl:String = `http://192.168.1.154:8081/api`;
+  baseUrl:String = `http://192.168.1.153:8081/api`;
   
   // private report:Report = new Report();
   // private reportconn:ReportConnection = new ReportConnection();
@@ -53,13 +53,6 @@ export class ReportService {
 
 //Queries
  
-  // getQueries(){
-  //   return this._http.get<ReportQueries[]>(this.baseUrl+ '/report/queries');
-  // }
-
-  // getQuery(id:number){
-  //   return this._http.get<ReportQueries[]>(this.baseUrl+ '/report/query/' + id);
-  // }
   getQueries(){
     return this._http.get<Response<ReportQueries>>(this.baseUrl+ '/report/queries');
   }
@@ -102,6 +95,26 @@ getConnection(id:number){
 
   updateConnection(connection){
     return this._http.put(this.baseUrl+ '/report/connection', connection);
+  }
+
+
+  // template
+getTemplates(){
+  return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/templates');
+}
+getTemplate(id:number){
+  return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/template/' + id);
+}
+
+  createTemplate(template){
+    return this._http.post(this.baseUrl+ '/report/template', template);
+  }
+  deleteTemplate(id:number){
+    return this._http.delete(this.baseUrl+ '/report/template/' + id);
+  }
+
+  updateTemplate(template){
+    return this._http.put(this.baseUrl+ '/report/template', template);
   }
 
 

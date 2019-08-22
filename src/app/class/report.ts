@@ -85,3 +85,12 @@ export interface ReportGroup{
     id?:number;
     name?:string;
 }
+
+export interface ReportTemplate{
+    id:number;
+    name:string;
+    placeholders: string[];
+    jsonContent: string;
+    description: string;
+    html: string;
+}
