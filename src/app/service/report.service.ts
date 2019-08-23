@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Response, Report, ReportConnection, ReportQueries, SingleDataResponse, ReportGroup, ReportTemplate } from '../class/report';
-import {Response, Report, ReportConnection, SingleDataResponse, ReportGroup, ReportQueries} from '../class/report';
 
 
 
@@ -10,12 +9,6 @@ import {Response, Report, ReportConnection, SingleDataResponse, ReportGroup, Rep
 })
 export class ReportService {
 
-  // private query: ReportQueries;
-  private query: ReportQueries = new ReportQueries();
-  private connection:ReportConnection = new ReportConnection();
-  baseUrl:String = `http://192.168.1.153:8081/api`;
-
-  private connection: ReportConnection = new ReportConnection();
   baseUrl: String = `http://192.168.1.153:8081/api`;
 
   // private report:Report = new Report();
@@ -67,21 +60,6 @@ export class ReportService {
     return this._http.delete(this.baseUrl + '/report/' + id);
   }
 
-
-
-//Queries
-
-  getQueries(){
-    return this._http.get<Response<ReportQueries>>(this.baseUrl+ '/report/queries');
-// Queries
-
-  // getQueries(){
-  //   return this._http.get<ReportQueries[]>(this.baseUrl+ '/report/queries');
-  // }
-
-  // getQuery(id:number){
-  //   return this._http.get<ReportQueries[]>(this.baseUrl+ '/report/query/' + id);
-  // }
   getQueries() {
     return this._http.get<Response<ReportQueries>>(this.baseUrl + '/report/queries');
   }

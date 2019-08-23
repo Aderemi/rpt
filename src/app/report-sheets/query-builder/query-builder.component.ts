@@ -54,10 +54,11 @@ export class QueryBuilderComponent implements OnInit {
   targets;
   showFields;
   options;
+  isDisabled = true;
   @ViewChild('queryPreviewHtml',  { read: ElementRef }) queryPreviewHtml: ElementRef;
   @ViewChild('preview-box',  { read: ElementRef }) previewBox: ElementRef;
   config = {
-    displayKey: 'description', // if objects array passed which key to be displayed defaults to description
+    // displayKey: 'this.options', // if objects array passed which key to be displayed defaults to description
     search: true, // true/false for the search functionlity defaults to false,
     height: '200px' , // height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
     width: '300px' , // height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
@@ -71,6 +72,7 @@ export class QueryBuilderComponent implements OnInit {
     };
 
   booleanVal = false;
+
 
   targetVal;
   private selectedLink;
@@ -89,16 +91,17 @@ conn;
     this.targets = 1;
     this.showFields = 0;
 
-    this.options = [
-      {id: 1 , description: 'Adding new item0'},
-      {id: 2 , description: 'Adding new item1'},
-      {id: 3 , description: 'Adding new item2'},
-      {id: 4 , description: 'Adding new item3'},
-      {id: 5 , description: 'Adding new item4'},
-      {id: 6 , description: 'Adding new item5'},
-      {id: 7 , description: 'Adding new item6'},
-      {id: 8 , description: 'Adding new item7'},
-    ];
+    // this.options = this.columns
+      // = [
+      // {id: 1 , description: this.columns},
+      // {id: 2 , description: 'Adding new item1'},
+      // {id: 3 , description: 'Adding new item2'},
+      // {id: 4 , description: 'Adding new item3'},
+      // {id: 5 , description: 'Adding new item4'},
+      // {id: 6 , description: 'Adding new item5'},
+      // {id: 7 , description: 'Adding new item6'},
+      // {id: 8 , description: 'Adding new item7'},
+    // ];
 
     this.datas = [
       {name: 'Tiger Nixon', Position: 'System Architect', Office: 'Edinburgh', Age: '61', Date: '2011/04/25', Salary: '$320,800' } ,
@@ -254,13 +257,6 @@ conn;
     });
   }
 
-  getColumns(table) {
-    this.oracleQueryBuilder.addTable(table, null, null, null);
-    this.updateRawCodeBox();
-    this.reportserv.getColumns(this.que.connectionId, table).subscribe(response => {
-      this.columns = response.data;
-    });
-  }
 
   getUnionColumns(tables) {
     const tablesString = tables.join('---');
@@ -291,8 +287,72 @@ conn;
       this.document.getElementById('preview-box').innerHTML = response.data;
     });
   }
-  addColumn(column, alias = '', aggregate = '', subQuery = false) {
-    this.oracleQueryBuilder.addSelect(column, alias, aggregate, subQuery);
+
+  addColumn() {
+    const columnElem: HTMLFormElement = this.document.getElementById('columns') as HTMLFormElement;
+    const alias = (this.document.getElementById('alias') as HTMLFormElement).value;
+    const aggElem: HTMLFormElement = this.document.getElementById('aggregate') as HTMLFormElement;
+    const column = columnElem.options[columnElem.selectedIndex].value;
+    const aggregate = columnElem.options[aggElem.selectedIndex].value;
+    this.oracleQueryBuilder.addSelect(column, alias, aggregate);
     this.updateRawCodeBox();
+  }
+
+  addTable(table = '', alias= '') {
+    alias = alias || (this.document.getElementById('alias') as HTMLFormElement).value;
+    if (!!table) {
+      this.oracleQueryBuilder.addTable(table, alias, null, null);
+      this.updateRawCodeBox();
+
+      this.isDisabled = false;
+      return;
+    }
+    const localKey: HTMLFormElement = this.document.getElementById('local-column') as HTMLFormElement;
+    const tableElem: HTMLFormElement = this.document.getElementById('columns') as HTMLFormElement;
+    const joinType: HTMLFormElement = this.document.getElementById('join-type') as HTMLFormElement;
+    const operator: HTMLFormElement = this.document.getElementById('operator') as HTMLFormElement;
+    const foreignKey: HTMLFormElement = this.document.getElementById('foreign-column') as HTMLFormElement;
+    table = table || tableElem.options[tableElem.selectedIndex].value;
+    const localColumn = localKey.options[localKey.selectedIndex].value;
+    const foreignColumn = foreignKey.options[foreignKey.selectedIndex].value;
+    const op  = operator.options[operator.selectedIndex].value;
+    const jt  = joinType.options[joinType.selectedIndex].value;
+    this.oracleQueryBuilder.addTable(table, alias, jt, {left: localKey, right: foreignKey, op: op});
+    this.updateRawCodeBox();
+    this.isDisabled = false;
+  }
+
+  getColumns() {
+    const tableElem: HTMLFormElement = this.document.getElementById('table-1') as HTMLFormElement;
+    const table = tableElem.options[tableElem.selectedIndex].value;
+    const alias = (this.document.getElementById('table-1-alias') as HTMLFormElement).value;
+    this.oracleQueryBuilder.addTable(table, alias, null, null);
+    this.updateRawCodeBox();
+    this.reportserv.getColumns(this.que.connectionId, table).subscribe(response => {
+      this.columns = response.data;
+    });
+  }
+  addFilter() {
+    const columnElem: HTMLFormElement = this.document.getElementById('columns') as HTMLFormElement;
+    const column = columnElem.options[columnElem.selectedIndex].value;
+    const conditionElem: HTMLFormElement = this.document.getElementById('conditions') as HTMLFormElement;
+    const condition = conditionElem.options[conditionElem.selectedIndex].value;
+    const valueElem: HTMLFormElement = this.document.getElementById('values') as HTMLFormElement;
+    const value = valueElem.options[valueElem.selectedIndex].value;
+    this.oracleQueryBuilder.addWhere(column, condition, value, null);
+    this.updateRawCodeBox();
+    console.log('it is working');
+  }
+  addGroup() {
+    const groupElem: HTMLFormElement = this.document.getElementById('groups') as HTMLFormElement;
+    const group = groupElem.options[groupElem.selectedIndex].value;
+
+    this.oracleQueryBuilder.addGroup(group);
+    this.updateRawCodeBox();
+    console.log('it is working');
+  }
+
+  setEvent(event) {
+    this.isDisabled = false;
   }
 }

@@ -209,11 +209,13 @@
 
 
 
+            <!-- USING MANUAL -->
             <div class="form-body" *ngIf="isManual">
               <textarea class="m-0 p-5 largetext col-md-12" rows="12" id="content" name="content" [(ngModel)]="que.content"></textarea>
             </div>
 
 
+            <!-- USING BUILDER -->
             <div class="panel-body build col-sm-12 col-md-10 offset-md-1" *ngIf="!isManual">
               <div class="row">
                 <div class="col-md-12">
@@ -237,21 +239,28 @@
                       <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-limit" role="tab" aria-controls="nav-profile" aria-selected="false">Limit</a>
                     </div>
                   </nav>
+                  <!-- NAV ENDS -->
+
+                  <!-- TABLE TAB BEGINS-->
                   <div class="tab-content mt-4" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-table" role="tabpanel"
                       aria-labelledby="nav-home-tab">
 
                       <div class="row">
                         <div class="col-md-3">
-                          <label for="tables">Table <sup>*</sup></label>
-                          <select id="tables" class="form-control search" (change)="getColumns($event.target.value)">
+                          <label for="table-1">Table <sup>*</sup></label>
+                          <select id="table-1" class="form-control search" (change)="getColumns($event.target.value)">
                              <option value="">&lt;-------&gt;</option>
                              <option *ngFor="let t of tables" [value]="t">{{toTopicCase(t)}}</option>
                           </select>
                         </div>
+                        <div class="col-md-3">
+                          <label for="table-1-alias">Alias(optional)</label>
+                          <input type="text" class="form-control search" id="table-1-alias">
+                        </div>
 
                         <div class="col-md-2 mt-auto">
-                          <button class="btn btn-primary btn-block" (click)= "showExtraFields()">Add extra table</button>
+                          <button id="button" class="btn btn-primary btn-block" (click)= "showExtraFields()" [disabled] = "isDisabled">Join table</button>
                         </div>
 
                       </div>
@@ -271,7 +280,7 @@
                                 <label for="Connections">Join Column (optional)</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="mySelect" class="form-control search">
+                                <select id="join" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
                                   <option>------------</option>
                                 </select>
@@ -285,7 +294,7 @@
                                 <label for="Connections">Types of Join</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="mySelect" class="form-control search">
+                                <select id="joinType" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
                                   <option>------------</option>
                                 </select>
@@ -304,7 +313,7 @@
                                 <label for="Connections">Table 2</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="mySelect" class="form-control search">
+                                <select id="table2" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
                                   <option>------------</option>
                                 </select>
@@ -318,7 +327,7 @@
                                 <label for="Connections">Alias(optional)</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="mySelect" class="form-control search">
+                                <select id="alias" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
                                   <option>------------</option>
                                 </select>
@@ -326,10 +335,8 @@
 
                             </div>
                           </div>
-
-
-
                         </div>
+
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
@@ -337,7 +344,7 @@
                                 <label for="Connections">Foreign Key(Table 2)</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="mySelect" class="form-control search">
+                                <select id="foreignKey" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
                                   <option>------------</option>
                                 </select>
@@ -345,21 +352,43 @@
 
                             </div>
                           </div>
-
-
-
                         </div>
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <div class="col-md-4">
+                                <label for="Connections">Join Condition</label>
+                              </div>
+                              <div class="col-md-8">
+                                <select id="foreignKey" class="form-control search">
+                                  <option value="">&lt;-------&gt;</option>
+                                  <option value="=">Equal</option>
+                                  <option value=">">Greater Than</option>
+                                  <option value=">=">Greater Or Equals To</option>
+                                  <option value="<=">Less Or Equals To</option>
+                                  <option value="<">Less Than</option>
+                                  <option value="<>">Not Equal To</option>
+                                </select>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
                         <div class="row mt-2">
                           <div class="col-md-10"></div>
                           <div class="col-md-2 text-right">
-                            <button class="btn btn-primary">save table</button>
+                            <button class="btn btn-primary" (click)="addTable()">save table</button>
                           </div>
                         </div>
 
                       </div>
 
                     </div>
+                    <!-- TABLE TAB ENDS -->
 
+                    <!-- COLUMN TAB BEGINS -->
                     <div class="tab-pane fade" id="nav-column" role="tabpanel" aria-labelledby="nav-profile-tab">
 
                       <div class="row pt-3">
@@ -370,7 +399,7 @@
                               <label for="Connections">Column<sup>*</sup></label>
                             </div>
                             <div class="col-md-8">
-                              <select id="columns" class="form-control search"  (change)="addColumn($event.target.value, null)">
+                              <select id="columns" class="form-control search">
                                 <option value="">&lt;-------&gt;</option>
                                     <option value="*">All</option>
                                     <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
@@ -387,7 +416,7 @@
                               <label for="Connections">Alias(Optional)</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" class="search">
+                              <input type="text" class="search" id="alias">
                             </div>
 
                           </div>
@@ -402,7 +431,7 @@
                               <label for="Connections">Aggregate(Optional)</label>
                             </div>
                             <div class="col-md-8">
-                              <select id="mySelect" class="form-control search">
+                              <select id="aggregate" class="form-control search">
                                 <option value="">&lt;-------&gt;</option>
                                 <option *ngFor="let u of aggregateValues.keys" [value]="u">{{aggregateValues.keys[u]}}</option>
                               </select>
@@ -414,11 +443,15 @@
                       <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2 text-right">
-                          <button class="btn btn-primary btn-block">Save column</button>
+                          <button class="btn btn-primary btn-block" (click)="addColumn()">Save column</button>
                         </div>
                       </div>
 
                     </div>
+                    <!-- COLUMN TAB ENDS -->
+
+
+                    <!-- FILTER TAB BEGINS -->
                     <div class=" tab-pane fade" id="nav-filter" role="tabpanel" aria-labelledby="nav-profile-tab">
 
                       <div class="row pt-3">
@@ -429,7 +462,7 @@
                               <label for="Connections">Column<sup>*</sup></label>
                             </div>
                             <div class="col-md-8">
-                              <select id="mySelect" class="form-control search">
+                              <select id="columns" class="form-control search">
                                 <option value="">&lt;-------&gt;</option>
                                 <option>----------</option>
                               </select>
@@ -445,10 +478,11 @@
                               <label for="Connections">Value</label>
                             </div>
                             <div class="col-md-8">
-                              <select id="mySelect" class="form-control search">
-                                <option value="">&lt;-------&gt;</option>
-                                <option>-----------</option>
-                              </select>
+                              <!--<select id="values" class="form-control search">-->
+                                <!--<option value="">&lt;-&#45;&#45;&#45;&#45;&#45;&#45;&gt;</option>-->
+                                <!--<option>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
+                              <!--</select>-->
+                              <input type="text" class="form-control search" id="values">
                             </div>
                           </div>
                         </div>
@@ -460,9 +494,14 @@
                               <label for="Connections">Condition</label>
                             </div>
                             <div class="col-md-8">
-                              <select id="mySelect" class="form-control search">
+                              <select id="conditions" class="form-control search">
                                 <option value="">&lt;-------&gt;</option>
-                                <option>-----------</option>
+                                <option value="=">Equal</option>
+                                <option value=">">Greater Than</option>
+                                <option value=">=">Greater Or Equals To</option>
+                                <option value="<=">Less Or Equals To</option>
+                                <option value="<">Less Than</option>
+                                <option value="<>">Not Equal To</option>
                               </select>
                             </div>
                           </div>
@@ -471,11 +510,11 @@
                         <div class="col-md-5">
                           <div class="form-group row mr-2">
                             <div class="col-md-3">
-                              <input type="radio" class="radio" id="manually" name="drone" disabled>
+                              <input type="radio" class="radio" id="and" name="drone" disabled>
                               <label class="labelradio ml-2" for="manually" disbled>AND</label>
                             </div>
                             <div class="col-md-3">
-                              <input type="radio" class="radio" id="manually" name="drone" disabled>
+                              <input type="radio" class="radio" id="or" name="drone" disabled>
                               <label class="labelradio ml-2" for="manually" disabled>OR</label>
                             </div>
                           </div>
@@ -485,10 +524,13 @@
                       <div class="row">
                         <div class="col-md-10"></div>
                         <div class="col-md-2 text-right">
-                          <button class="btn btn-primary btn-block">Save Filter</button>
+                          <button class="btn btn-primary btn-block" (click)="addFilter()">Save Filter</button>
                         </div>
                       </div>
                     </div>
+                    <!-- FILTER TAB ENDS -->
+
+                    <!-- GROUP BY TAB BEGINS -->
                     <div class=" tab-pane fade" id="nav-group-by" role="tabpanel" aria-labelledby="nav-profile-tab">
 
                       <div class="row pt-3">
@@ -505,43 +547,68 @@
                             <option>Ketchup</option>
                             <option>Relish</option>
                           </select> -->
-                          <ngx-select-dropdown class="search"
+                          <ngx-select-dropdown class="search" (change)="selectionChanged($event)"
 
                           [config]="config"
-                          [options]="options"
+                          [options]="columns"
                           [(ngModel)]="dataModel"
                           [multiple]="true" >
+                            <!--<option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>-->
                         </ngx-select-dropdown>
 
                           </div>
                         </div>
 
+                      </div>
 
                       </div>
+                      <!-- GROUP BY TAB ENDS -->
+
+                       <!-- ORDER BY TAB  -->
                       <div class=" tab-pane fade" id="nav-order-by" role="tabpanel" aria-labelledby="nav-profile-tab">
 
+                        <div class="row">
+                          <div class="col-md-3">
+                            <label for="tables">Order By <sup>*</sup></label>
+                            <select id="orderBy" class="form-control search">
+                              <option value="">&lt;-------&gt;</option>
+                              <option value="*">All</option>
+                              <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
+                            </select>
+                          </div>
+
+
+                          <div class="col-md-2  mt-auto">
+                            <input type="radio" class="radio" id="and" name="query">
+                            <label class="labelradio ml-2" for="and">AND</label>
+                          </div>
+                          <div class="col-md-2  mt-auto">
+                            <input type="radio" class="radio" id="or" name="query">
+                            <label class="labelradio ml-2" for="or">OR</label>
+                          </div>
+                          <div class="col-md-2 mt-auto">
+                            <button id="button" class="btn btn-primary btn-block" >Order By</button>
+                          </div>
+
+                        </div>
 
                       </div>
+                       <!-- ORDER BY TAB ENDS -->
+
+                        <!-- LIMIT TAB  -->
                       <div class=" tab-pane fade" id="nav-limit" role="tabpanel" aria-labelledby="nav-profile-tab">
 
 
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="form-group row mr-2">
+                                <label for="limit">Limit</label>
+                                <input type="text" class="form-control search">
+                            </div>
+                          </div>
+                        </div>
                       </div>
-
-                    </div>
-
-
-                      <div class=" tab-pane fade" id="nav-order-by" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-
-                        nothing
-                      </div>
-                      <div class=" tab-pane fade" id="nav-limit" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-
-                        nothing
-                      </div>
-
-
+                       <!-- LIMIT TAB ENDS -->
 
                   </div>
                 </div>
@@ -557,6 +624,7 @@
 
 
 
+            <!-- FORM FOR TABLE -->
             <div class="tab-content mt-4" id="nav-tabContent" *ngIf="!isManual">
               <div class="tab-pane fade show active" *ngIf="targets === 1">
                 <div class="panel-body largetext">
@@ -596,10 +664,17 @@
                 <div class="panel-body largetext">
                   <div class="row largetext">
                     <div class="col-sm-12 col-md-10 offset-md-1">
+                        <div class="row pl-4" id="preview-box">
+                            &nbsp;
+                            </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- FORM FOR TABLE ENDS -->
+
+              <!-- FORM FOR COLUMN -->
               <div class="tab-pane fade show active"  *ngIf="targets === 2">
                 <div class="panel-body largetext">
                   <div class="row">
@@ -636,10 +711,17 @@
                 <div class="panel-body largetext">
                   <div class="row largetext">
                     <div class="col-sm-12 col-md-10 offset-md-1">
+                        <div class="row pl-4" id="preview-box">
+                            &nbsp;
+                            </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- FORM FOR COLUMN ENDS -->
+
+              <!-- FORM FOR FILTER -->
               <div class="tab-pane fade show active"  *ngIf="targets === 3">
                 <div class="panel-body largetext">
                   <div class="row">
@@ -676,10 +758,17 @@
                 <div class="panel-body largetext">
                   <div class="row largetext">
                     <div class="col-sm-12 col-md-10 offset-md-1">
+                        <div class="row pl-4" id="preview-box">
+                            &nbsp;
+                            </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- FORM FOR FILTER ENDS -->
+
+              <!-- FORM FOR GROUP BY -->
               <div class="tab-pane fade show active"  *ngIf="targets === 4">
 
                 <div class="row pl-4">
@@ -691,17 +780,21 @@
                 <div class="panel-body largetext">
                   <div class="row largetext">
                     <div class="col-sm-12 col-md-10 offset-md-1">
+                        <div class="row pl-4" id="preview-box">
+                            &nbsp;
+                            </div>
                     </div>
                   </div>
                 </div>
+
+                <!-- FORM FOR GROUP BY ENDS -->
               </div>
             </div>
 
 
-            <div class="row pl-4" id="preview-box">
-            &nbsp;
-            </div>
 
+
+            <!-- BUTTONS FOR THE WHOLE PAGE -->
             <div class="card-footer text-muted">
               <div class="row p-3">
                 <div class="col-md-8"></div>
