@@ -58,13 +58,13 @@ export class QueryBuilderComponent implements OnInit {
   @ViewChild('queryPreviewHtml',  { read: ElementRef }) queryPreviewHtml: ElementRef;
   @ViewChild('preview-box',  { read: ElementRef }) previewBox: ElementRef;
   config = {
-    // displayKey: 'this.options', // if objects array passed which key to be displayed defaults to description
+    displayKey: 'value', // if objects array passed which key to be displayed defaults to description
     search: true, // true/false for the search functionlity defaults to false,
-    height: '200px' , // height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
+    height: '250px' , // height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
     width: '300px' , // height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
     placeholder: 'Select options', // text to be displayed when no item is selected defaults to Select,
     customComparator: () => {}, // a custom function using which user wants to sort the items. default is undefined and Array.sort() will be used in that case,
-    // limitTo: this.options.length ,// a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
+    limitTo: this.columns.length ,// a number thats limits the no of options displayed in the UI similar to angular's limitTo pipe
     moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
     noResultsFound: 'No results found!' , // text to be displayed when no items are found while searching
     searchPlaceholder: 'Search' , // label thats displayed in search input,
@@ -330,8 +330,12 @@ conn;
     this.updateRawCodeBox();
     this.reportserv.getColumns(this.que.connectionId, table).subscribe(response => {
       this.columns = response.data;
+      this.options = this.columns.map(column => ({
+        id : column , value: column
+      }));
     });
   }
+
   addFilter() {
     const columnElem: HTMLFormElement = this.document.getElementById('columns') as HTMLFormElement;
     const column = columnElem.options[columnElem.selectedIndex].value;

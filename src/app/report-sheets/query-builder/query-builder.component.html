@@ -464,7 +464,8 @@
                             <div class="col-md-8">
                               <select id="columns" class="form-control search">
                                 <option value="">&lt;-------&gt;</option>
-                                <option>----------</option>
+                                <option value="*">All</option>
+                                <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
                               </select>
                             </div>
 
@@ -547,10 +548,10 @@
                             <option>Ketchup</option>
                             <option>Relish</option>
                           </select> -->
-                          <ngx-select-dropdown class="search" (change)="selectionChanged($event)"
+                          <ngx-select-dropdown class="search"
 
                           [config]="config"
-                          [options]="columns"
+                          [options]="options"
                           [(ngModel)]="dataModel"
                           [multiple]="true" >
                             <!--<option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>-->
@@ -568,13 +569,22 @@
                       <div class=" tab-pane fade" id="nav-order-by" role="tabpanel" aria-labelledby="nav-profile-tab">
 
                         <div class="row">
-                          <div class="col-md-3">
-                            <label for="tables">Order By <sup>*</sup></label>
-                            <select id="orderBy" class="form-control search">
-                              <option value="">&lt;-------&gt;</option>
-                              <option value="*">All</option>
-                              <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
-                            </select>
+                          <div class="col-md-5">
+
+                            <div class="form-group row mr-2">
+                              <!--<div class="col-md-4">-->
+                                <label for="Connections">Order By<sup>*</sup></label>
+                              <!--</div>-->
+                              <!--<div class="col-md-8">-->
+                                <select id="columns" class="form-control search">
+                                  <option value="">&lt;-------&gt;</option>
+                                  <option value="*">All</option>
+                                  <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
+                                </select>
+                              <!--</div>-->
+
+                            </div>
+
                           </div>
 
 
