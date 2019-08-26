@@ -282,7 +282,7 @@
                               <div class="col-md-8">
                                 <select id="join" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
-                                  <option>------------</option>
+                                  <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
                                 </select>
                               </div>
 
@@ -296,7 +296,7 @@
                               <div class="col-md-8">
                                 <select id="joinType" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
-                                  <option>------------</option>
+                                  <option value="{{item.name}}" *ngFor="let item of joinsValues">{{item.name}}</option>
                                 </select>
                               </div>
 
@@ -313,9 +313,9 @@
                                 <label for="Connections">Table 2</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="table2" class="form-control search">
+                                <select id="table-2" class="form-control search" (change)="getNextColumns($event.target.value)">
                                   <option value="">&lt;-------&gt;</option>
-                                  <option>------------</option>
+                                  <option *ngFor="let t of tableFilter" [value]="t">{{toTopicCase(t)}}</option>
                                 </select>
                               </div>
 
@@ -327,10 +327,11 @@
                                 <label for="Connections">Alias(optional)</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="alias" class="form-control search">
+                                <input type="text" id="table-2-alias" class="form-control search">
+                                <!-- <select id="alias" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
                                   <option>------------</option>
-                                </select>
+                                </select> -->
                               </div>
 
                             </div>
@@ -346,7 +347,7 @@
                               <div class="col-md-8">
                                 <select id="foreignKey" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
-                                  <option>------------</option>
+                                  <option *ngFor="let v of nextColumns" [value]="v">{{ toTopicCase(v)}}</option>
                                 </select>
                               </div>
 
@@ -361,7 +362,7 @@
                                 <label for="Connections">Join Condition</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="foreignKey" class="form-control search">
+                                <select id="joinCondition" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
                                   <option value="=">Equal</option>
                                   <option value=">">Greater Than</option>
@@ -433,7 +434,7 @@
                             <div class="col-md-8">
                               <select id="aggregate" class="form-control search">
                                 <option value="">&lt;-------&gt;</option>
-                                <option *ngFor="let u of aggregateValues.keys" [value]="u">{{aggregateValues.keys[u]}}</option>
+                                <option value="{{item.name}}" *ngFor="let item of aggregateValues">{{item.name}}</option>
                               </select>
                             </div>
                           </div>
@@ -570,36 +571,27 @@
 
                         <div class="row">
                           <div class="col-md-5">
-
                             <div class="form-group row mr-2">
-                              <!--<div class="col-md-4">-->
                                 <label for="Connections">Order By<sup>*</sup></label>
-                              <!--</div>-->
-                              <!--<div class="col-md-8">-->
                                 <select id="columns" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
                                   <option value="*">All</option>
                                   <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
                                 </select>
-                              <!--</div>-->
-
                             </div>
-
                           </div>
 
-
-                          <div class="col-md-2  mt-auto">
+                          <div class="col-md-2  m-auto">
                             <input type="radio" class="radio" id="and" name="query">
                             <label class="labelradio ml-2" for="and">AND</label>
                           </div>
-                          <div class="col-md-2  mt-auto">
+                          <div class="col-md-2  m-auto">
                             <input type="radio" class="radio" id="or" name="query">
                             <label class="labelradio ml-2" for="or">OR</label>
                           </div>
-                          <div class="col-md-2 mt-auto">
+                          <div class="col-md-2 m-auto">
                             <button id="button" class="btn btn-primary btn-block" >Order By</button>
                           </div>
-
                         </div>
 
                       </div>
@@ -645,27 +637,24 @@
                           <th>Type of Join</th>
                           <th>Alias</th>
                           <th>Table</th>
-                          <th>on</th>
+                          <!-- <th>on</th> -->
                           <th>Actions</th>
-                          <th></th>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>left_join</td>
-                            <td>user_table</td>
-                            <td>users</td>
-                            <td>addrss</td>
-                            <td><a> <span><i class="flaticon-pencil"></i></span></a></td>
-                            <td><a class="btn btn-danger round-table-button">-</a></td>
+                          <tr *ngFor="let item of tableObj">
+                            <td>{{item.joinType}}</td>
+                            <td>{{item.alias}}</td>
+                            <td>{{item.name}}</td>
+                            <!-- <td>{{item.on}}</td>                             -->
+                            <td><a class="btn btn-danger round-table-button" (click)= "removeTable(item.table)">-</a></td>
                           </tr>
-
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
 
-                <div class="row pl-4">
+                <!-- <div class="row pl-4">
                   <div class="col-md-12 text-bold">
                     RAW SCRIPT
                   </div>
@@ -679,7 +668,7 @@
                             </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
 
               <!-- FORM FOR TABLE ENDS -->
@@ -695,15 +684,13 @@
                           <th>Aggregate</th>
                           <th>Alias</th>
                           <th>Actions</th>
-                          <th></th>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>left_join</td>
-                            <td>user_table</td>
-                            <td>users</td>
-                            <td><a> <span><i class="flaticon-pencil"></i></span></a></td>
-                            <td><a class="btn btn-danger round-table-button">-</a></td>
+                          <tr *ngFor="let item of userColumn">
+                            <td>{{item.column}}</td>
+                            <td>{{item.aggregate}}</td>
+                            <td>{{item.alias}}</td>
+                            <td><a class="btn btn-danger round-table-button" (click)="removeSelectColumn(item.column, item.aggregate)">-</a></td>
                           </tr>
 
                         </tbody>
@@ -711,7 +698,7 @@
                     </div>
                   </div>
                 </div>
-
+<!-- 
                 <div class="row pl-4">
                   <div class="col-md-12 text-bold">
                     RAW SCRIPT
@@ -726,7 +713,7 @@
                             </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
 
               <!-- FORM FOR COLUMN ENDS -->
@@ -759,7 +746,7 @@
                   </div>
                 </div>
 
-                <div class="row pl-4">
+                <!-- <div class="row pl-4">
                   <div class="col-md-12 text-bold">
                     RAW SCRIPT
                   </div>
@@ -773,33 +760,36 @@
                             </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
 
               <!-- FORM FOR FILTER ENDS -->
 
-              <!-- FORM FOR GROUP BY -->
-              <div class="tab-pane fade show active"  *ngIf="targets === 4">
-
-                <div class="row pl-4">
-                  <div class="col-md-12 text-bold">
-                    RAW SCRIPT
-                  </div>
-                </div>
-
-                <div class="panel-body largetext">
-                  <div class="row largetext">
-                    <div class="col-sm-12 col-md-10 offset-md-1">
-                        <div class="row pl-4" id="preview-box">
-                            &nbsp;
-                            </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- FORM FOR GROUP BY ENDS -->
-              </div>
+             
             </div>
+
+             <!-- FORM FOR RAW SCRIPT  -->
+             <div class="tab-pane fade show active">
+
+              <div class="row pl-4">
+                <div class="col-md-12 text-bold">
+                  RAW SCRIPT
+                </div>
+              </div>
+
+              <div class="panel-body largetext">
+                <div class="row largetext">
+                  <div class="col-sm-12 col-md-10 offset-md-1">
+                      <div class="row pl-4" id="preview-box">
+                          &nbsp;
+                          </div>
+                  </div>
+                </div>
+              </div>
+
+             
+            </div>
+             <!-- FORM FOR RAW SCRIPT  -->
 
 
 
@@ -807,15 +797,15 @@
             <!-- BUTTONS FOR THE WHOLE PAGE -->
             <div class="card-footer text-muted">
               <div class="row p-3">
-                <div class="col-md-8"></div>
-                <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="Cancel()"
-                    type="submit">Cancel</button>
-                </div>
-                <div class="col-md-2 text-right"><button class="btn btn-primary btn-block" (click)="preview()"
-          type="submit">preview</button>
-      </div>
+                  <div class="col-md-2 text-left">
+                      <button class="btn btn-success btn-block" type="submit" (click)="processForm()">Save</button>
+                    </div>
+                <div class="col-md-6"></div>
                 <div class="col-md-2 text-right">
-                  <button class="btn btn-success btn-block" type="submit" (click)="processForm()">Save</button>
+                  <button class="btn btn-outline-primary btn-block" (click)="Cancel()" type="submit">Cancel</button>
+                </div>
+                <div class="col-md-2 text-right">
+                  <button class="btn btn-primary btn-block" (click)="preview()" type="submit">preview</button>
                 </div>
               </div>
             </div>

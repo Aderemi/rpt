@@ -9,7 +9,7 @@ import { Response, Report, ReportConnection, ReportQueries, SingleDataResponse, 
 })
 export class ReportService {
 
-  baseUrl: String = `http://192.168.1.153:8081/api`;
+  baseUrl: String = `http://192.168.1.154:8081/api`;
 
   // private report:Report = new Report();
   // private reportconn:ReportConnection = new ReportConnection();

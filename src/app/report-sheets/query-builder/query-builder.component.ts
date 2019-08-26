@@ -16,13 +16,24 @@ export class QueryBuilderComponent implements OnInit {
   constructor( private reportserv: ReportService, private router: Router, private route: ActivatedRoute, @Inject(DOCUMENT) private document: Document ) { }
   drone = 'manually';
   oracleQueryBuilder: Oracle10gQBuilder = new Oracle10gQBuilder();
-  aggregateValues = {
-        'Sum of': ' SUM(_)',
-        'Average of': ' AVG(_)',
-        'Minimum in': ' MIN(_)',
-        'Maximum in': ' MAX(_)',
-        'Count of': ' COUNT(_)'
-    };
+  aggregateValues = [
+    {name : 'Sum of', value: ' SUM(_)'},
+    {name : 'Average of', value: ' AVG(_)'},
+    {name : 'Minimum in', value: ' MIN(_)'},
+    {name : 'Maximum in', value: ' MAX(_)'},
+    {name : 'Count of', value: ' COUNT(_)'}
+]
+
+joinsValues = [
+  {name:'Cross join', value: 'Cross join'},
+  {name:'Inner join', value: 'Inner join'},
+  {name:'Left outer join', value: 'Left outer join'},
+  {name:'right outer join', value: 'right outer join'},
+]
+
+tableObj = [{}]
+
+
 
   isManual = true;
   view;
@@ -49,9 +60,11 @@ export class QueryBuilderComponent implements OnInit {
   datas;
   h;
   columns: string[] = ['Please Select a Table'];
+  _columns = {};
   queryData;
   que: ReportQueries;
   targets;
+  currTable;
   showFields;
   options;
   isDisabled = true;
@@ -78,6 +91,7 @@ export class QueryBuilderComponent implements OnInit {
   private selectedLink;
 
 conn;
+userColumn;
 
   toTopicCase(str: string) {
     const result = str.toLowerCase().replace(/_/g, ' ');
@@ -90,33 +104,6 @@ conn;
     this.getQueries();
     this.targets = 1;
     this.showFields = 0;
-
-    // this.options = this.columns
-      // = [
-      // {id: 1 , description: this.columns},
-      // {id: 2 , description: 'Adding new item1'},
-      // {id: 3 , description: 'Adding new item2'},
-      // {id: 4 , description: 'Adding new item3'},
-      // {id: 5 , description: 'Adding new item4'},
-      // {id: 6 , description: 'Adding new item5'},
-      // {id: 7 , description: 'Adding new item6'},
-      // {id: 8 , description: 'Adding new item7'},
-    // ];
-
-    this.datas = [
-      {name: 'Tiger Nixon', Position: 'System Architect', Office: 'Edinburgh', Age: '61', Date: '2011/04/25', Salary: '$320,800' } ,
-      {name: 'Garrett Winters',  Position: 'Accountant', Office: 'Tokyo', Age: '63', Date: '2011/07/25', Salary: '$170,750' },
-      {name: 'Ashton Cox', Position: 'Junior Technical Author', Office: 'San Francisco', Age: '66', Date: '2009/01/12', Salary: '$86,000' },
-      {name: 'Cedric Kelly', Position: 'Senior Javascript Developer', Office: 'Edinburgh', Age: '22', Date: '2012/03/29', Salary: '$433,060' },
-      {name: 'Airi Satou', Position: 'Accountant', Office: 'Tokyo', Age: '33', Date: '2008/11/28', Salary: '$162,700' },
-      {name: 'Brielle Williamson', Position: 'Integration Specialist', Office: 'New York', Age: '61', Date: '2012/12/02', Salary: '$372,000'  },
-      {name: 'Herrod Chandler', Position: 'Sales Assistant', Office: 'San Francisco', Age: '59', Date: '2012/08/06', Salary: '$137,500' },
-      {name: 'Rhona Davidson',  Position: 'Integration Specialist', Office: 'Tokyo', Age: '55', Date: '2010/10/14', Salary: '$327,900'},
-      {name: 'Colleen Hurst', Position: 'Javascript Developer', Office: 'San Francisco', Age: '39', Date: '2009/09/15', Salary: '$205,500'  },
-      {name: 'Sonya Frost',  Position: 'Software Engineer', Office: 'Edinburgh', Age: '23', Date: '2008/12/13', Salary: '$103,600' },
-       {name: 'Jena Gaines',  Position: 'Office Manager', Office: 'London', Age: '30', Date: '2008/12/19', Salary: '$90,560' },
-
-     ];
   }
 
   populate() {
@@ -195,7 +182,6 @@ conn;
     });
     }
     updateQuery(queryId) {
-      debugger;
       this.reportserv.getQuery(queryId).subscribe((res) => {
         this.que = res.data;
         console.log(this.que);
@@ -250,7 +236,7 @@ conn;
     this.showFields = 1;
   }
 
-
+  tableFilter
   getTables(connectionId) {
     this.reportserv.getTables(connectionId).subscribe(response => {
       this.tables = response.data;
@@ -288,13 +274,16 @@ conn;
     });
   }
 
+
   addColumn() {
     const columnElem: HTMLFormElement = this.document.getElementById('columns') as HTMLFormElement;
     const alias = (this.document.getElementById('alias') as HTMLFormElement).value;
     const aggElem: HTMLFormElement = this.document.getElementById('aggregate') as HTMLFormElement;
     const column = columnElem.options[columnElem.selectedIndex].value;
-    const aggregate = columnElem.options[aggElem.selectedIndex].value;
+    const aggregate = aggElem.options[aggElem.selectedIndex].value;
     this.oracleQueryBuilder.addSelect(column, alias, aggregate);
+    console.log(this.oracleQueryBuilder.getUserData('select'));
+    this.userColumn = this.oracleQueryBuilder.getUserData('select');
     this.updateRawCodeBox();
   }
 
@@ -302,38 +291,80 @@ conn;
     alias = alias || (this.document.getElementById('alias') as HTMLFormElement).value;
     if (!!table) {
       this.oracleQueryBuilder.addTable(table, alias, null, null);
+      this.tableObj = this.oracleQueryBuilder.getUserData('tables');
       this.updateRawCodeBox();
 
       this.isDisabled = false;
       return;
     }
-    const localKey: HTMLFormElement = this.document.getElementById('local-column') as HTMLFormElement;
-    const tableElem: HTMLFormElement = this.document.getElementById('columns') as HTMLFormElement;
-    const joinType: HTMLFormElement = this.document.getElementById('join-type') as HTMLFormElement;
-    const operator: HTMLFormElement = this.document.getElementById('operator') as HTMLFormElement;
-    const foreignKey: HTMLFormElement = this.document.getElementById('foreign-column') as HTMLFormElement;
-    table = table || tableElem.options[tableElem.selectedIndex].value;
-    const localColumn = localKey.options[localKey.selectedIndex].value;
-    const foreignColumn = foreignKey.options[foreignKey.selectedIndex].value;
-    const op  = operator.options[operator.selectedIndex].value;
-    const jt  = joinType.options[joinType.selectedIndex].value;
-    this.oracleQueryBuilder.addTable(table, alias, jt, {left: localKey, right: foreignKey, op: op});
+    // const localKey: HTMLFormElement = this.document.getElementById('local-column') as HTMLFormElement;
+    // const tableElem: HTMLFormElement = this.document.getElementById('columns') as HTMLFormElement;
+    // const joinType: HTMLFormElement = this.document.getElementById('join-type') as HTMLFormElement;
+    // const operator: HTMLFormElement = this.document.getElementById('operator') as HTMLFormElement;
+    // const foreignKey: HTMLFormElement = this.document.getElementById('foreign-column') as HTMLFormElement;
+
+
+    const joinTypes: HTMLFormElement = this.document.getElementById('joinType') as HTMLFormElement;
+    const tableEle: HTMLFormElement = this.document.getElementById('table-2') as HTMLFormElement;
+    const join: HTMLFormElement = this.document.getElementById('join') as HTMLFormElement;
+    const jc: HTMLFormElement = this.document.getElementById('joinCondition') as HTMLFormElement;
+    const fk: HTMLFormElement = this.document.getElementById('foreignKey') as HTMLFormElement;
+    const ali = (this.document.getElementById('table-2-alias') as HTMLFormElement).value;
+
+    // table = table || tableElem.options[tableElem.selectedIndex].value;
+    // const localColumn = localKey.options[localKey.selectedIndex].value;
+    // const foreignColumn = foreignKey.options[foreignKey.selectedIndex].value;
+    // const op  = operator.options[operator.selectedIndex].value;
+    // const jt  = joinType.options[joinType.selectedIndex].value;
+
+    const jts  = joinTypes.options[joinTypes.selectedIndex].value;
+    const tb = tableEle.options[tableEle.selectedIndex].value;
+    const j  = join.options[join.selectedIndex].value;
+    const jo = jc.options[jc.selectedIndex].value;
+    const fok = fk.options[fk.selectedIndex].value;
+
+    debugger;
+    this.oracleQueryBuilder.addTable(tb, ali, jts, [{left: j, right: fok, op: jo}]);
+    this.tableObj = this.oracleQueryBuilder.getUserData('tables');
     this.updateRawCodeBox();
     this.isDisabled = false;
+    // this.tableObj= [{"typesJoin": jts, "alias": ali, "tables": tb,"on": j +''+jo+''+fok}];
+    console.log(this.tableObj)
   }
 
-  getColumns() {
+  getColumns(table = "") {
+    this.currTable = table;
     const tableElem: HTMLFormElement = this.document.getElementById('table-1') as HTMLFormElement;
-    const table = tableElem.options[tableElem.selectedIndex].value;
+    table = table || tableElem.options[tableElem.selectedIndex].value;
     const alias = (this.document.getElementById('table-1-alias') as HTMLFormElement).value;
-    this.oracleQueryBuilder.addTable(table, alias, null, null);
+    this.addTable(table, alias);
+
+    if (this.tableFilter == undefined){
+      this.tableFilter = ['please select table above'];
+    }else{
+      this.tableFilter = this.tables.filter(tbl => tbl != table)
+    }
+    console.log("...............", this.tableFilter, this.tables, table, this.columns);
+
     this.updateRawCodeBox();
+    this.isDisabled = false;
     this.reportserv.getColumns(this.que.connectionId, table).subscribe(response => {
+      this._columns[table] = response.data;
       this.columns = response.data;
       this.options = this.columns.map(column => ({
         id : column , value: column
       }));
     });
+  }
+  nextColumns
+  getNextColumns(){
+    const tableElem: HTMLFormElement = this.document.getElementById('table-2') as HTMLFormElement;
+    const table = tableElem.options[tableElem.selectedIndex].value;
+    this.oracleQueryBuilder.addTable(table, null, null, null);
+    this.reportserv.getColumns(this.que.connectionId, table).subscribe(response => {
+      this.nextColumns = response.data;
+    });
+
   }
 
   addFilter() {
@@ -343,6 +374,7 @@ conn;
     const condition = conditionElem.options[conditionElem.selectedIndex].value;
     const valueElem: HTMLFormElement = this.document.getElementById('values') as HTMLFormElement;
     const value = valueElem.options[valueElem.selectedIndex].value;
+    console.log(value);
     this.oracleQueryBuilder.addWhere(column, condition, value, null);
     this.updateRawCodeBox();
     console.log('it is working');
@@ -350,12 +382,22 @@ conn;
   addGroup() {
     const groupElem: HTMLFormElement = this.document.getElementById('groups') as HTMLFormElement;
     const group = groupElem.options[groupElem.selectedIndex].value;
-
     this.oracleQueryBuilder.addGroup(group);
     this.updateRawCodeBox();
     console.log('it is working');
   }
 
+  removeSelectColumn(column, aggregate){
+    this.oracleQueryBuilder.removeSelectColumn(column, aggregate);
+    this.userColumn = this.oracleQueryBuilder.getUserData('select');
+    this.updateRawCodeBox();
+  }
+
+  removeTable(table){
+    this.oracleQueryBuilder.removeTable(table);
+    this.userColumn = this.oracleQueryBuilder.getUserData('select');
+    this.updateRawCodeBox();
+  }
   setEvent(event) {
     this.isDisabled = false;
   }

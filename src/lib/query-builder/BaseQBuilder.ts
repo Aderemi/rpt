@@ -36,6 +36,7 @@ export class BaseQBuilder {
     protected limit: string;
     protected subQueryOperators: [string, string];
     protected tables: [];
+    protected aggDebug;
 
     constructor() {
 
@@ -48,6 +49,13 @@ export class BaseQBuilder {
             limit: ''
         };
 
+        this.aggDebug = {
+            'Sum of': ' SUM(_)',
+            'Average of': ' AVG(_)',
+            'Minimum in': ' MIN(_)',
+            'Maximum in': ' MAX(_)',
+            'Count of'  : ' COUNT(_)'
+        };
         this.joins = {
             'Cross join': ' CROSS JOIN',
             'Inner join': ' INNER JOIN',
@@ -78,6 +86,9 @@ export class BaseQBuilder {
         this.tables = [];
     }
 
+    getUserData(key){
+        return this.userData[key];
+    }
     static parseAggregates(aggregate, data) {
         if (!BaseQBuilder.aggregates[aggregate]) { throw new Error(`Aggregate: ${aggregate} is not implemented on ${BaseQBuilder.builderName}`); }
         if (aggregate === 'Count of' && !data) { data = [{column: '*'}]; }
@@ -133,6 +144,7 @@ export class BaseQBuilder {
         }
         if (joinType && !on) { throw new Error('You must specify column where the tables join'); }
         if (joinType && !this.joins[joinType]) { throw new Error('The join type: ' + joinType + ' you specified does not exist'); }
+        debugger;
         this.userData['tables'].push({
             name: table,
             alias: alias,
@@ -207,8 +219,9 @@ export class BaseQBuilder {
             queryString = this.select;
         } else {
             queryString = this.userData.select.map((d) => {
-                const column = BaseQBuilder.aggregates[d.aggregate]
+                const column = this.aggDebug[d.aggregate]
                   ? BaseQBuilder.aggregates[d.aggregate].replace('_', d.column) : d.column;
+
                 let q = d.subquery ? ' (' + column + ') ' : column;
                 q += d.alias ? ' AS ' + d.alias : '';
                 return q;
@@ -232,6 +245,11 @@ export class BaseQBuilder {
 
     removeOrderColumn(column) {
         this.removeEntity('orderBy', column, {});
+        return this;
+    }
+
+    removeTable(table) {
+        this.removeEntity('tables', table, {});
         return this;
     }
 
