@@ -249,9 +249,9 @@
                       <div class="row">
                         <div class="col-md-3">
                           <label for="table-1">Table <sup>*</sup></label>
-                          <select id="table-1" class="form-control search" (change)="getColumns($event.target.value)">
+                          <select id="table-1" class="form-control search">
                              <option value="">&lt;-------&gt;</option>
-                             <option *ngFor="let t of tables" [value]="t">{{toTopicCase(t)}}</option>
+                             <option *ngFor="let t of tableContainer" [value]="t">{{toTopicCase(t)}}</option>
                           </select>
                         </div>
                         <div class="col-md-3">
@@ -260,7 +260,10 @@
                         </div>
 
                         <div class="col-md-2 mt-auto">
-                          <button id="button" class="btn btn-primary btn-block" (click)= "showExtraFields()" [disabled] = "isDisabled">Join table</button>
+                          <button id="add-table" class="btn btn-success btn-block" (click)= "getColumns(true)">Save table</button>
+                          <button id="join-table" class="btn btn-primary btn-block" (click)= "showExtraFields()">Join table</button>
+                          <!--<button id="add-table" class="btn btn-success btn-block" *ngIf="oracleQueryBuilder.getUserData('tables').length == 0" (click)= "getColumns(true)">Save table</button>-->
+                          <!--<button id="join-table" class="btn btn-primary btn-block" *ngIf="oracleQueryBuilder.getUserData('tables').length > 0" (click)= "showExtraFields()">Join table</button>-->
                         </div>
 
                       </div>
@@ -282,7 +285,7 @@
                               <div class="col-md-8">
                                 <select id="join" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
-                                  <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
+                                  <option *ngFor="let v of _columns[rightTable]" [value]="v">{{ toTopicCase(v)}}</option>
                                 </select>
                               </div>
 
@@ -313,9 +316,9 @@
                                 <label for="Connections">Table 2</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="table-2" class="form-control search" (change)="getNextColumns($event.target.value)">
+                                <select id="table-2" class="form-control search" (change)="getColumns(true, $event.target.value)">
                                   <option value="">&lt;-------&gt;</option>
-                                  <option *ngFor="let t of tableFilter" [value]="t">{{toTopicCase(t)}}</option>
+                                  <option *ngFor="let t of tableContainer" [value]="t">{{toTopicCase(t)}}</option>
                                 </select>
                               </div>
 
@@ -347,7 +350,7 @@
                               <div class="col-md-8">
                                 <select id="foreignKey" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
-                                  <option *ngFor="let v of nextColumns" [value]="v">{{ toTopicCase(v)}}</option>
+                                  <option *ngFor="let v of _columns[leftTable]" [value]="v">{{ toTopicCase(v)}}</option>
                                 </select>
                               </div>
 
@@ -403,7 +406,7 @@
                               <select id="columns" class="form-control search">
                                 <option value="">&lt;-------&gt;</option>
                                     <option value="*">All</option>
-                                    <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
+                                    <option *ngFor="let v of _getAllColumns()" [value]="v">{{ toTopicCase(v)}}</option>
                               </select>
                             </div>
 
@@ -466,7 +469,7 @@
                               <select id="columns" class="form-control search">
                                 <option value="">&lt;-------&gt;</option>
                                 <option value="*">All</option>
-                                <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
+                                <option *ngFor="let v of _getAllColumns()" [value]="v">{{ toTopicCase(v)}}</option>
                               </select>
                             </div>
 
@@ -480,10 +483,6 @@
                               <label for="Connections">Value</label>
                             </div>
                             <div class="col-md-8">
-                              <!--<select id="values" class="form-control search">-->
-                                <!--<option value="">&lt;-&#45;&#45;&#45;&#45;&#45;&#45;&gt;</option>-->
-                                <!--<option>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
-                              <!--</select>-->
                               <input type="text" class="form-control search" id="values">
                             </div>
                           </div>
@@ -539,30 +538,23 @@
                         <div class="col-md-8">
                           <div class="form-group row mr-2">
                             <label for="Connections">Group by</label>
-                             <!-- <select  id="mySelect" class="form-control search" >
-                                                      <option value="">&lt;-------&gt;</option>
-                                                       <option ></option>
-                          </select> -->
-
-                          <!-- <select class="selectpicker"  (change)="selectionChanged($event)"  multiple data-live-search="true">
-                            <option>Mustard</option>
-                            <option>Ketchup</option>
-                            <option>Relish</option>
-                          </select> -->
-                          <ngx-select-dropdown class="search"
-
+                          <ngx-select-dropdown
+                          id="groups"
+                          class="search"
                           [config]="config"
                           [options]="options"
                           [(ngModel)]="dataModel"
                           [multiple]="true" >
-                            <!--<option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>-->
                         </ngx-select-dropdown>
-
                           </div>
                         </div>
-
                       </div>
-
+                      <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2 text-right">
+                          <button class="btn btn-primary btn-block" (click)="addGroup()">GROUP BY</button>
+                        </div>
+                      </div>
                       </div>
                       <!-- GROUP BY TAB ENDS -->
 
@@ -570,27 +562,27 @@
                       <div class=" tab-pane fade" id="nav-order-by" role="tabpanel" aria-labelledby="nav-profile-tab">
 
                         <div class="row">
-                          <div class="col-md-5">
+                          <div class="col-md-4">
                             <div class="form-group row mr-2">
                                 <label for="Connections">Order By<sup>*</sup></label>
                                 <select id="columns" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
                                   <option value="*">All</option>
-                                  <option *ngFor="let v of columns" [value]="v">{{ toTopicCase(v)}}</option>
+                                  <option *ngFor="let v of _getAllColumns()" [value]="v">{{ toTopicCase(v)}}</option>
                                 </select>
                             </div>
                           </div>
 
-                          <div class="col-md-2  m-auto">
-                            <input type="radio" class="radio" id="and" name="query">
-                            <label class="labelradio ml-2" for="and">AND</label>
+                          <div class="col-md-2 m-auto">
+                            <input type="radio" class="radio" id="ascending" name="query" value="ASC">
+                            <label class="labelradio ml-2" for="and">Ascending</label>
                           </div>
                           <div class="col-md-2  m-auto">
-                            <input type="radio" class="radio" id="or" name="query">
-                            <label class="labelradio ml-2" for="or">OR</label>
+                            <input type="radio" class="radio" id="descending" name="query" value="DSC">
+                            <label class="labelradio ml-2" for="or">Descending</label>
                           </div>
                           <div class="col-md-2 m-auto">
-                            <button id="button" class="btn btn-primary btn-block" >Order By</button>
+                            <button id="button" class="btn btn-primary btn-block" (click)= "addOrder()">Order By</button>
                           </div>
                         </div>
 
@@ -605,9 +597,14 @@
                           <div class="col-md-3">
                             <div class="form-group row mr-2">
                                 <label for="limit">Limit</label>
-                                <input type="text" class="form-control search">
+                                <input type="text" class="form-control search" id="limits">
                             </div>
                           </div>
+
+                          <div class="col-md-2 m-auto">
+                            <button id="button" class="btn btn-primary btn-block" (click)= "addLimit()">Add Limit</button>
+                          </div>
+
                         </div>
                       </div>
                        <!-- LIMIT TAB ENDS -->
@@ -698,7 +695,7 @@
                     </div>
                   </div>
                 </div>
-<!-- 
+<!--
                 <div class="row pl-4">
                   <div class="col-md-12 text-bold">
                     RAW SCRIPT
@@ -726,16 +723,16 @@
                       <table class="table alt-table table-borderless">
                         <thead>
                           <th>Column</th>
-                          <th>Aggregate</th>
-                          <th>Alias</th>
+                          <th>condition</th>
+                          <th>value</th>
                           <th>Actions</th>
                           <th></th>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>left_join</td>
-                            <td>user_table</td>
-                            <td>users</td>
+                          <tr *ngFor="let item of userFilter">
+                            <td>{{item.column}}</td>
+                            <td>{{item.operator}}</td>
+                            <td>{{item.value}}</td>
                             <td><a> <span><i class="flaticon-pencil"></i></span></a></td>
                             <td><a class="btn btn-danger round-table-button">-</a></td>
                           </tr>
@@ -765,7 +762,7 @@
 
               <!-- FORM FOR FILTER ENDS -->
 
-             
+
             </div>
 
              <!-- FORM FOR RAW SCRIPT  -->
@@ -787,7 +784,7 @@
                 </div>
               </div>
 
-             
+
             </div>
              <!-- FORM FOR RAW SCRIPT  -->
 

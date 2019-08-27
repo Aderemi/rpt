@@ -39,7 +39,7 @@ export class BaseQBuilder {
     protected aggDebug;
 
     constructor() {
-
+debugger;
         this.userData = {
             tables: [],
             where: [],
@@ -86,7 +86,7 @@ export class BaseQBuilder {
         this.tables = [];
     }
 
-    getUserData(key){
+    getUserData(key) {
         return this.userData[key];
     }
     static parseAggregates(aggregate, data) {
@@ -142,7 +142,7 @@ export class BaseQBuilder {
         if (this.userData['tables'].length === 0 && !!joinType) {
           throw new Error('You must have base table before specifying table with joinType');
         }
-        if (joinType && !on) { throw new Error('You must specify column where the tables join'); }
+        if (joinType && !on) { throw new Error('You must specify column where the tableContainer join'); }
         if (joinType && !this.joins[joinType]) { throw new Error('The join type: ' + joinType + ' you specified does not exist'); }
         debugger;
         this.userData['tables'].push({
@@ -151,7 +151,8 @@ export class BaseQBuilder {
             joinType: joinType,
             on: on
         });
-        return this;
+      debugger;
+      return this;
     }
 
     parseFrom() {
