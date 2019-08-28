@@ -55,7 +55,7 @@ export class InwardCollectionPaymentComponent implements OnInit {
 //   facilityReferenceFlag :boolean;
 //   rejectSteps: WorkflowQueue[];
 //   setChildren = true;
-//   // 
+//   //
 //   isInTransit = false;
 
 //  //-------new workflow
@@ -68,31 +68,31 @@ export class InwardCollectionPaymentComponent implements OnInit {
 
 //  navItem : any;
 
-  constructor( 
+  constructor(
     // private router:Router, private activatedRoute:ActivatedRoute, private  locator :LocationRouter,
     //  private _smp : ServerMessagePopUp, private _inwardPayServ : InwardCollectionPaymentService,
-    //  private _pickListItemService : PickListItemService, private registrationService:RegistrationService,  
+    //  private _pickListItemService : PickListItemService, private registrationService:RegistrationService,
     //   private _setupService: WorkflowProcessSetupService,
     //   private _masterService : InwardCollectionMasterService,
     //   private actionService: WorkflowActionService,
     //   private _currService : CurrencyService
   ) {
     // this.facilityReferenceFlag = true;
-    
-    
+
+
  }
 
  scroll(el: HTMLElement){
   let jboy = el.offsetTop - 55;
   window.scroll({ top: jboy, behavior: "smooth" });
 }
-  
+
   ngOnInit() {
 //     console.log("+++++++++++++++++++++++++++++++++++++++++=")
 //     this.activatedRoute.params.subscribe(params=>{
 //        this.decode = JSON.parse(atob(params.navItem));
 //       console.log("this is the decoded object");
-      
+
 //      this._pickListItemService.getPickListItemByCode(this.cancelReasonCode).subscribe(data=>{
 //       this.reasons = data;
 //      });
@@ -103,10 +103,10 @@ export class InwardCollectionPaymentComponent implements OnInit {
 //       this.cResStatus = data;
 //      });
 
-   
+
 //       this.instrumentRegister = this.decode.instrumentRegister;
 //     //  console.log(decode.product)
-    
+
 //       const operation = this.decode.operation;
 //       console.log(this.decode);
 //       if(operation == "In Transit"){
@@ -136,7 +136,7 @@ export class InwardCollectionPaymentComponent implements OnInit {
 
 
 //   createInwardCollectionPay(){
- 
+
 //   //  this.inward.instrumentRegister = this.instrumentRegister;
 //     console.log("import before")
 //     console.log(this.inwardPay);
@@ -152,7 +152,7 @@ export class InwardCollectionPaymentComponent implements OnInit {
 //       this._smp.popUpAlertError("Unable to save");
 
 //     }))
-    
+
 //   }
 
 // // for operation in transit
@@ -195,11 +195,11 @@ export class InwardCollectionPaymentComponent implements OnInit {
 //   this._masterService.getMaster(this.inward.id).subscribe((data=>{
 //     console.log("this is the inward fetched",data)
 //     this.inward = data;
-//     console.log("This is the inward data from the data base",data);
+//     console.log("This is the inward editorData from the editorData base",editorData);
 //   }),(err=>{
 //     console.log("Thios is the error",err);
 //   }));
- 
+
 // console.log(this.instrumentRegister);
 // this.inwardPay.reference = this.instrumentRegister.reference+this.getExtension();
 //   this.productName = this.instrumentRegister.product.description;
@@ -304,9 +304,9 @@ export class InwardCollectionPaymentComponent implements OnInit {
 // //--new workflow
 // getWfBusinessProcessSetupByCriteria()
 // {
-  
+
 //   this.actionService.getWfBusinessProcessSetupByCriteria("ICOP","Pay").subscribe((data => {
-    
+
 //     this.wfSetup = data;
 //     this.businessProId = this.wfSetup.id;
 //     this.startQueue = this.wfSetup.startQueue;
@@ -318,7 +318,7 @@ export class InwardCollectionPaymentComponent implements OnInit {
 //     }));
 // }
 // getAllBusinessprocessEventByBusProcIdAndQueueId() {
-  
+
 //   this.actionService.getAllBusinessProcessEvents(this.startQueueId, this.businessProId).subscribe((data => {
 //   this.Events = data;
 
@@ -336,7 +336,7 @@ export class InwardCollectionPaymentComponent implements OnInit {
 //   }), (err => {
 
 //   }));
-// } 
+// }
 // UpdateCharge(id)
 // {
 //  // this.router.navigate(['/calculated-charge-info', id]);
@@ -366,7 +366,7 @@ export class InwardCollectionPaymentComponent implements OnInit {
 // this._inwardPayServ.getOne(id).subscribe(data =>{
 
 //   console.log(data);
- 
+
 //   this.inwardPay = data;
 // });
 //   this.getHistory(ref);
@@ -377,14 +377,14 @@ export class InwardCollectionPaymentComponent implements OnInit {
 // getHistory(reference){
 //   this._masterService.getWFItem(reference).subscribe((data =>{
 //     this.obj = data;
-//     console.log("------------------------>>>"+this.obj); 
+//     console.log("------------------------>>>"+this.obj);
 //   }));
 // }
 
 // goToEvents(str, obj){
 
 //   console.log(str); // the class name
-//   console.log(obj); // 
+//   console.log(obj); //
 //   switch(str){
 //     case 'ImportLetterCredit':
 //     this.navItem = {
@@ -392,9 +392,9 @@ export class InwardCollectionPaymentComponent implements OnInit {
 //       'id': obj[4],
 //       'ref' : obj[3]
 //     }
-  
+
 //     this.router.navigate(['importLetterCredit', btoa(JSON.stringify(this.navItem))]);
-  
+
 //     break;
 //   }
 
@@ -402,7 +402,7 @@ export class InwardCollectionPaymentComponent implements OnInit {
 // }
 // goToMaster(){
 
-     
+
 //   this.navItem = {
 //     'operation' : "View",
 //     'instrumentRegister' : this.instrumentRegister
@@ -417,7 +417,7 @@ export class InwardCollectionPaymentComponent implements OnInit {
 //     let p = this.instrumentRegister.product.businessProcess;
 //     for(let i = 0; i < p.length; i++){
 //       if(p[i].serviceRef.code === "Pay"){
-//         ; 
+//         ;
 //         let nextNo = this.instrumentRegister.lastNo + this.instrumentRegister.incrmt;
 //         ext += p[i].surfix+this.instrumentRegister.delim+this.padNumber(nextNo, this.instrumentRegister.width);
 //         break;

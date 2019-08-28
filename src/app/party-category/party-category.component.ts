@@ -9,12 +9,12 @@ import { PartyCategory } from './party-category';
   styleUrls: ['./party-category.component.css']
 })
 export class PartyCategoryComponent implements OnInit {
-  party:PartyCategory = new PartyCategory(); 
-  
+  party:PartyCategory = new PartyCategory();
+
   constructor(private router:Router, private partyService:PartyCategoryService, private activatedRoute:ActivatedRoute) { }
 
   // createParty(){
-  //   this.partyService.newParty(this.party).subscribe(data =>{
+  //   this.partyService.newParty(this.party).subscribe(editorData =>{
   //     console.log('Successfully created party');
   //     this.router.navigate(['/charges']);
 
@@ -27,8 +27,8 @@ export class PartyCategoryComponent implements OnInit {
   //   this.router.navigate([url])
   // }
   // getPartyById(id){
-  //   this.partyService.getParty(id).subscribe(data=>{
-  //     this.party=data;
+  //   this.partyService.getParty(id).subscribe(editorData=>{
+  //     this.party=editorData;
 
   //   })
   // }
@@ -36,12 +36,12 @@ export class PartyCategoryComponent implements OnInit {
   //   this.router.navigate(['/charges']);
   // }
   ngOnInit() {
-    // this.activatedRoute.params.subscribe((data) => {
-    //   console.log(data.id);
-    //   this.party.id= data.id;
+    // this.activatedRoute.params.subscribe((editorData) => {
+    //   console.log(editorData.id);
+    //   this.party.id= editorData.id;
     //   this.getPartyById(this.party.id);
   // });
- 
+
 
 }
 }

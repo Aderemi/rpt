@@ -26,22 +26,22 @@ export class AssignedConfigurationComponent implements OnInit {
 
   constructor(
     // private _inwardCustomerPaymentProductService : InwardCustomerPaymentProductService,
-    // private _activatedRoute : ActivatedRoute, private _productService : ProductService,  
+    // private _activatedRoute : ActivatedRoute, private _productService : ProductService,
     // private _router : Router, private locator:LocationRouter,
     //  private chRef: ChangeDetectorRef
-     ) { 
+     ) {
        //this.locator = new LocationRouter(this._router)
      }
 
   ngOnInit() {
     this.relatedTaskConfiguration = true;
     // this._activatedRoute.params.subscribe(params=>{
-    //   let decode =  JSON.parse(atob(params.navItem)); 
+    //   let decode =  JSON.parse(atob(params.navItem));
     //   this.product = decode.product;
     //   this.operation = decode.operation;
     //   console.log(this.product)
-    //   this._productService.getOne(this.product.id).subscribe(data=>{
-    //     this.product = data;
+    //   this._productService.getOne(this.product.id).subscribe(editorData=>{
+    //     this.product = editorData;
     //     console.log(this.product)
     //     this.configRef = this.product.configRef;
     //     if(this.configRef == undefined){
@@ -52,9 +52,9 @@ export class AssignedConfigurationComponent implements OnInit {
     //   });
     //  });
 
-   
-   
- 
+
+
+
     //      console.log(this.configRef)
 
   }
@@ -68,22 +68,22 @@ export class AssignedConfigurationComponent implements OnInit {
   //     break;
   //    }
   //    case 'Modify':{
-  
+
   //     break;
-       
+
   //    }
   //    case 'Cancel':{
 
-  
 
-     
+
+
   //      break;
   //    }
   //    case 'View':{
 
-  
 
-     
+
+
   //      break;
   //    }
   //    default : {
@@ -102,7 +102,7 @@ export class AssignedConfigurationComponent implements OnInit {
   // }
 
 
- 
+
   // operationClose(){
   //   this.ngOnInit();
   // }

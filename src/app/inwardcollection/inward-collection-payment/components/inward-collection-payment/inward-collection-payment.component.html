@@ -15,7 +15,7 @@
                 </div>
                 <div class="col float-right">
                   <a [appSidebarCollapse]='sidebar'>
-                    <i class="fa fa-arrow-left" aria-hidden="true" id="ico"></i> 
+                    <i class="fa fa-arrow-left" aria-hidden="true" id="ico"></i>
                   </a>
                 </div>
               </div>
@@ -81,17 +81,17 @@
                   </div>
                   <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                     <div class="panel-body">
-  
+
                       <div class="col-sm-12 col-md-10 offset-md-1">
                         <div class="form-body">
-  
+
                           <div class="row">
-  
+
                             <div class="col-md-6">
                               <div class="form-group row">
                                 <label for="code" class="control-label col-md-4">Reference
                                 </label>
-  
+
                                 <div class="col-md-8">
                                   <input name="code" [disabled]="cod" [(ngModel)]="factoringProduct.code" type="text" id="code"
                                     class="form-control" placeholder="">
@@ -102,21 +102,21 @@
                               <div class="form-group row">
                                 <label for="description" class="control-label col-md-4">Client
                                 </label>
-  
+
                                 <div class="col-md-8">
                                   <input name="description" [disabled]="des" [(ngModel)]="factoringProduct.description"
                                     type="text" id="description" class="form-control" placeholder="">
                                 </div>
                               </div>
                             </div>
-  
-                           
+
+
                           </div>
-  
-                       
-  
+
+
+
                           <div class="row">
-  
+
                           </div>
                           <div class="row">
                             <div class="col-md-6">
@@ -124,7 +124,7 @@
                                 <label class="control-label col-md-4">Product Category</label>
                                 <div class="col-md-8">
                                   <select class="form-control" name="productCategory" [disabled]="true">
-  
+
                                     <option [value]="productSubCategory.productCategory">{{product.productSubCategory.productCategory.description}}</option>
                                   </select>
                                 </div>
@@ -144,14 +144,14 @@
                             </div>
                           </div>
                           <div class="row">
-  
+
                           </div>
                           <div class="row">
                                 <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="customer" class="control-label col-md-4">Warrant Reference
                                             </label>
-          
+
                                             <div class="col-md-8">
                                                 <input name="warrantRef" [disabled]='true'  [(ngModel)]="warrantRef" type="text" id="warrantRef" class="form-control" placeholder="">
                                             </div>
@@ -166,28 +166,28 @@
                                                         <option value="">---Please select---</option>
                                                         <option>Remmiting Bank</option>
                                                         <option >Collecting Bank</option>
-                                                        
-          
+
+
                                                     </select>
-          
+
                                                 </div>
-          
+
                                             </div>
                                         </div>
-  
+
                           </div>
-  
+
                           <div class="row">
-  
-  
+
+
                           </div>
-  
+
                           <div class="row">
                                 <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="customer" class="control-label col-md-4">Sender's Reference
                                             </label>
-        
+
                                             <div class="col-md-8">
                                                 <input name="senderReference"  [(ngModel)]="inward.senderReference" type="text" id="senderReference" class="form-control" placeholder="">
                                             </div>
@@ -203,15 +203,15 @@
                                                         <option >Swift</option>
                                                         <option >Telex</option>
                                                         <option>Airmail</option>
-                                                       
-                            
+
+
                                                     </select>
-              
+
                                                 </div>
-              
+
                                             </div>
                                         </div>
-  
+
                           </div>
 
                           <div class="row">
@@ -224,14 +224,14 @@
                                                 <option value="">---Please select---</option>
                                                 <option >Remmiting Bank</option>
                                                 <option >Collecting Bank</option>
-        
+
                                             </select>
-        
+
                                         </div>
-        
+
                                     </div>
                                 </div>
-        
+
                               <div class="col-md-6">
                                   <div class="form-group row">
                                       <label for="code" class="control-label col-md-4">Document release</label>
@@ -241,14 +241,14 @@
                                               <option >Documents against payment</option>
                                               <option >Documents against acceptance</option>
                                               <option >Pour Aval</option>
-        
+
                                           </select>
-        
+
                                       </div>
-        
+
                                   </div>
                               </div>
-        
+
                           </div>
 
                           <div class="row">
@@ -260,28 +260,28 @@
                                             <select class="col-md-12" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="collectionAmtCur" [(ngModel)]="inward.collectionAmtCur" id="collectionAmtCur" [compareWith]="equals">
                                                 <option value="">---Please select---</option>
                                                 <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
-                                           
-            
+
+
                                             </select>
-            
+
                                         </div>
                                         <div class="col-md-4">
                                           <input name="collectionAmtFig"  [(ngModel)]="inward.collectionAmtFig" type="text" id="collectionAmtFig"  class="form-control" placeholder="">
                                       </div>
-            
+
                                     </div>
                                 </div>
-            
+
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label for="code" class="control-label col-md-4">Collection Order Date</label>
                                         <div class="col-md-8">
                                           <input name="collectOrderDate"  [ngModel]="inward.collectOrderDate | date:'yyyy-MM-dd'" (ngModelChange)="inward.collectOrderDate = $event" type="date"  id="collectOrderDate"  class="form-control" placeholder="">
                                       </div>
-              
+
                                     </div>
                                 </div>
-            
+
                              </div>
 
                              <div class="row">
@@ -292,11 +292,11 @@
                                                 <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  name="ourResRequired" [(ngModel)]="inward.ourResRequired" id="ourResRequired" [compareWith]="equals">
                                                     <option value="">---Please select---</option>
                                                     <option >Yes</option>
-                                                    <option >No</option>       
-                                                </select>      
-                                            </div>        
+                                                    <option >No</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div class="col-md-6">
                                       <div class="form-group row">
@@ -304,21 +304,21 @@
                                           <div class="col-md-8">
                                               <select class="col-md-12" class="form-control"  data-placeholder="Choose a Category" name="applicationRule" [(ngModel)]="inward.applicationRule" id="applicationRule">
                                                       <option value="">---Please select---</option>
-                                                
+
                                                       <option>UCP LATEST VERSION</option>
                                                       <option>UCPURR LATEST VERSION</option>
                                                       <option>EUCP LATEST VERSION</option>
                                                       <option>EUCPURR LATEST VERSION</option>
                                                       <option>ISP LATEST VERSION</option>
                                                       <option>Other</option>
-                                              </select>  
+                                              </select>
                                           </div>
                                       </div>
-                                  </div>   
-                  
+                                  </div>
+
                                 </div>
-<!-- 
-                                <div class="row">                                                                   
+<!--
+                                <div class="row">
                                   </div> -->
 
                                   <div class="row">
@@ -329,35 +329,35 @@
                                             <div class="col-md-8">
                                                 <select class="form-control" data-placeholder="Choose a Event"  name="busProEventId" [(ngModel)]="inwardAccept.busProEventId" (change)="getCalculatedCharges()">
                                                     <option *ngFor="let event of Events" value={{event.id}} selected="inwardAccept.busProEventId==event.id? true : null">
-                                                      {{event.description}} 
+                                                      {{event.description}}
                                                     </option>
-                              
-                                                  </select>                                            
+
+                                                  </select>
                                               </div>
                                              </div>
                                     </div>
-                                                                 
+
                                     </div>
-                        
-  
+
+
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                
+
                 <div class=" panel-default">
                   <div class="panel-heading" role="tab" id="headingBenInfo">
                     <div class="float-left form-icon text-center mr-3">
                       <span class="flaticon-paper  primary-color"></span>
                     </div>
                     <h4 class="panel-title secondary-color font-weight-bold pt-2" #drawee>
-                            Drawee/Consignee Information 
+                            Drawee/Consignee Information
                     </h4>
                   </div>
                   <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
                     <div class="panel-body">
-  
+
                       <div class="col-sm-12 col-md-10 offset-md-1">
                         <div class="form-body">
                                 <div class="row">
@@ -365,7 +365,7 @@
                                                 <div class="form-group form-row">
                                                         <label for="description" class="control-label col-md-4"> Drawee Name &nbsp;
                                                         </label>
-                          
+
                                                         <div class="col-md-8 input-group">
                                                           <input name="" [(ngModel)]="account.accountType.name" [disabled]="true" type="text" id=""
                                                             class="form-control" placeholder="">
@@ -383,11 +383,11 @@
                                                 <div class="col-md-8">
                                                     <input name="draweeNameAccNum" [(ngModel)]="inward.draweeNameAccNum" type="text" id="draweeNameAccNum" class="form-control"  placeholder="">
                                                 </div>
-          
+
                                             </div>
                                         </div>
                                         <!--/span-->
-          
+
                                         <!--/span-->
                                     </div>
                           <div class="row">
@@ -398,7 +398,7 @@
                                             <div class="col-md-8">
                                                 <input name="draweeReference" [(ngModel)]="inward.draweeReference" type="text" id="draweeReference" class="form-control"  placeholder="">
                                             </div>
-      
+
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -408,7 +408,7 @@
                                             <div class="col-md-8">
                                                 <textarea name="draweeAddress" [(ngModel)]="inward.draweeAddress" rows="4" type="text" id="draweeAddress"  class="form-control" placeholder=""></textarea>
                                             </div>
-      
+
                                         </div>
                                     </div>
                           </div>
@@ -422,11 +422,11 @@
                                                 <option value="">---Please select---</option>
                                                 <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                                             </select>
-                  
+
                                         </div>
-  
+
                                     </div>
-                                </div>                       
+                                </div>
                             </div>
 
 
@@ -441,12 +441,12 @@
                     <span class="flaticon-paper  primary-color"></span>
                     </div>
                     <h4 class="panel-title secondary-color font-weight-bold pt-2" #drawer>
-                        Drawer/ Cosignor Information 
+                        Drawer/ Cosignor Information
                     </h4>
                   </div>
                   <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                     <div class="panel-body">
-  
+
                       <div class="col-sm-12 col-md-10 offset-md-1">
 
                          <div class="form-body">
@@ -455,7 +455,7 @@
                                 <div class="form-group form-row">
                                         <label for="description" class="control-label col-md-4"> Drawer Name &nbsp;
                                         </label>
-          
+
                                         <div class="col-md-8 input-group">
                                           <input name="" [(ngModel)]="account.accountType.name" [disabled]="true" type="text" id=""
                                             class="form-control" placeholder="">
@@ -466,7 +466,7 @@
                                         </div>
                                       </div>
                           </div>
-                       
+
                           <div class="col-md-6">
                               <div class="form-group row">
                                   <label for="code" class="control-label col-md-4">Drawer Reference
@@ -492,25 +492,25 @@
                           <!--/span-->
 
                           <!--/span-->
-                     
+
                           <div class="col-md-6">
                               <div class="form-group row">
                                   <label for="code" class="control-label col-md-4">Country
                                   </label>
                                   <div class="col-md-8">
                                       <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  tabindex="1" name="drawerCountry" [(ngModel)]="inward.drawerCountry" id="drawerCountry" [compareWith]="equals">
-                                          
+
                                           <option value="">---Please select---</option>
                                           <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                                       </select>
-            
+
                                   </div>
 
                               </div>
-                          </div>                       
-                      </div>  
-                         
-                     
+                          </div>
+                      </div>
+
+
 
 
                   </div>
@@ -532,7 +532,7 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
                             <div class="form-body">
                                 <div class="row">
@@ -546,15 +546,15 @@
                                                     <option >Pay With Bank Finance</option>
                                                     <option >Pay With Bank Syndicate</option>
                                                 </select>
-                      
+
                                             </div>
-      
-                                           
-      
+
+
+
                                         </div>
                                     </div>
-                                    
-      
+
+
                                     <div class="col-md-6">
                                       <div class="form-group row">
                                           <label for="code" class="control-label col-md-4">Financier
@@ -565,18 +565,18 @@
                                                   <option >Pay With Bank Finance</option>
                                                   <option >Pay With Bank Syndicate</option>
                                               </select>
-                    
+
                                           </div>
-      
-                                         
-      
+
+
+
                                       </div>
                                   </div>
                                     </div>
-      
+
                                     <div class="row">
-      
-                                    
+
+
                                       <div class="col-md-6" >
                                           <div class="form-group row">
                                               <label for="code" class="control-label col-md-4">Facility Reference
@@ -584,10 +584,10 @@
                                               <div class="col-md-8">
                                                   <input name="facilityReference" [disabled]="facilityReferenceFlag" [(ngModel)]="inwardPay.facilityReference" type="text" id="facilityReference"  class="form-control" placeholder="">
                                               </div>
-                                             
-                        
+
+
                                               </div>
-        
+
                                           </div>
                                           <div class="col-md-6">
                                               <div class="form-group row">
@@ -596,20 +596,20 @@
                                                       <select class="col-md-12" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="collectionAmtCur" [(ngModel)]="inwardPay.collectedAmtCur"  id="collectedAmtCur">
                                                           <option value="">---Please select---</option>
                                                           <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
-                                                     
-                      
+
+
                                                       </select>
-                      
+
                                                   </div>
                                                   <div class="col-md-4">
                                                     <input name="collectedAmtFig" style="text-align : right" [(ngModel)]="inwardPay.collectedAmtFig" type="text" id="collectedAmtFig"  class="form-control" placeholder="">
                                                 </div>
-                      
+
                                               </div>
                                           </div>
-                                      
+
                                       </div>
-                                      
+
                                     <div class="row">
                                       <div class="col-md-6">
                                           <div class="form-group row">
@@ -618,15 +618,15 @@
                                                   <select class="col-md-12" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="proRemAmtCur" [(ngModel)]="inwardPay.proRemAmtCur"  id="proRemAmtCur">
                                                       <option value="">---Please select---</option>
                                                       <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
-                                                 
-                  
+
+
                                                   </select>
-                  
+
                                               </div>
                                               <div class="col-md-4">
                                                 <input name="proRemAmtFig" style="text-align : right" [(ngModel)]="inwardPay.proRemAmtFig" type="text" id="proRemAmtFig"  class="form-control" placeholder="">
                                             </div>
-                  
+
                                           </div>
                                       </div>
                                       <div class="col-md-6">
@@ -637,23 +637,23 @@
                                                       <option value="">---Please select---</option>
                                                       <option *ngFor="let bank of banks" [ngValue]="bank">{{bank.name}}</option>
                                                   </select>
-                  
+
                                               </div>
-                                             
-                  
+
+
                                           </div>
                                       </div>
-      
+
                                     </div>
                                     <div class="row">
                                       <div class="col-md-6">
                                           <div class="form-group row">
                                               <label for="code" class="control-label col-md-4">Date Collected</label>
-                                              
+
                                               <div class="col-md-8">
                                                 <input name="dateCollected"  [ngModel]="inwardPay.dateCollected | date:'yyyy-MM-dd'" type="date" (ngModelChange)="inwardPay.dateCollected = $event" id="dateCollected"  class="form-control" placeholder="">
                                             </div>
-                  
+
                                           </div>
                                       </div>
                                       <div class="col-md-6">
@@ -664,9 +664,9 @@
                                               </div>
                                           </div>
                                       </div>
-      
+
                                     </div>
-      
+
                                     <div class="row">
                                       <div class="col-md-6">
                                           <div class="form-group row">
@@ -676,7 +676,7 @@
                                                   <textarea name="detailsCharges"  [(ngModel)]="inwardPay.detailsCharges" rows="4"  id="detailsCharges" class="form-control"
                                                       placeholder=""></textarea>
                                               </div>
-        
+
                                           </div>
                                       </div>
                                       <div class="col-md-6">
@@ -687,23 +687,23 @@
                                                   <textarea name="detailsAmtAdded"  [(ngModel)]="inwardPay.detailsAmtAdded" rows="4"  id="detailsAmtAdded" class="form-control"
                                                       placeholder=""></textarea>
                                               </div>
-        
+
                                           </div>
                                       </div>
-      
+
                                     </div>
                                     <div class="row">
                                           <div class="col-md-6">
                                                   <div class="form-group row">
                                                       <label for="code" class="control-label col-md-4">Our Nostro Account Number</label>
-                                                      
+
                                                       <div class="col-md-4">
                                                         <input name="nostroBankAccNo"  [(ngModel)]="inwardPay.nostroBank.accountNumber" type="text" id="nostroBankAccNo"  class="form-control" placeholder="">
                                                     </div>
                                                     <div class="col-md-4">
                                                           <input name="nostroBankName" style="text-align : right" [(ngModel)]="inwardPay.nostroBank.name" type="text" id="nostroBankName"  class="form-control" placeholder="">
                                                       </div>
-                          
+
                                                   </div>
                                               </div>
                                       <div class="col-md-6">
@@ -714,19 +714,19 @@
                                                   <textarea name="additionalInfo"  [(ngModel)]="inwardPay.additionalInfo" rows="4"  id="additionalInfo" class="form-control"
                                                       placeholder=""></textarea>
                                               </div>
-        
+
                                           </div>
                                       </div>
                                     </div>
-                                    
-      
-                                   
-      
-      
+
+
+
+
+
                             </div>
-                
-                             
-                
+
+
+
                         </div>
                       </div>
                     </div>
@@ -744,11 +744,11 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
-                        
-                
+
+
+
                              <div class="form-body">
                                       <div class="row">
                                           <div class="col-md-6">
@@ -763,22 +763,22 @@
                                                             class="fa fa-search" aria-hidden="true"></i></span>
                                                       </div>
                                                   </div>
-                
+
                                               </div>
                                           </div>
                                           <div class="col-md-6">
                                               <div class="form-group row">
-                                                  <label for="code" class="control-label col-md-4">Bank Name 
+                                                  <label for="code" class="control-label col-md-4">Bank Name
                                                   </label>
                                                   <div class="col-md-8">
                                                       <input name="benBankName" [(ngModel)]="inwardPay.benBankName" type="text" id="benBankName" class="form-control" >
                                                   </div>
-                
+
                                               </div>
                                           </div>
                                       </div>
                                       <div class="row">
-                
+
                                           <div class="col-md-6">
                                               <div class="form-group row">
                                                   <label for="code" class="control-label col-md-4">Bank Address
@@ -786,7 +786,7 @@
                                                   <div class="col-md-8">
                                                       <textarea name="benBankAddress" [(ngModel)]="inwardPay.benBankAddress" rows="4" type="text" id="benBankAddress" class="form-control"></textarea>
                                                   </div>
-                
+
                                               </div>
                                           </div>
                                           <div class="col-md-6">
@@ -796,14 +796,14 @@
                                                   <div class="col-md-8">
                                                       <input name="benBankLocation" [(ngModel)]="inwardPay.benBankLocation" type="text" id="benBankLocation" class="form-control">
                                                   </div>
-                
+
                                               </div>
                                           </div>
                                           </div>
-                                         
-                
+
+
                                   </div>
-                
+
                         </div>
                       </div>
                     </div>
@@ -821,11 +821,11 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
-                        
-                
+
+
+
                              <div class="form-body">
                                   <div class="row">
                                       <div class="col-md-6">
@@ -840,22 +840,22 @@
                                                         class="fa fa-search" aria-hidden="true"></i></span>
                                                   </div>
                                               </div>
-                
+
                                           </div>
                                       </div>
                                       <div class="col-md-6">
                                           <div class="form-group row">
-                                              <label for="code" class="control-label col-md-4">Bank Name 
+                                              <label for="code" class="control-label col-md-4">Bank Name
                                               </label>
                                               <div class="col-md-8">
                                                   <input name="receBankName" [(ngModel)]="inwardPay.receBankName" type="text" id="receBankName" class="form-control" >
                                               </div>
-                
+
                                           </div>
                                       </div>
                                   </div>
                                   <div class="row">
-                
+
                                       <div class="col-md-6">
                                           <div class="form-group row">
                                               <label for="code" class="control-label col-md-4">Bank Address
@@ -863,7 +863,7 @@
                                               <div class="col-md-8">
                                                   <textarea name="receBankAddress" [(ngModel)]="inwardPay.receBankAddress" rows="4" type="text" id="receBankAddress" class="form-control"></textarea>
                                               </div>
-                
+
                                           </div>
                                       </div>
                                       <div class="col-md-6">
@@ -873,15 +873,15 @@
                                               <div class="col-md-8">
                                                   <input name="receBankLocation" [(ngModel)]="inwardPay.receBankLocation" type="text" id="receBankLocation" class="form-control">
                                               </div>
-                
+
                                           </div>
                                       </div>
                                       </div>
-                                     
-                
+
+
                               </div>
-                
-                
+
+
                         </div>
                       </div>
                     </div>
@@ -894,12 +894,12 @@
                         <span class="flaticon-paper  primary-color"></span>
                         </div>
                         <h4 class="panel-title secondary-color font-weight-bold pt-2" #response>
-                            Response Information 
+                            Response Information
                         </h4>
                   </div>
                   <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                     <div class="panel-body">
-  
+
                       <div class="col-sm-12 col-md-10 offset-md-1">
 
                             <div class="form-body">
@@ -909,17 +909,17 @@
                                                 <label for="code" class="control-label col-md-4">Response Status
                                                 </label>
                                                 <div class="col-md-8">
-                                                    <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"   name="responseStatus" [(ngModel)]="inwardAmend.responseStatus" id="responseStatus" [compareWith]="equals">
+                                                    <select class="col-md-8" class="form-contreditorDatadata-placeholder="Choose a Category"   name="responseStatus" [(ngModel)]="inwardAmend.responseStatus" id="responseStatus" [compareWith]="equals">
                                                         <option value="">---Please select---</option>
                                                         <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                                                     </select>
-                          
+
                                                 </div>
-          
+
                                             </div>
                                         </div>
-                                      
-          
+
+
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="code" class="control-label col-md-4">Response Information
@@ -928,14 +928,14 @@
                                                     <textarea name="responseInfo" [(ngModel)]="inwardAmend.responseInfo" rows="4" type="text" id="responseInfo" class="form-control"
                                                         placeholder="" ></textarea>
                                                 </div>
-          
+
                                             </div>
                                         </div>
                                         </div>
-          
-                                      
-                                  
-          
+
+
+
+
                                 </div>
 
                       </div>
@@ -948,14 +948,14 @@
                                     <span class="flaticon-paper  primary-color"></span>
                                     </div>
                                     <h4 class="panel-title secondary-color font-weight-bold pt-2" #currency>
-                                        Currency Reporting 
+                                        Currency Reporting
                                     </h4>
                         </div>
                         <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                           <div class="panel-body">
-        
+
                             <div class="col-sm-12 col-md-10 offset-md-1">
-  
+
                                     <div class="form-body">
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -963,20 +963,20 @@
                                                         <label for="instructionCode" class="control-label col-md-4">Base Foreign Currency equiv /rate</label>
                                                         <div class="col-md-4">
                                                             <select class="col-md-9" class="form-control"  data-placeholder="Choose a Category" tabindex="1" name="baseFgnCurrEquiRateCurr" [(ngModel)]="inward.baseFgnCurrEquiRateCurr" [compareWith]="equals">
-                                                                    
+
                                                                     <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
-                  
-                  
+
+
                                                             </select>
-                  
-                  
-                  
+
+
+
                                                         </div>
                                                         <div class="col-md-4">
                                                             <input name="baseFgnCurrEquiRateFig" [(ngModel)]="inward.baseFgnCurrEquiRateFig" type="text" id="" class="form-control" >
                                                         </div>
-                  
-                  
+
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -988,11 +988,11 @@
                                                         <div class="col-md-4">
                                                                 <button class="btn btn-primary btn-block" style="padding: 6px 3px !important; font-size: 11px;">Exchange Rate</button>
                                                         </div>
-                  
+
                                                     </div>
                                                 </div>
-                  
-                  
+
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -1002,18 +1002,18 @@
                                                             <select class="col-md-9" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="localCurrEquiRateCurr"  [(ngModel)]="inward.localCurrEquiRate" [compareWith]="equals">
                                                                     <option value="0">---Please select---</option>
                                                                     <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
-                  
-                  
+
+
                                                             </select>
-                  
-                  
-                  
+
+
+
                                                         </div>
                                                         <div class="col-md-4">
                                                             <input name="localCurrEquiRateFig" [(ngModel)]="inward.localCurrEquiRateFig" type="text" id="" class="form-control">
                                                         </div>
-                  
-                  
+
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -1026,13 +1026,13 @@
                                                                 <button class="btn btn-primary btn-block" style="padding: 6px 3px !important; font-size: 11px;">Exchange Rate</button>
                                                             <!-- <button class="btn btn-info  usl-btn-color">Exchange Rate</button> -->
                                                         </div>
-                  
+
                                                     </div>
                                                 </div>
-                  
-                  
+
+
                                             </div>
-                  
+
                                         </div>
                             </div>
                           </div>
@@ -1050,9 +1050,9 @@
                             </div>
                             <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                               <div class="panel-body">
-                        
+
                                 <div class="col-sm-12 col-md-10 offset-md-1">
-                                                              
+
                                         <br>
                                         <div class="form-body" *ngIf="setChildren">
                                             <!-- <app-party-categories [instrumentRegister]="instrumentRegister"></app-party-categories> -->
@@ -1073,15 +1073,15 @@
                                 </div>
                                 <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                                   <div class="panel-body">
-                            
+
                                     <div class="col-sm-12 col-md-10 offset-md-1">
-                            
+
                                             <br>
                                             <div class="form-body" *ngIf="setChildren">
-                      
+
                                                 <!-- <app-documents [instrumentRegister]="instrumentRegister"></app-documents> -->
                                             </div>
-                            
+
                                     </div>
                                   </div>
                                 </div>
@@ -1093,20 +1093,20 @@
                                                     <span class="flaticon-paper  primary-color"></span>
                                                     </div>
                                                     <h4 class="panel-title secondary-color font-weight-bold pt-2" #foreign>
-                                                        Fgn Exchange Deals 
+                                                        Fgn Exchange Deals
                                                     </h4>
                                     </div>
                                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                                       <div class="panel-body">
-                                
+
                                         <div class="col-sm-12 col-md-10 offset-md-1">
-                                
+
                                                 <div class="panel-body" *ngIf="setChildren">
                                                         <!-- <app-foreign-exchange-deals [instrumentRegister]="instrumentRegister"></app-foreign-exchange-deals> -->
-                                  
-                                  
+
+
                                                     </div>
-                                
+
                                         </div>
                                       </div>
                                     </div>
@@ -1123,16 +1123,16 @@
                             </div>
                             <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                               <div class="panel-body">
-            
+
                                 <div class="col-sm-12 col-md-10 offset-md-1">
-      
+
                                         <div class="panel-body" *ngIf="setChildren">
                                                 <!-- <app-charges [instrumentRegister]="instrumentRegister"></app-charges> -->
                                                 <div class="table-responsive">
                                                   <table id="myTable" class="table table-striped">
                                                       <thead>
                                                           <tr>
-                                                                
+
                                                                   <th>Charge Type</th>
                                                                   <th>Charge Currency</th>
                                                                   <th>Charge Amount</th>
@@ -1143,7 +1143,7 @@
                                                       </thead>
                                                       <tbody >
                                                           <tr *ngFor = "let charge of CalculatedCharges">
-                                                                  
+
                                                             <td>{{charge.chargeType}}</td>
                                                             <td>{{charge.chargeCurrency}}</td>
                                                             <td>{{charge.chargeAmount}}</td>
@@ -1151,14 +1151,14 @@
                                                             <td>{{charge.taxAmount}}</td>
                                                             <td> <input class="pull-right fcbtn btn btn-success btn-outline btn-1f" type="button" value="Update" (click)="UpdateCharge(charge.id)"/></td>
                                                           </tr>
-                                                         
-                                                        
+
+
                                                       </tbody>
                                                   </table>
-                                              </div> 
-                                                
+                                              </div>
+
                                             </div>
-      
+
                                 </div>
                               </div>
                             </div>
@@ -1175,15 +1175,15 @@
                                 </div>
                                 <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                                   <div class="panel-body">
-                            
+
                                     <div class="col-sm-12 col-md-10 offset-md-1">
-                            
+
                                             <div class="form-body" *ngIf="setChildren">
 
                                                     <!-- <app-checklists></app-checklists> -->
 
                                                     </div>
-                            
+
                                     </div>
                                   </div>
                                 </div>
@@ -1194,98 +1194,98 @@
                                 <span class="flaticon-paper  primary-color"></span>
                                 </div>
                                 <h4 class="panel-title secondary-color font-weight-bold pt-2" #control>
-                                   Control Information 
+                                   Control Information
                                 </h4>
                   </div>
                   <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                     <div class="panel-body">
-  
+
                       <div class="col-sm-12 col-md-10 offset-md-1">
                             <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="servicingBranch" class="control-label col-md-4">Servicing Branch</label>
-          
+
                                                 <div class="col-md-8">
                                                     <input name="servicingBranch" [(ngModel)]="inward.servicingBranch" type="text" id="servicingBranch" class="form-control"
                                                         placeholder="">
                                                 </div>
-          
-          
+
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="homeBranch" class="control-label col-md-4">Home Branch</label>
-          
+
                                                 <div class="col-md-8">
                                                     <input name="homeBranch" [(ngModel)]="inward.homeBranch" type="text" id="baseFgnCurrEquiRate" class="form-control" placeholder="">
                                                 </div>
-          
-          
+
+
                                             </div>
                                         </div>
-          
-          
+
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="servicingBranch" class="control-label col-md-4">Relationship Management</label>
-          
+
                                                 <div class="col-md-8">
                                                     <input name="relationshipManagement"  [(ngModel)]="inward.relationshipManagement" type="text" id="relationshipManagement"
                                                         class="form-control" placeholder="">
                                                 </div>
-          
-          
+
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="effectiveDate" class="control-label col-md-4">Effective Date</label>
-          
+
                                                 <div class="col-md-8">
                                                     <input name="effectiveDate"  [ngModel]="inward.effectiveDate | date:'yyyy-MM-dd'" (ngModelChange)="inward.effectiveDate = $event" type="date" id="effectiveDate" class="form-control" placeholder="">
                                                 </div>
-          
-          
+
+
                                             </div>
                                         </div>
-          
-          
+
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="status" class="control-label col-md-4">Status</label>
-          
+
                                                 <div class="col-md-8">
                                                     <input name="status" [disabled]='true' [(ngModel)]="inward.status" type="text" id="status" class="form-control" placeholder="">
                                                 </div>
-          
-          
+
+
                                             </div>
                                         </div>
                                         <div class="col-md-6" *ngIf="isInTransit">
                                                 <div class="form-group row">
                                                     <label for="rejectQueueId" class="control-label col-md-4">Reject Queue</label>
                                                     <div class="col-md-8">
-                                                            
+
                                                         <select class="form-control" data-placeholder="rejectQueueId" tabindex="1" name="rejectQueueId" [(ngModel)]="inwardAmend.rejectQueueId">
                                                             <option *ngFor="let step of rejectSteps" value={{step.id}} selected="test.rejectQueueId==step.id? true : null">
                                                                 {{step.description}}
                                                             </option>
                                                         </select>
-                                                    
+
                                                 </div>
                                                 </div>
                                             </div>
-          
-                                        
+
+
                                     </div>
-          
+
                                 </div>
                       </div>
                     </div>
@@ -1315,21 +1315,21 @@
                       Approve</button>
                     <button *ngIf="canBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('cancel')">
                       Cancel</button>
-  
+
                     <button *ngIf="cloBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('close')">
                       Close</button>
                   </div>
                 </div> -->
-  
+
               </div>
             </form>
-  
-  
+
+
           </div>
         </div>
       </div>
-  
-  
+
+
     </div>
   </div>
 

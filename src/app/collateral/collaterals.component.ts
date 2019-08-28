@@ -32,11 +32,11 @@ export class CollateralsComponent implements OnInit {
   //   private confirmationDialogService: ConfirmationDialogService, private chRef: ChangeDetectorRef, private modalService:NgbModal) { }
 
 
- 
+
 
   // deleteCollateral() {
   //   if (this.selectedCollateral.id) {
-  //     this.colService.deleteCollateral(this.selectedCollateral.id).subscribe(data => {
+  //     this.colService.deleteCollateral(this.selectedCollateral.id).subscribe(editorData => {
   //       console.log('collateral Deleted');
   //       this.ngOnInit();
 
@@ -85,16 +85,16 @@ export class CollateralsComponent implements OnInit {
   // set(event: any, Collateral: any) {
   //   console.log('collateral selected' + Collateral);
   //   this.selectedCollateral = Collateral;
-         
+
   // }
 
   // search() {
   //   console.log('searching Collateral !!');
   //   this.collateral.effectiveDate =null;
-  //   this.colService.queryCollateral(this.collateral).subscribe((data => {
-  //     this.collaterals = data;
+  //   this.colService.queryCollateral(this.collateral).subscribe((editorData => {
+  //     this.collaterals = editorData;
   //     debugger
-  //     console.log(data);
+  //     console.log(editorData);
   //     this.chRef.detectChanges();
 
   //     const table = $('table');
@@ -118,21 +118,21 @@ export class CollateralsComponent implements OnInit {
   //   this.collateral = new Collateral();
   //   this.collateral.instrumentRegister = this.instrumentRegister;
   //   this.collateral.effectiveDate = null;
-  //   this.colService.queryCollateral(this.collateral).subscribe(data => {
-  //     console.log(data);
-  //     this.collaterals = data;
+  //   this.colService.queryCollateral(this.collateral).subscribe(editorData => {
+  //     console.log(editorData);
+  //     this.collaterals = editorData;
   //     debugger
-  //     this.getCollateralTypes(); 
+  //     this.getCollateralTypes();
   //     this.chRef.detectChanges();
 
   //     const table: any = $('#myTable');
-  //     this.dataTable = table.DataTable();  
-       
+  //     this.dataTable = table.DataTable();
+
   //   }, (error) => {
   //     console.log(error);
   //   });
 
- 
+
   }
 
   // openCollateral()
@@ -144,12 +144,12 @@ export class CollateralsComponent implements OnInit {
   // getCollateralTypes()
   // {
   //   debugger
-  //   this.colService.getCollateralTypes().subscribe((data=>{
-  //     this.colTypes = data;
-  //     console.log(data);
-    
+  //   this.colService.getCollateralTypes().subscribe((editorData=>{
+  //     this.colTypes = editorData;
+  //     console.log(editorData);
+
   //   }),(err=>{
- 
+
   //   }));
-  // }  
+  // }
 }

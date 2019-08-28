@@ -9,7 +9,7 @@ import { Response, Report, ReportConnection, ReportQueries, SingleDataResponse, 
 })
 export class ReportService {
 
-  baseUrl: String = `http://192.168.1.154:8081/api`;
+  baseUrl: String = `http://192.168.1.161:8081/api`;
 
   // private report:Report = new Report();
   // private reportconn:ReportConnection = new ReportConnection();
@@ -40,12 +40,24 @@ export class ReportService {
     return this._http.get<Response<ReportGroup>>(this.baseUrl + '/report/groups');
   }
 
+  createReportGroup(reportGroup) {
+    return this._http.post(this.baseUrl + '/report/group' , reportGroup);
+  }
+
+  updateReportGroup(reportGroup) {
+    return this._http.put(this.baseUrl + '/report/group', reportGroup);
+  }
+
+  deleteReportGroup(id: number) {
+    return this._http.delete(this.baseUrl + '/report/group/' + id);
+  }
+
   getReport(id: number) {
     return this._http.get<SingleDataResponse<Report>>(this.baseUrl + '/report/' + id);
   }
 
   getReportGroup(id: number) {
-    return this._http.get<Response<Report>>(this.baseUrl + '/report/group/' + id);
+    return this._http.get<SingleDataResponse<Report>>(this.baseUrl + '/report/group/' + id);
   }
 
   createReport(report) {
@@ -84,14 +96,14 @@ export class ReportService {
   }
 
 
-// connections
+  // connections
 
-getConnections() {
-  return this._http.get<Response<ReportConnection>>(this.baseUrl + '/report/connections');
-}
-getConnection(id: number) {
-  return this._http.get<Response<ReportConnection>>(this.baseUrl + '/report/connection/' + id);
-}
+  getConnections() {
+    return this._http.get<Response<ReportConnection>>(this.baseUrl + '/report/connections');
+  }
+  getConnection(id: number) {
+    return this._http.get<Response<ReportConnection>>(this.baseUrl + '/report/connection/' + id);
+  }
 
   createConnection(connection) {
     return this._http.post(this.baseUrl + '/report/connection', connection);
@@ -106,12 +118,12 @@ getConnection(id: number) {
 
 
   // template
-getTemplates(){
-  return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/templates');
-}
-getTemplate(id:number){
-  return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/template/' + id);
-}
+  getTemplates(){
+    return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/templates');
+  }
+  getTemplate(id:number){
+    return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/template/' + id);
+  }
 
   createTemplate(template){
     return this._http.post(this.baseUrl+ '/report/template', template);
@@ -123,22 +135,4 @@ getTemplate(id:number){
   updateTemplate(template){
     return this._http.put(this.baseUrl+ '/report/template', template);
   }
-
-
-
-  // setter(query: ReportQueries){
-  //   this.query = query;
-  // }
-  // getter(){
-  //   return this.query, this.connection;
-
-  // }
-  // set _connection(connection:ReportConnection){
-  //   this.connection = connection;
-  // }
-
-  // get _connection(){
-  //   return  this.connection;
-
-  // }
 }

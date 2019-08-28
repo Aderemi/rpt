@@ -71,7 +71,7 @@ export class ForexProductComponent implements OnInit {
 
   refNumScheme :String [];
   constructor(
-   
+
     ) {
 
     //   // this.importLetterCreditProduct = new ImportLetterCreditProduct();
@@ -81,24 +81,24 @@ export class ForexProductComponent implements OnInit {
     // this.refNumScheme = ['manual','automatic'];
 
   }
- 
 
- 
+
+
 
   // picklistPrimary(){
-  //   this.picklistItemService.getPickListItemByCode(this.priRefCode).subscribe(data=>{
-  //     console.log("ref code",data);
-  //     this.disPickListItemPry = data;
+  //   this.picklistItemService.getPickListItemByCode(this.priRefCode).subscribe(editorData=>{
+  //     console.log("ref code",editorData);
+  //     this.disPickListItemPry = editorData;
   //     console.log("Pick lists", this.disPickListItemPry);
   //   })
   // }
   // picklistTemporary(){
-  //   this.picklistItemService.getPickListItemByCode(this.tempRefCode).subscribe(data=>{
-  //     this.disPickListItemTemp = data;
+  //   this.picklistItemService.getPickListItemByCode(this.tempRefCode).subscribe(editorData=>{
+  //     this.disPickListItemTemp = editorData;
   //     console.log("Pick lists", this.disPickListItemTemp);
   //   })
   // }
- 
+
   ngOnInit() {
   //   this.picklistPrimary();
   //   this.picklistTemporary();
@@ -106,24 +106,24 @@ export class ForexProductComponent implements OnInit {
   //   this._activeRoute.params.subscribe(params => {
   //     console.log("this is the object");
   //    console.log(params);
-  //    //PARAM FROM THE URL IS PRODUCT, IT HAS A CATEGORY THAT WE ARE INTERSTED IN, 
+  //    //PARAM FROM THE URL IS PRODUCT, IT HAS A CATEGORY THAT WE ARE INTERSTED IN,
 
   //    let decode = JSON.parse(atob(params.navItem));
-     
+
   //    // console.log("this is the object");
   //    console.log(decode)
   //    this.operation = decode.operation;
   //    this.product = decode.product;
   //    this.productSubCategory = decode.product.productSubCategory;
-    
+
   //    const productCatObject = decode.product.productSubCategory.productCategory;
   //    console.log("Product Category object",productCatObject);
-    
 
-  //    this.fxProductService.getFilter(productCatObject).subscribe(data=>{
-  //     this.productSubCategorys = data;
+
+  //    this.fxProductService.getFilter(productCatObject).subscribe(editorData=>{
+  //     this.productSubCategorys = editorData;
   //     console.log("Product sub category",this.productSubCategorys);
-     
+
   //  });
 
 
@@ -166,14 +166,14 @@ export class ForexProductComponent implements OnInit {
 
 //   if(this.product.id==undefined){
 //     this.fxProduct = new ForexProduct();
-  
+
 //     this.fxProduct.product = this.product;
-  
+
 //   }else{
 
 //       this.fxProductService.getOne(this.product.id)
-//       .subscribe((data =>{
-//         this.fxProduct = data;
+//       .subscribe((editorData =>{
+//         this.fxProduct = editorData;
 //       }));
 //     }
 
@@ -188,8 +188,8 @@ export class ForexProductComponent implements OnInit {
 //   this.cloBtn = true;
 //   this._productService.setRelatedTaskFlag(true);
 //   this.fxProductService.getOne(this.product.id)
-//     .subscribe((data => {
-//       this.fxProduct = data;
+//     .subscribe((editorData => {
+//       this.fxProduct = editorData;
 //     }), (err => {
 //       console.log(err);
 //     }));
@@ -200,9 +200,9 @@ export class ForexProductComponent implements OnInit {
 //   this.cloBtn = true;
 
 //   this.fxProductService.getOne(this.product.id)
-//     .subscribe((data => {
-//       console.log(data);
-//       this.fxProduct = data;
+//     .subscribe((editorData => {
+//       console.log(editorData);
+//       this.fxProduct = editorData;
 //     }), (err => {
 //       console.log(err);
 //     }));
@@ -215,9 +215,9 @@ export class ForexProductComponent implements OnInit {
 
 //   this.relatedTaskFlag = false;
 //   this.fxProductService.getOne(this.product.id)
-//     .subscribe((data => {
-//       console.log(data);
-//       this.fxProduct = data;
+//     .subscribe((editorData => {
+//       console.log(editorData);
+//       this.fxProduct = editorData;
 //     }), (err => {
 //       console.log(err);
 //     }));
@@ -229,9 +229,9 @@ export class ForexProductComponent implements OnInit {
 //   this.cloBtn = true;
 //   this.relatedTaskFlag = false;
 //   this.fxProductService.getOne(this.product.id)
-//     .subscribe((data => {
-//       console.log(data);
-//       this.fxProduct = data;
+//     .subscribe((editorData => {
+//       console.log(editorData);
+//       this.fxProduct = editorData;
 //     }), (err => {
 //       console.log(err);
 //     }));
@@ -244,7 +244,7 @@ export class ForexProductComponent implements OnInit {
 
 
 //   processForm(mode) {
-    
+
 //     switch (mode) {
 //       case 'save':
 //         {
@@ -252,11 +252,11 @@ export class ForexProductComponent implements OnInit {
 //         //    this.importLetterCreditProduct.effectiveDate = this.dateString;
 //             this.fxProduct.status = "Inactive";
 //             this.fxProductService.createFxProduct(this.fxProduct)
-//               .subscribe((data => {
+//               .subscribe((editorData => {
 //                 this._smp.popUpAlertSuccess();
-//                 console.log(data.body);
+//                 console.log(editorData.body);
 
-//                 this.fxProduct = data.body; this.product = data.body.product;
+//                 this.fxProduct = editorData.body; this.product = editorData.body.product;
 //                 this._productService.setRelatedTaskFlag(true);
 //                 this.relatedTaskFlag = true;
 //               }), (err => {
@@ -278,11 +278,11 @@ export class ForexProductComponent implements OnInit {
 //           //  this.importLetterCreditProduct.effectiveDate = this.dateString;
 //             this.fxProduct.status = "Inactive";
 //             this.fxProductService.updateFxProduct(this.fxProduct)
-//               .subscribe((data => {
+//               .subscribe((editorData => {
 
-//                 console.log(data);
+//                 console.log(editorData);
 
-//                 this.fxProduct = data.body;
+//                 this.fxProduct = editorData.body;
 //                 this._productService.setRelatedTaskFlag(false);
 //                 this.relatedTaskFlag = false;
 //               }), (err => {
@@ -295,11 +295,11 @@ export class ForexProductComponent implements OnInit {
 //         {
 //           if (this.fxProduct.id == undefined) {
 //             this.fxProductService.createFxProduct(this.fxProduct)
-//               .subscribe((data => {
+//               .subscribe((editorData => {
 
-//                 console.log(data);
+//                 console.log(editorData);
 
-//                 this.fxProduct = data.body;
+//                 this.fxProduct = editorData.body;
 //                 this._productService.setRelatedTaskFlag(false);
 //                 this.relatedTaskFlag = false;
 //               this._router.navigate(['product']);
@@ -307,11 +307,11 @@ export class ForexProductComponent implements OnInit {
 //               }));
 //           } else {
 //             this.fxProductService.updateFxProduct(this.fxProduct)
-//               .subscribe((data => {
+//               .subscribe((editorData => {
 
-//                 console.log(data);
+//                 console.log(editorData);
 
-//                 this.fxProduct = data.body;
+//                 this.fxProduct = editorData.body;
 //                 this._productService.setRelatedTaskFlag(true);
 //               this._router.navigate(['product']);
 //               }), (err => {
@@ -325,11 +325,11 @@ export class ForexProductComponent implements OnInit {
 //           if (this.fxProduct.status != "Active") {
 //             this.fxProduct.status = "Active";
 //             this.fxProductService.updateFxProduct(this.fxProduct)
-//               .subscribe((data => {
+//               .subscribe((editorData => {
 
-//                 console.log(data);
+//                 console.log(editorData);
 
-//                 this.fxProduct = data.body;
+//                 this.fxProduct = editorData.body;
 //                 this._productService.setRelatedTaskFlag(true);
 //               this._router.navigate(['product']);
 //               }), (err => {
@@ -347,11 +347,11 @@ export class ForexProductComponent implements OnInit {
 //           if (this.fxProduct.status != "Cancelled") {
 //             this.fxProduct.status = "Cancelled";
 //             this.fxProductService.updateFxProduct(this.fxProduct)
-//               .subscribe((data => {
+//               .subscribe((editorData => {
 
-//                 console.log(data);
+//                 console.log(editorData);
 
-//                 this.fxProduct = data.body;
+//                 this.fxProduct = editorData.body;
 //                 this._productService.setRelatedTaskFlag(true);
 //               this._router.navigate(['product']);
 //               }), (err => {
@@ -371,11 +371,11 @@ export class ForexProductComponent implements OnInit {
 //           //  this.importLetterCreditProduct.effectiveDate = this.dateString;
 
 //             this.fxProductService.createFxProduct(this.fxProduct)
-//               .subscribe((data => {
+//               .subscribe((editorData => {
 
-//                 console.log(data);
+//                 console.log(editorData);
 
-//                 this.fxProduct = data.body;
+//                 this.fxProduct = editorData.body;
 //                 this._productService.setRelatedTaskFlag(false);
 //                 this.relatedTaskFlag = true;
 //                 this._router.navigate(['product']);
@@ -385,11 +385,11 @@ export class ForexProductComponent implements OnInit {
       //      this.importLetterCreditProduct.effectiveDate = this.dateString;
 
   //           this.fxProductService.updateFxProduct(this.fxProduct)
-  //             .subscribe((data => {
+  //             .subscribe((editorData => {
 
-  //               console.log(data);
+  //               console.log(editorData);
 
-  //               this.fxProduct = data.body;
+  //               this.fxProduct = editorData.body;
   //               this._productService.setRelatedTaskFlag(true);
   //               this.relatedTaskFlag = true;
   //               this._router.navigate(['product']);

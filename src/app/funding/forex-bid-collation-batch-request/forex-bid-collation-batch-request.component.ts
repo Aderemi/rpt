@@ -76,7 +76,7 @@ export class ForexBidCollationBatchRequestComponent implements OnInit {
   //   this.selectedBidReuest = selectedBidReuest;
   //   this.fxList = selectedList;
   //   let index = selectedList.indexOf(selectedBidReuest);
-   
+
   // }
 
   // //Remove an element from the list of bid request
@@ -84,11 +84,11 @@ export class ForexBidCollationBatchRequestComponent implements OnInit {
   //   this.fxList.splice(event,1);
   //   this.ngOnInit();
   //   this.bidRequests = this.fxList
-  
+
   //   let bidNum: any = this.emitService.emit({
   //     "bidRequests": this.bidRequests,
   //   });
-   
+
   // }
   // selectFxRequest(event: any, selectedRequest: any) {
   //   this.selectedRequest = selectedRequest;
@@ -136,7 +136,7 @@ export class ForexBidCollationBatchRequestComponent implements OnInit {
   // ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
   //   this.fxBidCollationRequestService.getFxBidCollationRequests().subscribe(data => {
   //     this.fxRequests = data
-  //     console.log("fx data",data);
+  //     console.log("fx editorData",editorData);
   //   });
   //   let temp = "";
   //   temp = changes.bidCurrencyCode.currentValue;

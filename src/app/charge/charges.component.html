@@ -99,13 +99,13 @@
                           </tr>
                         </tbody>
                       </table>
-          
+
                     </div>
                   </div>
                 </div>
           </div>
-    
-    
+
+
   </div>
 </div>
 
@@ -116,20 +116,20 @@
 
 <ng-template #charge let-c="close" let-d="dismiss">
   <!-- <div class="row pl-2">
-    <div class="col-md-12">
-      <div class="panel panel-info">
+    <div class="ceditorDatad-12">
+      <div claeditorDatapanel panel-info">
         <div class="panel-heading">Charges
           <span>
             <button type="button" style="color:#2E3062;  font-weight: bold;" class="close" aria-label="Close"
               (click)="d('Cross click')">
-              <span aria-hidden="true">&times;</span>
-            </button>
+              <span aria-hidden="true">&times;</editorData>
+            </buteditorData
           </span>
         </div>
       </div>
-      <div class="panel-group" role="tablist" aria-multiselectable="true">
+      <div class="panel-group" role="tablist" aria-multiselectable="teditorData>
         <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingBasicCharge">
+          <div class=editorDatael-heading" role="tab" id="headingBasicCharge">
             <h4 class="panel-title">
               <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion"
                 href="#collapseBasicCharge" aria-expanded="false" aria-controls="collapseBasicCharge"
@@ -179,9 +179,9 @@
                       </div>
                     </div>
                   </div>
-                
+
                 </div>
-               
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row">
@@ -219,7 +219,7 @@
 
                     </div>
                   </div>
-                
+
                 </div>
 
                 <div class="row">
@@ -285,7 +285,7 @@
       <div class="modal-content">
           <div class="modal-header">
                       <div class="col-md-12 p-0">
-  
+
                               <div class="card-body form-card">
                                       <div class="panel-heading" role="tab" id="headingBasic">
                                           <div class="row">
@@ -298,14 +298,14 @@
                                                           </h4>
                                                           <p class="subtitle mb-0">Please fill in the appropriate information </p>
                                                   </div>
-                                                   
+
                                                       <div class="col-md-3">
                                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                       <span aria-hidden="true">&times;</span>
                                                               </button>
                                                       </div>
                                           </div>
-                                              
+
                                   </div>
                               </div>
                       </div>
@@ -315,7 +315,7 @@
                   <div class="col-md-12">
                       <div class="form-body">
                           <input name="id" [(ngModel)]="charg.id" type="text" hidden>
-          
+
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
@@ -332,7 +332,7 @@
                                         class="form-control" placeholder="">
                                     </div>
                                 </div>
-                               
+
                               </div>
                             </div>
                             <div class="col-md-6">
@@ -346,21 +346,21 @@
                                           [(ngModel)]="charge.expectedCurr">
                                           <option value="">---Please select---</option>
                                           <option *ngFor="let currenc of currencies" [ngValue]="currenc.code">{{currenc.code}}</option>
-              
+
                                       </select>
-              
+
                                       </div>
                                       <div class="col-md-6">
                                       <input name="expectedVal" [(ngModel)]="charg.expectedVal" type="text" [disabled]="isView"
                                           id="expected" class="form-control" placeholder="">
                                       </div>
                                 </div>
-                                
+
                               </div>
                             </div>
-                          
+
                           </div>
-                         
+
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
@@ -371,9 +371,9 @@
                                     [disabled]="isView" tabindex="1" name="actualCurr" [(ngModel)]="charge.actualCurr">
                                     <option value="">---Please select---</option>
                                     <option *ngFor="let currenc of currencies">{{currenc.code}}</option>
-          
+
                                   </select>
-          
+
                                 </div>
                                 <div class="col-md-6">
                                   <input name="actualAmt" [(ngModel)]="charg.actualAmt" type="text" id="firstName"
@@ -382,7 +382,7 @@
                               </div>
                             </div>
                             </div>
-          
+
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="pendChanType" class="control-label col-md-6">Pending Change Type</label>
@@ -396,18 +396,18 @@
                                     <option value="increase">Increase</option>
                                     <option value="decrease">Decrease</option>
                                     <option [ngValue]="N/A">N/A</option>
-          
+
                                   </select>
                                 </div>
-          
+
                               </div>
                             </div>
                             </div>
-                          
+
                           </div>
-          
+
                           <div class="row">
-          
+
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="pendChanAmtCurr" class="control-label col-md-12">Pending Change Amount</label>
@@ -420,14 +420,14 @@
                                     <option value="">&lt;---&gt;</option>
                                     <option *ngFor="let curr of currencies " [ngValue]="curr.code">{{curr.code}}</option>
                                   </select>
-          
+
                                 </div>
                                 <div class="col-md-6">
                                   <input [disabled]="isDisabled" name="pendChanAmt" [(ngModel)]="charg.pendChanAmt"
                                     [disabled]="isView" type="text" class="form-control" placeholder="">
-          
+
                                 </div>
-          
+
                               </div>
                               </div>
                             </div>
@@ -436,12 +436,12 @@
                                 <label for="remarks" class="control-label col-md-6">Remarks</label>
                                 <div class="row pl-3">
 
-          
+
                                 <div class="col-md-12">
                                   <textarea type="text" name="remarks" rows="4" class="form-control" [disabled]="isView"
                                     [(ngModel)]="charg.remarks"></textarea>
                                 </div>
-          
+
                               </div>
                               </div>
                             </div>
@@ -455,7 +455,7 @@
                 <button type="button" class="btn btn-primary">Save</button>
           </div>
         </div>
-  
+
   </div>
 </div>
 

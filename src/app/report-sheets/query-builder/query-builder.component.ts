@@ -5,6 +5,7 @@ import {ReportConnection, ReportQueries} from '../../class/report';
 import { Oracle10gQBuilder } from '../../../lib/query-builder/Oracle10gQBuilder';
 import {DOCUMENT} from '@angular/common';
 import {BaseQBuilder} from '../../../lib/query-builder/BaseQBuilder';
+import {error} from 'util';
 
 @Component({
   selector: 'app-query-builder',
@@ -31,7 +32,7 @@ joinsValues = [
   {name: 'right outer join', value: 'right outer join'},
 ];
 
-  tableObj = [{}];
+  tableObj = [];
   isManual = true;
   view;
   views;
@@ -169,7 +170,9 @@ joinsValues = [
   }
 
   Cancel() {
-
+    this.oracleQueryBuilder.reset();
+    this.rightTable = null;
+    this.leftTable = null;
     this.view = 0;
 
   }
@@ -186,9 +189,7 @@ joinsValues = [
         console.log(this.que);
       });
       this.view = 1;
-    }
-
-
+  }
 
   processForm() {
       console.log(this.que);
@@ -208,20 +209,25 @@ joinsValues = [
         });
       }
   }
+
   table() {
     this.targets = 1;
   }
+
   column() {
     this.targets = 2;
 
   }
+
   filter() {
     this.targets = 3;
 
   }
+
   groupBy() {
     this.targets = 4;
   }
+
   orderBy() {
     this.targets = 5;
 
@@ -234,6 +240,7 @@ joinsValues = [
   showExtraFields() {
     this.showFields = 1;
   }
+
   getTables(connectionId) {
     this.reportserv.getTables(connectionId).subscribe(response => {
       this.tableContainer = response.data;
@@ -250,9 +257,6 @@ joinsValues = [
   updateRawCodeBox() {
     const iTables = this.oracleQueryBuilder.getUserData('tables');
     const iTableCount = iTables.length;
-    this.leftTable = iTableCount > 1 ? iTables[iTableCount - 2].alias || iTables[iTableCount - 2].name : '';
-    this.rightTable = iTableCount > 0 ? iTables[iTableCount - 1].alias || iTables[iTableCount - 1].name : '';
-    debugger;
     this.que.content = this.oracleQueryBuilder.processQuery();
     this.document.getElementById('preview-box').innerText = this.que.content;
   }
@@ -260,7 +264,7 @@ joinsValues = [
   preview() {
     if (this.que.content.indexOf('rownum') < 0 && this.que.content.indexOf('rownum') < 0) {
       this.connections.forEach(connection => {
-        if (connection.id === this.que.connectionId) {
+        if (connection.id == this.que.connectionId) {
           if (connection.dbms === 'oracle') {
             this.que.prevContent = `SELECT * FROM ( SELECT ROWNUM sn, z.* FROM
              ( ${this.que.content} ) z WHERE rownum <= 50) WHERE sn >= 0`;
@@ -282,63 +286,46 @@ joinsValues = [
     const column = columnElem.options[columnElem.selectedIndex].value;
     const aggregate = aggElem.options[aggElem.selectedIndex].value;
     this.oracleQueryBuilder.addSelect(column, alias, aggregate);
-    console.log(this.oracleQueryBuilder.getUserData('select'));
     this.userColumn = this.oracleQueryBuilder.getUserData('select');
     this.updateRawCodeBox();
   }
 
-  addTable(table = '', alias= '') {
-    alias = alias || (this.document.getElementById('alias') as HTMLFormElement).value;
-    if (!!table) {
-      this.oracleQueryBuilder.addTable(table, alias, null, null);
-      this.tableObj = this.oracleQueryBuilder.getUserData('tables');
-      debugger;
-      this.updateRawCodeBox();
+  addTable() {
+    const tableId = this.rightTable ? 'table-2' : 'table-1';
+    const aliasId = this.rightTable ? 'table-2-alias' : 'table-1-alias';
+    const joinTypeElement: HTMLFormElement = this.document.getElementById('joinType') as HTMLFormElement;
+    const tableElement: HTMLFormElement = this.document.getElementById(tableId) as HTMLFormElement;
+    const leftColumnElement: HTMLFormElement = this.document.getElementById('join') as HTMLFormElement;
+    const joinConditionElement: HTMLFormElement = this.document.getElementById('joinCondition') as HTMLFormElement;
+    const rightColumnElement: HTMLFormElement = this.document.getElementById('foreignKey') as HTMLFormElement;
+    const alias = (this.document.getElementById(aliasId) as HTMLFormElement).value;
+    const joinType  = joinTypeElement ? joinTypeElement.options[joinTypeElement.selectedIndex].value : null;
+    const table = tableElement.options[tableElement.selectedIndex].value;
+    const leftColumn  = leftColumnElement ? leftColumnElement.options[leftColumnElement.selectedIndex].value : null;
+    const joinCondition = joinConditionElement ? joinConditionElement.options[joinConditionElement.selectedIndex].value : null;
+    const rightColumn = rightColumnElement ? rightColumnElement.options[rightColumnElement.selectedIndex].value : null;
+    if (!table) { throw new error('Table is required'); }
+    this.alternateTable(alias || table);
 
-      this.isDisabled = false;
-      return;
-    }
-    const joinTypes: HTMLFormElement = this.document.getElementById('joinType') as HTMLFormElement;
-    const tableEle: HTMLFormElement = this.document.getElementById('table-2') as HTMLFormElement;
-    const join: HTMLFormElement = this.document.getElementById('join') as HTMLFormElement;
-    const jc: HTMLFormElement = this.document.getElementById('joinCondition') as HTMLFormElement;
-    const fk: HTMLFormElement = this.document.getElementById('foreignKey') as HTMLFormElement;
-    const ali = (this.document.getElementById('table-2-alias') as HTMLFormElement).value;
-    const jts  = joinTypes.options[joinTypes.selectedIndex].value;
-    const tb = table || tableEle.options[tableEle.selectedIndex].value;
-    const j  = join.options[join.selectedIndex].value;
-    const jo = jc.options[jc.selectedIndex].value;
-    const fok = fk.options[fk.selectedIndex].value;
-
-    // Lazy-binding alias whose table name is already in the _column
-    if (!!alias && !this._columns[alias]) {
-        Object.defineProperty(this._columns, alias,
-          Object.getOwnPropertyDescriptor(this._columns, table));
-        this._columns[alias] = this._columns[alias].map(col => col.replace(table, alias));
-    }
-
-
-    this.oracleQueryBuilder.addTable(tb, ali, jts, [{left: j, right: fok, op: jo}]);
+    this.getColumns(table, alias);
+    const on = joinCondition ? [{left: leftColumn, right: rightColumn, op: joinCondition}] : null;
+    this.oracleQueryBuilder.addTable(table, alias, joinType, on);
     this.tableObj = this.oracleQueryBuilder.getUserData('tables');
     this.updateRawCodeBox();
-    this.isDisabled = false;
-    // this.tableObj= [{"typesJoin": jts, "alias": ali, "tableContainer": tb,"on": j +''+jo+''+fok}];
   }
 
-  getColumns(addTable = false, table = '', alias = '') {
-    if (addTable) {
-      const tableElem: HTMLFormElement = this.document.getElementById('table-1') as HTMLFormElement;
-      table = table || tableElem.options[tableElem.selectedIndex].value;
-      alias = alias || (this.document.getElementById('table-1-alias') as HTMLFormElement).value;
-      this.addTable(table, alias);
-      this.tableContainer = this.tableContainer.filter(tbl => tbl !== table);
-      debugger;
-      this.updateRawCodeBox();
+  getColumns(table, alias = '') {
+    if (this._columns[table]) {
+      if (alias) {
+        this._columns[alias] = this._columns[table];
+        delete this._columns[table];
+      }
+      return;
     }
-
-    this.isDisabled = false;
     this.reportserv.getColumns(this.que.connectionId, table).subscribe(response => {
       this._columns[alias || table] = [];
+      debugger;
+      this.alternateTable(alias || table);
 
       for (const column of response.data) {
         this.options.push({id: column, value: column});
@@ -347,14 +334,11 @@ joinsValues = [
     });
   }
 
-  getNextColumns() {
-    const tableElem: HTMLFormElement = this.document.getElementById('table-2') as HTMLFormElement;
-    const table = tableElem.options[tableElem.selectedIndex].value;
-    this.oracleQueryBuilder.addTable(table, null, null, null);
-    this.reportserv.getColumns(this.que.connectionId, table).subscribe(response => {
-      this.nextColumns = response.data;
-    });
-
+  alternateTable(table) {
+      if (table === this.rightTable) {} else if (!this.rightTable && !this.leftTable) { this.rightTable = table; } else if (this.rightTable && !this.leftTable) { this.leftTable = table; } else if (this.rightTable && this.leftTable) {
+          this.rightTable = this.leftTable;
+          this.leftTable = table;
+      }
   }
 
   addFilter() {
@@ -367,16 +351,12 @@ joinsValues = [
     this.oracleQueryBuilder.addWhere(column, operator, value, null);
     this.userFilter = this.oracleQueryBuilder.getUserData('where');
     this.updateRawCodeBox();
-    console.log('it is working');
   }
+
   addGroup() {
-    debugger;
-    console.log(this.dataModel);
     const group = this.dataModel.map(dataModel => dataModel.id);
-    console.log(group, '......................', this.dataModel.id);
     this.oracleQueryBuilder.addGroup(group);
     this.updateRawCodeBox();
-    console.log('it is working');
   }
 
   addOrder() {
@@ -387,8 +367,6 @@ joinsValues = [
     direction = (this.document.getElementById('descending') as HTMLFormElement).checked ? (this.document.getElementById('descending') as HTMLFormElement).value : undefined;
     this.oracleQueryBuilder.addOrder(column, direction);
     this.updateRawCodeBox();
-    console.log('it is working');
-
   }
 
   removeFilter(column, operator) {

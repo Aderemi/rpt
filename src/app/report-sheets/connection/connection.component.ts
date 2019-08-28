@@ -11,111 +11,110 @@ import { ReportConnection } from 'src/app/class/report';
 
 export class ConnectionComponent implements OnInit {
 
-  view
-  connections
-  dbms
-  conn
-  connection:ReportConnection = new ReportConnection();
+  constructor( private reportserv: ReportService, private router: Router, private route: ActivatedRoute, ) { }
 
-  constructor( private reportserv:ReportService, private router:Router, private route:ActivatedRoute,) { }
+  view;
+  connections;
+  dbms;
+  conn;
+  connection: ReportConnection;
+  status = 'Disabled';
 
   ngOnInit() {
     this.getConnections();
     this.getDBMS();
-    this.view = 0
-   
-    
+    this.view = 0;
+
+
   }
-  getDBMS(){
-    this.reportserv.getDBMS().subscribe(response=>{
+  getDBMS() {
+    this.reportserv.getDBMS().subscribe(response => {
       this.dbms = response;
       console.log(this.dbms);
-    })
+    });
 
   }
 
-  getConnections(){
-    this.reportserv.getConnections().subscribe(response =>{
+  getConnections() {
+    this.reportserv.getConnections().subscribe(response => {
       this.connections = response.data;
-    })
+    });
   }
 
-  Change(event) { 
+  Change(event) {
     const subValue = event.target.value;
-    // this.connections.data.dbms = subValue;
+    // this.connections.editorData.dbms = subValue;
     this.connection.dbms = subValue;
-    console.log(subValue)
+    console.log(subValue);
   }
-  status = 'Disabled';
 
 
-  checkValue(event: any){
+  checkValue(event: any) {
     console.log(event);
-    if(event == 'A'){
-      this.status = 'Enabled'
-    }else {
-      this.status = 'Disabled'
+    if (event == 'A') {
+      this.status = 'Enabled';
+    } else {
+      this.status = 'Disabled';
     }
  }
 
-  
-  Delete(connectionId){
-    this.reportserv.deleteConnection(connectionId).subscribe((response=>{
+
+  Delete(connectionId) {
+    this.reportserv.deleteConnection(connectionId).subscribe((response => {
       this.connections = this.connections.filter(connection => connection.id != connectionId);
        this.ngOnInit();
-    }),(error) => {
+    }), (error) => {
       console.log(error, connectionId);
     });
     }
 
-    updateConnection(connectionId){
-      this.reportserv.getConnection(connectionId).subscribe((res)=>{
-        this.conn = res.data
-        console.log(this.conn)
+    updateConnection(connectionId) {
+      this.reportserv.getConnection(connectionId).subscribe((res) => {
+        this.conn = res.data;
+        console.log(this.conn);
       });
       this.view = 1;
-      
+
     }
 
 
-  processForm(){
-    console.log(this.conn)
-    if(this.connection.id==undefined){
-    this.reportserv.createConnection(this.conn).subscribe((connection)=> {
+  processForm() {
+    if (this.conn.id == undefined) {
+    this.reportserv.createConnection(this.conn).subscribe((connection) => {
       this.view = 1;
       console.log(connection);
       this.ngOnInit();
-    },(error)=> {
+    }, (error) => {
       console.log(error);
     });
-}else{
-  this.reportserv.updateConnection(this.conn).subscribe((connection)=> {        
+} else {
+  this.reportserv.updateConnection(this.conn).subscribe((connection) => {
     console.log(connection);
     this.view = 1;
     this.ngOnInit();
-  },(error)=> {
+  }, (error) => {
     console.log(error);
   });
 }
   }
 
-  Cancel(){
-    this.view = 0
+  Cancel() {
+    this.view = 0;
 
   }
-  configure(){
-    this.conn = {}
-    this.view = 1
+  configure() {
+    this.conn = {};
+    this.view = 1;
   }
 
-  f(){
-    var el=document.getElementById('example');
+  f() {
+    let el = document.getElementById('example');
     // var all=el.getElementsByTagName('input');
-    var all = el.getElementsByClassName('dis')
-      
-    var inp, i=0;
-    while(inp=all[i++]) {
-    inp.disabled=true;
+    let all = el.getElementsByClassName('dis');
+
+    let inp, i = 0;
+    while (inp = all[i++]) {
+    inp.disabled = true;
     }
     }
 

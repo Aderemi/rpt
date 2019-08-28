@@ -260,10 +260,8 @@
                         </div>
 
                         <div class="col-md-2 mt-auto">
-                          <button id="add-table" class="btn btn-success btn-block" (click)= "getColumns(true)">Save table</button>
-                          <button id="join-table" class="btn btn-primary btn-block" (click)= "showExtraFields()">Join table</button>
-                          <!--<button id="add-table" class="btn btn-success btn-block" *ngIf="oracleQueryBuilder.getUserData('tables').length == 0" (click)= "getColumns(true)">Save table</button>-->
-                          <!--<button id="join-table" class="btn btn-primary btn-block" *ngIf="oracleQueryBuilder.getUserData('tables').length > 0" (click)= "showExtraFields()">Join table</button>-->
+                          <button id="add-table" class="btn btn-success btn-block" *ngIf="oracleQueryBuilder.getUserData('tables').length == 0" (click)= "addTable()">Save table</button>
+                          <button id="join-table" class="btn btn-primary btn-block" *ngIf="oracleQueryBuilder.getUserData('tables').length > 0" (click)= "showExtraFields()">Join table</button>
                         </div>
 
                       </div>
@@ -316,7 +314,7 @@
                                 <label for="Connections">Table 2</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="table-2" class="form-control search" (change)="getColumns(true, $event.target.value)">
+                                <select id="table-2" class="form-control search" (change)="getColumns($event.target.value)">
                                   <option value="">&lt;-------&gt;</option>
                                   <option *ngFor="let t of tableContainer" [value]="t">{{toTopicCase(t)}}</option>
                                 </select>

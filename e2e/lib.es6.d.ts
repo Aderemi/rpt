@@ -1,14 +1,14 @@
 /*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved. 
+Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0  
- 
+License at http://www.apache.org/licenses/LICENSE-2.0
+
 THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE, 
-MERCHANTABLITY OR NON-INFRINGEMENT. 
- 
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
@@ -173,14 +173,14 @@ interface ObjectConstructor {
       * Adds a property to an object, or modifies attributes of an existing property.
       * @param o Object on which to add or modify the property. This can be a native JavaScript object (that is, a user-defined object or a built in object) or a DOM object.
       * @param p The property name.
-      * @param attributes Descriptor for the property. It can be for a data property or an accessor property.
+      * @param attributes Descriptor for the property. It can be for a editorData property or an accessor property.
       */
     defineProperty(o: any, p: string, attributes: PropertyDescriptor & ThisType<any>): any;
 
     /**
       * Adds one or more properties to an object, and/or modifies attributes of existing properties.
       * @param o Object on which to add or modify the properties. This can be a native JavaScript object or a DOM object.
-      * @param properties JavaScript object that contains one or more descriptor objects. Each descriptor object describes a data property or an accessor property.
+      * @param properties JavaScript object that contains one or more descriptor objects. Each descriptor object describes a editorData property or an accessor property.
       */
     defineProperties(o: any, properties: PropertyDescriptorMap & ThisType<any>): any;
 
@@ -774,7 +774,7 @@ interface Date {
     toUTCString(): string;
     /** Returns a date as a string value in ISO format. */
     toISOString(): string;
-    /** Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. */
+    /** Used by the JSON.stringify method to enable the transformation of an object's editorData for JavaScript Object Notation (JSON) serialization. */
     toJSON(key?: any): string;
 }
 
@@ -1345,7 +1345,7 @@ type Record<K extends string, T> = {
 interface ThisType<T> { }
 
 /**
-  * Represents a raw buffer of binary data, which is used to store data for the
+  * Represents a raw buffer of binary editorData, which is used to store editorData for the
   * different typed arrays. ArrayBuffers cannot be read from or written to directly,
   * but can be passed to a typed array or DataView Object to interpret the raw
   * buffer as needed.
@@ -4441,7 +4441,7 @@ interface ObjectConstructor {
      * @param o Object on which to add or modify the property. This can be a native JavaScript
      * object (that is, a user-defined object or a built in object) or a DOM object.
      * @param p The property name.
-     * @param attributes Descriptor for the property. It can be for a data property or an accessor
+     * @param attributes Descriptor for the property. It can be for a editorData property or an accessor
      *  property.
      */
     defineProperty(o: any, propertyKey: PropertyKey, attributes: PropertyDescriptor): any;
@@ -8648,7 +8648,7 @@ interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEven
      */
     onload: (this: Document, ev: Event) => any;
     /**
-     * Occurs when media data is loaded at the current playback position.
+     * Occurs when media editorData is loaded at the current playback position.
      * @param ev The event.
      */
     onloadeddata: (this: Document, ev: Event) => any;
@@ -8658,7 +8658,7 @@ interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEven
      */
     onloadedmetadata: (this: Document, ev: Event) => any;
     /**
-     * Occurs when Internet Explorer begins looking for media data.
+     * Occurs when Internet Explorer begins looking for media editorData.
      * @param ev The event.
      */
     onloadstart: (this: Document, ev: Event) => any;
@@ -8737,7 +8737,7 @@ interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEven
     onpointerlockchange: (this: Document, ev: Event) => any;
     onpointerlockerror: (this: Document, ev: Event) => any;
     /**
-     * Occurs to indicate progress while downloading media data.
+     * Occurs to indicate progress while downloading media editorData.
      * @param ev The event.
      */
     onprogress: (this: Document, ev: ProgressEvent) => any;
@@ -8874,7 +8874,7 @@ interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEven
     caretRangeFromPoint(x: number, y: number): Range;
     clear(): void;
     /**
-     * Closes an output stream and forces the sent data to display.
+     * Closes an output stream and forces the sent editorData to display.
      */
     close(): void;
     /**
@@ -8885,8 +8885,8 @@ interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEven
     createAttributeNS(namespaceURI: string | null, qualifiedName: string): Attr;
     createCDATASection(data: string): CDATASection;
     /**
-     * Creates a comment object with the specified data.
-     * @param data Sets the comment object's data.
+     * Creates a comment object with the specified editorData.
+     * @param data Sets the comment object's editorData.
      */
     createComment(data: string): Comment;
     /**
@@ -9849,7 +9849,7 @@ interface HTMLAppletElement extends HTMLElement {
      */
     readonly contentDocument: Document;
     /**
-     * Sets or retrieves the URL that references the data of the object.
+     * Sets or retrieves the URL that references the editorData of the object.
      */
     data: string;
     /**
@@ -10105,7 +10105,7 @@ interface HTMLButtonElement extends HTMLElement {
      */
     readonly form: HTMLFormElement | null;
     /**
-     * Overrides the action attribute (where the data on a form is sent) on the parent form element.
+     * Overrides the action attribute (where the editorData on a form is sent) on the parent form element.
      */
     formAction: string;
     /**
@@ -10617,7 +10617,7 @@ declare var HTMLFormControlsCollection: {
 
 interface HTMLFormElement extends HTMLElement {
     /**
-     * Sets or retrieves a list of character encodings for input data that must be accepted by the server processing the form.
+     * Sets or retrieves a list of character encodings for input editorData that must be accepted by the server processing the form.
      */
     acceptCharset: string;
     /**
@@ -10645,7 +10645,7 @@ interface HTMLFormElement extends HTMLElement {
      */
     readonly length: number;
     /**
-     * Sets or retrieves how to send the form data to the server.
+     * Sets or retrieves how to send the form editorData to the server.
      */
     method: string;
     /**
@@ -11141,7 +11141,7 @@ interface HTMLInputElement extends HTMLElement {
      */
     readonly form: HTMLFormElement | null;
     /**
-     * Overrides the action attribute (where the data on a form is sent) on the parent form element.
+     * Overrides the action attribute (where the editorData on a form is sent) on the parent form element.
      */
     formAction: string;
     /**
@@ -11242,7 +11242,7 @@ interface HTMLInputElement extends HTMLElement {
      */
     readonly validity: ValidityState;
     /**
-     * Returns the value of the data at the cursor's current position.
+     * Returns the value of the editorData at the cursor's current position.
      */
     value: string;
     valueAsDate: Date;
@@ -11525,7 +11525,7 @@ interface HTMLMediaElement extends HTMLElement {
     msAudioDeviceType: string;
     readonly msGraphicsTrustStatus: MSGraphicsTrust;
     /**
-     * Gets the MSMediaKeys object, which is used for decrypting media data, that is associated with this media element.
+     * Gets the MSMediaKeys object, which is used for decrypting media editorData, that is associated with this media element.
      */
     readonly msKeys: MSMediaKeys;
     /**
@@ -11779,7 +11779,7 @@ interface HTMLObjectElement extends HTMLElement, GetSVGDocument {
      */
     readonly contentDocument: Document;
     /**
-     * Sets or retrieves the URL that references the data of the object.
+     * Sets or retrieves the URL that references the editorData of the object.
      */
     data: string;
     declare: boolean;
@@ -12029,7 +12029,7 @@ interface HTMLParamElement extends HTMLElement {
      */
     value: string;
     /**
-     * Sets or retrieves the data type of the value attribute.
+     * Sets or retrieves the editorData type of the value attribute.
      */
     valueType: string;
     addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLParamElement, ev: HTMLElementEventMap[K]) => any, useCapture?: boolean): void;
@@ -12135,7 +12135,7 @@ interface HTMLScriptElement extends HTMLElement {
      */
     htmlFor: string;
     /**
-     * Retrieves the URL to an external file that contains the source code or data.
+     * Retrieves the URL to an external file that contains the source code or editorData.
      */
     src: string;
     /**
@@ -12859,7 +12859,7 @@ interface HTMLVideoElement extends HTMLMediaElement {
     onMSVideoFrameStepCompleted: (this: HTMLVideoElement, ev: Event) => any;
     onMSVideoOptimalLayoutChanged: (this: HTMLVideoElement, ev: Event) => any;
     /**
-     * Gets or sets a URL of an image to display, for example, like a movie poster. This can be a still frame from the video, or another image if no video data is available.
+     * Gets or sets a URL of an image to display, for example, like a movie poster. This can be a still frame from the video, or another image if no video editorData is available.
      */
     poster: string;
     /**

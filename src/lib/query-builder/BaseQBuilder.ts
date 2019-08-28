@@ -39,7 +39,6 @@ export class BaseQBuilder {
     protected aggDebug;
 
     constructor() {
-debugger;
         this.userData = {
             tables: [],
             where: [],
@@ -277,4 +276,16 @@ debugger;
         return `${this.query.select} ${this.query.from} ${this.query.where} ${this.query.groupBy} ${this.query.orderBy} ${this.query.limit}`
             .replace( /  +/g, ' ' ).trim();
     }
+
+    reset() {
+        this.userData = {
+            tables: [],
+            where: [],
+            groupBy: [],
+            orderBy: [],
+            select: [],
+            limit: ''
+        };
+    }
+
 }

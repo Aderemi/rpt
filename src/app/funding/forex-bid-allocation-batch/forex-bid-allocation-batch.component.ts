@@ -74,8 +74,8 @@ export class ForexBidAllocationBatchComponent implements OnInit {
   ngOnInit() {
 
   //   if (this.operation === "") {
-  //     this.fxBidAllocationService.getReferenceNumber().subscribe(data => {
-  //       this.fxBidAllocation.referenceNum = data.ref;
+  //     this.fxBidAllocationService.getReferenceNumber().subscribe(editorData => {
+  //       this.fxBidAllocation.referenceNum = editorData.ref;
   //       let dataObject: any;
   //       const id = 0;
   //       const desc = "";
@@ -83,8 +83,8 @@ export class ForexBidAllocationBatchComponent implements OnInit {
   //         "id": id
   //       }
 
-  //       this.fxBidAllocationService.createID(dataObject).subscribe(data => {
-  //         this.idGen = data;
+  //       this.fxBidAllocationService.createID(dataObject).subscribe(editorData => {
+  //         this.idGen = editorData;
   //         this.fxBidAllocationBatch.id = this.idGen.id + 1;
   //         console.log("Successful", this.fxBidAllocationBatch.id);
   //         console.log("Success", this.fxBidAllocationBatch);
@@ -129,10 +129,10 @@ export class ForexBidAllocationBatchComponent implements OnInit {
 
   // getFxInterestDistributionWorkflowByWfId(id) {
   //   console.log("get in here", id)
-  //   this.fxBidAllocationService.getICPWorkflowByWfId(id).subscribe((data) => {
-  //     console.log("ejkcl", data)
-  //     this.fxBidAllocation = data;
-  //     this.fxBidAllocationService.getFxBidAllocationBatch(data.id).subscribe(insRRgData => {
+  //   this.fxBidAllocationService.getICPWorkflowByWfId(id).subscribe((editorData) => {
+  //     console.log("ejkcl", editorData)
+  //     this.fxBidAllocation = editorData;
+  //     this.fxBidAllocationService.getFxBidAllocationBatch(editorData.id).subscribe(insRRgData => {
   //       this.fxBidAllocation = insRRgData;
   //       console.log("dxdfc", this.fxBidAllocation)
   //       console.log("instrument reg of inward", insRRgData);
@@ -141,7 +141,7 @@ export class ForexBidAllocationBatchComponent implements OnInit {
   //     });
 
   //     console.log("destStep = " + this.destStep);
-  //     console.log(data);
+  //     console.log(editorData);
   //   }), (err => {
   //     console.log(err);
   //   });
@@ -157,9 +157,9 @@ export class ForexBidAllocationBatchComponent implements OnInit {
 
 
   // getQueuesForRejection(id) {
-  //   this._setupService.getQueuesForRejectionByWfProId(id).subscribe((data) => {
+  //   this._setupService.getQueuesForRejectionByWfProId(id).subscribe((editorData) => {
   //     console.log('HHHHHHHHHH =' + id);
-  //     this.rejectSteps = data;
+  //     this.rejectSteps = editorData;
   //   }
   //   );
   // }
@@ -170,7 +170,7 @@ export class ForexBidAllocationBatchComponent implements OnInit {
   //   console.log("test", test)
   //   this.fxBidAllocation.currentQueueId = this.destQueueId;
   //   this.fxBidAllocation.queueType = this.queueType;
-  //   this.fxBidAllocationService.pushtoworkflow(test).subscribe((data => {
+  //   this.fxBidAllocationService.pushtoworkflow(test).subscribe((editorData => {
   //     console.log('Prototype Map Created');
   //     this.router.navigate(['dashboard'])
 
@@ -188,7 +188,7 @@ export class ForexBidAllocationBatchComponent implements OnInit {
   //   }
   //   this.fxBidAllocation.currentQueueId = this.destQueueId;
   //   this.fxBidAllocation.queueType = this.queueType;
-  //   this.fxBidAllocationService.rejectbacktoworkflow(inward).subscribe((data => {
+  //   this.fxBidAllocationService.rejectbacktoworkflow(inward).subscribe((editorData => {
   //     this.router.navigate(['dashboard'])
 
 
@@ -200,8 +200,8 @@ export class ForexBidAllocationBatchComponent implements OnInit {
   // }
 
   // getTotalAllocatedAmount() {
-  //   this.fxAllocationService.getFxAllocations().subscribe(data => {
-  //     this.fxAllocations = data;
+  //   this.fxAllocationService.getFxAllocations().subscribe(editorData => {
+  //     this.fxAllocations = editorData;
   //     let totalAllocationAmount = 0;
   //     this.fxAllocations.forEach(e => {
   //       let allocatedAmt = e.allocatedAmt;
@@ -211,14 +211,14 @@ export class ForexBidAllocationBatchComponent implements OnInit {
   //   })
   // }
   // getForexProducts() {
-  //   this.forexProductService.getAllFxProducts().subscribe(data => {
-  //     this.forexProducts = data;
+  //   this.forexProductService.getAllFxProducts().subscribe(editorData => {
+  //     this.forexProducts = editorData;
   //     console.log("forex products",this.forexProducts)
   //   })
   // }
   // getForexSource() {
-  //   this.forexSourceService.getFxSources().subscribe(data => {
-  //     this.forexSources = data;
+  //   this.forexSourceService.getFxSources().subscribe(editorData => {
+  //     this.forexSources = editorData;
   //   })
   // }
   // getFxCurrencies(event) {
@@ -236,8 +236,8 @@ export class ForexBidAllocationBatchComponent implements OnInit {
   // open(event) {
   //   console.log("event", event)
   //   if (event == "Collation Reference") {
-  //     this.fxBidCollatonBatchService.getFxBidCollationBatches().subscribe(data => {
-  //       this.fxCollationBatches = data;
+  //     this.fxBidCollatonBatchService.getFxBidCollationBatches().subscribe(editorData => {
+  //       this.fxCollationBatches = editorData;
 
   //       const modalRef = this.modalService.open(WildcardComponent, { size: 'lg' });
   //       modalRef.componentInstance.collationRef = this.fxCollationBatches
@@ -250,9 +250,9 @@ export class ForexBidAllocationBatchComponent implements OnInit {
   //         this.refId = this.fxCollationBatchObject.id;
   //         this.fxBidAllocation.bidCurrency = this.fxCollationBatchObject.bidCurrency.code
   //         console.log("hjxkzxcc", this.refId, " hicjdxks", this.fxCollationBatchObject.id);
-  //         this.fxBidAllocationService.getForexBidCollationBatchRequestsById(this.refId).subscribe(data => {
-  //           this.fxAllocationRequests = data;
-  //           console.log("data",data)
+  //         this.fxBidAllocationService.getForexBidCollationBatchRequestsById(this.refId).subscribe(editorData => {
+  //           this.fxAllocationRequests = editorData;
+  //           console.log("editorData",editorData)
   //           let requestAmtCurr;
   //          // requestAmtCurr = this.fxAllocationRequests[0].requestAmtCurr.code
   //           // if (requestAmtCurr == null || requestAmtCurr === "undefined") {
@@ -284,16 +284,16 @@ export class ForexBidAllocationBatchComponent implements OnInit {
   //   this.fxBidAllocation.id =  this.fxBidAllocationBatch.id
   //   this.tempTotalRequestAmt = this.commonService.formatNumber(this.fxBidAllocation.totalReqAmt)
   //   this.fxBidAllocation.totalReqAmt = this.tempTotalRequestAmt;
-  //   this.fxBidAllocationService.CreateForexBidAllocationBatchInWorkflow(this.fxBidAllocation).subscribe(data=>{
-  //     console.log("Successful",data)
+  //   this.fxBidAllocationService.CreateForexBidAllocationBatchInWorkflow(this.fxBidAllocation).subscribe(editorData=>{
+  //     console.log("Successful",editorData)
   //     this._smp.popUpAlertSuccess();
 
   //     this.router.navigate(['dashboard'])
   //   })
   // }
   // getTotalRequestedAmount() {
-  //   this.fxAllocationService.getFxAllocations().subscribe(data => {
-  //     this.fxAllocations = data;
+  //   this.fxAllocationService.getFxAllocations().subscribe(editorData => {
+  //     this.fxAllocations = editorData;
   //     let totalRequestedAmt = 0;
   //     this.fxAllocations.forEach(e => {
   //       let requestedAmt = e.requestAmt

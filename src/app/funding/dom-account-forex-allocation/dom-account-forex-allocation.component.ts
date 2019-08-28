@@ -49,7 +49,7 @@ export class DomAccountForexAllocationComponent implements OnInit {
 
   ngOnInit() {
     // this.domAcctFxAllocationService.getReferenceNumber().subscribe(data=>{
-    //   console.log(" data ",data)
+    //   console.log(" editorData ",editorData)
     //   this.referenceNumber = data.ref;
     //   this.domAcctFxAllocation.referenceNum = this.referenceNumber;
     //   console.log("ref",this.referenceNumber)
@@ -78,12 +78,12 @@ export class DomAccountForexAllocationComponent implements OnInit {
   //       })
 
   //     })
-      
+
 
   //   }
 
   //  else if (event == "product") {
-  
+
   //     this.productService.getFilteredProd(this.prodCat).subscribe(data => {
   //       this.products = data;
   //       const modalRef = this.modalService.open(WildcardComponent, { size: 'lg' });
@@ -107,7 +107,7 @@ export class DomAccountForexAllocationComponent implements OnInit {
   //       modalRef.componentInstance.emitService.subscribe(emittedValue => {
   //         //this.emit = emittedValue
   //         this.domAcctFxAllocation.customer = emittedValue;
-        
+
   //       })
   //     }, (err => {
   //       console.log("Cannot find customer");

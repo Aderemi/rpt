@@ -195,7 +195,7 @@ export class WarrantComponent implements OnInit {
 //     );
 
 
-    
+
 
 //     // this.keys = Object.keys(this.sections);
 //     // console.log(Object.keys(this.sections));
@@ -212,9 +212,9 @@ export class WarrantComponent implements OnInit {
 //       relationshipManagement: this.instrumentRegister.relatioinshipMgt
 //     }); */
 
-//     this.currencyService.getCurrencies().subscribe((data => {
-//       this.currencies = data;
-//       console.log(data);
+//     this.currencyService.getCurrencies().subscribe((editorData => {
+//       this.currencies = editorData;
+//       console.log(editorData);
 
 //     }));
 
@@ -224,16 +224,16 @@ export class WarrantComponent implements OnInit {
 
 //   getAllBusinessprocessEventByBusProcIdAndQueueId() {
 
-//     this.actionService.getAllBusinessProcessEvents(this.startQueueId, this.businessProId).subscribe((data => {
-//       this.Events = data;
+//     this.actionService.getAllBusinessProcessEvents(this.startQueueId, this.businessProId).subscribe((editorData => {
+//       this.Events = editorData;
 
 //     }), (err => {
 
 //     }));
 //   }
 //   getWfBusinessProcessSetupByCriteria() {
-//     this.actionService.getWfBusinessProcessSetupByCriteria("Account", "Create").subscribe((data => {
-//       this.wfSetup = data;
+//     this.actionService.getWfBusinessProcessSetupByCriteria("Account", "Create").subscribe((editorData => {
+//       this.wfSetup = editorData;
 //       this.businessProId = this.wfSetup.id;
 //       this.startQueue = this.wfSetup.startQueue;
 //       console.log('nnnnnn =' + this.startQueue);
@@ -249,8 +249,8 @@ export class WarrantComponent implements OnInit {
 //     console.log('customerId=' + this.warrant.applicant.id);
 //     //this.test.customerId
 //     this.warrant.jobDataId = this.warrant.id;
-//     this.actionService.getAllCalculatedCharge(this.warrant.busProEventId, this.warrant.applicant.id, this.warrant.transactionAmount, this.warrant.id, this.warrant).subscribe((data => {
-//       this.CalculatedCharges = data;
+//     this.actionService.getAllCalculatedCharge(this.warrant.busProEventId, this.warrant.applicant.id, this.warrant.transactionAmount, this.warrant.id, this.warrant).subscribe((editorData => {
+//       this.CalculatedCharges = editorData;
 //     }), (err => {
 
 //     }));
@@ -305,7 +305,7 @@ export class WarrantComponent implements OnInit {
 //     this.warrant = this.warrantForm.value;
 //     console.log(this.warrant);
 //     if (this.warrant.id) {
-//       this._warrantService.createWarrant(this.warrantForm.value).subscribe((data => {
+//       this._warrantService.createWarrant(this.warrantForm.value).subscribe((editorData => {
 //         this._smp.popUpAlertSuccess()
 //         this._router.navigate(['/dashboard']);
 //       }), err => {
@@ -313,7 +313,7 @@ export class WarrantComponent implements OnInit {
 //         console.log(err);
 //       });
 //     } else {
-//       this._warrantService.updateWarrant(this.warrant).subscribe((data => {
+//       this._warrantService.updateWarrant(this.warrant).subscribe((editorData => {
 //         this._router.navigate(['/warrant']);
 //       }), err => {
 //         console.log(err);
@@ -322,33 +322,33 @@ export class WarrantComponent implements OnInit {
 //   }
 
 //   getSectionsAndFields(id) {
-//     this._sectionService.getWarrantProductSectionz(id).subscribe(data => {
-//       this.sections = data;
+//     this._sectionService.getWarrantProductSectionz(id).subscribe(editorData => {
+//       this.sections = editorData;
 //       //this.sections.forEach(e=>e.)
 //     });
-//     this._fieldService.getWarrantProductFieldz(id).subscribe(data => {
-//       this.fields = data;
-      
+//     this._fieldService.getWarrantProductFieldz(id).subscribe(editorData => {
+//       this.fields = editorData;
+
 //       console.log("Fields ",this.fields);
 //       this.fields.map((field) => {
 //       });
-//       // console.log(data);
+//       // console.log(editorData);
 //     });
 
 //   }
 
 //   getWarrant(id) {
-//     this._warrantService.getWarrant(id).subscribe((data) => {
+//     this._warrantService.getWarrant(id).subscribe((editorData) => {
 //     });
 //   }
 
 //   instrumentInTransitInit() {
 //     this.isInTransit = true;
 //     const id = this.decode.product.id;
-//     this._warrantService.getWarrant(this.decode.product.jobItemIdentification).subscribe((data) => {
-//       this.getSectionsAndFields(data.product);
-//       this.warrantForm.patchValue(data);
-      
+//     this._warrantService.getWarrant(this.decode.product.jobItemIdentification).subscribe((editorData) => {
+//       this.getSectionsAndFields(editorData.product);
+//       this.warrantForm.patchValue(editorData);
+
 //     });
 //     this.getQueuesForRejection(id);
 //     this.getWorkflowByWfId(id);
@@ -356,16 +356,16 @@ export class WarrantComponent implements OnInit {
 
 //   getWorkflowByWfId(id) {
 //     console.log("enter workflow ",id)
-//     this._warrantService.getWarrantByWfId(id).subscribe((data) => {
-//        this.warrant = data;
-      
+//     this._warrantService.getWarrantByWfId(id).subscribe((editorData) => {
+//        this.warrant = editorData;
+
 //       this.warrantForm.patchValue(this.warrant);
 //     }
 //     );
 //   }
 //   getQueuesForRejection(id) {
-//     this._setupService.getQueuesForRejectionByWfProId(id).subscribe((data) => {
-//       this.rejectSteps = data;
+//     this._setupService.getQueuesForRejectionByWfProId(id).subscribe((editorData) => {
+//       this.rejectSteps = editorData;
 //     }
 //     );
 //   }
@@ -374,7 +374,7 @@ export class WarrantComponent implements OnInit {
 //     warrant = this.warrant;
 //     warrant.currentQueueId = this.destQueueId;
 //     warrant.queueType = this.queueType;
-//     this._warrantService.pushtoworkflow(warrant).subscribe((data => {
+//     this._warrantService.pushtoworkflow(warrant).subscribe((editorData => {
 //       console.log('Prototype Map Created');
 //       this._smp.popUpAlertSuccess();
 //       this._router.navigate(['/dashboard/base'])
@@ -392,7 +392,7 @@ export class WarrantComponent implements OnInit {
 //     }
 //     warrant.currentQueueId = this.destQueueId;
 //     warrant.queueType = this.queueType;
-//     this._warrantService.rejectbacktoworkflow(warrant).subscribe((data => {
+//     this._warrantService.rejectbacktoworkflow(warrant).subscribe((editorData => {
 //       // this.gotoDashboard();
 //     }), (err => {
 //       console.log('Could not create a Template');

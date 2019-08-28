@@ -3,6 +3,7 @@ export interface Report {
     name?:string;
     title?:string;
     description?: string;
+    queryIds?: string[];
     template?: string;
     group?: ReportGroup;
     templateType?: string;
@@ -17,20 +18,6 @@ export interface ReportConnection{
     databaseName: string;
     dbms: string;
     databaseDriver: string;
-    databaseUsername: string;
-    databasePassword: string;
-    databaseHost: string;
-    databasePort: string;
-    status: string;
-    type: string;
-}
-export class ReportConnection{
-    id:number;
-
-    title: string;
-    description: string;
-    databaseName: string;
-    dbms: string;
     databaseUsername: string;
     databasePassword: string;
     databaseHost: string;
@@ -72,6 +59,8 @@ export interface SingleDataResponse<T>{
 export interface ReportGroup{
     id?: number;
     name?: string;
+    code?: string;
+    description?: string;
 }
 
 export interface ReportTemplate{

@@ -25,7 +25,7 @@ export class NotificationCategoryComponent implements OnInit {
   // dataTable;
 
   constructor(private router: Router,
-    // private confirmationDialogService: ConfirmationDialogService, private chRef: ChangeDetectorRef, 
+    // private confirmationDialogService: ConfirmationDialogService, private chRef: ChangeDetectorRef,
     // private modalService: NgbModal, private _smp: ServerMessagePopUp, private notificationCatService:NotificationCategoryService
     ) {
     this.view = 0;
@@ -33,9 +33,9 @@ export class NotificationCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-   
-    // this.notificationCatService.getNotificationCategories().subscribe(data => {
-    //   this.notificationCategories = data;
+
+    // this.notificationCatService.getNotificationCategories().subscribe(editorData => {
+    //   this.notificationCategories = editorData;
     //   this.chRef.detectChanges();
     //   const table = $('table');
     //   this.dataTable = table.DataTable();
@@ -47,9 +47,9 @@ export class NotificationCategoryComponent implements OnInit {
   }
   // search() {
   //   console.log('searching!!');
-  //   this.notificationCatService.query(this.searchNotificationCategory).subscribe((data => {
-  //     this.notificationCategories = data;
-  //     console.log(data);
+  //   this.notificationCatService.query(this.searchNotificationCategory).subscribe((editorData => {
+  //     this.notificationCategories = editorData;
+  //     console.log(editorData);
   //     this.chRef.detectChanges();
 
   //     const table = $('table');
@@ -67,7 +67,7 @@ export class NotificationCategoryComponent implements OnInit {
     this.view = 1;
   }
   delete() {
-    // this.notificationCatService.deleteNotificationCategory(this.selectedNotificationCategory.id).subscribe((data) => {
+    // this.notificationCatService.deleteNotificationCategory(this.selectedNotificationCategory.id).subscribe((editorData) => {
     //   this.notificationCategories.splice(this.notificationCategories.indexOf(this.selectedNotificationCategory.id), 1);
       // this.ngOnInit();
     // }, (error) => {
@@ -82,29 +82,29 @@ export class NotificationCategoryComponent implements OnInit {
   }
 
   // set(event: any, account: any) {
-  //   console.log("data", account)
+  //   console.log("editorData", account)
   //   this.selectedNotificationCategory = account;
   // }
 
   // Save() {
   //   if (this.notificationCategory.id === undefined) {
-  //     this.notificationCatService.createNotificationCategory(this.notificationCategory).subscribe((data => {
+  //     this.notificationCatService.createNotificationCategory(this.notificationCategory).subscribe((editorData => {
   //       this._smp.popUpAlertSuccess();
   //       this.notificationCategory = new NotificationCategory()
   //       this.view = 0;
   //       this.ngOnInit()
-  //       //this.router.navigate(['static-data/account']);
+  //       //this.router.navigate(['static-editorData/account']);
   //     }), err => {
   //       console.log(err);
   //     });
   //   } else {
-  //     this.notificationCatService.updateNotificationCategories(this.notificationCategory).subscribe((data => {
+  //     this.notificationCatService.updateNotificationCategories(this.notificationCategory).subscribe((editorData => {
   //       this._smp.popUpAlertSuccess();
   //       this.notificationCategory = new NotificationCategory()
 
   //       this.view = 0;
   //       this.ngOnInit()
-  //      // this.router.navigate(['static-data/account']);
+  //      // this.router.navigate(['static-editorData/account']);
   //     }), err => {
   //       console.log(err);
   //     });

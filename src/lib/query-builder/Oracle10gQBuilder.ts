@@ -20,4 +20,5 @@ export class Oracle10gQBuilder extends  BaseQBuilder {
     processQuery() {
         return this.userData.limit.length > 0 ? this.limit.replace('<QUERY>', super.processQuery()) : super.processQuery();
     }
+
 }

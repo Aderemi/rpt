@@ -15,7 +15,7 @@
                 </div>
                 <div class="col float-right">
                   <a [appSidebarCollapse]='sidebar'>
-                    <i class="fa fa-arrow-left" aria-hidden="true" id="ico"></i> 
+                    <i class="fa fa-arrow-left" aria-hidden="true" id="ico"></i>
                   </a>
                 </div>
               </div>
@@ -105,17 +105,17 @@
                   </div>
                   <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                     <div class="panel-body">
-  
+
                       <div class="col-sm-12 col-md-10 offset-md-1">
                         <div class="form-body">
-  
+
                           <div class="row">
-  
+
                             <div class="col-md-6">
                               <div class="form-group row">
                                 <label for="code" class="control-label col-md-4">Reference
                                 </label>
-  
+
                                 <div class="col-md-8">
                                   <input name="code" [disabled]="cod" [(ngModel)]="factoringProduct.code" type="text" id="code"
                                     class="form-control" placeholder="">
@@ -126,21 +126,21 @@
                               <div class="form-group row">
                                 <label for="description" class="control-label col-md-4">Client
                                 </label>
-  
+
                                 <div class="col-md-8">
                                   <input name="description" [disabled]="des" [(ngModel)]="factoringProduct.description"
                                     type="text" id="description" class="form-control" placeholder="">
                                 </div>
                               </div>
                             </div>
-  
-                           
+
+
                           </div>
-  
-                       
-  
+
+
+
                           <div class="row">
-  
+
                           </div>
                           <div class="row">
                             <div class="col-md-6">
@@ -148,7 +148,7 @@
                                 <label class="control-label col-md-4">Product Category</label>
                                 <div class="col-md-8">
                                   <select class="form-control" name="productCategory" [disabled]="true">
-  
+
                                     <option [value]="productSubCategory.productCategory">{{product.productSubCategory.productCategory.description}}</option>
                                   </select>
                                 </div>
@@ -168,14 +168,14 @@
                             </div>
                           </div>
                           <div class="row">
-  
+
                           </div>
                           <div class="row">
                                 <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="customer" class="control-label col-md-4">Warrant Reference
                                             </label>
-          
+
                                             <div class="col-md-8">
                                                 <input name="warrantRef" [disabled]='true'  [(ngModel)]="warrantRef" type="text" id="warrantRef" class="form-control" placeholder="">
                                             </div>
@@ -190,28 +190,28 @@
                                                         <option value="">---Please select---</option>
                                                         <option>Remmiting Bank</option>
                                                         <option >Collecting Bank</option>
-                                                        
-          
+
+
                                                     </select>
-          
+
                                                 </div>
-          
+
                                             </div>
                                         </div>
-  
+
                           </div>
-  
+
                           <div class="row">
-  
-  
+
+
                           </div>
-  
+
                           <div class="row">
                                 <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="customer" class="control-label col-md-4">Sender's Reference
                                             </label>
-        
+
                                             <div class="col-md-8">
                                                 <input name="senderReference"  [(ngModel)]="inward.senderReference" type="text" id="senderReference" class="form-control" placeholder="">
                                             </div>
@@ -227,15 +227,15 @@
                                                         <option >Swift</option>
                                                         <option >Telex</option>
                                                         <option>Airmail</option>
-                                                       
-                            
+
+
                                                     </select>
-              
+
                                                 </div>
-              
+
                                             </div>
                                         </div>
-  
+
                           </div>
 
                           <div class="row">
@@ -248,14 +248,14 @@
                                                 <option value="">---Please select---</option>
                                                 <option >Remmiting Bank</option>
                                                 <option >Collecting Bank</option>
-        
+
                                             </select>
-        
+
                                         </div>
-        
+
                                     </div>
                                 </div>
-        
+
                               <div class="col-md-6">
                                   <div class="form-group row">
                                       <label for="code" class="control-label col-md-4">Document Delivery</label>
@@ -265,14 +265,14 @@
                                               <option >Documents against payment</option>
                                               <option >Documents against acceptance</option>
                                               <option >Pour Aval</option>
-        
+
                                           </select>
-        
+
                                       </div>
-        
+
                                   </div>
                               </div>
-        
+
                           </div>
 
                           <div class="row">
@@ -284,33 +284,33 @@
                                             <select class="col-md-12" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="collectionAmtCur" [(ngModel)]="inward.collectionAmtCur" id="collectionAmtCur" [compareWith]="equals">
                                                 <option value="">---Please select---</option>
                                                 <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
-                                           
-            
+
+
                                             </select>
-            
+
                                         </div>
                                         <div class="col-md-4">
                                           <input name="collectionAmtFig"  [(ngModel)]="inward.collectionAmtFig" type="text" id="collectionAmtFig"  class="form-control" placeholder="">
                                       </div>
-            
+
                                     </div>
                                 </div>
-            
+
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label for="code" class="control-label col-md-4">Collection Order Date</label>
                                         <div class="col-md-8">
                                           <input name="collectOrderDate"  [ngModel]="inward.collectOrderDate | date:'yyyy-MM-dd'" (ngModelChange)="inward.collectOrderDate = $event" type="date"  id="collectOrderDate"  class="form-control" placeholder="">
                                       </div>
-              
+
                                     </div>
                                 </div>
-            
+
                              </div>
 
                              <div class="row">
 
-                                   
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="code" class="control-label col-md-4">Our Response Required</label>
@@ -318,12 +318,12 @@
                                                 <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  name="ourResRequired" [(ngModel)]="inward.ourResRequired" id="ourResRequired" [compareWith]="equals">
                                                     <option value="">---Please select---</option>
                                                     <option >Yes</option>
-                                                    <option >No</option>       
-                                                </select>      
-                                            </div>        
+                                                    <option >No</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div> 
-                  
+                                    </div>
+
 
                                     <div class="col-md-6">
                                         <div class="form-group row">
@@ -331,18 +331,18 @@
                                             <div class="col-md-8">
                                                 <select class="col-md-12" class="form-control"  data-placeholder="Choose a Category" name="applicationRule" [(ngModel)]="inward.applicationRule" id="applicationRule">
                                                         <option value="">---Please select---</option>
-                                                  
+
                                                         <option>UCP LATEST VERSION</option>
                                                         <option>UCPURR LATEST VERSION</option>
                                                         <option>EUCP LATEST VERSION</option>
                                                         <option>EUCPURR LATEST VERSION</option>
                                                         <option>ISP LATEST VERSION</option>
                                                         <option>Other</option>
-                                                </select>  
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
- 
+
                                   </div>
 
                                   <div class="row">
@@ -353,14 +353,14 @@
                                             <div class="col-md-8">
                                                 <select class="form-control" data-placeholder="Choose a Event"  name="busProEventId" [(ngModel)]="inwardAccept.busProEventId" (change)="getCalculatedCharges()">
                                                     <option *ngFor="let event of Events" value={{event.id}} selected="inwardAccept.busProEventId==event.id? true : null">
-                                                      {{event.description}} 
+                                                      {{event.description}}
                                                     </option>
-                              
-                                                  </select>                                            
+
+                                                  </select>
                                               </div>
                                              </div>
                                     </div>
-    
+
 
                                       <div class="col-md-6">
                                         <div class="form-group row">
@@ -368,10 +368,10 @@
                                             <div class="col-md-8">
                                               <input name="collectOrderDate"  [ngModel]="inward.collectOrderDate | date:'yyyy-MM-dd'" (ngModelChange)="inward.collectOrderDate = $event" type="date"  id="collectOrderDate"  class="form-control" placeholder="">
                                           </div>
-                  
+
                                         </div>
-                                    </div> 
-                          
+                                    </div>
+
                                     </div>
 
                                     <div class="row">
@@ -380,7 +380,7 @@
                                             <div class="form-group row">
                                                 <label for="customer" class="control-label col-md-4">Other
                                                 </label>
-                    
+
                                                 <div class="col-md-8">
                                                     <input name="applicationRuleValue"  [disabled]="inward.applicationRule != 'Other'" [(ngModel)]="inward.applicationRuleValue" type="text" id="applicationRuleValue" class="form-control" placeholder="">
                                                 </div>
@@ -398,12 +398,12 @@
                       <span class="flaticon-paper  primary-color"></span>
                     </div>
                     <h4 class="panel-title secondary-color font-weight-bold pt-2" #drawee>
-                            Drawee/Consignee Information 
+                            Drawee/Consignee Information
                     </h4>
                   </div>
                   <div id="collapseBenInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBenInfo">
                     <div class="panel-body">
-  
+
                       <div class="col-sm-12 col-md-10 offset-md-1">
                         <div class="form-body">
                                 <div class="row">
@@ -411,7 +411,7 @@
                                                 <div class="form-group form-row">
                                                         <label for="description" class="control-label col-md-4"> Drawee Name &nbsp;
                                                         </label>
-                          
+
                                                         <div class="col-md-8 input-group">
                                                           <input name="" [(ngModel)]="account.accountType.name" [disabled]="true" type="text" id=""
                                                             class="form-control" placeholder="">
@@ -429,11 +429,11 @@
                                                 <div class="col-md-8">
                                                     <input name="draweeNameAccNum" [(ngModel)]="inward.draweeNameAccNum" type="text" id="draweeNameAccNum" class="form-control"  placeholder="">
                                                 </div>
-          
+
                                             </div>
                                         </div>
                                         <!--/span-->
-          
+
                                         <!--/span-->
                                     </div>
                           <div class="row">
@@ -444,7 +444,7 @@
                                             <div class="col-md-8">
                                                 <input name="draweeReference" [(ngModel)]="inward.draweeReference" type="text" id="draweeReference" class="form-control"  placeholder="">
                                             </div>
-      
+
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -454,7 +454,7 @@
                                             <div class="col-md-8">
                                                 <textarea name="draweeAddress" [(ngModel)]="inward.draweeAddress" rows="4" type="text" id="draweeAddress"  class="form-control" placeholder=""></textarea>
                                             </div>
-      
+
                                         </div>
                                     </div>
                           </div>
@@ -468,11 +468,11 @@
                                                 <option value="">---Please select---</option>
                                                 <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                                             </select>
-                  
+
                                         </div>
-  
+
                                     </div>
-                                </div>                       
+                                </div>
                             </div>
 
 
@@ -487,12 +487,12 @@
                     <span class="flaticon-paper  primary-color"></span>
                     </div>
                     <h4 class="panel-title secondary-color font-weight-bold pt-2" #drawer>
-                        Drawer/ Cosignor Information 
+                        Drawer/ Cosignor Information
                     </h4>
                   </div>
                   <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                     <div class="panel-body">
-  
+
                       <div class="col-sm-12 col-md-10 offset-md-1">
 
                          <div class="form-body">
@@ -501,7 +501,7 @@
                                 <div class="form-group form-row">
                                         <label for="description" class="control-label col-md-4"> Drawer Name &nbsp;
                                         </label>
-          
+
                                         <div class="col-md-8 input-group">
                                           <input name="" [(ngModel)]="account.accountType.name" [disabled]="true" type="text" id=""
                                             class="form-control" placeholder="">
@@ -512,7 +512,7 @@
                                         </div>
                                       </div>
                           </div>
-                       
+
                           <div class="col-md-6">
                               <div class="form-group row">
                                   <label for="code" class="control-label col-md-4">Drawer Reference
@@ -538,25 +538,25 @@
                           <!--/span-->
 
                           <!--/span-->
-                     
+
                           <div class="col-md-6">
                               <div class="form-group row">
                                   <label for="code" class="control-label col-md-4">Country
                                   </label>
                                   <div class="col-md-8">
                                       <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  tabindex="1" name="drawerCountry" [(ngModel)]="inward.drawerCountry" id="drawerCountry" [compareWith]="equals">
-                                          
+
                                           <option value="">---Please select---</option>
                                           <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                                       </select>
-            
+
                                   </div>
 
                               </div>
-                          </div>                       
-                      </div>  
-                         
-                     
+                          </div>
+                      </div>
+
+
 
 
                   </div>
@@ -579,10 +579,10 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
-                
+
+
                             <div class="form-body">
                                 <div class="row">
                                         <div class="col-md-6">
@@ -595,13 +595,13 @@
                                                         <option >Hold</option>
                                                         <option >Return</option>
                                                     </select>
-                          
+
                                                 </div>
-          
+
                                                 <div class="col-md-4">
                                                     <input name="protestInCaseVal" [(ngModel)]="inward.protestInCaseVal" type="text" id="protestInCaseVal" class="form-control" placeholder="">
                                                 </div>
-          
+
                                             </div>
                                         </div>
                                         <!-- </div>
@@ -617,19 +617,19 @@
                                                 <option >Non-Acceptance and Non-Payment</option>
                                                 <option >Non-Payment</option>
                                             </select>
-                  
+
                                         </div>
-  
+
                                         <div class="col-md-4">
                                             <input name="protestInCaseVal" [(ngModel)]="inward.protestInCaseVal" type="text" id="protestInCaseVal" class="form-control" placeholder="">
                                         </div>
-  
+
                                     </div>
                                 </div>
                                 </div>
-                       
+
                                 <div class="row">
-  
+
                                   <div class="col-md-6">
                                       <div class="form-group row">
                                           <label for="code" class="control-label col-md-4">Insure Goods If Dishonoured
@@ -641,9 +641,9 @@
                                                   <option>Fire Insurance</option>
                                                   <option>Not Applicable</option>
                                               </select>
-                    
+
                                           </div>
-    
+
                                       </div>
                                   </div>
                                   <div class="col-md-6">
@@ -656,13 +656,13 @@
                                                   <option >Yes</option>
                                                   <option >No</option>
                                               </select>
-                    
+
                                           </div>
-    
+
                                       </div>
                                   </div>
                                   </div>
-                                  
+
                                 <div class="row">
                                         <div class="col-md-6">
                                                 <div class="form-group row">
@@ -672,7 +672,7 @@
                                                         <textarea name="nonPayInstruction" [(ngModel)]="inward.nonPayInstruction" rows="4" type="text" id="nonPayInstruction" class="form-control"
                                                             placeholder="" ></textarea>
                                                     </div>
-              
+
                                                 </div>
                                             </div>
                                   <div class="col-md-6">
@@ -683,13 +683,13 @@
                                               <textarea name="additionalInstruction" [(ngModel)]="inward.additionalInstruction" rows="4" type="text" id="additionalInstruction" class="form-control"
                                               ></textarea>
                                           </div>
-    
+
                                       </div>
                                   </div>
                                 </div>
                                 </div>
-                          
-  
+
+
                         </div>
                       </div>
                     </div>
@@ -706,17 +706,17 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
-                
+
+
                              <div class="form-body">
-                                       
-                                         
-                                            
-                                               
+
+
+
+
                                                     <div class="row">
-                
+
                                                       <div class="col-md-6">
                                                           <div class="form-group row">
                                                               <label for="code" class="control-label col-md-4">Good Description
@@ -725,14 +725,14 @@
                                                                   <textarea name="goodDescritpion"  [ngModel]="inward.goodDescritpion" (ngModelChange)="inwardAdjust.goodDescritpion = $event"  rows="4"  id="goodDescritpion" class="form-control"
                                                                       placeholder=""></textarea>
                                                               </div>
-                        
+
                                                           </div>
                                                       </div>
-                                                
+
                                                   </div>
-                
+
                                       </div>
-                
+
                         </div>
                       </div>
                     </div>
@@ -749,13 +749,13 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
-                
+
+
                              <div class="form-body">
                                           <div class="row">
-                
+
                                               <div class="col-md-6">
                                                   <div class="form-group row">
                                                       <label for="code" class="control-label col-md-4">Shipping Amount</label>
@@ -763,15 +763,15 @@
                                                           <select class="col-md-12" class="form-control" data-placeholder="Choose a Category"  name="shippingAmtCur" [ngModel]="inward.shippingAmtCur" (ngModelChange)="inwardAdjust.shippingAmtCur = $event"  id="shippingAmtCur" [compareWith]="equals">
                                                               <option value="">---Please select---</option>
                                                               <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
-                                                         
-                          
+
+
                                                           </select>
-                          
+
                                                       </div>
                                                       <div class="col-md-4">
                                                         <input name="shippingAmtFig"  [ngModel]="inward.shippingAmtFig" (ngModelChange)="inwardAdjust.shippingAmtFig = $event"  type="text" id="shippingAmtFig"  class="form-control" placeholder="">
                                                     </div>
-                          
+
                                                   </div>
                                               </div>
                                               <div class="col-md-6">
@@ -786,9 +786,9 @@
                                                               <option >Road</option>
                                                               <option >Rail</option>
                                                           </select>
-                                
+
                                                       </div>
-                  
+
                                                   </div>
                                               </div>
                                           </div>
@@ -796,12 +796,12 @@
                                               <div class="col-md-6">
                                                   <div class="form-group row">
                                                       <label for="code" class="control-label col-md-4">Shipped From
-                                                         
+
                                                       </label>
                                                       <div class="col-md-8">
                                                           <input name="shippedFrom" [ngModel]="inward.shippedFrom" (ngModelChange)="inwardAdjust.shippedFrom = $event"  type="text" id="shippedFrom" class="form-control" >
                                                       </div>
-                  
+
                                                   </div>
                                               </div>
                                               <div class="col-md-6">
@@ -811,7 +811,7 @@
                                                       <div class="col-md-8">
                                                           <input name="shipDestination"  [ngModel]="inward.shipDestination" (ngModelChange)="inwardAdjust.shipDestination = $event" type="text" id="shipDestination" class="form-control" placeholder="">
                                                       </div>
-                  
+
                                                   </div>
                                               </div>
                                           </div>
@@ -819,12 +819,12 @@
                                               <div class="col-md-6">
                                                   <div class="form-group row">
                                                       <label for="code" class="control-label col-md-4">Carrier Name
-                                                         
+
                                                       </label>
                                                       <div class="col-md-8">
                                                           <input name="carrierName" [ngModel]="inward.carrierName" (ngModelChange)="inwardAdjust.carrierName = $event" type="text" id="carrierName" class="form-control" >
                                                       </div>
-                  
+
                                                   </div>
                                               </div>
                                               <div class="col-md-6">
@@ -834,31 +834,31 @@
                                                       <div class="col-md-8">
                                                           <input name="vesselName"  [ngModel]="inward.vesselName" (ngModelChange)="inwardAdjust.vesselName = $event" type="text" id="vesselName" class="form-control" placeholder="">
                                                       </div>
-                  
+
                                                   </div>
                                               </div>
                                           </div>
-                
-                
-                
-                
-                
-                                          <div class="row"> 
-                          
+
+
+
+
+
+                                          <div class="row">
+
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label for="code" class="control-label col-md-4">Shipping Date</label>
                                                     <div class="col-md-8">
                                                       <input name="shippingDate"  [ngModel]="inward.shippingDate | date:'yyyy-MM-dd'" (ngModelChange)="inwardAdjust.shippingDate = $event" type="date" id="shippingDate"  class="form-control" placeholder="">
                                                   </div>
-                          
+
                                                 </div>
                                             </div>
-                          
+
                                         </div>
-                
+
                                       </div>
-                
+
                         </div>
                       </div>
                     </div>
@@ -875,20 +875,20 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
+
                 <div class="form-body">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label for="code" class="control-label col-md-4">Number Of Document Received
-                                                        
+
                                                     </label>
                                                     <div class="col-md-8">
                                                         <input name="noDocReceived" [ngModel]="inward.noDocReceived" (ngModelChange)="inwardAdjust.noDocReceived = $event" type="number" id="noDocReceived" class="form-control">
                                                     </div>
-                
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -898,7 +898,7 @@
                                                     <div class="col-md-8">
                                                         <input name="docReceiveDate"  [ngModel]="inward.docReceiveDate | date:'yyyy-MM-dd'" (ngModelChange)="inwardAdjust.docReceiveDate = $event" type="date" id="docReceiveDate" class="form-control" placeholder="">
                                                     </div>
-                
+
                                                 </div>
                                             </div>
                                         </div>
@@ -906,12 +906,12 @@
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label for="code" class="control-label col-md-4">Courier Name
-                                                        
+
                                                     </label>
                                                     <div class="col-md-8">
                                                         <input name="courierName" [ngModel]="inward.courierName" (ngModelChange)="inwardAdjust.courierName = $event"  type="text" id="courierName" class="form-control">
                                                     </div>
-                
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -921,17 +921,17 @@
                                                     <div class="col-md-8">
                                                         <input name="courierNumber"  [ngModel]="inward.courierNumber" (ngModelChange)="inwardAdjust.courierNumber = $event" type="text" id="courierNumber" class="form-control" placeholder="">
                                                     </div>
-                
+
                                                 </div>
                                             </div>
                                         </div>
-                
-                
-                
-                
+
+
+
+
                                     </div>
-                             
-                
+
+
                         </div>
                       </div>
                     </div>
@@ -949,10 +949,10 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
-                
+
+
                               <div class="form-body">
                                       <div class="row">
                                           <div class="col-md-6">
@@ -966,22 +966,22 @@
                                                             class="fa fa-search" aria-hidden="true"></i></span>
                                                       </div>
                                                   </div>
-                
+
                                               </div>
                                           </div>
                                           <div class="col-md-6">
                                               <div class="form-group row">
-                                                  <label for="code" class="control-label col-md-4">Bank Name 
+                                                  <label for="code" class="control-label col-md-4">Bank Name
                                                   </label>
                                                   <div class="col-md-8">
                                                       <input name="remBankName" [ngModel]="inward.remBankName" (ngModelChange)="inwardAdjust.remBankName = $event" type="text" id="remBankName" class="form-control" >
                                                   </div>
-                
+
                                               </div>
                                           </div>
                                       </div>
                                       <div class="row">
-                
+
                                           <div class="col-md-6">
                                               <div class="form-group row">
                                                   <label for="code" class="control-label col-md-4">Bank Address
@@ -989,7 +989,7 @@
                                                   <div class="col-md-8">
                                                       <textarea name="remBankAddress" [ngModel]="inward.remBankAddress" (ngModelChange)="inwardAdjust.remBankAddress = $event" rows="4" type="text" id="remBankAddress" class="form-control"></textarea>
                                                   </div>
-                
+
                                               </div>
                                           </div>
                                           <div class="col-md-6">
@@ -999,14 +999,14 @@
                                                   <div class="col-md-8">
                                                       <input name="remBankLocation" [ngModel]="inward.remBankLocation" (ngModelChange)="inwardAdjust.remBankLocation = $event" type="text" id="remBankLocation" class="form-control">
                                                   </div>
-                
+
                                               </div>
                                           </div>
                                           </div>
-                                         
-                
+
+
                                   </div>
-                
+
                         </div>
                       </div>
                     </div>
@@ -1024,10 +1024,10 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
-                
+
+
                              <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -1043,10 +1043,10 @@
                                                         <option >Isuer</option>
                                                         <option >Other</option>
                                                     </select>
-                          
+
                                                 </div>
-                
-                
+
+
                                                 <div class="col-md-4 input-group">
                                                     <input name="avalActOfVal" [ngModel]="inward.avalActOfVal" (ngModelChange)="inwardAdjust.avalActOfVal = $event" id="modeShipment"  type="text" id="avalActOfVal" class="form-control" >
                                                     <div class="input-group-append" style="height: 30px;">
@@ -1054,11 +1054,11 @@
                                                             class="fa fa-search" aria-hidden="true"></i></span>
                                                       </div>
                                                 </div>
-                
+
                                             </div>
                                         </div>
-                                      
-                                  
+
+
                                         <div class="col-md-6">
                                           <div class="form-group row">
                                               <label for="code" class="control-label col-md-4">Avalising Party Code
@@ -1066,7 +1066,7 @@
                                               <div class="col-md-8">
                                                   <input name="avalPartyCode" [ngModel]="inward.avalPartyCode" (ngModelChange)="inwardAdjust.avalPartyCode = $event"  type="text" id="avalPartyCode" class="form-control" >
                                                 </div>
-                
+
                                           </div>
                                       </div>
                                       </div>
@@ -1076,9 +1076,9 @@
                                                   <label for="code" class="control-label col-md-4">Avalising Party Name
                                                       <!-- <span class="fa fa-search" ></span> -->
                                                   </label>
-                  
-                  
-                  
+
+
+
                                                   <div class="col-md-8 input-group">
                                                       <input name="avalPartyName" [ngModel]="inward.avalPartyName" (ngModelChange)="inwardAdjust.avalPartyName = $event" type="text" id="avalPartyName" class="form-control" >
                                                       <div class="input-group-append" style="height: 30px;">
@@ -1086,11 +1086,11 @@
                                                             class="fa fa-search" aria-hidden="true"></i></span>
                                                       </div>
                                                   </div>
-                  
+
                                               </div>
                                           </div>
-                                        
-                                    
+
+
                                           <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="code" class="control-label col-md-4">Avalising Party Location
@@ -1098,13 +1098,13 @@
                                                 <div class="col-md-8">
                                                     <input name="avalPartyLocation" [ngModel]="inward.avalPartyLocation" (ngModelChange)="inwardAdjust.avalPartyLocation = $event"  type="text" id="avalPartyLocation" class="form-control" >
                                                   </div>
-                  
+
                                             </div>
                                         </div>
                                         </div>
-                
+
                                         <div class="row">
-                
+
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label for="code" class="control-label col-md-4">Availising party Address
@@ -1112,16 +1112,16 @@
                                                     <div class="col-md-8">
                                                         <textarea name="avalPartyAddress" [ngModel]="inward.avalPartyAddress" (ngModelChange)="inwardAdjust.avalPartyAddress = $event"  rows="4" type="text" id="avalPartyAddress" class="form-control"></textarea>
                                                     </div>
-                  
+
                                                 </div>
                                             </div>
-                
-                
+
+
                                         </div>
-                
-                
+
+
                                 </div>
-                
+
                         </div>
                       </div>
                     </div>
@@ -1139,10 +1139,10 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
-                
+
+
                              <div class="form-body">
                                   <div class="row">
                                       <div class="col-md-6">
@@ -1157,22 +1157,22 @@
                                                         class="fa fa-search" aria-hidden="true"></i></span>
                                                   </div>
                                               </div>
-                
+
                                           </div>
                                       </div>
                                       <div class="col-md-6">
                                           <div class="form-group row">
-                                              <label for="code" class="control-label col-md-4">Bank Name 
+                                              <label for="code" class="control-label col-md-4">Bank Name
                                               </label>
                                               <div class="col-md-8">
                                                   <input name="remCorBankName" [ngModel]="inward.remCorBankName" (ngModelChange)="inwardAdjust.remCorBankName = $event" type="text" id="remCorBankName" class="form-control" >
                                               </div>
-                
+
                                           </div>
                                       </div>
                                   </div>
                                   <div class="row">
-                
+
                                       <div class="col-md-6">
                                           <div class="form-group row">
                                               <label for="code" class="control-label col-md-4">Bank Address
@@ -1180,7 +1180,7 @@
                                               <div class="col-md-8">
                                                   <textarea name="remCorBankAddress" [ngModel]="inward.remCorBankAddress" (ngModelChange)="inwardAdjust.remCorBankAddress = $event" rows="4" type="text" id="remCorBankAddress" class="form-control"></textarea>
                                               </div>
-                
+
                                           </div>
                                       </div>
                                       <div class="col-md-6">
@@ -1190,14 +1190,14 @@
                                               <div class="col-md-8">
                                                   <input name="remCorBankLocation" [ngModel]="inward.remCorBankLocation" (ngModelChange)="inwardAdjust.remCorBankLocation = $event" type="text" id="remCorBankLocation" class="form-control">
                                               </div>
-                
+
                                           </div>
                                       </div>
                                       </div>
-                                     
-                
+
+
                               </div>
-                
+
                         </div>
                       </div>
                     </div>
@@ -1215,50 +1215,50 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
+
                             <div class="form-body">
 
                                 <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="code" class="control-label col-md-4">Local Charges Payable By
-                                                   
+
                                                 </label>
                                                 <div class="col-md-8">
                                                     <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  name="localChargePayableBy" [(ngModel)]="inward.localChargePayableBy" id="localChargePayableBy" [compareWith]="equals">
                                                         <option value="">---Please select---</option>
                                                         <option >Our</option>
                                                         <option >Beneficiary</option>
-                                                       
+
                                                     </select>
-                          
+
                                                 </div>
-                      
+
                                             </div>
                                         </div>
-                                      
+
                                     <!-- </div>
                                     <div class="row"> -->
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label for="code" class="control-label col-md-4">Oversea Charges Payable By
-                                                       
+
                                                     </label>
                                                     <div class="col-md-8">
                                                         <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  name="overseaChargePayableBy" [(ngModel)]="inward.overseaChargePayableBy" id="overseaChargePayableBy" [compareWith]="equals">
                                                             <option value="">---Please select---</option>
                                                             <option >Our</option>
                                                             <option >Beneficiary</option>
-                                                            
+
                                                         </select>
-                              
+
                                                     </div>
-                          
+
                                                 </div>
                                             </div>
-                                          
+
                                         </div>
                               <div class="row">
                                   <div class="col-md-6">
@@ -1272,18 +1272,18 @@
                                           <div class="col-md-4">
                                               <input name="chargeActName" [(ngModel)]="inward.chargeActName" type="text" id="chargeActName" class="form-control" >
                                           </div>
-              
+
                                       </div>
                                   </div>
-                                
+
                               <!-- </div>
-              
-                             
+
+
                             <div class="row"> -->
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label for="code" class="control-label col-md-4">Waive Charges If Refused
-                                            
+
                                         </label>
                                         <div class="col-md-8">
                                             <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  name="waiveCharge" [(ngModel)]="inward.waiveCharge" id="waiveCharge" [compareWith]="equals">
@@ -1291,21 +1291,21 @@
                                                 <option >Yes</option>
                                                 <option >No</option>
                                             </select>
-                  
+
                                         </div>
-              
+
                                     </div>
                                 </div>
-                              
+
                             </div>
-                             
+
                           </div>
-                
+
                         </div>
                       </div>
                     </div>
                   </div>
-                  
+
 
                   <div class=" panel-default">
                     <div class="panel-heading" role="tab" id="headingBasic">
@@ -1318,10 +1318,10 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
-                
+
+
                               <div class="form-body">
                               <div class="row">
                                   <div class="col-md-6">
@@ -1335,17 +1335,17 @@
                                                     class="fa fa-search" aria-hidden="true"></i></span>
                                               </div>
 
-                                             
+
                                           </div>
-                
+
                                       </div>
                                   </div>
-                                
-                           
+
+
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label for="code" class="control-label col-md-4">Interest Calculation Start Day
-                                            
+
                                         </label>
                                         <div class="col-md-8">
                                             <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  tabindex="1" name="intCalStartDay" [ngModel]="inward.intCalStartDay" (ngModelChange)="inwardAdjust.intCalStartDay = $event" [compareWith]="equals">
@@ -1353,18 +1353,18 @@
                                                 <option >Day 1</option>
                                                 <option >Day 2</option>
                                             </select>
-                  
+
                                         </div>
-                
+
                                     </div>
                                 </div>
-                              
+
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label for="code" class="control-label col-md-4">Interest Payment Frequency
-                                            
+
                                         </label>
                                         <div class="col-md-4">
                                             <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  tabindex="1" name="intPayFreLeft" [ngModel]="inward.intPayFreLeft" (ngModelChange)="inwardAdjust.intPayFreLeft = $event" id="intPayFreLeft" [compareWith]="equals">
@@ -1387,13 +1387,13 @@
                                        <input name="interestDate" [(ngModel)]="inward.intPayFre" type="text" id="intPayFre" class="form-control" >
                                     </div>
                                 </div>
-                            
+
                           </div>
                           <div class="row">
                               <div class="col-md-6">
                                   <div class="form-group row">
                                       <label for="code" class="control-label col-md-4">Interest Calculation Basis
-                                          
+
                                       </label>
                                       <div class="col-md-4">
                                           <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  tabindex="1" name="intCalBasisSelect" [ngModel]="inward.intCalBasisSelect" (ngModelChange)="inwardAdjust.intCalBasisSelect = $event" id="intPayFreLeft" [compareWith]="equals">
@@ -1404,14 +1404,14 @@
                                         </div>
                                           <div class="col-md-4">
                                               <input name="intCalBasisValue" [ngModel]="inward.intCalBasisValue" (ngModelChange)="inwardAdjust.intCalBasisValue = $event" id="intPayFreLeft"  type="text" id="intCalBasisValue" class="form-control" >
-                                             
+
                                           </div>
                                   </div>
                               </div>
                               <div class="col-md-6">
                                   <div class="form-group row">
                                       <label for="code" class="control-label col-md-4">Waive Interest If Refused
-                                          
+
                                         </label>
                                         <div class="col-md-8">
                                       <select class="col-md-12" class="form-control" data-placeholder="Choose a Category"  tabindex="1" name="waiveInterest" [ngModel]="inward.waiveInterest" (ngModelChange)="inwardAdjust.waiveInterest = $event" id="waiveInterest" [compareWith]="equals">
@@ -1420,15 +1420,15 @@
                                           <option >No</option>
                                       </select>
                                       </div>
-                                    
+
                                   </div>
                               </div>
-                          
+
                         </div>
-                             
-                                 
+
+
                           </div>
-                
+
                         </div>
                       </div>
                     </div>
@@ -1445,17 +1445,17 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
-                        
-                        
-                
+
+
+
                              <div class="form-body">
                                     <div class="row">
                                       <div class="col-md-6">
                                           <div class="form-group row">
                                               <label for="code" class="control-label col-md-4">Discount Quote
-                                                  
+
                                               </label>
                                               <div class="col-md-8">
                                                   <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  name="discountQuote" [(ngModel)]="inward.discountQuote" id="discountQuote" [compareWith]="equals">
@@ -1463,13 +1463,13 @@
                                                       <option >Rate</option>
                                                       <option >Amount</option>
                                                   </select>
-                        
+
                                               </div>
-                      
+
                                           </div>
                                       </div>
-                                    
-                              
+
+
                                   <div class="col-md-6" *ngIf="inward.discountQuote == 'Rate'">
                                         <div class="form-group row">
                                             <label for="code" class="control-label col-md-4">Discount Rate
@@ -1477,43 +1477,43 @@
                                             <div class="col-md-8">
                                                 <input name="discountRate" [(ngModel)]="inward.discountRate" type="text" id="discountRate" class="form-control">
                                             </div>
-                
+
                                         </div>
                                     </div>
-                                
+
                                         <div class="col-md-6" *ngIf="inward.discountQuote == 'Amount'">
                                                 <div class="form-group row">
                                                     <label for="instructionCode" class="control-label col-md-4">Discount Amount</label>
-                                                    
+
                                                     <div class="col-md-4">
                                                         <input name="collectionAmtCurCode" style="text-align: right;" [disabled]="true" [(ngModel)]="inward.collectionAmtCur.code" type="text"  class="form-control" >
                                                     </div>
                                                     <div class="col-md-4">
                                                             <input name="discountAmtFig" style="text-align: right;" [(ngModel)]="inward.discountAmtFig" type="text" id="discountAmtFig" class="form-control" >
                                                         </div>
-                
+
                                                 </div>
                                             </div>
-                
-                                  </div> 
-                                  
-                               
+
+                                  </div>
+
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="code" class="control-label col-md-4">Cut-Off Day
-                                                
+
                                             </label>
                                                 <div class="col-md-8">
                                                     <input name="cutOffDay" [(ngModel)]="inward.cutOffDay" type="text" id="cutOffDay" class="form-control" >
-                                                   
+
                                                 </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="code" class="control-label col-md-4">Waive Interest If Refused
-                                                
+
                                               </label>
                                               <div class="col-md-8">
                                             <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  name="waiveInterest" [(ngModel)]="inward.waiveInterest" id="waiveInterest" [compareWith]="equals">
@@ -1522,20 +1522,20 @@
                                                 <option >No</option>
                                             </select>
                                             </div>
-                                          
+
                                         </div>
                                     </div>
-                                
+
                               </div>
-                                   
-                                       
+
+
                                 </div>
-                
+
                         </div>
                       </div>
                     </div>
                   </div>
-<!-- 
+<!--
                 <div class=" panel-default">
                     <div class="panel-heading" role="tab" id="headingBasic">
                       <div class="float-left form-icon text-center mr-3">
@@ -1547,33 +1547,33 @@
                     </div>
                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                       <div class="panel-body">
-                
+
                         <div class="col-sm-12 col-md-10 offset-md-1">
                                               <div class="form-body">
                                           <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group row">
+       editorData                                   <div class="col-md-6">
+                                                editorDataiv class="form-group row">
                                                       <label for="code" class="control-label col-md-4">Acceptance Option (23E)
                                                       </label>
                                                       <div class="col-md-4">
-                                                          <select class="col-md-8" class="form-control" data-placeholder="Choose a Category"  (change)="acceptedFlagCheck()" name="acceptanceOptionSel" [(ngModel)]="inwardAccept.acceptanceOptionSel" id="acceptanceOptionSel" [compareWith]="equals">
+                                                          <select class="col-md-8" class="form-contreditorDatadata-placeholder="Choose a Category"  (change)="acceptedFlagCheck()" name="acceptanceOptionSel" [(ngModel)]="inwardAccept.acceptanceOptionSel" id="acceptanceOptionSel" [compareWith]="equals">
                                                               <option value="">---Please select---</option>
                                                               <option >Accepted</option>
                                                               <option >Non-Acceptance</option>
                                                               <option >Non-Payment</option>
                                                           </select>
-                                
+
                                                       </div>
-                
+
                                                       <div class="col-md-4">
                                                           <input name="acceptanceOptionVal" (change)="acceptedFlagCheck()" [(ngModel)]="inwardAccept.acceptanceOptionVal" type="text" id="acceptanceOptionVal" class="form-control" placeholder="">
                                                       </div>
-                
+
                                                   </div>
                                               </div>
-                                             
-                                             
-                
+
+
+
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
                                                         <label for="code" class="control-label col-md-4">Our Charge Amount
@@ -1583,18 +1583,18 @@
                                                                 <option value="">---Please select---</option>
                                                                 <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
                                                             </select>
-                                  
+
                                                         </div>
                                                         <div class="col-md-4">
                                                           <input name="ourChargeAmtFig" [(ngModel)]="inwardAccept.ourChargeAmtFig" type="text" id="ourChargeAmtFig" class="form-control" placeholder="">
                                                       </div>
-                  
+
                                                     </div>
                                                 </div>
                                             </div>
-                                          
-                                          
-                
+
+
+
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
@@ -1605,12 +1605,12 @@
                                                                 <option value="">---Please select---</option>
                                                                <option *ngFor="let bank of banks" [ngValue]="bank">{{bank.name}}</option>
                                                             </select>
-                                  
+
                                                         </div>
-                  
+
                                                     </div>
                                                 </div>
-                                               
+
                                                     <div class="col-md-6">
                                                             <div class="form-group row">
                                                                 <label for="code" class="control-label col-md-4">Our Nostro Acount number
@@ -1621,11 +1621,11 @@
                                                                     <div class="col-md-4">
                                                                             <input name="nostroBankActName" [(ngModel)]="inwardAccept.nostroBankActName" type="text" id="nostroBankActName" class="form-control" placeholder="">
                                                                         </div>
-                          
+
                                                             </div>
                                                         </div>
                                                     </div>
-                                                
+
                                                     <div class="row">
                                                             <div class="col-md-6">
                                                                     <div class="form-group row">
@@ -1635,11 +1635,11 @@
                                                                             <textarea name="nonAcceptReason" [disabled]="acceptedFlag" [(ngModel)]="inwardAccept.nonAcceptReason" rows="4" type="text" id="nonAcceptReason" class="form-control"
                                                                                 placeholder="" ></textarea>
                                                                         </div>
-                                    
+
                                                                     </div>
                                                                 </div>
-                
-                
+
+
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
                                                         <label for="remitterAddr" class="control-label col-md-4">Additional Information
@@ -1648,16 +1648,16 @@
                                                             <textarea name="additionalInfo" [(ngModel)]="inwardAccept.additionalInfo" rows="4" type="text" id="additionalInfo" class="form-control"
                                                             ></textarea>
                                                         </div>
-                  
+
                                                     </div>
                                                 </div>
                                               </div>
-                                        
-                
+
+
                                       </div>
-                
-                             
-                
+
+
+
                         </div>
                       </div>
                     </div>
@@ -1672,12 +1672,12 @@
                         <span class="flaticon-paper  primary-color"></span>
                         </div>
                         <h4 class="panel-title secondary-color font-weight-bold pt-2" #response>
-                            Response Information 
+                            Response Information
                         </h4>
                   </div>
                   <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                     <div class="panel-body">
-  
+
                       <div class="col-sm-12 col-md-10 offset-md-1">
 
                         <div class="form-body">
@@ -1686,19 +1686,19 @@
                                     <div class="form-group row">
                                         <label for="instructionCode" class="control-label col-md-4">Response Status</label>
                                         <div class="col-md-8">
-                                            
+
                                                 <select class="col-md-9" class="form-control"  data-placeholder="Choose a Category" name="baseFgnCurrEquiRateCurr" [(ngModel)]="inward.baseFgnCurrEquiRateCurr" [compareWith]="equals">
                                                         <option value="0">---Please select---</option>
                                                         <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
-        
-        
+
+
                                                 </select>
-    
-    
+
+
                                         </div>
-                                       
-    
-    
+
+
+
                                     </div>
                                 </div>
                                 <!-- <div class="col-md-6">
@@ -1710,37 +1710,37 @@
                                         <div class="col-md-4">
                                             <button class="btn btn-info  usl-btn-color">Exchange Rate</button>
                                         </div>
-    
+
                                     </div>
                                 </div> -->
-    
-    
+
+
                             </div>
-                            
-    
-    
-    
-    
+
+
+
+
+
                         </div>
 
                       </div>
                     </div>
                   </div>
-                </div> 
+                </div>
                 <div class=" panel-default">
                         <div class="panel-heading" role="tab" id="headingBasic">
                                 <div class="float-left form-icon text-center mr-3">
                                     <span class="flaticon-paper  primary-color"></span>
                                     </div>
                                     <h4 class="panel-title secondary-color font-weight-bold pt-2" #currency>
-                                        Currency Reporting 
+                                        Currency Reporting
                                     </h4>
                         </div>
                         <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                           <div class="panel-body">
-        
+
                             <div class="col-sm-12 col-md-10 offset-md-1">
-  
+
                                     <div class="form-body">
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -1748,20 +1748,20 @@
                                                         <label for="instructionCode" class="control-label col-md-4">Base Foreign Currency equiv /rate</label>
                                                         <div class="col-md-4">
                                                             <select class="col-md-9" class="form-control"  data-placeholder="Choose a Category" tabindex="1" name="baseFgnCurrEquiRateCurr" [(ngModel)]="inward.baseFgnCurrEquiRateCurr" [compareWith]="equals">
-                                                                    
+
                                                                     <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
-                  
-                  
+
+
                                                             </select>
-                  
-                  
-                  
+
+
+
                                                         </div>
                                                         <div class="col-md-4">
                                                             <input name="baseFgnCurrEquiRateFig" [(ngModel)]="inward.baseFgnCurrEquiRateFig" type="text" id="" class="form-control" >
                                                         </div>
-                  
-                  
+
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -1773,11 +1773,11 @@
                                                         <div class="col-md-4">
                                                                 <button class="btn btn-primary btn-block" style="padding: 6px 3px !important; font-size: 11px;">Exchange Rate</button>
                                                         </div>
-                  
+
                                                     </div>
                                                 </div>
-                  
-                  
+
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -1787,18 +1787,18 @@
                                                             <select class="col-md-9" class="form-control" data-placeholder="Choose a Category" tabindex="1" name="localCurrEquiRateCurr"  [(ngModel)]="inward.localCurrEquiRate" [compareWith]="equals">
                                                                     <option value="0">---Please select---</option>
                                                                     <option *ngFor="let currenc of currencies" [ngValue]="currenc">{{currenc.code}}</option>
-                  
-                  
+
+
                                                             </select>
-                  
-                  
-                  
+
+
+
                                                         </div>
                                                         <div class="col-md-4">
                                                             <input name="localCurrEquiRateFig" [(ngModel)]="inward.localCurrEquiRateFig" type="text" id="" class="form-control">
                                                         </div>
-                  
-                  
+
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -1811,13 +1811,13 @@
                                                                 <button class="btn btn-primary btn-block" style="padding: 6px 3px !important; font-size: 11px;">Exchange Rate</button>
                                                             <!-- <button class="btn btn-info  usl-btn-color">Exchange Rate</button> -->
                                                         </div>
-                  
+
                                                     </div>
                                                 </div>
-                  
-                  
+
+
                                             </div>
-                  
+
                                         </div>
                             </div>
                           </div>
@@ -1835,9 +1835,9 @@
                             </div>
                             <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                               <div class="panel-body">
-                        
+
                                 <div class="col-sm-12 col-md-10 offset-md-1">
-                                                              
+
                                         <br>
                                         <div class="form-body" *ngIf="setChildren">
                                             <!-- <app-party-categories [instrumentRegister]="instrumentRegister"></app-party-categories> -->
@@ -1858,15 +1858,15 @@
                                 </div>
                                 <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                                   <div class="panel-body">
-                            
+
                                     <div class="col-sm-12 col-md-10 offset-md-1">
-                            
+
                                             <br>
                                             <div class="form-body" *ngIf="setChildren">
-                      
+
                                                 <!-- <app-documents [instrumentRegister]="instrumentRegister"></app-documents> -->
                                             </div>
-                            
+
                                     </div>
                                   </div>
                                 </div>
@@ -1878,20 +1878,20 @@
                                                     <span class="flaticon-paper  primary-color"></span>
                                                     </div>
                                                     <h4 class="panel-title secondary-color font-weight-bold pt-2" #foreign>
-                                                        Fgn Exchange Deals 
+                                                        Fgn Exchange Deals
                                                     </h4>
                                     </div>
                                     <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                                       <div class="panel-body">
-                                
+
                                         <div class="col-sm-12 col-md-10 offset-md-1">
-                                
+
                                                 <div class="panel-body" *ngIf="setChildren">
                                                         <!-- <app-foreign-exchange-deals [instrumentRegister]="instrumentRegister"></app-foreign-exchange-deals> -->
-                                  
-                                  
+
+
                                                     </div>
-                                
+
                                         </div>
                                       </div>
                                     </div>
@@ -1908,16 +1908,16 @@
                             </div>
                             <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                               <div class="panel-body">
-            
+
                                 <div class="col-sm-12 col-md-10 offset-md-1">
-      
+
                                         <div class="panel-body" *ngIf="setChildren">
                                                 <!-- <app-charges [instrumentRegister]="instrumentRegister"></app-charges> -->
                                                 <div class="table-responsive">
                                                   <table id="myTable" class="table table-striped">
                                                       <thead>
                                                           <tr>
-                                                                
+
                                                                   <th>Charge Type</th>
                                                                   <th>Charge Currency</th>
                                                                   <th>Charge Amount</th>
@@ -1928,7 +1928,7 @@
                                                       </thead>
                                                       <tbody >
                                                           <tr *ngFor = "let charge of CalculatedCharges">
-                                                                  
+
                                                             <td>{{charge.chargeType}}</td>
                                                             <td>{{charge.chargeCurrency}}</td>
                                                             <td>{{charge.chargeAmount}}</td>
@@ -1936,14 +1936,14 @@
                                                             <td>{{charge.taxAmount}}</td>
                                                             <td> <input class="pull-right fcbtn btn btn-success btn-outline btn-1f" type="button" value="Update" (click)="UpdateCharge(charge.id)"/></td>
                                                           </tr>
-                                                         
-                                                        
+
+
                                                       </tbody>
                                                   </table>
-                                              </div> 
-                                                
+                                              </div>
+
                                             </div>
-      
+
                                 </div>
                               </div>
                             </div>
@@ -1960,15 +1960,15 @@
                                 </div>
                                 <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                                   <div class="panel-body">
-                            
+
                                     <div class="col-sm-12 col-md-10 offset-md-1">
-                            
+
                                             <div class="form-body" *ngIf="setChildren">
 
                                                     <!-- <app-checklists></app-checklists> -->
 
                                                     </div>
-                            
+
                                     </div>
                                   </div>
                                 </div>
@@ -1979,98 +1979,98 @@
                                 <span class="flaticon-paper  primary-color"></span>
                                 </div>
                                 <h4 class="panel-title secondary-color font-weight-bold pt-2" #control>
-                                   Control Information 
+                                   Control Information
                                 </h4>
                   </div>
                   <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasic">
                     <div class="panel-body">
-  
+
                       <div class="col-sm-12 col-md-10 offset-md-1">
                             <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="servicingBranch" class="control-label col-md-4">Servicing Branch</label>
-          
+
                                                 <div class="col-md-8">
                                                     <input name="servicingBranch" [(ngModel)]="inward.servicingBranch" type="text" id="servicingBranch" class="form-control"
                                                         placeholder="">
                                                 </div>
-          
-          
+
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="homeBranch" class="control-label col-md-4">Home Branch</label>
-          
+
                                                 <div class="col-md-8">
                                                     <input name="homeBranch" [(ngModel)]="inward.homeBranch" type="text" id="baseFgnCurrEquiRate" class="form-control" placeholder="">
                                                 </div>
-          
-          
+
+
                                             </div>
                                         </div>
-          
-          
+
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="servicingBranch" class="control-label col-md-4">Relationship Management</label>
-          
+
                                                 <div class="col-md-8">
                                                     <input name="relationshipManagement"  [(ngModel)]="inward.relationshipManagement" type="text" id="relationshipManagement"
                                                         class="form-control" placeholder="">
                                                 </div>
-          
-          
+
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="effectiveDate" class="control-label col-md-4">Effective Date</label>
-          
+
                                                 <div class="col-md-8">
                                                     <input name="effectiveDate"  [ngModel]="inward.effectiveDate | date:'yyyy-MM-dd'" (ngModelChange)="inward.effectiveDate = $event" type="date" id="effectiveDate" class="form-control" placeholder="">
                                                 </div>
-          
-          
+
+
                                             </div>
                                         </div>
-          
-          
+
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="status" class="control-label col-md-4">Status</label>
-          
+
                                                 <div class="col-md-8">
                                                     <input name="status" [disabled]='true' [(ngModel)]="inward.status" type="text" id="status" class="form-control" placeholder="">
                                                 </div>
-          
-          
+
+
                                             </div>
                                         </div>
                                         <div class="col-md-6" *ngIf="isInTransit">
                                                 <div class="form-group row">
                                                     <label for="rejectQueueId" class="control-label col-md-4">Reject Queue</label>
                                                     <div class="col-md-8">
-                                                            
+
                                                         <select class="form-control" data-placeholder="rejectQueueId" tabindex="1" name="rejectQueueId" [(ngModel)]="inwardAmend.rejectQueueId">
                                                             <option *ngFor="let step of rejectSteps" value={{step.id}} selected="test.rejectQueueId==step.id? true : null">
                                                                 {{step.description}}
                                                             </option>
                                                         </select>
-                                                    
+
                                                 </div>
                                                 </div>
                                             </div>
-          
-                                        
+
+
                                     </div>
-          
+
                                 </div>
                       </div>
                     </div>
@@ -2100,21 +2100,21 @@
                       Approve</button>
                     <button *ngIf="canBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('cancel')">
                       Cancel</button>
-  
+
                     <button *ngIf="cloBtn" class="btn btn-info  usl-btn-color" type="button" (click)="processForm('close')">
                       Close</button>
                   </div>
                 </div> -->
-  
+
               </div>
             </form>
-  
-  
+
+
           </div>
         </div>
       </div>
-  
-  
+
+
     </div>
   </div>
 

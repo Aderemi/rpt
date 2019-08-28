@@ -29,7 +29,7 @@ export class AdhocNotificationComponent implements OnInit {
 
 
   constructor(private router: Router,
-    // private confirmationDialogService: ConfirmationDialogService, private chRef: ChangeDetectorRef, 
+    // private confirmationDialogService: ConfirmationDialogService, private chRef: ChangeDetectorRef,
     // private adHocNotificationService:AdhocNotificationService,
     // private modalService: NgbModal, private _smp: ServerMessagePopUp, private notificationTypeService:NotificationTypeService,
     ) {
@@ -38,9 +38,9 @@ export class AdhocNotificationComponent implements OnInit {
   }
 
   ngOnInit() {
-   
-  //   this.notificationTypeService.getNotificationTypes().subscribe(data => {
-  //     this.notificationTypes = data;
+
+  //   this.notificationTypeService.getNotificationTypes().subscribe(editorData => {
+  //     this.notificationTypes = editorData;
   //     this.chRef.detectChanges();
   //     const table = $('table');
   //     this.dataTable = table.DataTable();
@@ -53,9 +53,9 @@ export class AdhocNotificationComponent implements OnInit {
   }
   // search() {
   //   console.log('searching!!');
-  //   this.adHocNotificationService.query(this.searchAdhocNotification).subscribe((data => {
-  //     this.adhocNotifications = data;
-  //     console.log(data);
+  //   this.adHocNotificationService.query(this.searchAdhocNotification).subscribe((editorData => {
+  //     this.adhocNotifications = editorData;
+  //     console.log(editorData);
   //     this.chRef.detectChanges();
 
   //     const table = $('table');
@@ -67,8 +67,8 @@ export class AdhocNotificationComponent implements OnInit {
   // }
 
   // getAdhocNotifications(){
-  //   this.adHocNotificationService.getAdhocNotifications().subscribe(data=>{
-  //     this.adhocNotifications = data;
+  //   this.adHocNotificationService.getAdhocNotifications().subscribe(editorData=>{
+  //     this.adhocNotifications = editorData;
   //   })
   // }
 
@@ -79,7 +79,7 @@ export class AdhocNotificationComponent implements OnInit {
     this.view = 1;
   }
   // delete() {
-  //   this.adHocNotificationService.deleteAdHocNotification(this.selectedAdhocNotification.id).subscribe((data) => {
+  //   this.adHocNotificationService.deleteAdHocNotification(this.selectedAdhocNotification.id).subscribe((editorData) => {
   //     this.adhocNotifications.splice(this.adhocNotifications.indexOf(this.selectedAdhocNotification.id), 1);
   //     this.ngOnInit();
   //   }, (error) => {
@@ -99,23 +99,23 @@ export class AdhocNotificationComponent implements OnInit {
 
   // Save() {
   //   if (this.adhocNotification.id === undefined) {
-  //     this.adHocNotificationService.createAdhocNotification(this.adhocNotification).subscribe((data => {
+  //     this.adHocNotificationService.createAdhocNotification(this.adhocNotification).subscribe((editorData => {
   //       this._smp.popUpAlertSuccess();
   //       this.adhocNotification = new AdhocNotification()
   //       this.view = 0;
   //       this.ngOnInit()
-  //       //this.router.navigate(['static-data/account']);
+  //       //this.router.navigate(['static-editorData/account']);
   //     }), err => {
   //       console.log(err);
   //     });
   //   } else {
-  //     this.adHocNotificationService.updateAdhocNotification(this.adhocNotification).subscribe((data => {
+  //     this.adHocNotificationService.updateAdhocNotification(this.adhocNotification).subscribe((editorData => {
   //       this._smp.popUpAlertSuccess();
   //       this.adhocNotification = new AdhocNotification()
 
   //       this.view = 0;
   //       this.ngOnInit()
-  //      // this.router.navigate(['static-data/account']);
+  //      // this.router.navigate(['static-editorData/account']);
   //     }), err => {
   //       console.log(err);
   //     });

@@ -203,14 +203,14 @@
                           <div class="col-md-8">
                             <input type="{{field.dataType}}" formControlName="{{'field'+i}}" id="customer" class="form-control">
                           </div>
-                        </div>  
+                        </div>
                       </div>
                     <!--/div-->
                   </div>
 
                   <div *ngIf="field.dataType === 'Textarea'">
                       <!--div class="row"-->
-  
+
                         <div class="col-md-6">
                           <div class="form-group">
                             <label class="control-label col-md-4">{{field.label}}</label>
@@ -230,7 +230,7 @@
                           <label class="control-label col-md-4">{{field.label}}</label>
                           <div class="col-md-8">
                             <input type="{{field.dataType}}" formControlName="{{'field'+i}}" id="customer" class="form-control">
-                          
+
                           </div>
                         </div>
                       </div>
@@ -255,7 +255,7 @@
                             </div>
                         </div>
                       </div>
-                      
+
                       <!-- <div class="col-md-4">
                         <div class="form-group">
 
@@ -270,7 +270,7 @@
 
                   <div *ngIf="field.dataType === 'Picklist'">
                       <!--div class="row"-->
-  
+
                         <div class="col-md-6">
                           <div class="form-group">
                             <label class="control-label col-md-4">{{field.label}}</label>
@@ -281,7 +281,7 @@
                                   <option  value="">Val 3</option>
 
                                 </select>
-    
+
                               </div>
                           </div>
                         </div>
@@ -313,7 +313,7 @@
 
                       <div *ngIf="sect.description === 'Goods'">
                         <app-warrant-table *ngIf= "warrant.id" [warrant] = "warrant" ></app-warrant-table>
-            
+
                       </div>
 
 
@@ -323,10 +323,10 @@
 
                 </div>
 
-               
+
 
               </div>
-           
+
             </div>
           </div>
 
@@ -515,7 +515,7 @@
                       <label for="rejectQueueId" class="control-label col-md-4">Reject Queue</label>
                       <div class="col-md-8">
 
-                        <select class="form-control" data-placeholder="rejectQueueId" tabindex="1" name="rejectQueueId">
+                        <select class="form-contreditorDatadata-placeholder="rejectQueueId" tabindex="1" name="rejectQueueId">
                           <option *ngFor="let step of rejectSteps" value={{step.id}} selected="test.rejectQueueId==step.id? true : null">
                             {{step.description}}
                           </option>

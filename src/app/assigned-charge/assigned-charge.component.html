@@ -2,52 +2,52 @@
     <table id="myTable" class="table table-striped">
     <thead>
       <tr>
-           
+
         <th>Code</th>
         <th>Description</th>
         <th>Category</th>
         <th>Earning Method</th>
-       
+
         <th>Income Account</th>
         <th>Earning Branch</th>
         <th>Status</th>
-        
-    
-              
+
+
+
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let cha of productAssignedCharge; let i = index">
-      
+
         <td>{{cha.code}} </td>
               <td>{{cha.description}}</td>
               <td>{{cha.category}}</td>
               <td>{{cha.chargeEarningMethod}}</td>
-            
+
               <td style="text-align : right">{{cha.chargeIncomeAccount}}</td>
               <td>{{cha.chargeEarningBranch}}</td>
-              <td><button (click)="dDialog(cha)">delete</button></td>  
-              
-                           
+              <td><button (click)="dDialog(cha)">delete</button></td>
+
+
       </tr>
     </tbody>
     </table>
-    <button (click) = "chargeOperation($event)"  class="btn btn-info  usl-btn-color" data-toggle="modal" data-target="#exampleModal">Add</button> -->
+    <button (click) = "chargeOperation($event)"  class="btn btn-info  usl-btn-coleditorDatadata-toggle="modeditorDatadata-target="#exampleModal">Add</button> -->
     <!-- <button (click) = "chargeOperation($event)"  class="btn btn-info  usl-btn-color">Modify</button>
     <button (click) = "chargeOperation($event)"  class="btn btn-info  usl-btn-color">Cancel</button>
     <button (click) = "chargeOperation($event)"  class="btn btn-info  usl-btn-color">View</button> -->
     <!-- <button (click) = "chargeOperation($event)"  class="btn btn-info usl-btn-color">Close</button>
-    
+
     </div>
 
     <div class="col-md-12" *ngIf="!relatedTaskCharge">
         <div class="row white-box">
          <div class="col-md-12" >
-            
+
      </div>
      </div>
-     <div class="row">        
-             <button (click) = "attachCharge.saveAssignedChargetoDB()"  class="btn btn-info  usl-btn-color">Assign</button>       
+     <div class="row">
+             <button (click) = "attachCharge.saveAssignedChargetoDB()"  class="btn btn-info  usl-btn-color">Assign</button>
              <button (click) = "operationClose()"  class="btn btn-info usl-btn-color">Close</button>
             </div>
      </div> -->
@@ -99,22 +99,22 @@
                                     </li>
                                 </ul>
                             </div>
-    
+
                             <div class="col-md-9 mt-5" *ngIf="relatedTaskCharge">
                                 <div class="row p-3 pl-2">
                                     <div class="col-md-6">
                                         <h5 class="text-bold">Charges</h5>
                                         <p>set the appropriate information for the message</p>
                                     </div>
-    
+
                                     <div class="col-md-3 offset-md-3 pr-0">
                                         <button class="btn btn-block btn-primary " (click)="Add()">&oplus; new charge</button>
                                     </div>
                                 </div>
-    
+
                                 <div class="row p-2 pl-2 mt-5">
                                     <div class="col-md-12">
-    
+
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="xc">
@@ -124,7 +124,7 @@
                                                                 <th>Code</th>
                                                                 <th>Description</th>
                                                                 <th>Category</th>
-                                                                <th>Earning Method</th>                                                               
+                                                                <th>Earning Method</th>
                                                                 <th>Income Account</th>
                                                                 <th>Earning Branch</th>
                                                                 <th>Status</th>
@@ -168,26 +168,26 @@
                             </div>
                         </div>
                     </div>
-    
+
                 </div>
             </div>
-    
+
         </div>
     </div>
 
 
 
 
-    
-     
+
+
     <!-- Related Task Menu bar only displayed when relatedTaskSave == 1 -->
-    
-    <!-- <div class="col-md-2 white-box">  
-                <app-related-task-bar></app-related-task-bar>   
+
+    <!-- <div class="col-md-2 white-box">
+                <app-related-task-bar></app-related-task-bar>
       </div> -->
-    
+
       <!-- Related Task Menu Ends -->
-    
+
 
       <div class="modal related-task-modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="container" role="document">
@@ -211,17 +211,17 @@
             <div class="col-md-6 offset-md-3">
                 <input type="text" placeholder="Search by Code Description" class="form-control">
             </div>
-            
+
           </div>
           <div class="row mb-2 mt-4 p-2">
-        
+
         <div class="col-md-10 offset-md-1 pt-2 pr-4 pl-4">
             <table class="table table-borderless related-task-modal-table">
                 <thead>
-                  <tr>                     
-                    <th>Code</th>             
-                    <th>Description</th>              
-                    <th>Status</th>              
+                  <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -235,9 +235,9 @@
                         </label>
                   </td>
                 </tr>
-                       
-        
-                    
+
+
+
                 </tbody>
               </table>
           </div>
@@ -274,4 +274,3 @@
       </div>
 
 
-  

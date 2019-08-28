@@ -79,17 +79,17 @@ export class ServiceRegistrationComponent implements OnInit {
     // private _customerService: CustomerService, private  locator :LocationRouter,
     // private customerService:CustomerService,
     // private branchService:BranchService
-  ) { 
- 
+  ) {
+
     // this.registration.product = new Product();
     // this.registration.product.productSubCategory = new ProductSubCategory();
-   
-  
+
+
     // this.CustomerCode = new Customer();
     // this.registration.customer = new Customer();
- 
+
   }
- 
+
   displayCode(){
 
     // console.log("Code",this.registration.product.productSubCategory.code);
@@ -99,14 +99,14 @@ export class ServiceRegistrationComponent implements OnInit {
 //     this.registration.operativeTemplate = "Operative";
 //     console.log(this.registration);
 //     this._activatedRoute.params.subscribe(params => {
- 
+
 //       let decode = JSON.parse(atob(params.navItem));
-      
+
 //       this.registration = decode.instrumentRegister;
 //       let cat = this.registration.productCategory;
 //       this.prodCat = this.registration.productCategory.code
 //       //product category was sent in here through the url........
-      
+
 //       const productCat = new Product();
 
 //       productCat.productSubCategory.productCategory = cat;
@@ -116,27 +116,27 @@ export class ServiceRegistrationComponent implements OnInit {
 //       this.setProductCatCode();
 //       this.registration.productCategory = this.pc;
 //       // Searching for Products based on the product category..............
-//       // this.productService.getFiltered(productCat).subscribe((data => {
-      
-//       //   console.log(data);
-//       //   this.products = data;
+//       // this.productService.getFiltered(productCat).subscribe((editorData => {
 
-//       //   //this.product = data;
-//       //   console.log(data);
+//       //   console.log(editorData);
+//       //   this.products = editorData;
+
+//       //   //this.product = editorData;
+//       //   console.log(editorData);
 //       // }), err => {
 //       //   console.log('Error selecting all products')
 //       // });
 
 //       // //Searching for product sub category based on the category
 
-//       // this.registrationService.getFilter(productCat).subscribe((data=>{
-//       //   this.productSubCategory = data;
-//       //   console.log(data);
+//       // this.registrationService.getFilter(productCat).subscribe((editorData=>{
+//       //   this.productSubCategory = editorData;
+//       //   console.log(editorData);
 
 //       // }), err=>{
 //       //   console.log('Error selecting product Category')
 //       // })
-      
+
 //       this.getProductCurrencies();
 //       this.getAllBranches();
 //       this.getProductCustomers();
@@ -153,18 +153,18 @@ export class ServiceRegistrationComponent implements OnInit {
 
 
 //    // this.subCat = this.registration.product.productSubCategory
-   
-  
+
+
 //   }
 
 //   getAllBranches(){
-//     this.branchService.getBranches().subscribe(data=>{
-//       this.branches = data;
+//     this.branchService.getBranches().subscribe(editorData=>{
+//       this.branches = editorData;
 //     })
 //   }
 //   // transformServiceAmt(){
 //   //   this.formattedAmount = this.decimalPipe.transform(this.registration.serviceAmount,'1.2');
- 
+
 //   //   this.registration.serviceAmount= this.formattedAmount;
 
 //   // }
@@ -184,14 +184,14 @@ export class ServiceRegistrationComponent implements OnInit {
 
 //   customerName(){
 //     //this.registration.customerNumber = this.custom
-//     this.registrationService.getCustomerName(this.registration.customer.customerNumber).subscribe(data=>{
+//     this.registrationService.getCustomerName(this.registration.customer.customerNumber).subscribe(editorData=>{
 
 //       console.log(this.registration.customerNumber);
-//       this.CustomerCode = data;
-//       console.log(data);
-//       this.registration.customer = data;
+//       this.CustomerCode = editorData;
+//       console.log(editorData);
+//       this.registration.customer = editorData;
 
-      
+
 //     })
 
 //   }
@@ -214,15 +214,15 @@ export class ServiceRegistrationComponent implements OnInit {
 //       "registration" :this.registration,
 //       "type":"registration"
 //     }
- 
+
 //     this.router.navigate(['wildcard',btoa(JSON.stringify(this.navItem))]);
 //   }
 //   getProductCurrencies() {
 //     this.currencies = this.registration.product.currency;
 //     console.log("currencies bef",this.currencies)
-//     this._refCurr.getCurrencies().subscribe((data => {
-//       this.currencies = data;
-//       console.log("currencies after", data)
+//     this._refCurr.getCurrencies().subscribe((editorData => {
+//       this.currencies = editorData;
+//       console.log("currencies after", editorData)
 //     }), (err => {
 
 //     }));
@@ -230,12 +230,12 @@ export class ServiceRegistrationComponent implements OnInit {
 
 //   setCustoemrCode() {
 //     console.log(this.customer);
-   
+
 //   }
 
 //   getProductCustomers() {
-//     this._customerService.getCustomers().subscribe((data => {
-//       this.customers = data;
+//     this._customerService.getCustomers().subscribe((editorData => {
+//       this.customers = editorData;
 //     }), (err => {
 
 //     }));
@@ -265,31 +265,31 @@ export class ServiceRegistrationComponent implements OnInit {
 //         }
 //     this.navItem = {
 //       'operation' : "New",
-//       'instrumentRegister' : this.registration      
+//       'instrumentRegister' : this.registration
 //     }
 //     this.locator.getInstrumentLocation(this.registration.product.productSubCategory.productCategory.code, this.navItem);
 //   }
- 
+
 //   createOperative() {
 // // will soon be picked from product configuration
 
-//    this.registration.incrmt = 1 
+//    this.registration.incrmt = 1
 //    this.registration.width = 4
 //    this.registration.lastNo = 1
 //    this.registration.delim = "-";
- 
+
 //     console.log("THIS CUSTOMER");
-    
+
 //   //  this.registration.product.productSubCategory = this.subCat;
 //     console.log(this.registration.copySourceInstrument);
-   
+
 //     let cp = this.registration.copySourceInstrument;
 //     this.registration.copySourceInstrument = null;
 //     this.registration.serviceAmount = this.tempServiceAmount;
-//     this.registrationService.createRegistration(this.registration).subscribe((data => {
-//       this.registration = data.body;
+//     this.registrationService.createRegistration(this.registration).subscribe((editorData => {
+//       this.registration = editorData.body;
 //       ;
-      
+
 //       // check if cp == null;
 //       if (cp != null){
 //       this.registration.copySourceInstrument = (this.registration.copySourceType != "Previous Instrument") ? cp.obj : cp;
@@ -297,9 +297,9 @@ export class ServiceRegistrationComponent implements OnInit {
 //       this.registration.operativeTemplate ="Operative";
 //           this.navItem = {
 //         'operation' : "New",
-//         'instrumentRegister' : this.registration      
-//       }    
-      
+//         'instrumentRegister' : this.registration
+//       }
+
 //       this.locator.getInstrumentLocation(this.registration.product.productSubCategory.productCategory.code, this.navItem);
 //     }), err => {
 
@@ -317,13 +317,13 @@ export class ServiceRegistrationComponent implements OnInit {
 //       this.registration.serviceAmount = this.decimalPipe.transform(this.registration.serviceAmount, '1.2');
 //     this.tempServiceAmount = this.commonService.formatNumber(this.registration.serviceAmount)
 //     }
-    
+
 
 //   }
 
 //   getLocation(location: string) {
 //     console.log(location);
-  
+
 //     switch (location) {
 //       case 'ILC': {
 //         break;
@@ -395,7 +395,7 @@ export class ServiceRegistrationComponent implements OnInit {
 //  console.log(this.registration.copySourceType);
 // // get template\
 
-   
+
 //     switch(this.registration.copySourceType){
 //       case "Customer Template":
 
@@ -403,27 +403,27 @@ export class ServiceRegistrationComponent implements OnInit {
 //         customer : this.registration.customer,
 //         className : this.registration.product.productSubCategory.productCategory.code
 //       }
-//       this.registrationService.customerTemplate(cusTemp).subscribe(data=>{
-//       this.objs = data;
+//       this.registrationService.customerTemplate(cusTemp).subscribe(editorData=>{
+//       this.objs = editorData;
 //       });
 //       break;
 //       case "Previous Instrument":
 //       let reg = new InstrumentRegister();
 //       reg.product = new Product();
 //       reg.product.productSubCategory.productCategory = this.registration.productCategory;
-     
+
 //       //reg.productCategory = this.registration.productCategory;
 //       // filter out only instrument in this category this returns array of Instrument register
 //       reg.customer = this.customer;
-    
+
 //       reg.effectiveDate = null;
-//       this.registrationService.query(reg).subscribe(data=>{
-//         this.objs = data;
-        
+//       this.registrationService.query(reg).subscribe(editorData=>{
+//         this.objs = editorData;
+
 //         console.log(this.objs);
 //         });
-     
-     
+
+
 //       break;
 //       case "General Template":
 //       ;
@@ -431,8 +431,8 @@ export class ServiceRegistrationComponent implements OnInit {
 //       className : this.registration.product.productSubCategory.productCategory.code
 //      }
 
-//       this.registrationService.generalTemplate(genTemp).subscribe(data=>{
-//         this.objs = data;
+//       this.registrationService.generalTemplate(genTemp).subscribe(editorData=>{
+//         this.objs = editorData;
 //         });
 //       break;
 //       default :
@@ -466,7 +466,7 @@ export class ServiceRegistrationComponent implements OnInit {
 //   selectedProduct = new Product();
 //   setSelectedProduct(p){
 //     this.selectedProduct = p;
-    
+
 //     this.registration.product = p;
 //     this.currencies = p.currency;
 //     console.log("product currencies",this.currencies)
@@ -496,8 +496,8 @@ export class ServiceRegistrationComponent implements OnInit {
 //     console.log("event", event)
 //     if (event == "product") {
 
-//       this.productService.getFilteredProd(this.prodCat).subscribe(data => {
-//         this.products = data;
+//       this.productService.getFilteredProd(this.prodCat).subscribe(editorData => {
+//         this.products = editorData;
 //         const modalRef = this.modalService.open(WildcardComponent, { size: 'lg' });
 //         modalRef.componentInstance.prods = this.products
 //         modalRef.componentInstance.title = event
@@ -512,15 +512,15 @@ export class ServiceRegistrationComponent implements OnInit {
 
 //     }
 //     else if (event == "customer") {
-//       this.customerService.getCustomers().subscribe(data => {
-//         this.customers = data;
+//       this.customerService.getCustomers().subscribe(editorData => {
+//         this.customers = editorData;
 //         const modalRef = this.modalService.open(WildcardComponent, { size: 'lg' });
 //         modalRef.componentInstance.custommers = this.customers
 //         modalRef.componentInstance.title = event
 //         modalRef.componentInstance.emitService.subscribe(emittedValue => {
 //           this.registration.customer = emittedValue
 //           // this.fxRegister.customer = this.emit;
-        
+
 //         })
 //       }, (err => {
 //         console.log("Cannot find customer");

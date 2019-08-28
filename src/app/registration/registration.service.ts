@@ -29,7 +29,7 @@ export class RegistrationService {
   //   return this.data;
   // }
   // setData(data:any){
-  //   this.data = data
+  //   this.editorData = editorData
   // }
   // createRegistration(registration: InstrumentRegister) {
   //   return this._http.post<InstrumentRegister>(this.url.baseUrl+'/api/instrumentRegister', registration, { observe: 'response' });

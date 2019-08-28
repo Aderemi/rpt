@@ -114,7 +114,7 @@
                         <td>{{item.template}}</td>
                         <td>{{item.templateType}}</td>
                         <td>{{item.defaultExportType}}</td>
-                        <td><a data-toggle="modal" data-target="#milestone-modal"> <span><i class="flaticon-download-1"></i></span></a></td>
+                        <tdeditorDatadata-toggle="modeditorDatadata-target="#milestone-modal"> <span><i class="flaticon-download-1"></i></span></a></td>
                         <td><a (click)="updateReport(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
                         <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
                     </tr>
@@ -186,7 +186,7 @@
              <div class="row">
                <div class="col-md-5">
                   <label for="">Format <sup>*</sup></label>
-                  <select name="" id="" class="form-control search">
+                  <select name="" id="format" class="form-control search">
                     <option value="">&lt;-------&gt;</option>
                     <option value="">pdf</option>
                     <option value="">csv</option>
@@ -214,7 +214,7 @@
             <div class="row">
 
               <div class="col-md-5" *ngIf="isIndividual">
-                      <label for="email-category">Email address</label>
+                      <label for="emails">Email address</label>
                       <input type="text" value="" name="emails" id="emails">
               </div>
 
@@ -227,9 +227,6 @@
               </div>
 
             </div>
-
-
-
            </div>
           </div>
         </div>
@@ -302,10 +299,10 @@
                           <div class="col-md-6">
                               <div class="row form-group">
                                 <div class="col-md-4">
-                                    <label for="table" >Name</label>
+                                    <label for="name" >Name</label>
                                 </div>
                                 <div class="col-md-8">
-                                   <input class="form-control" type="text" [(ngModel)]="report.name">
+                                   <input id="name" class="form-control" type="text" [(ngModel)]="report.name">
                                 </div>
                               </div>
                             </div>
@@ -313,10 +310,10 @@
                         <div class="col-md-6">
                           <div class="row form-group">
                             <div class="col-md-4">
-                                <label for="table" >Group ID</label>
+                                <label for="groupid" >Group ID</label>
                             </div>
                             <div class="col-md-8">
-                               <select name="name" id="" class="form-control" [(ngModel)]="report.group" (change)="Change($event)">
+                               <select name="name" id="groupid" class="form-control" [(ngModel)]="report.group" (change)="Change($event)">
                                  <option value="">&gt;----------- &gt;</option>
                                  <option value="{{item.id}}" *ngFor="let item of reportgroups">{{item.name}}</option>
                                </select>
@@ -332,11 +329,12 @@
                           <div class="col-md-6">
                               <div class="row form-group">
                                 <div class="col-md-4">
-                                    <label for="table" >Report Query ID</label>
+                                    <label for="queries" >Report Query ID</label>
                                 </div>
                                 <div class="col-md-8">
-                                   <select name="" id="" class="form-control">
+                                   <select name="" id="queries" class="form-control" [(ngModel)]="report.queryIds" multiple>
                                      <option value=""></option>
+                                     <option *ngFor="let q of queries" [value]="q.id">{{q.title}}</option>
                                    </select>
                                 </div>
                               </div>
@@ -345,22 +343,32 @@
                             <div class="col-md-6">
                                 <div class="row form-group">
                                   <div class="col-md-4">
-                                      <label for="table" >Template ID</label>
+                                      <label for="template" >Template ID</label>
                                   </div>
                                   <div class="col-md-8">
-                                     <select name="" id="" class="form-control">
+                                     <select name="" id="template" [(ngModel)]="report.template" class="form-control">
                                        <option value=""></option>
+                                       <option *ngFor="let t of templates" [value]="t.id">{{t.name}}</option>
                                      </select>
                                   </div>
                                 </div>
                               </div>
-
-
-
                         </div>
-
-
-
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="row form-group">
+                              <div class="col-md-4">
+                                <label for="templateType" >Report Type</label>
+                              </div>
+                              <div class="col-md-8">
+                                <select name="" id="templateType" class="form-control" [(ngModel)]="report.templateType">
+                                  <option value="jasper">Jasper Template</option>
+                                  <option value="ZBuilder">Template Builder</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
 
                     </div>

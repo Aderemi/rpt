@@ -51,7 +51,7 @@ interface JQueryAjaxSettings {
     //According to jQuery.ajax source code, ajax's option actually allows contentType to set to "false"
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/742
     /**
-     * When sending data to the server, use this content type. Default is "application/x-www-form-urlencoded; charset=UTF-8", which is fine for most cases. If you explicitly pass in a content-type to $.ajax(), then it is always sent to the server (even if no data is sent). The W3C XMLHttpRequest specification dictates that the charset is always UTF-8; specifying another charset will not force the browser to change the encoding.
+     * When sending editorData to the server, use this content type. Default is "application/x-www-form-urlencoded; charset=UTF-8", which is fine for most cases. If you explicitly pass in a content-type to $.ajax(), then it is always sent to the server (even if no editorData is sent). The W3C XMLHttpRequest specification dictates that the charset is always UTF-8; specifying another charset will not force the browser to change the encoding.
      */
     contentType?: any;
     /**
@@ -71,11 +71,11 @@ interface JQueryAjaxSettings {
      */
     data?: any;
     /**
-     * A function to be used to handle the raw response data of XMLHttpRequest.This is a pre-filtering function to sanitize the response. You should return the sanitized data. The function accepts two arguments: The raw data returned from the server and the 'dataType' parameter.
+     * A function to be used to handle the raw response editorData of XMLHttpRequest.This is a pre-filtering function to sanitize the response. You should return the sanitized editorData. The function accepts two arguments: The raw editorData returned from the server and the 'dataType' parameter.
      */
     dataFilter? (data: any, ty: any): any;
     /**
-     * The type of data that you're expecting back from the server. If none is specified, jQuery will try to infer it based on the MIME type of the response (an XML MIME type will yield XML, in 1.4 JSON will yield a JavaScript object, in 1.4 script will execute the script, and anything else will be returned as a string).
+     * The type of editorData that you're expecting back from the server. If none is specified, jQuery will try to infer it based on the MIME type of the response (an XML MIME type will yield XML, in 1.4 JSON will yield a JavaScript object, in 1.4 script will execute the script, and anything else will be returned as a string).
      */
     dataType?: string;
     /**
@@ -91,7 +91,7 @@ interface JQueryAjaxSettings {
      */
     headers?: { [key: string]: any; };
     /**
-     * Allow the request to be successful only if the response has changed since the last request. This is done by checking the Last-Modified header. Default value is false, ignoring the header. In jQuery 1.4 this technique also checks the 'etag' specified by the server to catch unmodified data.
+     * Allow the request to be successful only if the response has changed since the last request. This is done by checking the Last-Modified header. Default value is false, ignoring the header. In jQuery 1.4 this technique also checks the 'etag' specified by the server to catch unmodified editorData.
      */
     ifModified?: boolean;
     /**
@@ -119,7 +119,7 @@ interface JQueryAjaxSettings {
      */
     password?: string;
     /**
-     * By default, data passed in to the data option as an object (technically, anything other than a string) will be processed and transformed into a query string, fitting to the default content-type "application/x-www-form-urlencoded". If you want to send a DOMDocument, or other non-processed data, set this option to false.
+     * By default, editorData passed in to the editorData option as an object (technically, anything other than a string) will be processed and transformed into a query string, fitting to the default content-type "application/x-www-form-urlencoded". If you want to send a DOMDocument, or other non-processed editorData, set this option to false.
      */
     processData?: boolean;
     /**
@@ -131,7 +131,7 @@ interface JQueryAjaxSettings {
      */
     statusCode?: { [key: string]: any; };
     /**
-     * A function to be called if the request succeeds. The function gets passed three arguments: The data returned from the server, formatted according to the dataType parameter; a string describing the status; and the jqXHR (in jQuery 1.4.x, XMLHttpRequest) object. As of jQuery 1.5, the success setting can accept an array of functions. Each function will be called in turn. This is an Ajax Event.
+     * A function to be called if the request succeeds. The function gets passed three arguments: The editorData returned from the server, formatted according to the dataType parameter; a string describing the status; and the jqXHR (in jQuery 1.4.x, XMLHttpRequest) object. As of jQuery 1.5, the success setting can accept an array of functions. Each function will be called in turn. This is an Ajax Event.
      */
     success? (data: any, textStatus: string, jqXHR: JQueryXHR): any;
     /**
@@ -496,7 +496,7 @@ interface BaseJQueryEventObject extends Event {
      */
     currentTarget: Element;
     /**
-     * An optional object of data passed to an event method when the current executing handler is bound.
+     * An optional object of editorData passed to an event method when the current executing handler is bound.
      * @see {@link https://api.jquery.com/event.data/}
      */
     data: any;
@@ -787,14 +787,14 @@ interface JQueryStatic {
     ajaxPrefilter(handler: (opts: any, originalOpts: JQueryAjaxSettings, jqXHR: JQueryXHR) => any): void;
 
      /**
-     * Creates an object that handles the actual transmission of Ajax data.
+     * Creates an object that handles the actual transmission of Ajax editorData.
      *
-     * @param dataType A string identifying the data type to use.
-     * @param handler A handler to return the new transport object to use with the data type provided in the first argument.
+     * @param dataType A string identifying the editorData type to use.
+     * @param handler A handler to return the new transport object to use with the editorData type provided in the first argument.
      * @see {@link https://api.jquery.com/jQuery.ajaxTransport/}
      */
     ajaxTransport(dataType: string, handler: (opts: any, originalOpts: JQueryAjaxSettings, jqXHR: JQueryXHR) => any): void;
-    
+
     ajaxSettings: JQueryAjaxSettings;
 
      /**
@@ -806,33 +806,33 @@ interface JQueryStatic {
     ajaxSetup(options: JQueryAjaxSettings): void;
 
     /**
-     * Load data from the server using a HTTP GET request.
+     * Load editorData from the server using a HTTP GET request.
      *
      * @param url A string containing the URL to which the request is sent.
      * @param success A callback function that is executed if the request succeeds.
-     * @param dataType The type of data expected from the server. Default: Intelligent Guess (xml, json, script, or html).
+     * @param dataType The type of editorData expected from the server. Default: Intelligent Guess (xml, json, script, or html).
      * @see {@link https://api.jquery.com/jQuery.get/#jQuery-get-url-data-success-dataType}
      */
     get(url: string, success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any, dataType?: string): JQueryXHR;
     /**
-     * Load data from the server using a HTTP GET request.
+     * Load editorData from the server using a HTTP GET request.
      *
      * @param url A string containing the URL to which the request is sent.
      * @param data A plain object or string that is sent to the server with the request.
      * @param success A callback function that is executed if the request succeeds.
-     * @param dataType The type of data expected from the server. Default: Intelligent Guess (xml, json, script, or html).
+     * @param dataType The type of editorData expected from the server. Default: Intelligent Guess (xml, json, script, or html).
      * @see {@link https://api.jquery.com/jQuery.get/#jQuery-get-url-data-success-dataType}
      */
     get(url: string, data?: Object|string, success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any, dataType?: string): JQueryXHR;
     /**
-     * Load data from the server using a HTTP GET request.
+     * Load editorData from the server using a HTTP GET request.
      *
      * @param settings The JQueryAjaxSettings to be used for the request
      * @see {@link https://api.jquery.com/jQuery.get/#jQuery-get-settings}
      */
     get(settings : JQueryAjaxSettings): JQueryXHR;
     /**
-     * Load JSON-encoded data from the server using a GET HTTP request.
+     * Load JSON-encoded editorData from the server using a GET HTTP request.
      *
      * @param url A string containing the URL to which the request is sent.
      * @param success A callback function that is executed if the request succeeds.
@@ -840,7 +840,7 @@ interface JQueryStatic {
      */
     getJSON(url: string, success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any): JQueryXHR;
     /**
-     * Load JSON-encoded data from the server using a GET HTTP request.
+     * Load JSON-encoded editorData from the server using a GET HTTP request.
      *
      * @param url A string containing the URL to which the request is sent.
      * @param data A plain object or string that is sent to the server with the request.
@@ -865,26 +865,26 @@ interface JQueryStatic {
     param: JQueryParam;
 
     /**
-     * Load data from the server using a HTTP POST request.
+     * Load editorData from the server using a HTTP POST request.
      *
      * @param url A string containing the URL to which the request is sent.
      * @param success A callback function that is executed if the request succeeds. Required if dataType is provided, but can be null in that case.
-     * @param dataType The type of data expected from the server. Default: Intelligent Guess (xml, json, script, text, html).
+     * @param dataType The type of editorData expected from the server. Default: Intelligent Guess (xml, json, script, text, html).
      * @see {@link https://api.jquery.com/jQuery.post/#jQuery-post-url-data-success-dataType}
      */
     post(url: string, success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any, dataType?: string): JQueryXHR;
     /**
-     * Load data from the server using a HTTP POST request.
+     * Load editorData from the server using a HTTP POST request.
      *
      * @param url A string containing the URL to which the request is sent.
      * @param data A plain object or string that is sent to the server with the request.
      * @param success A callback function that is executed if the request succeeds. Required if dataType is provided, but can be null in that case.
-     * @param dataType The type of data expected from the server. Default: Intelligent Guess (xml, json, script, text, html).
+     * @param dataType The type of editorData expected from the server. Default: Intelligent Guess (xml, json, script, text, html).
      * @see {@link https://api.jquery.com/jQuery.post/#jQuery-post-url-data-success-dataType}
      */
     post(url: string, data?: Object|string, success?: (data: any, textStatus: string, jqXHR: JQueryXHR) => any, dataType?: string): JQueryXHR;
     /**
-     * Load data from the server using a HTTP POST request.
+     * Load editorData from the server using a HTTP POST request.
      *
      * @param settings The JQueryAjaxSettings to be used for the request
      * @see {@link https://api.jquery.com/jQuery.post/#jQuery-post-settings}
@@ -1008,26 +1008,26 @@ interface JQueryStatic {
     cssNumber: any;
 
     /**
-     * Store arbitrary data associated with the specified element. Returns the value that was set.
+     * Store arbitrary editorData associated with the specified element. Returns the value that was set.
      *
-     * @param element The DOM element to associate with the data.
-     * @param key A string naming the piece of data to set.
-     * @param value The new data value.
+     * @param element The DOM element to associate with the editorData.
+     * @param key A string naming the piece of editorData to set.
+     * @param value The new editorData value.
      * @see {@link https://api.jquery.com/jQuery.data/#jQuery-data-element-key-value}
      */
     data<T>(element: Element, key: string, value: T): T;
     /**
-     * Returns value at named data store for the element, as set by jQuery.data(element, name, value), or the full data store for the element.
+     * Returns value at named editorData store for the element, as set by jQuery.editorData(element, name, value), or the full editorData store for the element.
      *
-     * @param element The DOM element to associate with the data.
-     * @param key A string naming the piece of data to set.
+     * @param element The DOM element to associate with the editorData.
+     * @param key A string naming the piece of editorData to set.
      * @see {@link https://api.jquery.com/jQuery.data/#jQuery-data-element-key}
      */
     data(element: Element, key: string): any;
     /**
-     * Returns value at named data store for the element, as set by jQuery.data(element, name, value), or the full data store for the element.
+     * Returns value at named editorData store for the element, as set by jQuery.editorData(element, name, value), or the full editorData store for the element.
      *
-     * @param element The DOM element to associate with the data.
+     * @param element The DOM element to associate with the editorData.
      * @see {@link https://api.jquery.com/jQuery.data/#jQuery-data-element}
      */
     data(element: Element): any;
@@ -1042,9 +1042,9 @@ interface JQueryStatic {
     dequeue(element: Element, queueName?: string): void;
 
     /**
-     * Determine whether an element has any jQuery data associated with it.
+     * Determine whether an element has any jQuery editorData associated with it.
      *
-     * @param element A DOM element to be checked for data.
+     * @param element A DOM element to be checked for editorData.
      * @see {@link https://api.jquery.com/jQuery.hasData/}
      */
     hasData(element: Element): boolean;
@@ -1077,10 +1077,10 @@ interface JQueryStatic {
     queue(element: Element, queueName: string, callback: Function): JQuery;
 
     /**
-     * Remove a previously-stored piece of data.
+     * Remove a previously-stored piece of editorData.
      *
-     * @param element A DOM element from which to remove data.
-     * @param name A string naming the piece of data to remove.
+     * @param element A DOM element from which to remove editorData.
+     * @param name A string naming the piece of editorData to remove.
      * @see {@link https://api.jquery.com/jQuery.removeData/}
      */
     removeData(element: Element, name?: string): JQuery;
@@ -1444,7 +1444,7 @@ interface JQuery {
     ajaxSuccess(handler: (event: JQueryEventObject, XMLHttpRequest: XMLHttpRequest, ajaxOptions: JQueryAjaxSettings) => any): JQuery;
 
     /**
-     * Load data from the server and place the returned HTML into the matched element.
+     * Load editorData from the server and place the returned HTML into the matched element.
      *
      * @param url A string containing the URL to which the request is sent.
      * @param data A plain object or string that is sent to the server with the request.
@@ -1842,29 +1842,29 @@ interface JQuery {
     clearQueue(queueName?: string): JQuery;
 
     /**
-     * Store arbitrary data associated with the matched elements.
+     * Store arbitrary editorData associated with the matched elements.
      *
-     * @param key A string naming the piece of data to set.
-     * @param value The new data value; it can be any JavaScript type including Array or Object.
+     * @param key A string naming the piece of editorData to set.
+     * @param value The new editorData value; it can be any JavaScript type including Array or Object.
      * @see {@link https://api.jquery.com/data/#data-key-value}
      */
     data(key: string, value: any): JQuery;
     /**
-     * Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute.
+     * Return the value at the named editorData store for the first element in the jQuery collection, as set by editorData(name, value) or by an HTML5 editorData-* attribute.
      *
-     * @param key Name of the data stored.
+     * @param key Name of the editorData stored.
      * @see {@link https://api.jquery.com/data/#data-key}
      */
     data(key: string): any;
     /**
-     * Store arbitrary data associated with the matched elements.
+     * Store arbitrary editorData associated with the matched elements.
      *
-     * @param obj An object of key-value pairs of data to update.
+     * @param obj An object of key-value pairs of editorData to update.
      * @see {@link https://api.jquery.com/data/#data-obj}
      */
     data(obj: { [key: string]: any; }): JQuery;
     /**
-     * Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute.
+     * Return the value at the named editorData store for the first element in the jQuery collection, as set by editorData(name, value) or by an HTML5 editorData-* attribute.
      * @see {@link https://api.jquery.com/data/#data}
      */
     data(): any;
@@ -1878,21 +1878,21 @@ interface JQuery {
     dequeue(queueName?: string): JQuery;
 
     /**
-     * Remove a previously-stored piece of data.
+     * Remove a previously-stored piece of editorData.
      *
-     * @param name A string naming the piece of data to delete or space-separated string naming the pieces of data to delete.
+     * @param name A string naming the piece of editorData to delete or space-separated string naming the pieces of editorData to delete.
      * @see {@link https://api.jquery.com/removeData/#removeData-name}
      */
     removeData(name: string): JQuery;
     /**
-     * Remove a previously-stored piece of data.
+     * Remove a previously-stored piece of editorData.
      *
-     * @param list An array of strings naming the pieces of data to delete.
+     * @param list An array of strings naming the pieces of editorData to delete.
      * @see {@link https://api.jquery.com/removeData/#removeData-list}
      */
     removeData(list: string[]): JQuery;
     /**
-     * Remove all previously-stored piece of data.
+     * Remove all previously-stored piece of editorData.
      * @see {@link https://api.jquery.com/removeData/}
      */
     removeData(): JQuery;
@@ -2225,7 +2225,7 @@ interface JQuery {
      * Attach a handler to an event for the elements.
      *
      * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/bind/#bind-eventType-eventData-handler}
      */
@@ -2242,7 +2242,7 @@ interface JQuery {
      * Attach a handler to an event for the elements.
      *
      * @param eventType A string containing one or more DOM event types, such as "click" or "submit," or custom event names.
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param preventBubble Setting the third argument to false will attach a function that prevents the default action from occurring and stops the event from bubbling. The default is true.
      * @see {@link https://api.jquery.com/bind/#bind-eventType-eventData-preventBubble}
      */
@@ -2278,7 +2278,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "blur" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/blur/#blur-eventData-handler}
      */
@@ -2299,7 +2299,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "change" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/change/#change-eventData-handler}
      */
@@ -2320,7 +2320,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "click" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/click/#click-eventData-handler}
      */
@@ -2341,7 +2341,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "contextmenu" JavaScript event.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/contextmenu/#contextmenu-eventData-handler}
      */
@@ -2362,7 +2362,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "dblclick" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/dblclick/#dblclick-eventData-handler}
      */
@@ -2394,7 +2394,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "focus" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/focus/#focus-eventData-handler}
      */
@@ -2415,7 +2415,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "focusin" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/focusin/#focusin-eventData-handler}
      */
@@ -2436,7 +2436,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "focusout" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/focusout/#focusout-eventData-handler}
      */
@@ -2473,7 +2473,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "keydown" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/keydown/#keydown-eventData-handler}
      */
@@ -2494,7 +2494,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "keypress" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/keypress/#keypress-eventData-handler}
      */
@@ -2515,7 +2515,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "keyup" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/keyup/#keyup-eventData-handler}
      */
@@ -2531,7 +2531,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "load" JavaScript event.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/load/}
      */
@@ -2552,7 +2552,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "mousedown" JavaScript event.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/mousedown/#mousedown-eventData-handler}
      */
@@ -2573,7 +2573,7 @@ interface JQuery {
     /**
      * Bind an event handler to be fired when the mouse enters an element.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/mouseenter/#mouseenter-eventData-handler}
      */
@@ -2594,7 +2594,7 @@ interface JQuery {
     /**
      * Bind an event handler to be fired when the mouse leaves an element.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/mouseleave/#mouseleave-eventData-handler}
      */
@@ -2615,7 +2615,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "mousemove" JavaScript event.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/mousemove/#mousemove-eventData-handler}
      */
@@ -2636,7 +2636,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "mouseout" JavaScript event.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/mouseout/#mouseout-eventData-handler}
      */
@@ -2657,7 +2657,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "mouseover" JavaScript event.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/mouseover/#mouseover-eventData-handler}
      */
@@ -2678,7 +2678,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "mouseup" JavaScript event.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/mouseup/#mouseup-eventData-handler}
      */
@@ -2735,7 +2735,7 @@ interface JQuery {
      * Attach an event handler function for one or more events to the selected elements.
      *
      * @param events One or more space-separated event types and optional namespaces, such as "click" or "keydown.myPlugin".
-     * @param data Data to be passed to the handler in event.data when an event is triggered.
+     * @param data Data to be passed to the handler in event.editorData when an event is triggered.
      * @param handler A function to execute when the event is triggered. The value false is also allowed as a shorthand for a function that simply does return false.
      * @see {@link https://api.jquery.com/on/#on-events-selector-data-handler}
     */
@@ -2754,7 +2754,7 @@ interface JQuery {
      *
      * @param events One or more space-separated event types and optional namespaces, such as "click" or "keydown.myPlugin".
      * @param selector A selector string to filter the descendants of the selected elements that trigger the event. If the selector is null or omitted, the event is always triggered when it reaches the selected element.
-     * @param data Data to be passed to the handler in event.data when an event is triggered.
+     * @param data Data to be passed to the handler in event.editorData when an event is triggered.
      * @param handler A function to execute when the event is triggered. The value false is also allowed as a shorthand for a function that simply does return false.
      * @see {@link https://api.jquery.com/on/#on-events-selector-data-handler}
      */
@@ -2764,7 +2764,7 @@ interface JQuery {
      *
      * @param events An object in which the string keys represent one or more space-separated event types and optional namespaces, and the values represent a handler function to be called for the event(s).
      * @param selector A selector string to filter the descendants of the selected elements that will call the handler. If the selector is null or omitted, the handler is always called when it reaches the selected element.
-     * @param data Data to be passed to the handler in event.data when an event occurs.
+     * @param data Data to be passed to the handler in event.editorData when an event occurs.
      * @see {@link https://api.jquery.com/on/#on-events-selector-data}
      */
     on(events: { [key: string]: any; }, selector?: string, data?: any): JQuery;
@@ -2772,7 +2772,7 @@ interface JQuery {
      * Attach an event handler function for one or more events to the selected elements.
      *
      * @param events An object in which the string keys represent one or more space-separated event types and optional namespaces, and the values represent a handler function to be called for the event(s).
-     * @param data Data to be passed to the handler in event.data when an event occurs.
+     * @param data Data to be passed to the handler in event.editorData when an event occurs.
      * @see {@link https://api.jquery.com/on/#on-events-selector-data}
      */
     on(events: { [key: string]: any; }, data?: any): JQuery;
@@ -2789,7 +2789,7 @@ interface JQuery {
      * Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
      *
      * @param events A string containing one or more JavaScript event types, such as "click" or "submit," or custom event names.
-     * @param data An object containing data that will be passed to the event handler.
+     * @param data An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute at the time the event is triggered.
      * @see {@link https://api.jquery.com/one/#one-events-data-handler}
      */
@@ -2809,7 +2809,7 @@ interface JQuery {
      *
      * @param events One or more space-separated event types and optional namespaces, such as "click" or "keydown.myPlugin".
      * @param selector A selector string to filter the descendants of the selected elements that trigger the event. If the selector is null or omitted, the event is always triggered when it reaches the selected element.
-     * @param data Data to be passed to the handler in event.data when an event is triggered.
+     * @param data Data to be passed to the handler in event.editorData when an event is triggered.
      * @param handler A function to execute when the event is triggered. The value false is also allowed as a shorthand for a function that simply does return false.
      * @see {@link https://api.jquery.com/one/#one-events-selector-data-handler}
      */
@@ -2820,7 +2820,7 @@ interface JQuery {
      *
      * @param events An object in which the string keys represent one or more space-separated event types and optional namespaces, and the values represent a handler function to be called for the event(s).
      * @param selector A selector string to filter the descendants of the selected elements that will call the handler. If the selector is null or omitted, the handler is always called when it reaches the selected element.
-     * @param data Data to be passed to the handler in event.data when an event occurs.
+     * @param data Data to be passed to the handler in event.editorData when an event occurs.
      * @see {@link https://api.jquery.com/one/#one-events-selector-data}
      */
     one(events: { [key: string]: any; }, selector?: string, data?: any): JQuery;
@@ -2829,7 +2829,7 @@ interface JQuery {
      * Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
      *
      * @param events An object in which the string keys represent one or more space-separated event types and optional namespaces, and the values represent a handler function to be called for the event(s).
-     * @param data Data to be passed to the handler in event.data when an event occurs.
+     * @param data Data to be passed to the handler in event.editorData when an event occurs.
      * @see {@link https://api.jquery.com/one/#one-events-selector-data}
      */
     one(events: { [key: string]: any; }, data?: any): JQuery;
@@ -2858,7 +2858,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "resize" JavaScript event.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/resize/#resize-eventData-handler}
      */
@@ -2879,7 +2879,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "scroll" JavaScript event.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/scroll/#scroll-eventData-handler}
      */
@@ -2900,7 +2900,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "select" JavaScript event.
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/select/#select-eventData-handler}
      */
@@ -2921,7 +2921,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "submit" JavaScript event
      *
-     * @param eventData An object containing data that will be passed to the event handler.
+     * @param eventData An object containing editorData that will be passed to the event handler.
      * @param handler A function to execute each time the event is triggered.
      * @see {@link https://api.jquery.com/submit/#submit-eventData-handler}
      */
@@ -3026,7 +3026,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "unload" JavaScript event. (DEPRECATED from v1.8)
      *
-     * @param eventData A plain object of data that will be passed to the event handler.
+     * @param eventData A plain object of editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/unload/#unload-eventData-handler}
      */
@@ -3050,7 +3050,7 @@ interface JQuery {
     /**
      * Bind an event handler to the "error" JavaScript event. (DEPRECATED from v1.8)
      *
-     * @param eventData A plain object of data that will be passed to the event handler.
+     * @param eventData A plain object of editorData that will be passed to the event handler.
      * @param handler A function to execute when the event is triggered.
      * @see {@link https://api.jquery.com/error/#error-eventData-handler}
      */
@@ -3132,8 +3132,8 @@ interface JQuery {
     /**
      * Create a deep copy of the set of matched elements.
      *
-     * @param withDataAndEvents A Boolean indicating whether event handlers and data should be copied along with the elements. The default value is false.
-     * @param deepWithDataAndEvents A Boolean indicating whether event handlers and data for all children of the cloned element should be copied. By default its value matches the first argument's value (which defaults to false).
+     * @param withDataAndEvents A Boolean indicating whether event handlers and editorData should be copied along with the elements. The default value is false.
+     * @param deepWithDataAndEvents A Boolean indicating whether event handlers and editorData for all children of the cloned element should be copied. By default its value matches the first argument's value (which defaults to false).
      * @see {@link https://api.jquery.com/clone/}
      */
     clone(withDataAndEvents?: boolean, deepWithDataAndEvents?: boolean): JQuery;

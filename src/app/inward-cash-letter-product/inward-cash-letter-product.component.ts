@@ -7,10 +7,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./inward-cash-letter-product.component.css']
 })
 export class InwardCashLetterProductComponent implements OnInit {
- 
-  show = true;
- 
 
+  show = true;
 
   //view elemnt control
   ref: boolean;

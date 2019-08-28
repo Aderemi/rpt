@@ -3,26 +3,26 @@
 </div> -->
 <!-- <div class="row">
 
-  <div class="col-md-12">
+  <div class=editorData-md-12">
       <div class="panel panel-info">
           <div class="panel-wrapper collapse in" aria-expanded="true">
               <div class="panel-body">
-                  
+
                   <form>
                       <input name="id" [(ngModel)]="updaterule.id" type="text" hidden>
-                      
-                      <div class="panel panel-default">
+                editorData
+                editorData  <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingBasicInfo">
                                 <h4 class="panel-title">
                                     <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasicInfo" aria-expanded="false"
-                                        aria-controls="collapseBasicInfo" style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
-                                </h4>
+                                        aria-controls="collapseBasicInfo" style="color :#2b2b2b;font-weight: bold;">BaeditorDataInformation </a>
+  editorData                          </h4>
                             </div>
                             <div id="collapseBasicInfo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingBasicInfo">
                                 <div class="panel-body">
-        
-        
-                                                      
+
+
+
                                     <div class="form-body">
 
                                         <div class="row">
@@ -41,7 +41,7 @@
                                                             <input name="description" [(ngModel)]="updaterule.description" type="text" id="description" class="form-control">
                                                         </div>
                                                     </div>
-                                                </div>                              
+                                                </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -52,7 +52,7 @@
                                                         name="ruleCategory" [compareWith]="equals">
                                                         <option value="undefined">&lt;---&gt;</option>
                                                         <option *ngFor="let ruleCategory of updaterulecategorys" [ngValue]="ruleCategory">{{ruleCategory.description}}</option>
-                                
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -64,15 +64,15 @@
                                                             <input name="ruleClass" [(ngModel)]="updaterule.ruleClass" type="text" id="ruleClass" class="form-control">
                                                         </div>
                                                     </div>
-                                                </div>                               
-                                            
-                                        </div>                             
+                                                </div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-  
-  
-                    </div>           
+
+
+                    </div>
 
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingAccountingInfo">
@@ -99,7 +99,7 @@
                                             <div class="form-group">
                                               <label for="effectiveDate" class="control-label col-md-4">Effective Date
                                               </label>
-                        
+
                                               <div class="col-md-8">
                                                 <input name="effectiveDate" [ngModel]="updaterule.effectiveDate | date:'yyyy-MM-dd'"  (ngModelchange)="updaterule.effectiveDate = $event" type="date" id="expiryDate" class="form-control" placeholder="">
                                               </div>
@@ -118,7 +118,7 @@
                         </div>
 
 
-                    </div>      
+                    </div>
 
                       <hr class="m-t-0 m-b-20">
                       <div class="form-actions">
@@ -200,7 +200,7 @@
                                                             name="ruleCategory" [compareWith]="equals">
                                                             <option value="undefined">&lt;---&gt;</option>
                                                             <option *ngFor="let ruleCategory of updaterulecategorys" [ngValue]="ruleCategory">{{ruleCategory.description}}</option>
-                                    
+
                                                             </select>
                                                         </div>
                                                     </div>
@@ -212,14 +212,14 @@
                                                                 <input name="ruleClass" [(ngModel)]="updaterule.ruleClass" type="text" id="ruleClass" class="form-control">
                                                             </div>
                                                         </div>
-                                                    </div>                               
-                                                
+                                                    </div>
+
                                             </div>
-                                  
+
 
 
                                     </div>
-                     
+
                                 </div>
                             </div>
                         </div>

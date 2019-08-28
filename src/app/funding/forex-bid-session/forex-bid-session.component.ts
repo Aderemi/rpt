@@ -78,10 +78,10 @@ export class ForexBidSessionComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     // if (this.operation === "") {
-    //   this.fxBidsessionService.getReferenceNumber().subscribe(data => {
-    //     this.fxBidSession.referenceNum = data.ref;
+    //   this.fxBidsessionService.getReferenceNumber().subscribe(editorData => {
+    //     this.fxBidSession.referenceNum = editorData.ref;
     //     let dataObject: any;
     //     const id = 0;
     //     const desc = "";
@@ -89,8 +89,8 @@ export class ForexBidSessionComponent implements OnInit {
     //       "id": id
     //     }
 
-    //     this.fxBidsessionService.createID(dataObject).subscribe(data => {
-    //       this.idGen = data;
+    //     this.fxBidsessionService.createID(dataObject).subscribe(editorData => {
+    //       this.idGen = editorData;
     //       this.fxBidSession.id = this.idGen.id + 1;
     //       console.log("Successful", this.fxBidSession.id);
     //       console.log("Success", this.fxBidSession);
@@ -181,12 +181,12 @@ export class ForexBidSessionComponent implements OnInit {
   //   this.fxBidSession.proposedRate = this.tempProposedExchRate
   //   this.fxBidSession.localCurrAmt = this.tempLocalCurrEquiAmt
   //   this.fxBidSession.sellRateAmt = this.tempAllocationSellRate
-  //   this.fxBidsessionService.CreateForexBidSessionInWorkflow(this.fxBidSession).subscribe((data => {
+  //   this.fxBidsessionService.CreateForexBidSessionInWorkflow(this.fxBidSession).subscribe((editorData => {
 
   //     this._smp.popUpAlertSuccess();
-  //     console.log("Successful",data)
+  //     console.log("Successful",editorData)
   //     this.router.navigate(['dashboard'])
-  //     console.log(data);
+  //     console.log(editorData);
   //   }), (err => {
   //     console.log(err);
   //     this._smp.popUpAlertError("Unable to save");
@@ -207,10 +207,10 @@ export class ForexBidSessionComponent implements OnInit {
   // }
   // getFxBidSessionBatchWorkflowByWfId(id) {
   //   console.log("get in here", id)
-  //   this.fxBidsessionService.getICPWorkflowByWfId(id).subscribe((data) => {
-  //     console.log("ejkcl", data)
-  //     this.fxBidSession = data;
-  //     this.fxBidsessionService.getForexBidSession(data.id).subscribe(insRRgData => {
+  //   this.fxBidsessionService.getICPWorkflowByWfId(id).subscribe((editorData) => {
+  //     console.log("ejkcl", editorData)
+  //     this.fxBidSession = editorData;
+  //     this.fxBidsessionService.getForexBidSession(editorData.id).subscribe(insRRgData => {
   //       this.fxBidSession = insRRgData;
   //       console.log("dxdfc", this.fxBidSession)
   //       console.log("instrument reg of inward", insRRgData);
@@ -219,7 +219,7 @@ export class ForexBidSessionComponent implements OnInit {
   //     });
 
   //     console.log("destStep = " + this.destStep);
-  //     console.log(data);
+  //     console.log(editorData);
   //   }), (err => {
   //     console.log(err);
   //   });
@@ -228,8 +228,8 @@ export class ForexBidSessionComponent implements OnInit {
   //   console.log("event", event)
   //   if (event == "product") {
 
-  //     this.productService.getFilteredProd(this.prodCat).subscribe(data => {
-  //       this.products = data;
+  //     this.productService.getFilteredProd(this.prodCat).subscribe(editorData => {
+  //       this.products = editorData;
   //       const modalRef = this.modalService.open(WildcardComponent, { size: 'lg' });
   //       modalRef.componentInstance.prods = this.products
   //       modalRef.componentInstance.title = event
@@ -241,8 +241,8 @@ export class ForexBidSessionComponent implements OnInit {
 
   //   }
   //   else if (event == "remarks")
-  //     this.notepadService.getNote(event).subscribe(data => {
-  //       this.notes = data;
+  //     this.notepadService.getNote(event).subscribe(editorData => {
+  //       this.notes = editorData;
   //       const modalRef = this.modalService.open(NotepadComponent);
   //       modalRef.componentInstance.notepad = this.notes;
 
@@ -256,30 +256,30 @@ export class ForexBidSessionComponent implements OnInit {
   // }
 
   // getFxProducts() {
-  //   this.fxProductService.getAllFxProducts().subscribe(data => {
-  //     this.fxProducts = data;
+  //   this.fxProductService.getAllFxProducts().subscribe(editorData => {
+  //     this.fxProducts = editorData;
   //   })
   // }
   // getFxSources() {
-  //   this.fxSourceService.getFxSources().subscribe(data => {
-  //     this.fxSources = data;
+  //   this.fxSourceService.getFxSources().subscribe(editorData => {
+  //     this.fxSources = editorData;
   //   })
   // }
   // getCurrencies() {
-  //   this.currencyService.getCurrencies().subscribe(data => {
-  //     this.currencies = data;
+  //   this.currencyService.getCurrencies().subscribe(editorData => {
+  //     this.currencies = editorData;
   //   })
   // }
   // createFxBidSession() {
-  //   this.fxBidsessionService.createForexBidSession(this.fxBidSession).subscribe(data => {
+  //   this.fxBidsessionService.createForexBidSession(this.fxBidSession).subscribe(editorData => {
   //     console.log("Successful");
   //   })
   // }
 
   // getQueuesForRejection(id) {
-  //   this._setupService.getQueuesForRejectionByWfProId(id).subscribe((data) => {
+  //   this._setupService.getQueuesForRejectionByWfProId(id).subscribe((editorData) => {
   //     console.log('HHHHHHHHHH =' + id);
-  //     this.rejectSteps = data;
+  //     this.rejectSteps = editorData;
   //   }
   //   );
   // }
@@ -290,7 +290,7 @@ export class ForexBidSessionComponent implements OnInit {
   //   console.log("test", test)
   //   this.fxBidSession.currentQueueId = this.destQueueId;
   //   this.fxBidSession.queueType = this.queueType;
-  //   this.fxBidsessionService.pushtoworkflow(test).subscribe((data => {
+  //   this.fxBidsessionService.pushtoworkflow(test).subscribe((editorData => {
   //     console.log('Prototype Map Created');
   //     this.router.navigate(['dashboard'])
 
@@ -308,7 +308,7 @@ export class ForexBidSessionComponent implements OnInit {
   //   }
   //   this.fxBidSession.currentQueueId = this.destQueueId;
   //   this.fxBidSession.queueType = this.queueType;
-  //   this.fxBidsessionService.rejectbacktoworkflow(inward).subscribe((data => {
+  //   this.fxBidsessionService.rejectbacktoworkflow(inward).subscribe((editorData => {
   //     this.router.navigate(['dashboard'])
 
 

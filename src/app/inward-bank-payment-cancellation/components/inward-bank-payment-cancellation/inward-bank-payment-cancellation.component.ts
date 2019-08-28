@@ -41,19 +41,19 @@ export class InwardBankPaymentCancellationComponent implements OnInit {
   // reasons : PickListItem[];
   // cActions : PickListItem[]
   // cResStatus : PickListItem[];
-  
+
   // rejectSteps: WorkflowQueue[];
   // setChildren = true;
-  // // 
+  // //
   // isInTransit = false;
 
   constructor( private router:Router, private activatedRoute:ActivatedRoute,
     //  private _smp : ServerMessagePopUp, private _inwBankPayCanServ : InwardBankPaymentCancellationService,
     //  private _pickListItemService : PickListItemService,
-     
+
     //  private _inwardBankPayServ : InwardBankPaymentService, private _currService :CurrencyService
   ) {
-    
+
  }
 
 
@@ -70,7 +70,7 @@ cancel(){
 //     this.activatedRoute.params.subscribe(params=>{
 //        this.decode = JSON.parse(atob(params.navItem));
 //       console.log("this is the decoded object");
-      
+
 //      this._pickListItemService.getPickListItemByCode(this.cancelReasonCode).subscribe(data=>{
 //       this.reasons = data;
 //      });
@@ -81,11 +81,11 @@ cancel(){
 //       this.cResStatus = data;
 //      });
 
-   
-     
+
+
 //       this.instrumentRegister = this.decode.instrumentRegister;
 //     //  console.log(decode.product)
-    
+
 //       const operation = this.decode.operation;
 //       console.log(this.decode);
 //       if(operation == "In Transit"){
@@ -105,11 +105,11 @@ cancel(){
 
   }
 
- 
+
 
 
 //   createInwardBankPaymentCancel(){
- 
+
 //   //  this.inward.instrumentRegister = this.instrumentRegister;
 //     console.log("inward before")
 //     console.log(this.inwardCancel);
@@ -125,7 +125,7 @@ cancel(){
 //       this._smp.popUpAlertError("Unable to save");
 
 //     }))
-    
+
 //   }
 
 // // for operation in transit
@@ -166,14 +166,14 @@ cancel(){
 
 //   // FETCH THE INWARDCUSTOMERPAYMENT ASSOCIATED WITH THIS ID
 //   this._inwardBankPayServ.getOne(this.inward.id).subscribe((data=>{
-//     console.log("This is the inward data from the data base",data);
+//     console.log("This is the inward editorData from the editorData base",editorData);
 //     this.inward = data;
-    
-//     console.log("This is the inward data from the data base",this.inward);
+
+//     console.log("This is the inward editorData from the editorData base",this.inward);
 //   }),(err=>{
 //     console.log("Thios is the error",err);
 //   }));
- 
+
 // console.log(this.instrumentRegister);
 //  this.reference = this.instrumentRegister.reference;
 //   this.productName = this.instrumentRegister.product.description;
@@ -210,9 +210,9 @@ cancel(){
 /*
 
 getICPWorkflowByWfId(id) {
-  this._inwCustPayServ.getICPWorkflowByWfId(id).subscribe((data) => {
-    this.inward = data;
-    this.registrationService.getfindOneInstrumentRegisterd(data.id).subscribe(insRRgData=>{
+  this._inwCustPayServ.getICPWorkflowByWfId(id).subscribe((editorData) => {
+    this.inward = editorData;
+    this.registrationService.getfindOneInstrumentRegisterd(editorData.id).subscribe(insRRgData=>{
       this.instrumentRegister = insRRgData;
       console.log("instrument reg of inward");
       this.setChildren = true;
@@ -228,7 +228,7 @@ getICPWorkflowByWfId(id) {
 
   console.log(this.inward.destStep);
   console.log("destStep = " + this.destStep);
-    console.log(data);
+    console.log(editorData);
   }),(err=>{
     console.log(err);
   });
@@ -237,9 +237,9 @@ getICPWorkflowByWfId(id) {
 
 
 getQueuesForRejection(id) {
-  this._setupService.getQueuesForRejectionByWfProId(id).subscribe((data) => {
+  this._setupService.getQueuesForRejectionByWfProId(id).subscribe((editorData) => {
     console.log('HHHHHHHHHH =' + id);
-    this.rejectSteps = data;
+    this.rejectSteps = editorData;
   }
   );
 }
@@ -249,7 +249,7 @@ getQueuesForRejection(id) {
 approve(test) {
   this.inward.currentQueueId = this.destQueueId;
   this.inward.queueType = this.queueType;
-  this._inwCustPayServ.pushtoworkflow(test).subscribe((data => {
+  this._inwCustPayServ.pushtoworkflow(test).subscribe((editorData => {
     console.log('Prototype Map Created');
     //this.initForm();
    // this.gotoDashboard();
@@ -268,7 +268,7 @@ reject(inward) {
   }
   this.inward.currentQueueId = this.destQueueId;
   this.inward.queueType = this.queueType;
-  this._inwCustPayServ.rejectbacktoworkflow(inward).subscribe((data => {
+  this._inwCustPayServ.rejectbacktoworkflow(inward).subscribe((editorData => {
   //  this.gotoDashboard();
   }), (err => {
     console.log(err);

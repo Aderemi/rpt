@@ -24,7 +24,7 @@ export class AssignedFieldComponent implements OnInit {
   // navItem: any;
   // operation: string;
   // //locator: LocationRouter;
-  // prod:Product 
+  // prod:Product
   // //datatable: DataTables.Api;
   // dataTable
   constructor(private _inwardCustomerPaymentProductService: InwardCustomerPaymentProductService,
@@ -46,17 +46,17 @@ export class AssignedFieldComponent implements OnInit {
     //   console.log("decoded product",this.product)
 
     //   this.operation = decode.operation;
-    //   this._productService.getOne(this.product.id).subscribe(data => {
+    //   this._productService.getOne(this.product.id).subscribe(editorData => {
 
-    //     this.prod = data;
+    //     this.prod = editorData;
     //     console.log("proddd",this.prod)
     //   });
     // });
 
 
-    // this._fieldService.getWarrantProductFieldz(this.product.id).subscribe(data => {
+    // this._fieldService.getWarrantProductFieldz(this.product.id).subscribe(editorData => {
     //   console.log('fetch');
-    //   this.productField = data;
+    //   this.productField = editorData;
     //   console.log("productField",this.productField)
     //   this.chRef.detectChanges();
     //   const table = $('table');

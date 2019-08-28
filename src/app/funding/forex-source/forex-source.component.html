@@ -24,7 +24,7 @@
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                         <option value="cancel">Cancel</option>
-                       
+
                       </select>
 
                   </div>
@@ -88,7 +88,7 @@
             <div class="col-md-6">
                 <h1 class="text-bold">FOREX Sources</h1>
             </div>
-    
+
             <div class="col-md-2 offset-md-4 pr-0">
                 <button class="btn btn-block btn-primary "(click)="forexSourceActions($event)" >Add</button>
             </div>
@@ -99,22 +99,22 @@
                     <div class="form-group col-md-3 pr-0 mb-0">
                         <input name="code" [(ngModel)]="fxSource.code" type="text" id="reference"
                             class="form-control search" placeholder="Search by code">
-    
+
                     </div>
                     <div class="form-group col-md-3 pr-0 mb-0">
                             <div class="form-group row">
                                     <!-- <label class="control-label col-md-3 ">Status</label> -->
-                                    <div class="col-md-12">                  
+                                    <div class="col-md-12">
                                         <select class="form-control search" name="status" [(ngModel)]="fxSource.status">
                                           <option value="undefined" class="text-muted">Status</option>
                                           <option value="Active">Active</option>
                                           <option value="Inactive">Inactive</option>
-                                          <option value="cancel">Cancel</option>                                         
-                                        </select>                  
+                                          <option value="cancel">Cancel</option>
+                                        </select>
                                     </div>
                                 </div>
                     </div>
-                     
+
                     <div class="col-md-1 pr-0 mb-0">
                         <button class="btn btn-block btn-success hover-raise" (click)="getFilter()">Search</button>
                     </div>
@@ -156,7 +156,7 @@
                                                     <td>{{fxSource.code}} </td>
                                                     <td>{{fxSource.description}}</td>
                                                     <td>{{fxSource.marketType}}</td>
-                                                    <td>{{fxSource.status}}</td>                                  
+                                                    <td>{{fxSource.status}}</td>
                                             <td><button class="btn-outline-primary"  (click)="forexSourceActions($event)">view</button></td>
                                             <td>
                                                 <div class="dropdown">
@@ -208,7 +208,7 @@
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingBasic">
             <h4 class="panel-title">
-                <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic" aria-expanded="false"
+                <a class="collapsed " role="butteditorDatadata-toggle="collapeditorDatadata-parent="#accordion" href="#collapseBasic" aria-expanded="false"
                     aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Basic Information </a>
             </h4>
         </div>
@@ -231,17 +231,16 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="description" class="control-label col-md-4">Description
+                                <deditorDatalass="form-group roeditorData                                    <label for="description" class="control-label col-md-4">Description
                                     </label>
-    
+
                                     <div class="col-md-8">
                                         <input type="text" [(ngModel)]="fxSource.description"  name="description" class="form-control">
                                     </div>
                                 </div>
                             </div>
 
-                       
+
                     </div>
 
                     <div class="row">
@@ -256,7 +255,7 @@
                                   <option value="spot">Spot</option>
                                   <option value="forward">Forward</option>
 
-                                  
+
                               </select>
                         </div>
                           </div>
@@ -306,7 +305,7 @@
                                         <option value="Active">Active</option>
                                         <option value="Inactive">Inactive</option>
                                         <option value="cancel">Cancel</option>
-                                       
+
                                     </select>
 
                                 </div>
@@ -357,7 +356,7 @@
             <h1 class="text-bold">FOREX Source Form</h1>
           </div>
         </div>
-      
+
         <div class="col-md">
           <div class="card panel">
             <div class="card-body form-card">
@@ -379,13 +378,13 @@
                         <div class="col-sm-12 col-md-10 offset-md-1">
                                 <div class="form-body">
                                         <!-- <input name="id" [(ngModel)]="product.id" type="text" hidden> -->
-                    
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label for="code" class="control-label col-md-4">Code
                                                     </label>
-                    
+
                                                     <div class="col-md-8">
                                                         <input type="text" [(ngModel)]="fxSource.code"  name="code" class="form-control">
                                                     </div>
@@ -395,36 +394,36 @@
                                                     <div class="form-group row">
                                                         <label for="description" class="control-label col-md-4">Description
                                                         </label>
-                        
+
                                                         <div class="col-md-8">
                                                             <input type="text" [(ngModel)]="fxSource.description"  name="description" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
-                    
-                                           
+
+
                                         </div>
-                    
+
                                         <div class="row">
                                           <div class="col-md-6">
                                               <div class="form-group row">
                                                   <label for="description" class="control-label col-md-4">Market Type
                                                   </label>
-                    
+
                                                   <div class="col-md-8">
                                                     <select [(ngModel)]="fxSource.marketType" class="form-control" name="marketType" >
                                                       <option value="undefined">&lt;---&gt;</option>
                                                       <option value="spot">Spot</option>
                                                       <option value="forward">Forward</option>
-                    
-                                                      
+
+
                                                   </select>
                                             </div>
                                               </div>
                                           </div>
                                       </div>
-                    
-                    
+
+
                                     </div>
                         </div>
                       </div>
@@ -463,26 +462,26 @@
                                                                 <option value="Active">Active</option>
                                                                 <option value="Inactive">Inactive</option>
                                                                 <option value="cancel">Cancel</option>
-                                                               
+
                                                             </select>
-                        
+
                                                         </div>
                                                     </div>
-                        
-                        
+
+
                                                 </div>
-                    
+
                                         </div>
                                         <div class="row">
-                    
-                                           
+
+
                                         </div>
                                     </div>
                         </div>
                       </div>
                     </div>
                   </div>
-      
+
                   <div class="card-footer text-muted">
                     <div class="row p-3">
                       <div class="col-md-6"></div>
@@ -503,4 +502,3 @@
           </div>
         </div>
       </div>
-      

@@ -28,7 +28,7 @@
             </div>
 
       </div>
-     
+
     <div class="row">
       <div class="col-md-6">
         <div class="form-group row">
@@ -93,7 +93,7 @@
 
   <br />
 
-  
+
 </div> -->
 
 
@@ -217,8 +217,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" role="tab" id="headingBasic">
         <h4 class="panel-title">
-          <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBasic"
-            aria-expanded="false" aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Notification
+          <a class="collapsed " role="butteditorDatadata-toggle="collapeditorDatadata-parent="#accordion" href="#collapseBasieditorData           aria-expeditorDatad="false" aria-controls="collapseBasic" style="color :#2b2b2b;font-weight: bold;">Notification
             Template
           </a>
         </h4>
@@ -596,7 +595,7 @@
                             <label class="control-label col-md-4">Notification Type</label>
                             <div class="col-md-3">
                               <input type="text" class="form-control" [ngModel]="notificationTypeCode" name="">
-          
+
                             </div>
                             <div class="col-md-5">
                               <select class="col-md-8" class="form-control" tabindex="1" name=""
@@ -605,8 +604,8 @@
                                 <option value="">&lt;---&gt;</option>
                                 <option *ngFor="let notTypes of notificationTypes" [ngValue]="notTypes">{{notTypes.description}}
                                 </option>
-          
-          
+
+
                               </select>
                             </div>
                           </div>
@@ -623,17 +622,17 @@
                             </div>
                           </div>
                         </div>
-          
+
                       </div>
-          
-          
-          
+
+
+
                       <div class="row">
                         <div class="col-md-6" *ngIf="enableAdviseTemplate === true">
                           <div class="form-group row">
                             <label for="code" class="control-label col-md-4">Advice Template
                             </label>
-          
+
                             <div class="col-md-8">
                               <input type="text" class="form-control" [(ngModel)]="notificationTemplate.adviceTemplate"
                                 [ngClass]="" name="adviceTemplate">
@@ -644,9 +643,9 @@
                           <div class="form-group row">
                             <label for="code" class="control-label col-md-4">Message Template
                               <span class="fa fa-edit" (click)="open('message')"></span>
-          
+
                             </label>
-          
+
                             <div class="col-md-8">
                               <textarea type="text" class="form-control" rows="4"
                                 [(ngModel)]="notificationTemplate.messageTemplate" [ngClass]=""
@@ -662,16 +661,16 @@
                                 [(ngModel)]="notificationTemplate.specialPrinter">
                                 <option value="">&lt;---&gt;</option>
                                 <option *ngFor="let sp of specialPrinter" value="{{sp}}">{{sp}}</option>
-          
-          
+
+
                               </select>
                             </div>
                           </div>
                         </div>
                       </div>
-          
+
                       <div class="row">
-                       
+
                         <div class="col-md-6" *ngIf="enableSpecialPrinterClass">
                           <div class="form-group row">
                             <label class="control-label col-md-4">Special Printer Class </label>
@@ -680,8 +679,8 @@
                                 [(ngModel)]="notificationTemplate.specialPrinterClass">
                                 <option value="">&lt;---&gt;</option>
                                 <option *ngFor="let spc of specialPrinterClass" value="{{spc}}">{{spc}}</option>
-          
-          
+
+
                               </select>
                             </div>
                           </div>
@@ -692,12 +691,12 @@
                             <div class="col-md-8">
                               <input type="text" class="form-control" [(ngModel)]="notificationTemplate.printPromptMsg"
                                 [ngClass]="" name="printPromptMsg">
-          
+
                             </div>
                           </div>
                         </div>
-                      </div>         
-          
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -720,9 +719,9 @@
                         <div class="col-md-6">
                           <div class="form-group row">
                             <label for="additionalAmtCov" class="control-label col-md-4">Effective Date &nbsp;
-          
+
                             </label>
-          
+
                             <div class="col-md-8">
                               <input name="effectiveDate" [ngModel]="notificationTemplate.effectiveDate|date :'yyyy-MM-dd'"
                                 type="date" id="effectiveDate" (ngModelChange)="notificationTemplate.effectiveDate = $event"
@@ -730,7 +729,7 @@
                             </div>
                           </div>
                         </div>
-          
+
                       </div>
                       <div class="row">
                         <div class="col-md-6">
@@ -743,13 +742,13 @@
                                 <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>
                                 <option value="Cancelled">Cancelled</option>
-          
+
                               </select>
                             </div>
                           </div>
                         </div>
                       </div>
-          
+
                     </div>
                   </div>
                 </div>

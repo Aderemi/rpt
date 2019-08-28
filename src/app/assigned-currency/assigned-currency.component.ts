@@ -29,7 +29,7 @@ export class AssignedCurrencyComponent implements OnInit {
   // productAssignedCurrency :Currency[];
   // productUnassignedCurrency :Currency[];
   // tempCurrency :Currency[];
-  
+
 
 
   constructor(
@@ -37,11 +37,11 @@ export class AssignedCurrencyComponent implements OnInit {
     //  private _productService : ProductService, private  locator :LocationRouter,
     // private chRef: ChangeDetectorRef, private refCurrencyService : CurrencyService, private confirmationDialogService : ConfirmationDialogService,
     //  private _observer : RelatedTaskBarServiceService
-     ) { 
+     ) {
       // this.availableCurrency = new Array();
       // this.productAssignedCurrency = new Array();
       // this.productUnassignedCurrency = new Array();
-  
+
     }
 
   ngOnInit() {
@@ -49,23 +49,23 @@ export class AssignedCurrencyComponent implements OnInit {
 //     this.tempCurrency = [];
 
 //     this._activatedRoute.params.subscribe(params=>{
-//       let decode =  JSON.parse(atob(params.navItem)); 
+//       let decode =  JSON.parse(atob(params.navItem));
 //       this.product = decode.product;
 //       this.operation = decode.operation;
 //       console.log(this.product)
-//       this._productService.getOne(this.product.id).subscribe(data=>{
-//         this.product = data;
+//       this._productService.getOne(this.product.id).subscribe(editorData=>{
+//         this.product = editorData;
 //         console.log(this.product)
-//           this.productAssignedCurrency =  this.product.currency;        
+//           this.productAssignedCurrency =  this.product.currency;
 //          this.getCurrencies();
 //           console.log(this.productCurrency)
-      
+
 //             this.navItem = {
 //               'operation' : this.operation,
 //               'product' : this.product
 //             }
 //           //  this._observer.setProduct(this.navItem);
-        
+
 
 //       });
 //      });
@@ -79,9 +79,9 @@ export class AssignedCurrencyComponent implements OnInit {
 
 //   //get all the currency
 // getCurrencies(){
-//   this.refCurrencyService.getCurrencies().subscribe((data=>{
-//     this.availableCurrency = data;
-    
+//   this.refCurrencyService.getCurrencies().subscribe((editorData=>{
+//     this.availableCurrency = editorData;
+
 //    if(this.product.currency == undefined){
 //       this.productAssignedCurrency =[];
 //    }else{
@@ -100,14 +100,14 @@ export class AssignedCurrencyComponent implements OnInit {
 //       break;
 //      }
 //      case 'Modify':{
-  
+
 //       break;
-       
+
 //      }
 //      case 'Cancel':{
 //        break;
 //      }
-//      case 'View':{     
+//      case 'View':{
 //        break;
 //      }
 //      default : {
@@ -150,30 +150,30 @@ export class AssignedCurrencyComponent implements OnInit {
 //     }
 //   }
 //   saveAssignedCurrencytoDB(){
-    
+
 //     //  console.log("this is a function i the child compoment")
 //     // this.product.currency.concat(this.tempCurrency)
 //     // this.product.currency = this.product.currency.concat(this.tempCurrency) using concat
 //     this.product.currency = [...this.product.currency, ...this.tempCurrency]; // using the spread operator
-    
+
 //       console.log(this.product);
-//       this._productService.update(this.product).subscribe(data=>{
+//       this._productService.update(this.product).subscribe(editorData=>{
 //         // do the emit
-        
+
 //         this.productAssignedCurrency =  this.product.currency;
 //         let navItem = {
 //           'operation' : this.operation,
-//           'product' : data.body
+//           'product' : editorData.body
 //         }
 //         this._observer.setProduct(navItem);
-//         console.log(data.body);
+//         console.log(editorData.body);
 //         this.ngOnInit();
-        
+
 //       });
 //   }
 
 //   toggleCheckBox(event, cc){
-   
+
 //     event.target.checked ? this.addToAssign(cc) : this.removeFromAssign(cc);
 // }
 // addToAssign(uc){
@@ -195,10 +195,10 @@ export class AssignedCurrencyComponent implements OnInit {
 //     .then((confirmed) => {
 //       console.log("VVVVVVVVVVVVVVVVVVVVVVVV:____________________________-------------------- ",confirmed);
 //       if (confirmed) {
-        
+
 //         this.deleteAssignedCurrency(cc);
-        
-    
+
+
 //       }
 //      // console.log('User confirmed:', confirmed);
 //     })
@@ -207,23 +207,23 @@ export class AssignedCurrencyComponent implements OnInit {
 
 
 //  deleteAssignedCurrency(cc){
-   
+
 //  let ind = this.product.currency.indexOf(cc);
 //  this.product.currency.splice(ind,1);
 //       console.log(this.product);
-//       this._productService.update(this.product).subscribe(data=>{
+//       this._productService.update(this.product).subscribe(editorData=>{
 //         // do the emit
-        
+
 //         this.productAssignedCurrency =  this.product.currency;
 //         let navItem = {
 //           'operation' : this.operation,
-//           'product' : data.body
+//           'product' : editorData.body
 //         }
 //       //  this._observer.setProduct(navItem);
-        
-//         console.log(data.body);
+
+//         console.log(editorData.body);
 //         this.ngOnInit();
-        
+
 //       });
 //  }
 

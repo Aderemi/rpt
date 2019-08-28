@@ -2,23 +2,23 @@
 <table id="myTable" class="table table-striped">
 <thead>
   <tr>
-       
+
     <th>Code</th>
 
           <th>Description</th>
-          
+
           <th>Status</th>
   </tr>
 </thead>
 <tbody>
-  <tr *ngFor="let cur of productAssignedCurrency; let i = index">  
+  <tr *ngFor="let cur of productAssignedCurrency; let i = index">
     <td>{{cur.code}} </td>
           <td>{{cur.description}}</td>
-          <td><button (click)="dDialog(cur)">delete</button></td>                
+          <td><button (click)="dDialog(cur)">delete</button></td>
   </tr>
 </tbody>
 </table>
-<button (click) = "currencyOperation($event)"  class="btn btn-info  usl-btn-color" data-toggle="modal" data-target="#exampleModal">Add</button>...... -->
+<button (click) = "currencyOperation($event)"  class="btn btn-info  usl-btn-coleditorDatadata-toggle="modeditorDatadata-target="#exampleModal">Add</button>...... -->
 <!-- <button (click) = "currencyOperation($event)"  class="btn btn-info  usl-btn-color">Modify</button>
 <button (click) = "currencyOperation($event)"  class="btn btn-info  usl-btn-color">Cancel</button>
 <button (click) = "currencyOperation($event)"  class="btn btn-info  usl-btn-color">View</button> -->
@@ -31,8 +31,8 @@
      <div class="col-md-12" >
  </div>
  </div>
- <div class="row">        
-         <button (click) = "attachCurrency.saveAssignedCurrencytoDB()"   class="btn btn-info  usl-btn-color">Assign</button>       
+ <div class="row">
+         <button (click) = "attachCurrency.saveAssignedCurrencytoDB()"   class="btn btn-info  usl-btn-color">Assign</button>
          <button (click) = "operationClose()"  class="btn btn-info usl-btn-color">Close</button>
         </div>
  </div> -->
@@ -150,10 +150,10 @@
 
 <!-- Related Task Menu bar only displayed when relatedTaskSave == 1 -->
 
-<!-- <div class="col-md-2 white-box">  
-       
-                
-      
+<!-- <div class="col-md-2 white-box">
+
+
+
     <app-related-task-bar></app-related-task-bar>
 
 
@@ -161,8 +161,8 @@
 
 <!-- Related Task Menu Ends -->
 
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch Test 
+<!-- <button type="button" class="btn btn-primaeditorDatadata-toggle="modeditorDatadata-target="#exampleModal">
+    Launch Test
   </button> -->
 
 <!-- Modal -->

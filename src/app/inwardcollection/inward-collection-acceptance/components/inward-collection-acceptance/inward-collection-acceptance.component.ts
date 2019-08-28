@@ -53,7 +53,7 @@ export class InwardCollectionAcceptanceComponent implements OnInit {
 //   productSubCategory : string;
 //   isInTransit = false;
 
-  
+
 //    // NEW WORKFLOW
 //    Events: BizProcessQueueEvent[];
 //    wfSetup: WorkflowProcessSetup;
@@ -98,7 +98,7 @@ scroll(el: HTMLElement){
 //     this.activatedRoute.params.subscribe(params=>{
 //        this.decode = JSON.parse(atob(params.navItem));
 //       console.log("this is the decoded object");
-      
+
 //      this._pickListItemService.getPickListItemByCode(this.cancelReasonCode).subscribe(data=>{
 //       this.reasons = data;
 //      });
@@ -109,10 +109,10 @@ scroll(el: HTMLElement){
 //       this.cResStatus = data;
 //      });
 
-   
+
 //       this.instrumentRegister = this.decode.instrumentRegister;
 //     //  console.log(decode.product)
-    
+
 //       const operation = this.decode.operation;
 //       console.log(this.decode);
 //       if(operation == "In Transit"){
@@ -137,14 +137,14 @@ scroll(el: HTMLElement){
 
 
 
-  
+
 //   createImportLetterCreditAccept(){
- 
+
 //   //  this.inward.instrumentRster = this.instrumentRegister;
 //     console.log("import before")
 //     console.log(this._inwardColAcceptServ);
 //     this.inwardAccept.master = this.inward;
-    
+
 //     this._inwardColAcceptServ.create(this.inwardAccept).subscribe((data=>{
 //       this._smp.popUpAlertSuccess();
 //       console.log("inward after")
@@ -156,7 +156,7 @@ scroll(el: HTMLElement){
 //       this._smp.popUpAlertError("Unable to save");
 
 //     }))
-    
+
   }
 
 // // for operation in transit
@@ -199,11 +199,11 @@ scroll(el: HTMLElement){
 //   this._masterService.getMaster(this.inward.id).subscribe((data=>{
 //     console.log("this is the inward fetched",data)
 //     this.inward = data;
-//     console.log("This is the inward data from the data base",data);
+//     console.log("This is the inward editorData from the editorData base",editorData);
 //   }),(err=>{
 //     console.log("Thios is the error",err);
 //   }));
- 
+
 // console.log(this.instrumentRegister);
 // this.inwardAccept.reference = this.instrumentRegister.reference+this.getExtension();
 //   this.productName = this.instrumentRegister.product.description;
@@ -311,9 +311,9 @@ scroll(el: HTMLElement){
 
 // getWfBusinessProcessSetupByCriteria()
 // {
-  
+
 //   this.actionService.getWfBusinessProcessSetupByCriteria("ICOP","Accept").subscribe((data => {
-    
+
 //     this.wfSetup = data;
 //     this.businessProId = this.wfSetup.id;
 //     this.startQueue = this.wfSetup.startQueue;
@@ -325,7 +325,7 @@ scroll(el: HTMLElement){
 //     }));
 // }
 // getAllBusinessprocessEventByBusProcIdAndQueueId() {
-  
+
 //   this.actionService.getAllBusinessProcessEvents(this.startQueueId, this.businessProId).subscribe((data => {
 //   this.Events = data;
 
@@ -373,7 +373,7 @@ scroll(el: HTMLElement){
 // this._inwardColAcceptServ.getOne(id).subscribe(data =>{
 
 //   console.log(data);
- 
+
 //   this.inwardAccept = data;
 // });
 //   this.getHistory(ref);
@@ -384,14 +384,14 @@ scroll(el: HTMLElement){
 // getHistory(reference){
 //   this._masterService.getWFItem(reference).subscribe((data =>{
 //     this.obj = data;
-//     console.log("------------------------>>>"+this.obj); 
+//     console.log("------------------------>>>"+this.obj);
 //   }));
 // }
 
 // goToEvents(str, obj){
 
 //   console.log(str); // the class name
-//   console.log(obj); // 
+//   console.log(obj); //
 //   switch(str){
 //     case 'ImportLetterCredit':
 //     this.navItem = {
@@ -399,9 +399,9 @@ scroll(el: HTMLElement){
 //       'id': obj[4],
 //       'ref' : obj[3]
 //     }
-  
+
 //     this.router.navigate(['importLetterCredit', btoa(JSON.stringify(this.navItem))]);
-  
+
 //     break;
 //   }
 
@@ -409,7 +409,7 @@ scroll(el: HTMLElement){
 // }
 // goToMaster(){
 
-     
+
 //   this.navItem = {
 //     'operation' : "View",
 //     'instrumentRegister' : this.instrumentRegister
@@ -425,7 +425,7 @@ scroll(el: HTMLElement){
 //     let p = this.instrumentRegister.product.businessProcess;
 //     for(let i = 0; i < p.length; i++){
 //       if(p[i].serviceRef.code === "Accept"){
-//         ; 
+//         ;
 //         let nextNo = this.instrumentRegister.lastNo + this.instrumentRegister.incrmt;
 //         ext += p[i].surfix+this.instrumentRegister.delim+this.padNumber(nextNo, this.instrumentRegister.width);
 //         break;

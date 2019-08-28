@@ -41,7 +41,7 @@ export class InwardBankPaymentComponent implements OnInit {
   // hash : any;
   // rejectSteps: WorkflowQueue[];
   // setChildren = true;
-  // // 
+  // //
   // isInTransit = false;
 
 
@@ -56,15 +56,15 @@ export class InwardBankPaymentComponent implements OnInit {
   constructor(
 //     public _localSession: LocalStorageService,public session: SessionStorageService, private router:Router,
 //    private  inwardBankPaymentService:InwardBankPaymentService,
-//     private activatedRoute:ActivatedRoute,  private actionService: WorkflowActionService, 
-//  private registrationService:RegistrationService, 
+//     private activatedRoute:ActivatedRoute,  private actionService: WorkflowActionService,
+//  private registrationService:RegistrationService,
 //    private _setupService: WorkflowProcessSetupService,
 //    private _smp : ServerMessagePopUp,
 //    private currencyService : CurrencyService
 
   ) { }
 
-  
+
  scroll(el: HTMLElement){
   let jboy = el.offsetTop - 55;
   window.scroll({ top: jboy, behavior: "smooth" });
@@ -73,13 +73,13 @@ export class InwardBankPaymentComponent implements OnInit {
 
   ngOnInit() {
 
-   
+
     // console.log("+++++++++++++++++++++++++++++++++++++++++=")
     // this.activatedRoute.params.subscribe(params=>{
     //    this.decode = JSON.parse(atob(params.navItem));
     //   console.log("this is the decoded object");
-      
-     
+
+
   //  //   this.instrumentRegister = decode;
   //   //  console.log(decode.product)
   //     const operation = this.decode.operation;
@@ -97,41 +97,41 @@ export class InwardBankPaymentComponent implements OnInit {
 //     );
 
 
-//     this.currencyService.getCurrencies().subscribe((data=>{
-//       this.currencies = data;
-//       console.log(data);
-    
+//     this.currencyService.getCurrencies().subscribe((editorData=>{
+//       this.currencies = editorData;
+//       console.log(editorData);
+
 //     }),(err=>{
- 
+
 //     }));
 
-//     this.currencyService.getCurrencies().subscribe((data=>{
-//       this.currencies = data;
-//       console.log(data);
-    
+//     this.currencyService.getCurrencies().subscribe((editorData=>{
+//       this.currencies = editorData;
+//       console.log(editorData);
+
 //     }),(err=>{
- 
+
 //     }));
 
 //   }
 
 //   createInwardBankPayment(){
- 
+
 //     //  this.inward.instrumentRegister = this.instrumentRegister;
 //       console.log("inward before")
 //       console.log(this.inward);
-//       this.inwardBankPaymentService.create(this.inward).subscribe((data=>{
+//       this.inwardBankPaymentService.create(this.inward).subscribe((editorData=>{
 //         this._smp.popUpAlertSuccess();
 //         console.log("inward after")
 //         console.log(this.inward);
 //         this.router.navigate(['dashboard'])
-//         console.log(data);
+//         console.log(editorData);
 //       }), (err=>{
 //         console.log(err);
 //         this._smp.popUpAlertError("Unable to save");
-  
+
 //       }))
-      
+
 //     }
 
 //     // for operation in transit
@@ -170,7 +170,7 @@ export class InwardBankPaymentComponent implements OnInit {
 //   // workflow
 //   this.currencies = this.instrumentRegister.product.currency;
 
-  
+
 //   this.getWfBusinessProcessSetupByCriteria();
 // }
 
@@ -184,9 +184,9 @@ export class InwardBankPaymentComponent implements OnInit {
 
 
 // getICPWorkflowByWfId(id) {
-//   this.inwardBankPaymentService.getICPWorkflowByWfId(id).subscribe((data) => {
-//     this.inward = data;
-//     this.registrationService.getfindOneInstrumentRegisterd(data.id).subscribe(insRRgData=>{
+//   this.inwardBankPaymentService.getICPWorkflowByWfId(id).subscribe((editorData) => {
+//     this.inward = editorData;
+//     this.registrationService.getfindOneInstrumentRegisterd(editorData.id).subscribe(insRRgData=>{
 //       this.instrumentRegister = insRRgData;
 //       console.log("instrument reg of inward");
 //       this.setChildren = true;
@@ -197,21 +197,21 @@ export class InwardBankPaymentComponent implements OnInit {
 //       this.name = this.instrumentRegister.customer[0].name;
 //     }
 //     });
-  
+
 //   //  this.inward.reference = this.instrumentRegister.reference;
 
 //   console.log(this.inward.destStep);
 //   console.log("destStep = " + this.destStep);
-//     console.log(data);
+//     console.log(editorData);
 //   }),(err=>{
 //     console.log(err);
 //   });
 // }
 
 // getQueuesForRejection(id) {
-//   this._setupService.getQueuesForRejectionByWfProId(id).subscribe((data) => {
+//   this._setupService.getQueuesForRejectionByWfProId(id).subscribe((editorData) => {
 //     console.log('HHHHHHHHHH =' + id);
-//     this.rejectSteps = data;
+//     this.rejectSteps = editorData;
 //   }
 //   );
 // }
@@ -221,7 +221,7 @@ export class InwardBankPaymentComponent implements OnInit {
 // approve(test) {
 //   this.inward.currentQueueId = this.destQueueId;
 //   this.inward.queueType = this.queueType;
-//   this.inwardBankPaymentService.pushtoworkflow(test).subscribe((data => {
+//   this.inwardBankPaymentService.pushtoworkflow(test).subscribe((editorData => {
 //     console.log('Prototype Map Created');
 //     this.router.navigate(['dashboard']);
 //    // this.gotoDashboard();
@@ -240,7 +240,7 @@ export class InwardBankPaymentComponent implements OnInit {
 //   }
 //   this.inward.currentQueueId = this.destQueueId;
 //   this.inward.queueType = this.queueType;
-//   this.inwardBankPaymentService.rejectbacktoworkflow(inward).subscribe((data => {
+//   this.inwardBankPaymentService.rejectbacktoworkflow(inward).subscribe((editorData => {
 //     this.router.navigate(['dashboard']);
 //   }), (err => {
 //     console.log(err);
@@ -251,10 +251,10 @@ export class InwardBankPaymentComponent implements OnInit {
 // //--new workflow
 // getWfBusinessProcessSetupByCriteria()
 // {
-  
-//   this.actionService.getWfBusinessProcessSetupByCriteria("IBP","Issue").subscribe((data => {
-    
-//     this.wfSetup = data;
+
+//   this.actionService.getWfBusinessProcessSetupByCriteria("IBP","Issue").subscribe((editorData => {
+
+//     this.wfSetup = editorData;
 //     this.businessProId = this.wfSetup.id;
 //     this.startQueue = this.wfSetup.startQueue;
 //     console.log('nnnnnn ='+this.startQueue);
@@ -265,9 +265,9 @@ export class InwardBankPaymentComponent implements OnInit {
 //     }));
 // }
 // getAllBusinessprocessEventByBusProcIdAndQueueId() {
-  
-//   this.actionService.getAllBusinessProcessEvents(this.startQueueId, this.businessProId).subscribe((data => {
-//   this.Events = data;
+
+//   this.actionService.getAllBusinessProcessEvents(this.startQueueId, this.businessProId).subscribe((editorData => {
+//   this.Events = editorData;
 
 //   }), (err => {
 
@@ -278,8 +278,8 @@ export class InwardBankPaymentComponent implements OnInit {
 //   console.log('customerId=' + this.instrumentRegister.customer[0].id);
 //   //this.test.customerId
 //   this.inward.jobDataId=this.inward.id;
-//   this.inwardBankPaymentService.getAllCalculatedCharge(this.inward.busProEventId, this.instrumentRegister.customer[0].id, this.inward.transactionAmount, this.inward.id,this.inward).subscribe((data => {
-//     this.CalculatedCharges = data;
+//   this.inwardBankPaymentService.getAllCalculatedCharge(this.inward.busProEventId, this.instrumentRegister.customer[0].id, this.inward.transactionAmount, this.inward.id,this.inward).subscribe((editorData => {
+//     this.CalculatedCharges = editorData;
 //   }), (err => {
 
 //   }));

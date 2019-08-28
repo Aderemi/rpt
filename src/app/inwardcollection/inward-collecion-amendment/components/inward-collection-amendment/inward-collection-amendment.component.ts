@@ -49,10 +49,10 @@ export class InwardCollectionAmendmentComponent implements OnInit {
   // productSubCategory : string;
   // rejectSteps: WorkflowQueue[];
   // setChildren = true;
-  // // 
+  // //
   // isInTransit = false;
 
-  
+
   //  // NEW WORKFLOW
   //  Events: BizProcessQueueEvent[];
   //  wfSetup: WorkflowProcessSetup;
@@ -61,7 +61,7 @@ export class InwardCollectionAmendmentComponent implements OnInit {
   //  startQueue:string;
   //  CalculatedCharges: CalculatedChargeInfo[];
   //  view : boolean;
- 
+
   //  navItem : any;
 
 
@@ -89,7 +89,7 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 //     this.activatedRoute.params.subscribe(params=>{
 //        this.decode = JSON.parse(atob(params.navItem));
 //       console.log("this is the decoded object");
-      
+
 //      this._pickListItemService.getPickListItemByCode(this.cancelReasonCode).subscribe(data=>{
 //       this.reasons = data;
 //      });
@@ -100,10 +100,10 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 //       this.cResStatus = data;
 //      });
 
-   
+
 //       this.instrumentRegister = this.decode.instrumentRegister;
 //     //  console.log(decode.product)
-    
+
 //       const operation = this.decode.operation;
 //       console.log(this.decode);
 //       if(operation == "In Transit"){
@@ -125,9 +125,9 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 
 
 
-  
+
 //   createInwardCollectionAmend(){
- 
+
 //   //  this.inward.instrumentRster = this.instrumentRegister;
 //     console.log("import before")
 //     console.log(this.inwardAmend);
@@ -143,7 +143,7 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 //       this._smp.popUpAlertError("Unable to save");
 
 //     }))
-    
+
 //   }
 
 // // for operation in transit
@@ -186,11 +186,11 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 //   this._masterService.getMaster(this.inward.id).subscribe((data=>{
 //     console.log("this is the inward fetched",data)
 //     this.inward = data;
-//     console.log("This is the inward data from the data base",data);
+//     console.log("This is the inward editorData from the editorData base",editorData);
 //   }),(err=>{
 //     console.log("Thios is the error",err);
 //   }));
- 
+
 // console.log(this.instrumentRegister);
 // this.inwardAmend.reference = this.instrumentRegister.reference+this.getExtension();
 //   this.productName = this.instrumentRegister.product.description;
@@ -300,9 +300,9 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 // //--new workflow
 // getWfBusinessProcessSetupByCriteria()
 // {
-  
+
 //   this.actionService.getWfBusinessProcessSetupByCriteria("ICOP","Amend").subscribe((data => {
-    
+
 //     this.wfSetup = data;
 //     this.businessProId = this.wfSetup.id;
 //     this.startQueue = this.wfSetup.startQueue;
@@ -314,7 +314,7 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 //     }));
 // }
 // getAllBusinessprocessEventByBusProcIdAndQueueId() {
-  
+
 //   this.actionService.getAllBusinessProcessEvents(this.startQueueId, this.businessProId).subscribe((data => {
 //   this.Events = data;
 
@@ -363,7 +363,7 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 // this._inwardColAmendServ.getOne(id).subscribe(data =>{
 
 //   console.log(data);
- 
+
 //   this.inwardAmend = data;
 // });
 //   this.getHistory(ref);
@@ -374,14 +374,14 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 // getHistory(reference){
 //   this._masterService.getWFItem(reference).subscribe((data =>{
 //     this.obj = data;
-//     console.log("------------------------>>>"+this.obj); 
+//     console.log("------------------------>>>"+this.obj);
 //   }));
 // }
 
 // goToEvents(str, obj){
 
 //   console.log(str); // the class name
-//   console.log(obj); // 
+//   console.log(obj); //
 //   switch(str){
 //     case 'ImportLetterCredit':
 //     this.navItem = {
@@ -389,9 +389,9 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 //       'id': obj[4],
 //       'ref' : obj[3]
 //     }
-  
+
 //     this.router.navigate(['importLetterCredit', btoa(JSON.stringify(this.navItem))]);
-  
+
 //     break;
 //   }
 
@@ -399,7 +399,7 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 // }
 // goToMaster(){
 
-     
+
 //   this.navItem = {
 //     'operation' : "View",
 //     'instrumentRegister' : this.instrumentRegister
@@ -412,7 +412,7 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 //     let p = this.instrumentRegister.product.businessProcess;
 //     for(let i = 0; i < p.length; i++){
 //       if(p[i].serviceRef.code === "Amend"){
-//         ; 
+//         ;
 //         let nextNo = this.instrumentRegister.lastNo + this.instrumentRegister.incrmt;
 //         ext += p[i].surfix+this.instrumentRegister.delim+this.padNumber(nextNo, this.instrumentRegister.width);
 //         break;
@@ -423,9 +423,9 @@ export class InwardCollectionAmendmentComponent implements OnInit {
 
 
 // padNumber(num, size) {
- 
+
 //   let s = num+"";
-  
+
 //   while (s.length < size) s = "0" + s;
 //   console.log(s)
 //   return s;

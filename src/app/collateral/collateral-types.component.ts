@@ -23,11 +23,11 @@ export class CollateralTypesComponent implements OnInit {
 ) { }
 
 
- 
+
 
 //   deleteCollateraltype() {
 //     if (this.selectedCollateraltype.id) {
-//       this.colService.deleteCollateralType(this.selectedCollateraltype.id).subscribe(data => {
+//       this.colService.deleteCollateralType(this.selectedCollateraltype.id).subscribe(editorData => {
 //         console.log('Collateral Type Deleted');
 //         this.ngOnInit();
 
@@ -49,14 +49,14 @@ export class CollateralTypesComponent implements OnInit {
 //   set(event: any, collateraltype: any) {
 //     console.log('Collateral type selected' + collateraltype);
 //     this.selectedCollateraltype = collateraltype;
-         
+
 //   }
 
 //   search() {
 //     console.log('searching Collateral type !!');
-//     this.colService.query(this.collateraltype).subscribe((data => {
-//       this.Collateraltypes = data;
-//       console.log(data);
+//     this.colService.query(this.collateraltype).subscribe((editorData => {
+//       this.Collateraltypes = editorData;
+//       console.log(editorData);
 //       this.chRef.detectChanges();
 
 //       const table = $('table');
@@ -78,13 +78,13 @@ export class CollateralTypesComponent implements OnInit {
 
   ngOnInit() {
 //    // debugger
-//     this.colService.getCollateralTypes().subscribe(data => {
-//       console.log(data);
-//       this.Collateraltypes = data;
+//     this.colService.getCollateralTypes().subscribe(editorData => {
+//       console.log(editorData);
+//       this.Collateraltypes = editorData;
 //       this.chRef.detectChanges();
 
 //       const table: any = $('#myTable');
-//       this.dataTable = table.DataTable();         
+//       this.dataTable = table.DataTable();
 //     }, (error) => {
 //       console.log(error);
 //     });
@@ -97,7 +97,7 @@ export class CollateralTypesComponent implements OnInit {
 //     this.router.navigate(['/collateraltype']);
 //   //  window.location.href = 'http://localhost:4200/accounttypes';
 //   }
-  
+
 }
 /*
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
@@ -122,11 +122,11 @@ export class SystemParametersComponent implements OnInit {
     private confirmationDialogService: ConfirmationDialogService, private chRef: ChangeDetectorRef) { }
 
 
- 
+
 
   deleteSysParameter() {
     if (this.selectedSysParameter.id) {
-      this.sysService.deleteSysParameter(this.selectedSysParameter.id).subscribe(data => {
+      this.sysService.deleteSysParameter(this.selectedSysParameter.id).subscribe(editorData => {
         console.log('System Parameter  Deleted');
         this.ngOnInit();
 
@@ -149,14 +149,14 @@ export class SystemParametersComponent implements OnInit {
   set(event: any, sysparameter: any) {
     console.log('System Parameter  selected' + sysparameter);
     this.selectedSysParameter = sysparameter;
-         
+
   }
 
   search() {
     console.log('searching System Parameter !!');
-    this.sysService.querySysParameter(this.sysparameter).subscribe((data => {
-      this.SysPararmeters = data;
-      console.log(data);
+    this.sysService.querySysParameter(this.sysparameter).subscribe((editorData => {
+      this.SysPararmeters = editorData;
+      console.log(editorData);
       this.chRef.detectChanges();
 
       const table = $('table');
@@ -177,18 +177,18 @@ export class SystemParametersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sysService.getSysParameters().subscribe(data => {
-      console.log(data);
-      this.SysPararmeters = data;
+    this.sysService.getSysParameters().subscribe(editorData => {
+      console.log(editorData);
+      this.SysPararmeters = editorData;
       this.chRef.detectChanges();
 
       const table: any = $('#myTable');
-      this.dataTable = table.DataTable();         
+      this.dataTable = table.DataTable();
     }, (error) => {
       console.log(error);
     });
 
- 
+
   }
 }
 */

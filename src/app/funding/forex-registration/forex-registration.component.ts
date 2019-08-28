@@ -61,7 +61,7 @@ export class ForexRegistrationComponent implements OnInit {
     // private decimalPipe: DecimalPipe,
     // private commonService: Commons,
     // private location:Location,
-    
+
     // private fxREgisterService: ForexRegistrationService
     ) {
     this.view = 0;
@@ -109,7 +109,7 @@ export class ForexRegistrationComponent implements OnInit {
   //       modalRef.componentInstance.emitService.subscribe(emittedValue => {
   //         this.emit = emittedValue
   //         this.fxRegister.customer = this.emit;
-        
+
   //       })
   //     }, (err => {
   //       console.log("Cannot find customer");
@@ -147,7 +147,7 @@ export class ForexRegistrationComponent implements OnInit {
   // registerForex() {
 
   //   this.fxREgisterService.createForexRegistration(this.fxRegister).subscribe(data => {
-  //     console.log("data", data)
+  //     console.log("editorData", editorData)
   //     this.fxRegister = data
   //     console.log("fxReg", this.fxRegister)
   //     this.navItem = {
@@ -174,7 +174,7 @@ export class ForexRegistrationComponent implements OnInit {
     // this.location.back();
     this.view = 0
   }
-  
+
   // getBranches() {
 
   //   this.branchService.getBranches().subscribe(data => {
@@ -191,7 +191,7 @@ export class ForexRegistrationComponent implements OnInit {
 
   // equals(o1, o2) {
   //   if (o1 != null && o2 != null) {
-      
+
   //     return o1.code == o2.code ? true : false;
   //   }
   //   return false;
