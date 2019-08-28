@@ -15,6 +15,20 @@ import {error} from 'util';
 export class QueryBuilderComponent implements OnInit {
 
   constructor( private reportserv: ReportService, private router: Router, private route: ActivatedRoute, @Inject(DOCUMENT) private document: Document ) { }
+  join
+  joinType
+  table2
+  table2alias
+  foreignKey
+  joinCondition
+  columnSelect
+  columnAlias
+  columnAggregate
+  columnFilter
+  filterValue
+  filterCondition
+  OrderColumn
+  isLimit = false;
   drone = 'manually';
   oracleQueryBuilder: Oracle10gQBuilder = new Oracle10gQBuilder();
   aggregateValues = [
@@ -67,11 +81,12 @@ joinsValues = [
   currTable;
   showFields;
   options = [];
-  isDisabled = true;
+  isDisabled = false;
   @ViewChild('queryPreviewHtml',  { read: ElementRef }) queryPreviewHtml: ElementRef;
   @ViewChild('preview-box',  { read: ElementRef }) previewBox: ElementRef;
+  
   config = {
-    displayKey: 'value', // if objects array passed which key to be displayed defaults to description
+    displayKey: 'group', // if objects array passed which key to be displayed defaults to description
     search: true, // true/false for the search functionlity defaults to false,
     height: '250px' , // height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
     width: '300px' , // height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
@@ -288,6 +303,16 @@ joinsValues = [
     this.oracleQueryBuilder.addSelect(column, alias, aggregate);
     this.userColumn = this.oracleQueryBuilder.getUserData('select');
     this.updateRawCodeBox();
+    console.log(column)
+    console.log(aggregate)
+    console.log(alias)
+
+    // if (column != null || aggregate != null){
+    //   // this.columnSelect = null;
+    //   // this.columnAlias = null;
+    //   // this.columnAggregate = null;
+    // }
+  
   }
 
   addTable() {
@@ -312,6 +337,20 @@ joinsValues = [
     this.oracleQueryBuilder.addTable(table, alias, joinType, on);
     this.tableObj = this.oracleQueryBuilder.getUserData('tables');
     this.updateRawCodeBox();
+    this.isDisabled = true;
+    // if( joinType !== null || table !== null){
+    //   this.clearForm();
+    // }
+   
+  }
+  clearForm(){
+      // this.join = null;
+      // this.joinType = null;
+      // this.table2 = null;
+      // this.table2alias = null
+      // this.foreignKey = null;
+      // this.joinCondition = null;
+ 
   }
 
   getColumns(table, alias = '') {
@@ -342,22 +381,37 @@ joinsValues = [
   }
 
   addFilter() {
+    debugger;
     const columnElem: HTMLFormElement = this.document.getElementById('columns') as HTMLFormElement;
     const column = columnElem.options[columnElem.selectedIndex].value;
     const conditionElem: HTMLFormElement = this.document.getElementById('conditions') as HTMLFormElement;
-    const operator = conditionElem.options[conditionElem.selectedIndex].value;
+    const op = conditionElem.options[conditionElem.selectedIndex].value;
     const value: HTMLFormElement = (this.document.getElementById('values') as HTMLFormElement).value;
     console.log(value);
-    this.oracleQueryBuilder.addWhere(column, operator, value, null);
+    this.oracleQueryBuilder.addWhere(column, op, value, null);
     this.userFilter = this.oracleQueryBuilder.getUserData('where');
     this.updateRawCodeBox();
+
+    // if( column !== null || op !== null){
+    //   this.columnFilter = null;
+    // this.filterValue = null;
+    // this.filterCondition = null;
+    // }
   }
+  groupby
 
   addGroup() {
-    const group = this.dataModel.map(dataModel => dataModel.id);
-    this.oracleQueryBuilder.addGroup(group);
+  
+    debugger;
+    console.log(this._getAllColumns())
+    // const group = this.options.map(dataModel => dataModel.value);
+    this.dataModel = this._getAllColumns().map( dt => dt)
+    const group = this.dataModel
+    this.oracleQueryBuilder.addGroup(this.groupby);
     this.updateRawCodeBox();
   }
+ 
+  isChecked
 
   addOrder() {
     const columnElem: HTMLFormElement = this.document.getElementById('columns') as HTMLFormElement;
@@ -367,6 +421,8 @@ joinsValues = [
     direction = (this.document.getElementById('descending') as HTMLFormElement).checked ? (this.document.getElementById('descending') as HTMLFormElement).value : undefined;
     this.oracleQueryBuilder.addOrder(column, direction);
     this.updateRawCodeBox();
+    this.OrderColumn = 0;
+    this.isChecked = false;
   }
 
   removeFilter(column, operator) {
@@ -392,11 +448,13 @@ joinsValues = [
     this.oracleQueryBuilder.addLimit(limit);
     this.updateRawCodeBox();
     console.log('it is working');
+    this.isLimit = true;
 
   }
-  setEvent(event) {
-    this.isDisabled = false;
-  }
+  // setEvent(event) {
+  //   const tye = event.target.value
+  //   console.log(tye)
+  // }
 
   _getAllColumns() {
     const cols = [];

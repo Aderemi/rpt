@@ -249,14 +249,14 @@
                       <div class="row">
                         <div class="col-md-3">
                           <label for="table-1">Table <sup>*</sup></label>
-                          <select id="table-1" class="form-control search">
+                          <select id="table-1" class="form-control search" [disabled] = "isDisabled">
                              <option value="">&lt;-------&gt;</option>
                              <option *ngFor="let t of tableContainer" [value]="t">{{toTopicCase(t)}}</option>
                           </select>
                         </div>
                         <div class="col-md-3">
                           <label for="table-1-alias">Alias(optional)</label>
-                          <input type="text" class="form-control search" id="table-1-alias">
+                          <input type="text" class="form-control search" id="table-1-alias"  [disabled] = "isDisabled">
                         </div>
 
                         <div class="col-md-2 mt-auto">
@@ -281,7 +281,7 @@
                                 <label for="Connections">Join Column (optional)</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="join" class="form-control search">
+                                <select id="join" class="form-control search" [(ngModel)]="join">
                                   <option value="">&lt;-------&gt;</option>
                                   <option *ngFor="let v of _columns[rightTable]" [value]="v">{{ toTopicCase(v)}}</option>
                                 </select>
@@ -295,7 +295,7 @@
                                 <label for="Connections">Types of Join</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="joinType" class="form-control search">
+                                <select id="joinType" class="form-control search" [(ngModel)]="joinType">
                                   <option value="">&lt;-------&gt;</option>
                                   <option value="{{item.name}}" *ngFor="let item of joinsValues">{{item.name}}</option>
                                 </select>
@@ -314,7 +314,7 @@
                                 <label for="Connections">Table 2</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="table-2" class="form-control search" (change)="getColumns($event.target.value)">
+                                <select id="table-2" class="form-control search" (change)="getColumns($event.target.value)" [(ngModel)]="table2">
                                   <option value="">&lt;-------&gt;</option>
                                   <option *ngFor="let t of tableContainer" [value]="t">{{toTopicCase(t)}}</option>
                                 </select>
@@ -328,7 +328,7 @@
                                 <label for="Connections">Alias(optional)</label>
                               </div>
                               <div class="col-md-8">
-                                <input type="text" id="table-2-alias" class="form-control search">
+                                <input type="text" id="table-2-alias" class="form-control search" [(ngModel)]="table2alias">
                                 <!-- <select id="alias" class="form-control search">
                                   <option value="">&lt;-------&gt;</option>
                                   <option>------------</option>
@@ -346,7 +346,7 @@
                                 <label for="Connections">Foreign Key(Table 2)</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="foreignKey" class="form-control search">
+                                <select id="foreignKey" class="form-control search" [(ngModel)]="foreignKey">
                                   <option value="">&lt;-------&gt;</option>
                                   <option *ngFor="let v of _columns[leftTable]" [value]="v">{{ toTopicCase(v)}}</option>
                                 </select>
@@ -363,7 +363,7 @@
                                 <label for="Connections">Join Condition</label>
                               </div>
                               <div class="col-md-8">
-                                <select id="joinCondition" class="form-control search">
+                                <select id="joinCondition" class="form-control search" [(ngModel)]="joinCondition">
                                   <option value="">&lt;-------&gt;</option>
                                   <option value="=">Equal</option>
                                   <option value=">">Greater Than</option>
@@ -401,7 +401,7 @@
                               <label for="Connections">Column<sup>*</sup></label>
                             </div>
                             <div class="col-md-8">
-                              <select id="columns" class="form-control search">
+                              <select id="columns" class="form-control search" [(ngModel)]="columnSelect">
                                 <option value="">&lt;-------&gt;</option>
                                     <option value="*">All</option>
                                     <option *ngFor="let v of _getAllColumns()" [value]="v">{{ toTopicCase(v)}}</option>
@@ -418,7 +418,7 @@
                               <label for="Connections">Alias(Optional)</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" class="search" id="alias">
+                              <input type="text" class="search" id="alias" [(ngModel)]="columnAlias">
                             </div>
 
                           </div>
@@ -433,7 +433,7 @@
                               <label for="Connections">Aggregate(Optional)</label>
                             </div>
                             <div class="col-md-8">
-                              <select id="aggregate" class="form-control search">
+                              <select id="aggregate" class="form-control search" [(ngModel)]="columnAggregate">
                                 <option value="">&lt;-------&gt;</option>
                                 <option value="{{item.name}}" *ngFor="let item of aggregateValues">{{item.name}}</option>
                               </select>
@@ -464,9 +464,8 @@
                               <label for="Connections">Column<sup>*</sup></label>
                             </div>
                             <div class="col-md-8">
-                              <select id="columns" class="form-control search">
+                              <select id="columns" class="form-control search" >
                                 <option value="">&lt;-------&gt;</option>
-                                <option value="*">All</option>
                                 <option *ngFor="let v of _getAllColumns()" [value]="v">{{ toTopicCase(v)}}</option>
                               </select>
                             </div>
@@ -481,7 +480,7 @@
                               <label for="Connections">Value</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" class="form-control search" id="values">
+                              <input type="text" class="form-control search" id="values" >
                             </div>
                           </div>
                         </div>
@@ -493,7 +492,7 @@
                               <label for="Connections">Condition</label>
                             </div>
                             <div class="col-md-8">
-                              <select id="conditions" class="form-control search">
+                              <select id="conditions" class="form-control search" >
                                 <option value="">&lt;-------&gt;</option>
                                 <option value="=">Equal</option>
                                 <option value=">">Greater Than</option>
@@ -540,8 +539,8 @@
                           id="groups"
                           class="search"
                           [config]="config"
-                          [options]="options"
-                          [(ngModel)]="dataModel"
+                          [options]="_getAllColumns()"
+                          [(ngModel)]="groupby"
                           [multiple]="true" >
                         </ngx-select-dropdown>
                           </div>
@@ -563,8 +562,8 @@
                           <div class="col-md-4">
                             <div class="form-group row mr-2">
                                 <label for="Connections">Order By<sup>*</sup></label>
-                                <select id="columns" class="form-control search">
-                                  <option value="">&lt;-------&gt;</option>
+                                <select id="columns" class="form-control search" [(ngModel)]="OrderColumn">
+                                  <option value="0">&lt;-------&gt;</option>
                                   <option value="*">All</option>
                                   <option *ngFor="let v of _getAllColumns()" [value]="v">{{ toTopicCase(v)}}</option>
                                 </select>
@@ -572,11 +571,11 @@
                           </div>
 
                           <div class="col-md-2 m-auto">
-                            <input type="radio" class="radio" id="ascending" name="query" value="ASC">
+                            <input type="radio" class="radio" id="ascending" name="query" value="ASC" [checked]="isChecked">
                             <label class="labelradio ml-2" for="and">Ascending</label>
                           </div>
                           <div class="col-md-2  m-auto">
-                            <input type="radio" class="radio" id="descending" name="query" value="DSC">
+                            <input type="radio" class="radio" id="descending" name="query" value="DSC" [checked]="isChecked">
                             <label class="labelradio ml-2" for="or">Descending</label>
                           </div>
                           <div class="col-md-2 m-auto">
@@ -595,7 +594,7 @@
                           <div class="col-md-3">
                             <div class="form-group row mr-2">
                                 <label for="limit">Limit</label>
-                                <input type="text" class="form-control search" id="limits">
+                                <input type="text" class="form-control search" id="limits" [disabled]="isLimit">
                             </div>
                           </div>
 
@@ -632,7 +631,6 @@
                           <th>Type of Join</th>
                           <th>Alias</th>
                           <th>Table</th>
-                          <!-- <th>on</th> -->
                           <th>Actions</th>
                         </thead>
                         <tbody>
@@ -640,7 +638,6 @@
                             <td>{{item.joinType}}</td>
                             <td>{{item.alias}}</td>
                             <td>{{item.name}}</td>
-                            <!-- <td>{{item.on}}</td>                             -->
                             <td><a class="btn btn-danger round-table-button" (click)= "removeTable(item.table)">-</a></td>
                           </tr>
                         </tbody>
@@ -648,22 +645,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- <div class="row pl-4">
-                  <div class="col-md-12 text-bold">
-                    RAW SCRIPT
-                  </div>
-                </div>
-
-                <div class="panel-body largetext">
-                  <div class="row largetext">
-                    <div class="col-sm-12 col-md-10 offset-md-1">
-                        <div class="row pl-4" id="preview-box">
-                            &nbsp;
-                            </div>
-                    </div>
-                  </div>
-                </div> -->
               </div>
 
               <!-- FORM FOR TABLE ENDS -->
@@ -693,22 +674,7 @@
                     </div>
                   </div>
                 </div>
-<!--
-                <div class="row pl-4">
-                  <div class="col-md-12 text-bold">
-                    RAW SCRIPT
-                  </div>
-                </div>
 
-                <div class="panel-body largetext">
-                  <div class="row largetext">
-                    <div class="col-sm-12 col-md-10 offset-md-1">
-                        <div class="row pl-4" id="preview-box">
-                            &nbsp;
-                            </div>
-                    </div>
-                  </div>
-                </div> -->
               </div>
 
               <!-- FORM FOR COLUMN ENDS -->
@@ -729,12 +695,11 @@
                         <tbody>
                           <tr *ngFor="let item of userFilter">
                             <td>{{item.column}}</td>
-                            <td>{{item.operator}}</td>
+                            <td>{{item.op}}</td>
                             <td>{{item.value}}</td>
                             <td><a> <span><i class="flaticon-pencil"></i></span></a></td>
                             <td><a class="btn btn-danger round-table-button">-</a></td>
                           </tr>
-
                         </tbody>
                       </table>
                     </div>
