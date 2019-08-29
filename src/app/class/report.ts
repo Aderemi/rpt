@@ -61,6 +61,7 @@ export interface ReportGroup{
     name?: string;
     code?: string;
     description?: string;
+    report?: Report;
 }
 
 export interface ReportTemplate{

@@ -65,6 +65,8 @@ export class BaseQBuilder {
         this.operators = {
             'Greater than' : ' > ',
             'Less than' : ' < ',
+            'Greater than or equal' : ' >= ',
+            'Less than or equal' : ' <= ',
             'Equal to' : ' =',
             'Contains' : ' LIKE \'%_%\'',
             'Starts with' : ' LIKE \'_%\'',

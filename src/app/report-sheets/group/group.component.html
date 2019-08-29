@@ -51,7 +51,7 @@
                                           <td>{{group.name}}</td>
                                           <td>{{group.code}}</td>
                                           <td>{{group.description}}</td>
-                                          <td><a (click)="updateReport(group.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
+                                          <td><a (click)="update(group.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
                                           <td><a class="btn btn-danger round-table-button" (click)="Delete(group.id)">-</a></td>
                                       </tr>
 
@@ -107,7 +107,7 @@
                                 <label for="name" >Name</label>
                             </div>
                             <div class="col-md-8">
-                               <input class="form-control" type="text" id="name" [(ngModel)]="model.code">
+                               <input class="form-control" type="text" id="name" [(ngModel)]="model.name">
                             </div>
 
                           </div>

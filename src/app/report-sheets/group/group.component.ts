@@ -18,19 +18,26 @@ export class GroupComponent implements OnInit {
     this.getReportGroups();
     this.view = 0;
   }
+  nextPage(){
+    this.view = 1
+  }
+  prevPage(){
+    this.view = 0
+  }
 
   Cancel() {
     this.view = 0;
 
   }
   configure() {
-
+    this.model = {}
     this.view = 1;
   }
 
   getReportGroups() {
       this.reportserv.getReportGroups().subscribe(response => {
         this.modelCollection = response.data;
+        console.log(this.modelCollection)        
       });
   }
 
@@ -54,8 +61,9 @@ export class GroupComponent implements OnInit {
 
 
   processForm() {
+    debugger
     if (this.model.id == undefined) {
-      this.reportserv.createConnection(this.model).subscribe((group) => {
+      this.reportserv.createReportGroup(this.model).subscribe((group) => {
         this.view = 1;
         console.log(group);
         this.ngOnInit();
@@ -63,7 +71,7 @@ export class GroupComponent implements OnInit {
         console.log(error);
       });
     } else {
-      this.reportserv.updateConnection(this.model).subscribe((group) => {
+      this.reportserv.updateReportGroup(this.model).subscribe((group) => {
         console.log(group);
         this.view = 1;
         this.ngOnInit();
