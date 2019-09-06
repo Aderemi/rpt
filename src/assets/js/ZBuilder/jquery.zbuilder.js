@@ -726,7 +726,7 @@ var ZBuilder;
         };
         BlockUI.prototype.buildEditorUI = function (actions) {
             var _this = this;
-            this.$tools = $('<div class="usl-block-tools usl-btn-deck" style="margin-left: -40px"></div>');
+            this.$tools = $('<div class="usl-block-tools usl-btn-deck" style="margin-left: -40px;"></div>');
             actions.forEach(function (action) {
                 var $btn = _this.buildButton(action);
                 _this.$tools.append($btn);
@@ -1956,7 +1956,7 @@ var ZBuilder;
             configurable: true
         });
         UI.prototype.setTools = function () {
-            this.$tools = $('<nav class="navbar navbar-expand-lg navbar-light bg-light p-0" style="margin-left: -50px" data-bricky-tools></nav>');
+            this.$tools = $('<nav class="navbar navbar-expand-lg navbar-light bg-light p-0 mb-4" style="margin-left: -50px" data-bricky-tools></nav>');
             this.$toolsTemplates = $('<ul class="navbar-nav pl-4" style="border-left: solid 10px grey"></ul>');
             this.$toolsLoader = $('<div class="usl-tools-loader"><b><span style="padding-right: 5px; padding-left: 5px"> Loading... </span></b></div>');
             this.$toolsHideBtn = $('<button type="button" class="usl-tools-toggle" style="display: none"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAq1BMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADU4c3GAAAAOHRSTlMAHEA0WLHl5iziHh3ullFQIaMMpXmnBa72dh8asEk3wTlIPD3h4zXnILi3VVqDWero7C3tXCjw6etREhUAAACaSURBVBjTjYxHFoMwDESFsS1M7zW99164/8mCgPeyyCaz0czXSAA/0gYTGlaCdmCSE2PpNHldlDsREhlJvwZIijQToQio4tQ1A1kdcl9s7e4NO7OLBcc828j+MbtiCXBK46gHHA0wtSpG7ZsNfNlRn/d4g6d8GMi77NL+faeS24Kl3lhOZ7pqgZqvqMxRn3VgqhYeTU+pIfyhD5LJCT7GrAJ7AAAAAElFTkSuQmCC"></div></button>');
@@ -2042,7 +2042,7 @@ var ZBuilder;
             }
             else {
                 $btns.not(':first').each(function (idx, btn) {
-                    $(btn).css({ 'opacity': 1, 'left': (idx + 1) * (size + gap) });
+                    $(btn).css({ 'opacity': 1, 'top': (idx + 1) * (size + gap) });
                 });
                 $btnsDeck.css({ 'height': size, 'width': (size + gap) * $btns.length - gap });
             }

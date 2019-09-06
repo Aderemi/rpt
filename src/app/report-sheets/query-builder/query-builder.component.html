@@ -28,7 +28,10 @@
 
                           </div>
                           <div class="row px-4  mb-0">
-                                  <div class="col-10"></div>
+                                  <div class="col-3">
+                                    <input type="text" [tableSearch]="tableList" class="form-control search" placeholder="filter">
+                                  </div>
+                                  <div class="col-md-7"></div>
                                   <div class="col">
                                     <button class="btn btn-block btn-primary " (click)="configure()"><i class="flaticon-add mr-2"></i>Configure</button>
                                   </div>
@@ -44,13 +47,13 @@
                                         <th>Actions</th>
                                         <th></th>
                                       </thead>
-                                      <tbody >
+                                      <tbody #tableList >
                                         <tr *ngFor="let item of queries">
                                           <td>{{item.title}}</td>
                                           <td>{{item.description}}</td>
                                           <td>{{item.content}}</td>
                                           <td><a (click)="updateQuery(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
-                                          <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
+                                          <td><a class=" btn-remove" (click)="Delete(item.id)"></a></td>
                                         </tr>
                                       </tbody>
                                   </table>

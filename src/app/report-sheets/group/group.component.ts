@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ReportGroup} from '../../class/report';
 import {ReportService} from '../../service/report.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-group',
@@ -12,17 +13,20 @@ export class GroupComponent implements OnInit {
   modelCollection: ReportGroup[];
 
   view;
-  constructor(private reportserv: ReportService) { }
+  constructor(private reportserv: ReportService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
     this.getReportGroups();
     this.view = 0;
   }
   nextPage(){
-    this.view = 1
+    this.view = 1;
   }
   prevPage(){
-    this.view = 0
+    this.view = 0;
+  }
+  viewPage(){
+    this.view = 2;
   }
 
   Cancel() {
@@ -41,6 +45,16 @@ export class GroupComponent implements OnInit {
       });
   }
 
+
+  selectedReportGroup
+  // getSelectedReports(reportGroupId){
+  //   this.reportserv.getReportGroup(reportGroupId).subscribe((res)=>{
+  //     this.selectedReport = res.data
+  //     console.log(this.selectedReport.reports)
+  //   })
+
+  // }
+
   Delete(reportGroupId) {
     this.reportserv.deleteReportGroup(reportGroupId).subscribe((response => {
       this.modelCollection = this.modelCollection.filter(mdl => mdl.id != reportGroupId);
@@ -53,10 +67,23 @@ export class GroupComponent implements OnInit {
   update(reportGroupId) {
     this.reportserv.getReportGroup(reportGroupId).subscribe((res) => {
       this.model = res.data;
-      console.log(this.model);
+      this.selectedReportGroup = this.model.reports;
     });
     this.view = 1;
-
+  }
+  viewReportGroup(reportGroup) {
+    // this.reportserv.getReportGroup(reportGroupId).subscribe((res) => {
+    //   this.model = res.data;
+    //   this.selectedReportGroup = this.model.reports;
+    //   console.log(this.model.name);
+    //   console.log('............................',this.selectedReportGroup);
+    // });
+    // this.view = 2;
+    // this.router.navigateByUrl('/report?y='+ this.selectedReportGroup);
+    this.reportserv.setter(reportGroup)
+    this.router.navigate(['/report']);
+    console.log(reportGroup)
+    
   }
 
 

@@ -12,8 +12,7 @@ export interface Report {
 
 export interface ReportConnection{
     id:number;
-
-    title: string;
+    title?: string;
     description: string;
     databaseName: string;
     dbms: string;
@@ -61,7 +60,14 @@ export interface ReportGroup{
     name?: string;
     code?: string;
     description?: string;
-    report?: Report;
+    reports?: Report;
+}
+export class ReportGroup{
+    id?: number;
+    name?: string;
+    code?: string;
+    description?: string;
+    reports?: Report;
 }
 
 export interface ReportTemplate{

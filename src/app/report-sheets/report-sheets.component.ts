@@ -36,7 +36,9 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./report-sheets.component.css']
 })
 export class ReportSheetsComponent implements OnInit {
-
+// schedule: once, daily, weekly, monthly and yearly
+// start_from: date
+// end_by: date optional
 
   constructor(
     //  private http:HttpClient,
@@ -61,17 +63,31 @@ export class ReportSheetsComponent implements OnInit {
   queries: ReportQueries[];
   templates: ReportTemplate[];
   private selectedLink;
+  groupReport;
+  name
 
   ngOnInit() {
     this.view = 0;
     this.views = 0;
-    this.toview = 0;
+    // this.toview = 2;
     this.getReports();
     this.getReportGroups();
     this.radio = 0;
     this.showChecked = 0;
     this.isIndividual =  false;
     this.isGroup = false;
+    this.name = this.reportserv.getter().name
+    this.groupReport = this.reportserv.getter().reports;
+   if(this.groupReport === undefined){
+    console.log(null);
+    this.toview = 0
+   }else{
+    this.toview = 2
+    console.log('vvvvvvvvvvvvvvvvvvvv', this.name,this.groupReport );
+   }
+    
+     
+  
 
     this.reportserv.getTemplates().subscribe(response => this.templates = response.data);
     this.reportserv.getQueries().subscribe(response => this.queries = response.data);
@@ -166,3 +182,4 @@ export class ReportSheetsComponent implements OnInit {
       return (this.selectedLink === name); // if current radio button is selected, return true, else return false
   }
 }
+

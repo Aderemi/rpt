@@ -76,6 +76,7 @@ import { QueryBuilderComponent } from './report-sheets/query-builder/query-build
 import { TemplateComponent } from './report-sheets/template/template.component';
 import { GroupComponent } from './report-sheets/group/group.component';
 import { ConnectionComponent } from './report-sheets/connection/connection.component';
+import { RulesComponent } from './rules/rules.component';
 // import { NotificationMessageTemplateComponent } from './notification-message-template/notification-message-template.component';
 
 const routes: Routes = [
@@ -150,6 +151,8 @@ const routes: Routes = [
     {path:'reporttemplate', component:TemplateComponent},
     {path:'reportgroup', component:GroupComponent},
     {path:'reportconnection', component:ConnectionComponent},
+    {path:'rules', component:RulesComponent},
+
 
     // {path:'nomete', component:NotificationMessageTemplateComponent},
     

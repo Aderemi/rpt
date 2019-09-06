@@ -9,9 +9,9 @@ import { Response, Report, ReportConnection, ReportQueries, SingleDataResponse, 
 })
 export class ReportService {
 
-  baseUrl: String = `http://192.168.1.236:8081/api`;
+  baseUrl: String = `http://192.168.1.157:8081/api`;
 
-  // private report:Report = new Report();
+  private reportGroup:ReportGroup = new ReportGroup();
   // private reportconn:ReportConnection = new ReportConnection();
 
   constructor(private _http: HttpClient) { }
@@ -108,6 +108,10 @@ export class ReportService {
   createConnection(connection) {
     return this._http.post(this.baseUrl + '/report/connection', connection);
   }
+
+  testConnection(connection) {
+    return this._http.post<SingleDataResponse<boolean>>(this.baseUrl + '/report/connection/test', connection);
+  }
   deleteConnection(id: number) {
     return this._http.delete(this.baseUrl + '/report/connection/' + id);
   }
@@ -134,5 +138,12 @@ export class ReportService {
 
   updateTemplate(template){
     return this._http.put(this.baseUrl+ '/report/template', template);
+  }
+
+  setter(reportGroup:ReportGroup){
+    this.reportGroup = reportGroup;
+  }
+  getter(){
+    return this.reportGroup;
   }
 }

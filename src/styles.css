@@ -20,6 +20,23 @@ TABLE OF CONTENTS:
 8) Components
  8.a) skills
 */
+
+.btn-remove {
+    display: inline-block;
+    height: 19px;
+    vertical-align: baseline;
+    width: 20px;
+    text-align: center;
+    position: relative;
+    border-radius: 50%;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  .btn-remove:before {
+    content: " — ";
+    color: white;
+  }
+  
 :root{
     --primary-color : #252a98;
     --hover-color :#3b3eab;
@@ -152,6 +169,7 @@ body{
 }
 .lead{
     font-size: 14px;
+    /* margin-left: 3rem; */
 }
 h1{
     font-size: 24px;

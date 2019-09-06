@@ -102,5 +102,19 @@ input.search{
 #nav-tab a{
   margin-right: 50px;
 }
-
+.btn-remove {
+  display: inline-block;
+  height: 19px;
+  vertical-align: baseline;
+  width: 20px;
+  text-align: center;
+  position: relative;
+  border-radius: 50%;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+.btn-remove:before {
+  content: " — ";
+  color: white;
+}
 

@@ -1,4 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -86,6 +89,9 @@ import { TemplateComponent } from './report-sheets/template/template.component';
 import { ConnectionComponent } from './report-sheets/connection/connection.component';
 import { GroupComponent } from './report-sheets/group/group.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { SearchDirectives } from './directives/search-directive';
+import { RulesComponent } from './rules/rules.component';
+
 
 // import { NotificationMessageTemplateComponent } from './notification-message-template/notification-message-template.component';
 // import {form}
@@ -156,6 +162,7 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
     // NotificationMessageTemplateComponent,
     DigitsOnlyDirective,
     SidebarCollapseDirective,
+    SearchDirectives,
 
 
 
@@ -172,6 +179,7 @@ NavbarComponent,
     TemplateComponent,
     ConnectionComponent,
     GroupComponent,
+    RulesComponent,
     // InstrumentComponent
   ],
   imports: [
@@ -181,6 +189,8 @@ NavbarComponent,
     HttpClientModule,
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule, // required animations module,
+    ToastrModule.forRoot() ,// ToastrModule added,
     SelectDropDownModule,
     QuillModule.forRoot({
       modules: {

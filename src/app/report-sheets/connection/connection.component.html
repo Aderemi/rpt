@@ -26,12 +26,14 @@
                                           <h6 class="panel-title  font-weight-bold mb-1">
                                             Report Connection Table
                                               </h6>
-                                              <!-- <p class="subtitle mb-0  ">Set the appropriate information</p> -->
                                   </div>
                                   
                           </div>
                           <div class="row px-4  mb-0">
-                                  <div class="col-10"></div>
+                            <div class="col-3">
+                              <input type="text" [tableSearch]="tableList" class="form-control search" placeholder="filter">
+                            </div>
+                            <div class="col-md-7"></div>
                                   <div class="col">
                                     <button class="btn btn-block btn-primary " (click)="configure()"><i class="flaticon-add mr-2"></i>New</button>
                                   </div>
@@ -51,7 +53,7 @@
                                         <th>Actions</th>
                                         <th></th>
                                       </thead>
-                                      <tbody >
+                                      <tbody #tableList>
                                         <tr *ngFor="let item of connections">
                                           <td>{{item.title}}</td>
                                           <td>{{item.description}}</td>
@@ -60,8 +62,8 @@
                                           <td>{{item.databaseHost}}</td>
                                           <td>{{item.databasePort}}</td>
                                           <td>{{item.status}}</td>
-                                          <td><a (click)="updateReport(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
-                                          <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
+                                          <td><a (click)="updateConnection(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
+                                          <td><a class="btn-remove" (click)="Delete(item.id)"></a></td>
                                       </tr>    
                                         
                                       </tbody>
@@ -80,63 +82,6 @@
 
 
 <!-- view for table -->
-
-<!-- <div class="container-fluid mt-1" *ngIf="view === 0">
-    <div class="row p-3 pl-4">
-      <div class="col-md-6">
-        <h1 class="text-bold">Report Connection Table</h1>
-      </div>
-  
-      <div class="col-md-2 offset-md-4 pr-0">
-        <button class="btn btn-block btn-primary " (click)="configure()"><i class="flaticon-add mr-2"></i>New</button>
-      </div>
-    </div>
-    <div class="row p-2 pl-4 mt-5">
-      <div class="col-md-12">
-        
-        <div class="row">
-          <div class="col-md-12">
-            <div class="panel">
-              <div class="panel-body">
-                <table class="table table-borderless alt-table table-align">
-                  <thead>
-                     
-                    <tr>
-                      <th>Title</th>
-                      <th>Description</th>
-                      <th>Database Name</th>
-                      <th>DBMS</th>
-                      <th>Database Host</th>
-                      <th>Database Port</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                      <th></th>
-          
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of connections">
-                        <td>{{item.title}}</td>
-                        <td>{{item.description}}</td>
-                        <td>{{item.databaseName}}</td>
-                        <td>{{item.dbms}}</td>
-                        <td>{{item.databaseHost}}</td>
-                        <td>{{item.databasePort}}</td>
-                        <td>{{item.status}}</td>
-                        <td><a (click)="updateReport(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
-                        <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
-                    </tr>                   
-          
-                </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  
   
   
   <!-- view for form new -->
@@ -169,7 +114,7 @@
                   </div>
                  
                   <div class="col-md-2 text-right">
-                    <button class="btn btn-success btn-block" type="submit" (click)="Save()">Test</button>
+                    <button class="btn btn-success btn-block" type="submit" (click)="testConnection()">Test</button>
                   </div>
 
                 </div>
@@ -281,27 +226,14 @@
                         </div>                    
                          
                         </div>
-                      <!-- <div class="row">
-
-                        <div class="col-md-6">
-                          <div class="row form-group">
-                            <div class="col-md-4">
-                                <label for="table" >Status</label>
-                            </div>
-                            <div class="col-md-8">
-                               <input class="form-control dis" type="text" name="status" [(ngModel)]="conn.status">
-                            </div>
-                          </div>
-                        </div>                       
- 
-                        </div>  -->
+                  
                         <div class="row">
                           <div class="col-md-2">
                               Status
                           </div>
                           <div class="col-md-1">
                               <label class="switch">
-                                  <input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'A':'B')"> 
+                                  <input type="checkbox" (change)="checkValue($event)" [checked] = "isChecked"> 
                                   <span class="slider round"></span>
                                 </label>      
                           </div>

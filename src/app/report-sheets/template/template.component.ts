@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ReportService} from 'src/app/service/report.service';
 import {Router, ActivatedRoute} from '@angular/router';
-
+declare var $:any;
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
@@ -28,8 +28,8 @@ export class TemplateComponent implements OnInit {
   getTemplates() {
     this.reportserv.getTemplates().subscribe(response => {
       this.templates = response.data;
+      console.log(this.templates);
     });
-    console.log(this.templates);
   }
 
 

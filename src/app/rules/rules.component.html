@@ -1,0 +1,222 @@
+<div class="container-fluid mt-1">
+  <div class="row p-3 pl-4">
+    <div class="col-md-12">
+      <h1 class="text-bold">Rules</h1>
+    </div>
+    <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="['/reportgroup']" (click)= "Cancel()" >Rules</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a>Rules details</a> </li>
+          </ol>
+      </nav>
+      </div>
+  </div>
+
+  <div class="col-md">
+    <div class="card panel">
+      <div class="card-body form-card">
+        <!-- <form> -->
+          <div class="panel-group" role="tablist" aria-multiselectable="true">
+            <div class="panel-default">
+              <div class="panel-heading" role="tab" id="headingBasic">
+                <div class="float-left form-icon text-center mr-3">
+                  <span class="flaticon-paper  primary-color"></span>
+                </div>
+                <h4 class="panel-title font-weight-bold secondary-color mb-0" #basic>
+                  Edit Criterion
+                </h4>
+                <p class="subtitle mb-0  ">Please fill in the appropriate data </p>
+              </div>
+              <div id="collapseBasic" class="panel-collapse collapse show" role="tabpanel"
+                aria-labelledby="headingBasic">
+                <div class="panel-body">
+                  <div class="col-sm-12 col-md-10 offset-md-1">
+                    <div class="form-body">
+
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <label for="name" >And/Or</label>
+                          </div>
+                          <div class="col-md-8">
+                             <select id="join" class="form-control search">
+                              <option value="">&lt;-------&gt;</option>
+                              <option *ngFor="let v of firstData" [value]="v">{{v}}</option>
+                            </select>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <label for="code" >Field Type</label>
+                          </div>
+                          <div class="col-md-8">
+                              <select id="join" class="form-control search" (change)="setValue($event)"> 
+                                  <option value="">&lt;-------&gt;</option>
+                                  <option *ngFor="let v of secondData" [value]="v">{{v}}</option>
+                                </select>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <label for="description">Event Field</label>
+                          </div>
+                          <div class="col-md-8">
+                              <select id="join" class="form-control search">
+                                  <option value="">&lt;-------&gt;</option>
+                                  <option *ngFor="let v of data" [value]="v">{{v}}</option>
+                                </select>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <label for="description">Compare</label>
+                          </div>
+                          <div class="col-md-8">
+                              <select id="join" class="form-control search" (change)= "setEvent($event)">
+                                  <option value="">&lt;-------&gt;</option>
+                                  <option *ngFor="let v of thirdData" [value]="v">{{v}}</option>
+                                </select>
+                          </div>
+
+                        </div>
+                      </div>
+                      </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <label for="description">Operator</label>
+                          </div>
+                          <div class="col-md-8">
+                              <select id="join" class="form-control search">
+                                  <option value="">&lt;-------&gt;</option>
+                                  <option *ngFor="let v of operator" [value]="v">{{v}}</option>
+                                </select>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6"  *ngIf="show === 1">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <label for="description">Field 2</label>
+                          </div>
+                          <div class="col-md-8">
+                              <select id="join" class="form-control search">
+                                  <option value="">&lt;-------&gt;</option>
+                                  <option *ngFor="let v of data" [value]="v">{{v}}</option>
+                                </select>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6"  *ngIf="show === 2">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <!-- <label for="description">Field 2</label> -->
+                          </div>
+                          <div class="col-md-8">
+                              <div class="custom-control custom-checkbox mb-3">
+                                  <input type="checkbox" name="checking" class="custom-control-input" id="customControlValidation1" (change)="handleSelected($event)" checked>
+                                  <label class="custom-control-label" for="customControlValidation1">Defined</label>
+                                  </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6"  *ngIf="display === 1">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <label for="description">Value</label>
+                          </div>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control search">
+                          </div>
+
+                        </div>
+                      </div>
+                      </div>
+                    <!-- <div class="row">
+                      <div class="col-md-6">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <label for="description">Description</label>
+                          </div>
+                          <div class="col-md-8">
+                              <select id="join" class="form-control search">
+                                  <option value="">&lt;-------&gt;</option>
+                                  <option *ngFor="let v of data" [value]="v">{{v}}</option>
+                                </select>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <label for="description">Description</label>
+                          </div>
+                          <div class="col-md-8">
+                              <select id="join" class="form-control search">
+                                  <option value="">&lt;-------&gt;</option>
+                                  <option *ngFor="let v of data" [value]="v">{{v}}</option>
+                                </select>
+                          </div>
+
+                        </div>
+                      </div>
+                      </div> -->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="row form-group">
+                          <div class="col-md-4">
+                              <!-- <label for="description">Description</label> -->
+                          </div>
+                          <div class="col-md-8">
+                              <div class="custom-control custom-checkbox mb-3">
+                                  <input type="checkbox" name="checking" class="custom-control-input" id="customControlValidation1" (change)="handleSelected($event)" checked>
+                                  <label class="custom-control-label" for="customControlValidation1">True</label>
+                                  </div>
+                          </div>
+
+                        </div>
+                      </div>
+                     
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer text-muted">
+              <div class="row p-3">
+                <div class="col-md-8"></div>
+                <div class="col-md-2 text-right"><button class="btn btn-outline-primary btn-block" (click)="Cancel()"
+                    type="submit">Cancel</button>
+                </div>
+                <div class="col-md-2 text-right">
+                  <button class="btn btn-primary btn-block" type="submit" (click)="processForm()">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- </form> -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>

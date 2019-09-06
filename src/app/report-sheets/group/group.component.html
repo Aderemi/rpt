@@ -10,8 +10,8 @@
       <div class="col-md-12">
       <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Report Group</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Report Group table</li>
+            <li class="breadcrumb-item active" aria-current="page"><a [routerLink]="['/reportgroup']"  >Report Group</a></li>
+            <li class="breadcrumb-item" ><a (click)= "nextPage()">Report Group table</a> </li>
           </ol>
       </nav>
       </div>
@@ -30,7 +30,10 @@
 
                           </div>
                           <div class="row px-4  mb-0">
-                                  <div class="col-10"></div>
+                            <div class="col-3">
+                              <input type="text" [tableSearch]="tableList" class="form-control search" placeholder="filter">
+                            </div>
+                            <div class="col-md-7"></div>
                                   <div class="col">
                                     <button class="btn btn-block btn-primary " (click)="configure()"><i class="flaticon-add mr-2"></i>New</button>
                                   </div>
@@ -43,22 +46,23 @@
                                         <th>Name</th>
                                         <th>Code</th>
                                         <th>Desciption</th>
-                                        <th>Actions</th>
                                         <th></th>
+                                        <th>Actions</th>
                                       </thead>
-                                      <tbody >
+                                      <tbody #tableList>
                                         <tr *ngFor="let group of modelCollection">
                                           <td>{{group.name}}</td>
                                           <td>{{group.code}}</td>
                                           <td>{{group.description}}</td>
-                                          <td><a (click)="update(group.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
-                                          <td><a class="btn btn-danger round-table-button" (click)="Delete(group.id)">-</a></td>
+                                          <td><a (click)="viewReportGroup(group)"> <span><i class="flaticon-view"></i></span></a></td>
+                                          <td><a (click)="update(group.id)"> <span><i class="flaticon-pencil"></i></span></a>   &nbsp;
+                                          <a class="btn-remove" (click)="Delete(group.id)"></a></td>
                                       </tr>
-
                                       </tbody>
                                   </table>
                               </div>
                           </div>
+                          
 
               </div>
           </div>
@@ -76,6 +80,14 @@
       <div class="col-md-12">
         <h1 class="text-bold">Report Group Form</h1>
       </div>
+      <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/reportgroup']" (click)= "Cancel()" >Report Group</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a>Report Group table</a> </li>
+            </ol>
+        </nav>
+        </div>
     </div>
 
     <div class="col-md">
@@ -129,7 +141,7 @@
                             <div class="col-md-4">
                                 <label for="description">Description</label>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                               <textarea class="form-control" type="text" id="description" [(ngModel)]="model.description"></textarea>
                             </div>
 
@@ -158,3 +170,80 @@
       </div>
     </div>
   </div>
+  </div>
+
+
+  <!-- VIEW FOR REPORTS FROM REPORTS GROUP -->
+  <div class="container-fluid mt-1" *ngIf="view === 2">
+
+  <div class="row py-3 px-4">
+
+      <div class="col-md-12">
+              <h1 class="text-bold"> Group Reports<span *ngIf="errorExists"style="cursor : pointer" class="flaticon-info text-danger ml-3" (click)="loadErrors()"></span></h1>
+            </div>
+      <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="['/reportgroup']" (click)= "Cancel()" >Report Group</a></li>
+              <li class="breadcrumb-item"><a (click)= "nextPage()">Report Group table</a> </li>
+              <li class="breadcrumb-item active" aria-current="page">{{model.name}} Reports </li>
+          </ol>
+      </nav>
+      </div>
+  </div>
+  <div class="row py-2 px-4">
+      <div class="col-md-12">
+          <div class="card panel mb-5">
+              <div class="card-body p-4">
+                          <div class="row p-4">
+                                  <div class="col-md-12">
+                                          <h6 class="panel-title  font-weight-bold mb-1">
+                                            Reports from {{model.name}} group
+                                              </h6>
+                                              <!-- <p class="subtitle mb-0  ">Set the appropriate information</p> -->
+                                  </div>
+
+                          </div>
+                          <div class="row px-4  mb-0">
+                            <div class="col-3">
+                              <input type="text" [tableSearch]="tableList" class="form-control search" placeholder="filter">
+                            </div>
+                            <div class="col-md-7"></div>
+                                  <div class="col">
+                                    <button class="btn btn-block btn-primary " (click)="configure()"><i class="flaticon-add mr-2"></i>New</button>
+                                  </div>
+
+                          </div>
+                          <div class="row p-4">
+                              <div class="col-md-12">
+                                  <table id="myTable" class="table alt-table table-borderless">
+                                      <thead>
+                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Desciption</th>
+                                        <th>Actions</th>
+                                        <th></th>
+                                      </thead>
+                                      <tbody #tableList>
+                                        <tr *ngFor="let group of selectedReportGroup">
+                                          <td>{{group.name}}</td>
+                                          <td>{{group.title}}</td>
+                                          <td>{{group.description}}</td>
+                                          <td><a (click)="update(group.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
+                                          <td><a class="btn btn-danger round-table-button" (click)="Delete(group.id)">-</a></td>
+                                      </tr>
+
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+
+              </div>
+          </div>
+
+
+      </div>
+
+  </div>
+</div>
+

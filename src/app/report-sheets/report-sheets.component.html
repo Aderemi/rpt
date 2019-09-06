@@ -23,13 +23,14 @@
                                           <h6 class="panel-title  font-weight-bold mb-1">
                                             Report Sheets Table
                                               </h6>
-                                              <!-- <p class="subtitle mb-0  ">Set the appropriate information</p> -->
                                   </div>
 
                           </div>
                           <div class="row px-4  mb-0">
-                                  <div class="col-10"></div>
-                                  <div class="col">
+                            <div class="col-3">
+                              <input type="text" [tableSearch]="tableList" class="form-control search" placeholder="filter">
+                            </div>
+                            <div class="col-md-7"></div>                                  <div class="col">
                                     <button class="btn btn-block btn-primary " (click)="Add()"><i class="flaticon-add mr-2"></i>New</button>
                                   </div>
 
@@ -48,7 +49,7 @@
                                         <th></th>
                                         <th></th>
                                       </thead>
-                                      <tbody >
+                                      <tbody #tableList>
                                         <tr *ngFor="let item of reports">
                                           <td>{{item.name}}</td>
                                           <td>{{item.title}}</td>
@@ -58,7 +59,7 @@
                                           <td>{{item.defaultExportType}}</td>
                                           <td><a data-toggle="modal" data-target="#milestone-modal"> <span><i class="flaticon-download-1"></i></span></a></td>
                                           <td><a (click)="updateReport(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
-                                          <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
+                                          <td><a class="btn-remove" (click)="Delete(item.id)"></a></td>
                                       </tr>
                                       </tbody>
                                   </table>
@@ -167,13 +168,13 @@
 
 
             <div class="row">
-                  <div class="col-md-5">
+                  <div class="col-md-6">
                       <div class="custom-control custom-checkbox mb-3">
                       <input type="checkbox" name="checking" class="custom-control-input" id="customControlValidation1" (change)="handleSelected($event)" checked>
                       <label class="custom-control-label" for="customControlValidation1">Direct Download</label>
                       </div>
                   </div>
-                  <div class="col-md-5">
+                  <div class="col-md-6">
 
                       <div class="custom-control custom-checkbox mb-3">
 
@@ -184,18 +185,18 @@
             </div>
 
              <div class="row">
-               <div class="col-md-5">
+               <div class="col-md-6">
                   <label for="">Format <sup>*</sup></label>
                   <select name="" id="format" class="form-control search">
                     <option value="">&lt;-------&gt;</option>
-                    <option value="">pdf</option>
-                    <option value="">csv</option>
-                    <option value="">txt</option>
-                    <option value="">doc</option>
+                    <option value="">PDF</option>
+                    <option value="">CSV</option>
+                    <option value="">TXT</option>
+                    <option value="">DOC</option>
                   </select>
                </div>
 
-               <div class="col-md-5 mt-4" *ngIf="showChecked === 1">
+               <div class="col-md-6 mt-4" *ngIf="showChecked === 1">
                       <div class="form-group row mr-2">
                         <div class="col-md-6">
                           <input type="radio" class="radio" id="Individual" name="drone" (click)="setradio('Individual')">
@@ -213,12 +214,12 @@
 
             <div class="row">
 
-              <div class="col-md-5" *ngIf="isIndividual">
+              <div class="col-md-6" *ngIf="isIndividual">
                       <label for="emails">Email address</label>
                       <input type="text" value="" name="emails" id="emails">
               </div>
 
-              <div class="col-md-5" *ngIf="isGroup">
+              <div class="col-md-6" *ngIf="isGroup">
                   <label for="email-category">Group Emails</label>
                   <select (change)="onChange($event)"  class="form-control">
                       <option value="">&lt;-------&gt;</option>
@@ -227,6 +228,34 @@
               </div>
 
             </div>
+
+            <div class="row" *ngIf="showChecked === 1">
+              <div class="col-md-6">
+                 <label for="">Schedule <sup>*</sup></label>
+                 <select name="" id="format" class="form-control search">
+                   <option value="">&lt;-------&gt;</option>
+                   <option value="">once</option>
+                   <option value="">daily</option>
+                   <option value="">weekly</option>
+                   <option value="">monthly</option>
+                   <option value="">yearly</option>
+                 </select>
+              </div>
+              <div class="col-md-6">
+                 <label for="">Start Date <sup>*</sup></label>
+                 <input type="date"  class="form-control search">
+              </div>
+              </div>
+
+            <div class="row" *ngIf="showChecked === 1">
+              <div class="col-md-6">
+                 <label for="">End Date (Optional)</label>
+                 <input type="date"  class="form-control search">
+              </div>
+
+
+              </div>
+
            </div>
           </div>
         </div>
@@ -393,3 +422,78 @@
     </div>
   </div>
   </div>
+
+
+
+   <!-- VIEW FOR REPORTS FROM REPORTS GROUP -->
+   <div class="container-fluid mt-1" *ngIf="toview === 2">
+
+      <div class="row py-3 px-4">
+    
+          <div class="col-md-12">
+                  <h1 class="text-bold"> Group Reports</h1>
+                </div>
+          <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a (click)= "Cancel()" >All Reports</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{name}} Reports </li>
+              </ol>
+          </nav>
+          </div>
+      </div>
+      <div class="row py-2 px-4">
+          <div class="col-md-12">
+              <div class="card panel mb-5">
+                  <div class="card-body p-4">
+                              <div class="row p-4">
+                                      <div class="col-md-12">
+                                              <h6 class="panel-title  font-weight-bold mb-1">
+                                                Reports from {{name}} group
+                                                  </h6>
+                                      </div>
+    
+                              </div>
+                              <div class="row px-4  mb-0">
+                                <div class="col-3">
+                                  <input type="text" [tableSearch]="tableList" class="form-control search" placeholder="filter">
+                                </div>
+                                <div class="col-md-7"></div>
+                                      <div class="col">
+                                        <button class="btn btn-block btn-primary " (click)="configure()"><i class="flaticon-add mr-2"></i>New</button>
+                                      </div>
+    
+                              </div>
+                              <div class="row p-4">
+                                  <div class="col-md-12">
+                                      <table id="myTable" class="table alt-table table-borderless">
+                                          <thead>
+                                            <th>Name</th>
+                                            <th>Title</th>
+                                            <th>Desciption</th>
+                                            <th>Actions</th>
+                                            <th></th>
+                                          </thead>
+                                          <tbody #tableList>
+                                            <tr *ngFor="let group of groupReport">
+                                              <td>{{group.name}}</td>
+                                              <td>{{group.title}}</td>
+                                              <td>{{group.description}}</td>
+                                              <td><a data-toggle="modal" data-target="#milestone-modal"> <span><i class="flaticon-download-1"></i></span></a></td>
+                                          <td><a (click)="updateReport(group.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
+                                          <td><a class="btn-remove" (click)="Delete(group.id)"></a></td>
+                                          </tr>
+    
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+    
+                  </div>
+              </div>
+    
+    
+          </div>
+    
+      </div>
+    </div>

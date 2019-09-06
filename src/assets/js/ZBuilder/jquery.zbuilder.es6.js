@@ -1695,7 +1695,7 @@ var ZBuilder;
             }
         }
         setTools() {
-            this.$tools = $('<nav class="navbar navbar-expand-lg navbar-light bg-light p-0" editorData-bricky-tools></nav>');
+            this.$tools = $('<nav class="navbar navbar-expand-lg navbar-light bg-light p-0 mb-4" editorData-bricky-tools></nav>');
             this.$toolsTemplates = $('<div class="collapse navbar-collapse" id="navbarNavDropdown"></div>');
             const $nav = $('<div class="navbar-nav"></div>');
             this.$toolsTemplates = this.$toolsTemplates.append($nav);

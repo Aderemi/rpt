@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/app/service/report.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReportConnection } from 'src/app/class/report';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-connection',
@@ -11,7 +12,7 @@ import { ReportConnection } from 'src/app/class/report';
 
 export class ConnectionComponent implements OnInit {
 
-  constructor( private reportserv: ReportService, private router: Router, private route: ActivatedRoute, ) { }
+  constructor( private reportserv: ReportService, private router: Router, private route: ActivatedRoute,private toastr: ToastrService ) { }
 
   view;
   connections;
@@ -19,6 +20,11 @@ export class ConnectionComponent implements OnInit {
   conn;
   connection: ReportConnection;
   status = 'Disabled';
+  message;
+  showAlert;
+  statusCheck;
+  isChecked;
+
 
   ngOnInit() {
     this.getConnections();
@@ -43,20 +49,12 @@ export class ConnectionComponent implements OnInit {
 
   Change(event) {
     const subValue = event.target.value;
-    // this.connections.editorData.dbms = subValue;
     this.connection.dbms = subValue;
     console.log(subValue);
   }
 
 
-  checkValue(event: any) {
-    console.log(event);
-    if (event == 'A') {
-      this.status = 'Enabled';
-    } else {
-      this.status = 'Disabled';
-    }
- }
+ 
 
 
   Delete(connectionId) {
@@ -68,13 +66,51 @@ export class ConnectionComponent implements OnInit {
     });
     }
 
+   
     updateConnection(connectionId) {
       this.reportserv.getConnection(connectionId).subscribe((res) => {
         this.conn = res.data;
-        console.log(this.conn);
+       this.statusCheck = this.conn.status
+        console.log(this.conn, this.statusCheck);
+        this.checkValue(event);
       });
       this.view = 1;
 
+    }
+
+    checkValue(event) {
+      debugger;
+      if (this.statusCheck === "ACTIVE" || this.statusCheck ===  "Active" ){
+        this.isChecked = true;
+        this.status = 'Enabled';
+      }else{
+        event.target.checked = false;
+        this.status = 'Disabled';
+        this.isChecked = false;        
+      }
+   }
+
+
+
+
+    testConnection() {
+      this.reportserv.testConnection(this.conn).subscribe((res) => {
+        let connected = res.data;
+        this.message = res.message;
+        console.log(res.message, connected);
+
+        if (connected === true){
+          this.showAlert = 1;
+          this.toastr.success( this.message, 'Connected!', {
+            timeOut: 4000
+          });
+        }else{
+          this.showAlert = 0;
+          this.toastr.error( this.message, 'Error!', {
+            timeOut: 4000
+          });
+        }
+      });
     }
 
 
