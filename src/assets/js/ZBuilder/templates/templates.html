@@ -15,6 +15,10 @@
         margin: 0;
     }
 
+    .usl-template>.row> {
+        max-width: 800px !important;
+    }
+
     .usl-template>.row>.col-md-6 {
         width: 50% !important;
     }
@@ -46,12 +50,13 @@
 
     .dropdown-toggle::after {
         margin-left: 4.255em !important;
-
     }
+
     .bond::after {
         margin-left: 2.255em !important;
 
     }
+
     #zb-editor .nav-bar:first-child {
         padding-right: 4.255em;
         border-right: solid 60px grey;
@@ -61,52 +66,44 @@
 
     <div class="usl-template" data-name="Columns-2">
         <div class="usl-template-preview">
+            <a class="dropdown-item">1-Column</a>
+        </div>
+        <div class="row">
+            <div class="col-md-12" data-usl-field='{ "name" : "col3", "type": "container" }'></div>
+        </div>
+    </div>
+
+    <div class="usl-template" data-name="Columns-2">
+        <div class="usl-template-preview">
             <a class="dropdown-item">2-Column</a>
         </div>
-        <table style="border: none;">
-          <tr>
-            <td data-usl-field='{ "name" : "col1", "type": "container" }'></td>
-            <td data-usl-field='{ "name" : "col2", "type": "container" }'></td>
-          </tr>
-        </table>
+        <div class="row">
+            <div class="col-md-6" data-usl-field='{ "name" : "col2", "type": "container" }'></div>
+            <div class="col-md-6" data-usl-field='{ "name" : "col3", "type": "container" }'></div>
+        </div>
     </div>
 
     <div class="usl-template" data-name="Columns-3">
         <div class="usl-template-preview">
             <a  class="dropdown-item">3-Column</a>
         </div>
-        <table style="border: none;">
-          <tr>
-            <td data-usl-field='{ "name" : "col1", "type": "container" }'></td>
-            <td data-usl-field='{ "name" : "col2", "type": "container" }'></td>
-            <td data-usl-field='{ "name" : "col3", "type": "container" }'></td>
-          </tr>
-        </table>
-        <!--<div class="row">-->
-            <!--<div class="col-md-4" data-usl-field='{ "name" : "col1", "type": "container" }'></div>-->
-            <!--<div class="col-md-4" data-usl-field='{ "name" : "col2", "type": "container" }'></div>-->
-            <!--<div class="col-md-4" data-usl-field='{ "name" : "col3", "type": "container" }'></div>-->
-        <!--</div>-->
+        <div class="row">
+            <div class="col-md-4" data-usl-field='{ "name" : "col1", "type": "container" }'></div>
+            <div class="col-md-4" data-usl-field='{ "name" : "col2", "type": "container" }'></div>
+            <div class="col-md-4" data-usl-field='{ "name" : "col3", "type": "container" }'></div>
+        </div>
     </div>
 
     <div class="usl-template" data-name="Columns-4">
         <div class="usl-template-preview">
             <a  class="dropdown-item">4-Column</a>
         </div>
-        <table style="border: none;">
-          <tr>
-            <td data-usl-field='{ "name" : "col1", "type": "container" }'></td>
-            <td data-usl-field='{ "name" : "col2", "type": "container" }'></td>
-            <td data-usl-field='{ "name" : "col3", "type": "container" }'></td>
-            <td data-usl-field='{ "name" : "col4", "type": "container" }'></td>
-          </tr>
-        </table>
-        <!--<div class="row">-->
-            <!--<div class="col-md-3" data-usl-field='{ "name" : "col1", "type": "container" }'></div>-->
-            <!--<div class="col-md-3" data-usl-field='{ "name" : "col2", "type": "container" }'></div>-->
-            <!--<div class="col-md-3" data-usl-field='{ "name" : "col3", "type": "container" }'></div>-->
-            <!--<div class="col-md-3" data-usl-field='{ "name" : "col4", "type": "container" }'></div>-->
-        <!--</div>-->
+        <div class="row">
+            <div class="col-md-3" data-usl-field='{ "name" : "col1", "type": "container" }'></div>
+            <div class="col-md-3" data-usl-field='{ "name" : "col2", "type": "container" }'></div>
+            <div class="col-md-3" data-usl-field='{ "name" : "col3", "type": "container" }'></div>
+            <div class="col-md-3" data-usl-field='{ "name" : "col4", "type": "container" }'></div>
+        </div>
     </div>
 </div>
 

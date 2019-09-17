@@ -42,9 +42,7 @@
                                         <th>Name</th>
                                         <th>title</th>
                                         <th>description</th>
-                                        <th>template</th>
                                         <th>templateType</th>
-                                        <th>defaultExportType</th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
@@ -52,11 +50,9 @@
                                       <tbody #tableList>
                                         <tr *ngFor="let item of reports">
                                           <td>{{item.name}}</td>
-                                          <td>{{item.title}}</td>
-                                          <td>{{item.description}}</td>
-                                          <td>{{item.template}}</td>
+                                          <td>{{item.title | stringLength:15}}</td>
+                                          <td>{{item.description | stringLength:20}}</td>
                                           <td>{{item.templateType}}</td>
-                                          <td>{{item.defaultExportType}}</td>
                                           <td><a data-toggle="modal" data-target="#milestone-modal"> <span><i class="flaticon-download-1"></i></span></a></td>
                                           <td><a (click)="updateReport(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
                                           <td><a class="btn-remove" (click)="Delete(item.id)"></a></td>
@@ -74,60 +70,6 @@
 
   </div>
 </div>
-
-<!-- table -->
-<!-- <div class="container-fluid mt-1" *ngIf="toview === 0">
-  <div class="row p-3 pl-4">
-    <div class="col-md-6">
-      <h1 class="text-bold">Report Sheets</h1>
-    </div>
-
-    <div class="col-md-2 offset-md-4 pr-0">
-      <button class="btn btn-block btn-primary " (click)="Add()">
-        <i class="flaticon-add mr-3"></i> New</button>
-    </div>
-  </div>
-
-  <div class="row p-2 pl-4 mt-5">
-    <div class="col-md-12">
-
-            <div class="panel-body">
-              <table id="example1" class=" alt-table table table-borderless" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>title</th>
-                        <th>description</th>
-                        <th>template</th>
-                        <th>templateType</th>
-                        <th>defaultExportType</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of reports">
-                        <td>{{item.name}}</td>
-                        <td>{{item.title}}</td>
-                        <td>{{item.description}}</td>
-                        <td>{{item.template}}</td>
-                        <td>{{item.templateType}}</td>
-                        <td>{{item.defaultExportType}}</td>
-                        <tdeditorDatadata-toggle="modeditorDatadata-target="#milestone-modal"> <span><i class="flaticon-download-1"></i></span></a></td>
-                        <td><a (click)="updateReport(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
-                        <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
-    </div>
-
-  </div>
-
-</div> -->
-
 
 <div class="modal fade" id="milestone-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
   aria-hidden="true">
@@ -429,7 +371,7 @@
    <div class="container-fluid mt-1" *ngIf="toview === 2">
 
       <div class="row py-3 px-4">
-    
+
           <div class="col-md-12">
                   <h1 class="text-bold"> Group Reports</h1>
                 </div>
@@ -452,7 +394,7 @@
                                                 Reports from {{name}} group
                                                   </h6>
                                       </div>
-    
+
                               </div>
                               <div class="row px-4  mb-0">
                                 <div class="col-3">
@@ -462,7 +404,7 @@
                                       <div class="col">
                                         <button class="btn btn-block btn-primary " (click)="configure()"><i class="flaticon-add mr-2"></i>New</button>
                                       </div>
-    
+
                               </div>
                               <div class="row p-4">
                                   <div class="col-md-12">
@@ -478,22 +420,22 @@
                                             <tr *ngFor="let group of groupReport">
                                               <td>{{group.name}}</td>
                                               <td>{{group.title}}</td>
-                                              <td>{{group.description}}</td>
+                                              <td>{{group.description | stringLength:30}}</td>
                                               <td><a data-toggle="modal" data-target="#milestone-modal"> <span><i class="flaticon-download-1"></i></span></a></td>
                                           <td><a (click)="updateReport(group.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
                                           <td><a class="btn-remove" (click)="Delete(group.id)"></a></td>
                                           </tr>
-    
+
                                           </tbody>
                                       </table>
                                   </div>
                               </div>
-    
+
                   </div>
               </div>
-    
-    
+
+
           </div>
-    
+
       </div>
     </div>

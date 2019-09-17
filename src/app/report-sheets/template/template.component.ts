@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ReportService} from 'src/app/service/report.service';
 import {Router, ActivatedRoute} from '@angular/router';
+import {environment} from '../../../environments/environment';
 declare var $:any;
 @Component({
   selector: 'app-template',
@@ -45,9 +46,9 @@ export class TemplateComponent implements OnInit {
   updateTemplate(templateId) {
     this.reportserv.getTemplate(templateId).subscribe((res) => {
       this.tem = res.data;
-      console.log(this.tem);
+      this.view = 1;
+      this.attachBuilder();
     });
-    this.view = 1;
   }
 
   getPlaceholder(blocks: any[]) {
@@ -56,7 +57,7 @@ export class TemplateComponent implements OnInit {
       if (block.template == 'Embed') {
         block.fields.forEach(field => {
           if (field.type == 'placeholder') {
-            placeholders.push(field.name);
+            placeholders.push(field.queryId);
           }
         });
       }
@@ -90,12 +91,16 @@ export class TemplateComponent implements OnInit {
   configure() {
     this.view = 1;
     this.tem = {};
+    this.attachBuilder();
+  }
+
+  attachBuilder() {
     const self = this;
     $.getScript('assets/js/ZBuilder/jquery.zbuilder.js', function () {
       $.getScript('assets/js/ZBuilder/locales/jquery.zbuilder.en.js', function () {
         $('#zb-editor').zbuilder({
           ignoreHtml: true,
-          blocksUrl: '/api/report/query/initialblock.json',
+          blocksUrl: environment.api + '/api/report/template/' + self.tem.id + '/initial-block.json',
           templatesUrl: 'assets/js/ZBuilder/templates/templates.html',
           onChange: function (data) {
             self.editorData = data;

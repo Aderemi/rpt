@@ -41,7 +41,7 @@ export class GroupComponent implements OnInit {
   getReportGroups() {
       this.reportserv.getReportGroups().subscribe(response => {
         this.modelCollection = response.data;
-        console.log(this.modelCollection)        
+        console.log(this.modelCollection)
       });
   }
 
@@ -83,12 +83,11 @@ export class GroupComponent implements OnInit {
     this.reportserv.setter(reportGroup)
     this.router.navigate(['/report']);
     console.log(reportGroup)
-    
+
   }
 
 
   processForm() {
-    debugger
     if (this.model.id == undefined) {
       this.reportserv.createReportGroup(this.model).subscribe((group) => {
         this.view = 1;

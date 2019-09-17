@@ -30,7 +30,7 @@
                               <div class="col-3">
                                 <input type="text" [tableSearch]="tableList" class="form-control search" placeholder="filter">
                               </div>
-                              <div class="col-md-7"></div>                                    
+                              <div class="col-md-7"></div>
                               <div class="col">
                                       <button class="btn btn-block btn-primary " (click)="configure()"><i class="flaticon-add mr-2"></i>New</button>
                                     </div>
@@ -41,7 +41,6 @@
                                     <table id="myTable" class="table alt-table table-borderless">
                                         <thead>
                                           <th>Name</th>
-                                          <th> Placeholder</th>
                                           <th>Description</th>
                                           <!-- <th>JsonContent</th>
                                           <th>HTML</th> -->
@@ -50,10 +49,7 @@
                                         <tbody #tableList>
                                           <tr *ngFor="let item of templates">
                                             <td>{{item.name}}</td>
-                                            <td>{{item.placeholder}}</td>
-                                            <td>{{item.description}}</td>
-                                            <!-- <td>{{item.jsonContent}}</td>
-                                            <td>{{item.html}}</td> -->
+                                            <td>{{item.description | stringLength:35}}</td>
                                             <td><a (click)="updateTemplate(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
                                             <td><a class="btn-remove" (click)="Delete(item.id)"></a></td>
                                           </tr>

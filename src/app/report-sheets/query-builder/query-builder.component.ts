@@ -81,10 +81,10 @@ joinsValues = [
   currTable;
   showFields;
   options = [];
-  isDisabled = false;
+  tableNotEmpty = false;
   @ViewChild('queryPreviewHtml',  { read: ElementRef }) queryPreviewHtml: ElementRef;
   @ViewChild('preview-box',  { read: ElementRef }) previewBox: ElementRef;
-  
+
   config = {
     displayKey: 'group', // if objects array passed which key to be displayed defaults to description
     search: true, // true/false for the search functionlity defaults to false,
@@ -274,7 +274,7 @@ joinsValues = [
     const iTables = this.oracleQueryBuilder.getUserData('tables');
     const iTableCount = iTables.length;
     this.que.content = this.oracleQueryBuilder.processQuery();
-    this.document.getElementById('preview-box').innerText = this.que.content;
+    this.document.getElementById('raw-script').innerText = this.que.content;
   }
 
   preview() {
@@ -296,13 +296,13 @@ joinsValues = [
   }
 
   addColumn() {
-    if(!this.validateById(['columns__select', 'alias'])) return;
+    if (!this.validateById(['columns__select'])) return;
     const columnElem: HTMLFormElement = this.document.getElementById('columns') as HTMLFormElement;
     const aliasElem = (this.document.getElementById('alias') as HTMLFormElement);
     const alias = aliasElem.value;
     const aggElem: HTMLFormElement = this.document.getElementById('aggregate') as HTMLFormElement;
     const column = columnElem.options[columnElem.selectedIndex].value;
-    const aggregate = aggElem.options[aggElem.selectedIndex].value;
+    const aggregate = aggElem.options[aggElem.selectedIndex] ? aggElem.options[aggElem.selectedIndex].value : "";
     this.oracleQueryBuilder.addSelect(column, alias, aggregate);
     this.userColumn = this.oracleQueryBuilder.getUserData('select');
     this.updateRawCodeBox();
@@ -320,17 +320,32 @@ joinsValues = [
     return true;
   }
 
-  clearFieldsById(fields: string[]){
-    for(const field of fields){
+  clearFieldsById(fields: string[]) {
+    for(const field of fields) {
       const [id, type] = field.split('__');
       const elem: HTMLFormElement = this.document.getElementById(id) as HTMLFormElement;
-      if(!elem) return false;
-      if(type == 'select') elem.selectedIndex = 0;
+      if (!elem) return false;
+      if (type == 'select') elem.selectedIndex = 0;
       else elem.value = '';
     }
   }
 
+  discernSelfJoin(table, alias = "") {
+    debugger;
+    const selfJoin = this.rightTable === table ||
+        this.leftTable === alias ||
+        this.rightTable === alias ||
+        this.leftTable === table;
+    if (!selfJoin){
+      if (!!alias && this.leftTable === table) this.leftTable = alias;
+      if (!!alias && this.rightTable === table) this.rightTable = alias;
+    }else{
+      if (!!alias) this.leftTable = alias;
+    }
+  }
+
   addTable() {
+    debugger
     // if(!this.validateById(['joinType__select', 'join__select', 'joinCondition__select', 'foreignKey__select' ])) return;
     const tableId = this.rightTable ? 'table-2' : 'table-1';
     const aliasId = this.rightTable ? 'table-2-alias' : 'table-1-alias';
@@ -340,27 +355,35 @@ joinsValues = [
     const joinConditionElement: HTMLFormElement = this.document.getElementById('joinCondition') as HTMLFormElement;
     const rightColumnElement: HTMLFormElement = this.document.getElementById('foreignKey') as HTMLFormElement;
     // const alias = (this.document.getElementById(aliasId) as HTMLFormElement).value;
-    const aliasElem = (this.document.getElementById('alias') as HTMLFormElement);
+    const aliasElem = (this.document.getElementById(aliasId) as HTMLFormElement);
     const alias = aliasElem.value;
     const joinType  = joinTypeElement ? joinTypeElement.options[joinTypeElement.selectedIndex].value : null;
     const table = tableElement.options[tableElement.selectedIndex].value;
-    const leftColumn  = leftColumnElement ? leftColumnElement.options[leftColumnElement.selectedIndex].value : null;
+    let leftColumn  = leftColumnElement ? leftColumnElement.options[leftColumnElement.selectedIndex].value : null;
     const joinCondition = joinConditionElement ? joinConditionElement.options[joinConditionElement.selectedIndex].value : null;
-    const rightColumn = rightColumnElement ? rightColumnElement.options[rightColumnElement.selectedIndex].value : null;
+    let rightColumn = rightColumnElement ? rightColumnElement.options[rightColumnElement.selectedIndex].value : null;
     if (!table) { throw new error('Table is required'); }
+    this.discernSelfJoin(table, alias);
     this.alternateTable(alias || table);
-
+    if (!!alias) {
+      const dotLoc = !!rightColumn ? rightColumn.indexOf('.') : -1;
+      rightColumn = dotLoc > 0 && !!alias ? alias + rightColumn.substring(dotLoc) : rightColumn;
+    }
+    // const dotLeftLoc = !!leftColumn ? leftColumn.indexOf('.') : -1;
+    // leftColumn = dotLeftLoc > 0 && !!this.leftTable ? this.leftTable + leftColumn.subString(dotLeftLoc) : leftColumn;
     this.getColumns(table, alias);
     const on = joinCondition ? [{left: leftColumn, right: rightColumn, op: joinCondition}] : null;
     this.oracleQueryBuilder.addTable(table, alias, joinType, on);
     this.tableObj = this.oracleQueryBuilder.getUserData('tables');
     this.updateRawCodeBox();
-    this.isDisabled = true;
-    this.clearFieldsById(['table-1__select', 'alias','table-2__select', 'joinType__select', 'join__select', 'joinCondition__select', 'foreignKey__select'])
+
+    this.tableNotEmpty = true;
+    this.clearFieldsById(['table-2-alias', 'table-2__select', 'joinType__select', 'join__select', 'joinCondition__select', 'foreignKey__select']);
   }
 
   getColumns(table, alias = '') {
-    if (this._columns[table]) {
+    debugger
+    if (this._columns[table] || this._columns[alias]) {
       if (alias) {
         this._columns[alias] = this._columns[table];
         delete this._columns[table];
@@ -379,9 +402,17 @@ joinsValues = [
   }
 
   alternateTable(table) {
-      if (table === this.rightTable) {} else if (!this.rightTable && !this.leftTable) { this.rightTable = table; } else if (this.rightTable && !this.leftTable) { this.leftTable = table; } else if (this.rightTable && this.leftTable) {
-          this.rightTable = this.leftTable;
-          this.leftTable = table;
+    debugger
+      if (table === this.rightTable) {}
+      else if (!this.rightTable && !this.leftTable) { this.rightTable = table; }
+      else if (this.rightTable && !this.leftTable) { this.leftTable = table; }
+      else if (this.rightTable && this.leftTable) {
+          if (this.leftTable === table){
+            this.leftTable = this.rightTable;
+            this.rightTable = table;
+          } else {
+            this.leftTable = table;
+          }
       }
   }
 
@@ -401,8 +432,6 @@ joinsValues = [
   groupby
 
   addGroup() {
-    debugger;
-    console.log(this._getAllColumns())
     this.dataModel = this._getAllColumns().map( dt => dt)
     let group = this.dataModel
     this.oracleQueryBuilder.addGroup(this.groupby);
@@ -412,7 +441,7 @@ joinsValues = [
      this.groupby = this.dataModel
      this.isDisable = true;
   }
- 
+
   isChecked
   userOrder
 
@@ -428,9 +457,9 @@ joinsValues = [
     this.updateRawCodeBox();
     this.OrderColumn = 0;
     this.isChecked = false;
-    this.clearFieldsById(['order-columns__select'])
-
+    this.clearFieldsById(['order-columns__select']);
   }
+
   addLimit() {
     if(!this.validateById(['limits'])) return;
     const limit: HTMLFormElement = (this.document.getElementById('limits') as HTMLFormElement).value;
@@ -438,8 +467,7 @@ joinsValues = [
     this.updateRawCodeBox();
     console.log('it is working');
     this.isLimit = true;
-    this.clearFieldsById(['limits'])
-
+    this.clearFieldsById(['limits']);
   }
 
   removeSelectColumn(column, aggregate) {
@@ -449,9 +477,11 @@ joinsValues = [
   }
 
   removeTable(table) {
+
     this.oracleQueryBuilder.removeTable(table);
     this.userColumn = this.oracleQueryBuilder.getUserData('select');
     this.updateRawCodeBox();
+    if (this.oracleQueryBuilder.getUserData('tables').length == 0) this.tableNotEmpty = false;
   }
   removeFilter(filterColumn, operator){
     this.oracleQueryBuilder.removeFilter(filterColumn, operator);

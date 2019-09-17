@@ -17,7 +17,7 @@ export class ModalsComponent implements OnInit {
   deleteOneMilestone : boolean;
   message:any;
 
-  
+
   text:any;
   count:any;
   // value:any;
@@ -25,8 +25,8 @@ export class ModalsComponent implements OnInit {
   constructor( private service:MilestoneService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit() {
-    
-    this.getMilestones();  
+
+    this.getMilestones();
     this.milestone=this.service.getter();
   }
 
@@ -60,13 +60,12 @@ export class ModalsComponent implements OnInit {
     }
 
     createMilestone(){
-    let milestone = new Milestone(); 
+    let milestone = new Milestone();
     this.service.setter(milestone);
 
     }
 
     processForm(){
-      debugger
       if (this.milestone.id==undefined){
         this.service.createMilestone(this.milestone).subscribe((milestone)=> {
           console.log(milestone);
@@ -75,7 +74,7 @@ export class ModalsComponent implements OnInit {
           console.log(error);
         });
       }else{
-        this.service.updateMilestone(this.milestone).subscribe((milestone)=> {        
+        this.service.updateMilestone(this.milestone).subscribe((milestone)=> {
           console.log(milestone);
           this.ngOnInit();
         },(error)=> {
@@ -83,14 +82,14 @@ export class ModalsComponent implements OnInit {
         });
       }
     }
-  
+
 
   onKey(value: string) {
     this.values = 0 + value.length
     if (this.values >= 100){
       alert("you have exceeded the max amount of characters!!!");
       document.getElementById('input').style.borderColor = 'red !important';
-    }else{ 
+    }else{
       document.getElementById('input').style.borderColor = 'none';
     }
   }

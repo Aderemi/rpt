@@ -435,6 +435,8 @@ var ZBuilder;
             this.compactToolsWidth = 768;
             this.ignoreHtml = null;
             this.htmlToolsButtons = null;
+            this.apiRoot = "http://localhost:8081";
+            this.queryApi = "http://localhost:8081/api/report/queries";
             this.templatesUrl = options.templatesUrl || this.templatesUrl;
             this.onLoad = options.onLoad || options.onload;
             this.onChange = options.onChange;
@@ -453,6 +455,8 @@ var ZBuilder;
             this.htmlToolsButtons = options.htmlToolsButtons || null;
             this.formSelector = options.formSelector || null;
             this.inputSelector = options.inputSelector || null;
+            this.apiRoot = options.apiRoot || this.apiRoot;
+            this.queryApi = options.queryApi || this.queryApi;
         }
         return EditorOptions;
     }());
@@ -531,6 +535,19 @@ var ZBuilder;
             this.target = target;
         }
         HtmlLinkParams.prototype.getLinkPromptParams = function () {
+            return [
+                new ZBuilder.Prompt.PromptParameter('href', ZBuilder.EditorStrings.htmlEditorLinkUrlTitle, this.href, ZBuilder.EditorStrings.htmlEditorLinkUrlPlaceholder),
+                new ZBuilder.Prompt.PromptParameter('title', ZBuilder.EditorStrings.htmlEditorLinkTitleTitle, this.title, ZBuilder.EditorStrings.htmlEditorLinkTitlePlaceholder),
+                new ZBuilder.Prompt.PromptParameterOptions('target', ZBuilder.EditorStrings.htmlEditorLinkTargetTitle, [
+                    ['', ''],
+                    [ZBuilder.EditorStrings.htmlEditorLinkTargetBlank, '_blank'],
+                    [ZBuilder.EditorStrings.htmlEditorLinkTargetSelf, '_self'],
+                    [ZBuilder.EditorStrings.htmlEditorLinkTargetParent, '_parent'],
+                    [ZBuilder.EditorStrings.htmlEditorLinkTargetTop, '_top'],
+                ], this.target)
+            ];
+        };
+        HtmlLinkParams.prototype.getQueryPromptParams = function () {
             return [
                 new ZBuilder.Prompt.PromptParameter('href', ZBuilder.EditorStrings.htmlEditorLinkUrlTitle, this.href, ZBuilder.EditorStrings.htmlEditorLinkUrlPlaceholder),
                 new ZBuilder.Prompt.PromptParameter('title', ZBuilder.EditorStrings.htmlEditorLinkTitleTitle, this.title, ZBuilder.EditorStrings.htmlEditorLinkTitlePlaceholder),
@@ -767,190 +784,6 @@ var ZBuilder;
 })(ZBuilder || (ZBuilder = {}));
 var ZBuilder;
 (function (ZBuilder) {
-    var Prompt;
-    (function (Prompt) {
-        var PromptParameter = (function () {
-            function PromptParameter(key, title, value, placeholder) {
-                this.key = key;
-                this.title = title;
-                this.placeholder = placeholder || '';
-                this.value = value;
-            }
-            PromptParameter.prototype.parseValue = function () {
-                if (this.$input) {
-                    this.value = this.$input.val();
-                }
-                this.$control = null;
-                delete this._$control;
-            };
-            Object.defineProperty(PromptParameter.prototype, "$control", {
-                get: function () {
-                    if (!this._$control) {
-                        this._$control =
-                            $("<div class=" + (this.key ? "usl-prompt-field" : "usl-prompt-subtitle") + ">\n                            <label class=\"usl-label\" for=\"" + this.key + "\">" + (this.title ? this.title : 'Select file...') + "</label>\n                        </div>");
-                        this.$input = this.key ? this.getEditor() : null;
-                        if (this.$input != null) {
-                            this._$control.append(this.$input);
-                        }
-                    }
-                    return this._$control;
-                },
-                set: function (value) {
-                    this._$control = value;
-                },
-                enumerable: true,
-                configurable: true
-            });
-            PromptParameter.prototype.getEditor = function () {
-                var value = this.value || '';
-                return $("<input type=\"text\" id=\"" + this.key + "\" class=\"usl-input\" placeholder=\"" + this.placeholder + "\" value=\"" + (this.value ? this.value : '') + "\">");
-            };
-            return PromptParameter;
-        }());
-        Prompt.PromptParameter = PromptParameter;
-    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
-})(ZBuilder || (ZBuilder = {}));
-var ZBuilder;
-(function (ZBuilder) {
-    var Prompt;
-    (function (Prompt) {
-        var PromptParameterImage = (function (_super) {
-            __extends(PromptParameterImage, _super);
-            function PromptParameterImage(key, title, value, placeholder) {
-                var _this = _super.call(this, key, title, value, placeholder) || this;
-                if (value) {
-                    _this._value = value;
-                }
-                return _this;
-            }
-            PromptParameterImage.prototype.parseValue = function () {
-                this.value = this._value;
-                this.$control = null;
-                delete this._$control;
-                this._value = null;
-                delete this._value;
-            };
-            PromptParameterImage.prototype.getEditor = function () {
-                var field = this;
-                var img = this.value && this.value.fileContent ? this.value.fileContent : "";
-                var $editor = $("\n                <div class='usl-image-input'>\n                    <label for=\"" + this.key + "\">\n                        " + this.placeholder + "\n                    </label>                        \n                    <img src=\"" + img + "\"/>                    \n                    <input type=\"file\" id=\"" + this.key + "\" class=\"usl-input\" placeholder=\"" + this.placeholder + "\">\n                </div>\n                <small class='usl-image-input-filename'></small>");
-                var $file = $('input', $editor);
-                var $filePreview = $('img', $editor);
-                var $fileName = $('.usl-image-input-filename', $editor);
-                var value = this.value;
-                if (value) {
-                    $filePreview.attr('src', value.fileContent);
-                    $filePreview.addClass('usl-loaded');
-                    $fileName.text(value.fileInfo.name);
-                }
-                $file.change(function () {
-                    var fileInput = this;
-                    if (fileInput.files && fileInput.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function (ev) {
-                            var target = ev.target;
-                            field._value = new Prompt.PromptParameterImageResult();
-                            field._value.fileContent = target.result;
-                            field._value.fileInfo = new Prompt.PromptParameterImageResultFile(fileInput.files[0]);
-                            $filePreview.attr('src', field._value.fileContent);
-                            $filePreview.addClass('usl-loaded');
-                            $fileName.text(field._value.fileInfo.name);
-                        };
-                        reader.readAsDataURL(fileInput.files[0]);
-                    }
-                });
-                return $editor;
-            };
-            return PromptParameterImage;
-        }(Prompt.PromptParameter));
-        Prompt.PromptParameterImage = PromptParameterImage;
-    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
-})(ZBuilder || (ZBuilder = {}));
-var ZBuilder;
-(function (ZBuilder) {
-    var Prompt;
-    (function (Prompt) {
-        var PromptParameterImageResult = (function () {
-            function PromptParameterImageResult() {
-            }
-            return PromptParameterImageResult;
-        }());
-        Prompt.PromptParameterImageResult = PromptParameterImageResult;
-        var PromptParameterImageResultFile = (function () {
-            function PromptParameterImageResultFile(file) {
-                this.name = file.name;
-                this.size = file.size;
-                this.type = file.type;
-                this.lastModified = file.lastModified;
-                this.lastModifiedDate = file.lastModifiedDate;
-            }
-            return PromptParameterImageResultFile;
-        }());
-        Prompt.PromptParameterImageResultFile = PromptParameterImageResultFile;
-    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
-})(ZBuilder || (ZBuilder = {}));
-var ZBuilder;
-(function (ZBuilder) {
-    var Prompt;
-    (function (Prompt) {
-        var PromptParameterList = (function () {
-            function PromptParameterList(params) {
-                this.params = params;
-            }
-            PromptParameterList.prototype.getValue = function (key) {
-                var param = this.params.find(function (p) {
-                    return p.key === key;
-                });
-                return param ? param.value : null;
-            };
-            return PromptParameterList;
-        }());
-        Prompt.PromptParameterList = PromptParameterList;
-    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
-})(ZBuilder || (ZBuilder = {}));
-var ZBuilder;
-(function (ZBuilder) {
-    var Prompt;
-    (function (Prompt) {
-        var PromptParameterOption = (function () {
-            function PromptParameterOption(title, value, selected) {
-                if (selected === void 0) { selected = false; }
-                this.title = title;
-                this.value = value;
-                this.selected = selected;
-            }
-            return PromptParameterOption;
-        }());
-        Prompt.PromptParameterOption = PromptParameterOption;
-    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
-})(ZBuilder || (ZBuilder = {}));
-var ZBuilder;
-(function (ZBuilder) {
-    var Prompt;
-    (function (Prompt) {
-        var PromptParameterOptions = (function (_super) {
-            __extends(PromptParameterOptions, _super);
-            function PromptParameterOptions(key, title, options, value, placeholder) {
-                var _this = _super.call(this, key, title, value, placeholder) || this;
-                _this.options = [];
-                options.forEach(function (kv) {
-                    _this.options.push(new Prompt.PromptParameterOption(kv[0], kv[1], kv[1] == value));
-                });
-                return _this;
-            }
-            PromptParameterOptions.prototype.getEditor = function () {
-                var options = this.options.map(function (opt) {
-                    return "<option value=\"" + opt.value + "\" " + (opt.selected ? "selected" : "") + ">" + (opt.title ? opt.title : opt.value) + "</option>";
-                });
-                return $("<select type=\"text\" id=\"" + this.key + "\" class=\"ZBuilder-input\" placeholder=\"" + this.placeholder + "\">" + options + "</select>");
-            };
-            return PromptParameterOptions;
-        }(Prompt.PromptParameter));
-        Prompt.PromptParameterOptions = PromptParameterOptions;
-    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
-})(ZBuilder || (ZBuilder = {}));
-var ZBuilder;
-(function (ZBuilder) {
     var Fields;
     (function (Fields) {
         var BaseField = (function () {
@@ -1035,6 +868,8 @@ var ZBuilder;
             };
             BaseField.prototype.deselect = function () {
                 this.$field.removeClass(ZBuilder.Selectors.selectorFieldSelected);
+                this.data['height'] = this.$field.height();
+                this.data['width'] = this.$field.width();
             };
             BaseField.prototype.getEl = function () {
                 var $el = this.$field.clone(false);
@@ -1047,6 +882,8 @@ var ZBuilder;
                 if (oldValue === value)
                     return;
                 this.data[prop] = value;
+                this.data['height'] = this.$field.height();
+                this.data['width'] = this.$field.width();
                 if (fireUpdate) {
                     this.onUpdate(prop, oldValue, value);
                 }
@@ -1084,6 +921,8 @@ var ZBuilder;
             ContainerField.prototype.updateBlocks = function () {
                 this.updateProperty('blocks', this.container.getData(true), true);
                 this.updateProperty('html', this.container.getHtml(), true);
+                this.updateProperty('width', this.$field.width(), true);
+                this.updateProperty('height', this.$field.height(), true);
             };
             ContainerField.prototype.deselect = function () {
                 this.container.blocks.forEach(function (b) { return b.deselect(); });
@@ -1406,7 +1245,9 @@ var ZBuilder;
         var PlaceholderField = (function (_super) {
             __extends(PlaceholderField, _super);
             function PlaceholderField() {
-                return _super !== null && _super.apply(this, arguments) || this;
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.snowden = [];
+                return _this;
             }
             PlaceholderField.prototype.getSettingsEl = function () {
                 var $el = $('<div style="position: absolute;width: 100%; height: 100px;;text-align: center;font-weight: bold;vertical-align: middle;background: #333;opacity: 0.2;">Change embed element link</div>');
@@ -1427,6 +1268,7 @@ var ZBuilder;
                 var _this = this;
                 var field = this;
                 var $field = this.$field;
+                this.getQueries();
                 $field.on('click', function () { return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_a) {
                         this.showEmbedLoaderAsync(field);
@@ -1436,32 +1278,106 @@ var ZBuilder;
             };
             PlaceholderField.prototype.showEmbedLoaderAsync = function (field) {
                 return __awaiter(this, void 0, void 0, function () {
-                    var fields, name_1;
+                    var fields, name_1, queryId;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0: return [4, ZBuilder.Editor.UI.modal.promptAsync(field.getPromptParams())];
                             case 1:
                                 fields = _a.sent();
-                                if (fields != null) {
-                                    name_1 = fields.getValue('name');
-                                    if (name_1) {
-                                        field.setName(name_1);
-                                    }
+                                if (!(fields != null)) return [3, 3];
+                                name_1 = fields.getValue('name');
+                                queryId = fields.getValue('queryId');
+                                if (name_1) {
+                                    field.setName(name_1);
                                 }
+                                if (!queryId) return [3, 3];
+                                field.setQueryID(queryId);
+                                return [4, field.loadQueryResults(queryId, true)];
+                            case 2:
+                                _a.sent();
+                                _a.label = 3;
+                            case 3: return [2];
+                        }
+                    });
+                });
+            };
+            PlaceholderField.prototype.getQueryResults = function (queryId) {
+                var _this = this;
+                var url = "http://localhost:8081/api/report/query/0/" + queryId + "/run/html";
+                return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+                    var params, data, err_1;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                params = { url: url, type: "get", dataType: "json" };
+                                _a.label = 1;
+                            case 1:
+                                _a.trys.push([1, 3, , 4]);
+                                return [4, $.ajax(params)];
+                            case 2:
+                                data = _a.sent();
+                                resolve(data);
+                                return [3, 4];
+                            case 3:
+                                err_1 = _a.sent();
+                                reject(err_1);
+                                return [3, 4];
+                            case 4: return [2];
+                        }
+                    });
+                }); });
+            };
+            PlaceholderField.prototype.loadQueryResults = function (queryId, fireUpdate) {
+                return __awaiter(this, void 0, void 0, function () {
+                    var field, json, $embed;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                field = this;
+                                if (!field.data || !field.data.queryId)
+                                    return [2];
+                                return [4, field.getQueryResults(field.data.queryId)];
+                            case 1:
+                                json = _a.sent();
+                                $embed = $(json.data);
+                                field.$field.empty();
+                                field.$field.removeAttr('class');
+                                field.$field.removeAttr('style');
+                                field.$field.append($embed);
+                                field.select();
                                 return [2];
                         }
                     });
                 });
             };
+            PlaceholderField.prototype.getQueries = function () {
+                var emron = {
+                    ignoreHtml: true,
+                    blocksUrl: '/api/initialblock.json',
+                    templatesUrl: 'templates.html',
+                    onload: function (data) {
+                        console.log(data);
+                    }
+                };
+                var options = new ZBuilder.EditorOptions(emron);
+                var self = this;
+                $.getJSON(options.queryApi, function (data) {
+                    self.snowden = data.data.map(function (dt) { return [dt.title, dt.id]; });
+                });
+            };
             PlaceholderField.prototype.getPromptParams = function () {
                 var rand = function (min, max) { return Math.floor(Math.random() * (max - min + 1) + min); };
                 return [
-                    new ZBuilder.Prompt.PromptParameter('name', ZBuilder.EditorStrings.nameFieldLinkTitle, this.data.query_name || 'placeholder'
-                        + rand(1000, 9999), ZBuilder.EditorStrings.nameFieldLinkPlaceholder)
+                    new ZBuilder.Prompt.PromptParameter('name', 'Placeholder Name', this.data.query_name || 'placeholder'
+                        + rand(1000, 9999), ZBuilder.EditorStrings.nameFieldLinkPlaceholder),
+                    new ZBuilder.Prompt.PromptParameterOptions('queryId', 'Query', this.snowden, this.queryId)
                 ];
             };
             PlaceholderField.prototype.setName = function (value) {
                 this.updateProperty('name', value);
+            };
+            PlaceholderField.prototype.setQueryID = function (value) {
+                this.updateProperty('queryId', value);
             };
             return PlaceholderField;
         }(Fields.BaseField));
@@ -1470,46 +1386,187 @@ var ZBuilder;
 })(ZBuilder || (ZBuilder = {}));
 var ZBuilder;
 (function (ZBuilder) {
-    var Template = (function () {
-        function Template(el) {
-            this.loaded = true;
-            var previewSelector = ZBuilder.Selectors.selectorTemplatePreview;
-            var $template = $(el);
-            var data = $template.data();
-            this.name = data.name;
-            this.category = data.cactegory || [];
-            this.$html = $template.contents().not(previewSelector);
-            this.$preview = $(previewSelector, $template).contents();
-            if (!this.$preview.length) {
-                var block = new ZBuilder.Block(this, true);
-                var blockEl = block.getHtml(true);
-                if (blockEl === null) {
-                    this.loaded = false;
-                }
-                else {
-                    this.$preview = $(blockEl);
-                }
+    var Prompt;
+    (function (Prompt) {
+        var PromptParameter = (function () {
+            function PromptParameter(key, title, value, placeholder) {
+                this.key = key;
+                this.title = title;
+                this.placeholder = placeholder || '';
+                this.value = value;
             }
-        }
-        Template.prototype.getPreview = function () {
-            var $template = $("<div class='" + ZBuilder.Selectors.classTemplate + "'></div>");
-            $template.append(this.$preview);
-            return $template;
-        };
-        return Template;
-    }());
-    ZBuilder.Template = Template;
+            PromptParameter.prototype.parseValue = function () {
+                if (this.$input) {
+                    this.value = this.$input.val();
+                }
+                this.$control = null;
+                delete this._$control;
+            };
+            Object.defineProperty(PromptParameter.prototype, "$control", {
+                get: function () {
+                    if (!this._$control) {
+                        this._$control =
+                            $("<div class=" + (this.key ? "usl-prompt-field form-group" : "usl-prompt-subtitle") + ">\n                            <label class=\"usl-label\" for=\"" + this.key + "\">" + (this.title ? this.title : 'Select file...') + "</label>\n                        </div>");
+                        this.$input = this.key ? this.getEditor() : null;
+                        if (this.$input != null) {
+                            this._$control.append(this.$input);
+                        }
+                    }
+                    return this._$control;
+                },
+                set: function (value) {
+                    this._$control = value;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            PromptParameter.prototype.getEditor = function () {
+                var value = this.value || '';
+                return $("<input type=\"text\" id=\"" + this.key + "\" class=\"usl-input form-control search\" placeholder=\"" + this.placeholder + "\" value=\"" + (this.value ? this.value : '') + "\">");
+            };
+            return PromptParameter;
+        }());
+        Prompt.PromptParameter = PromptParameter;
+    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
 })(ZBuilder || (ZBuilder = {}));
 var ZBuilder;
 (function (ZBuilder) {
-    var TemplateGroup = (function () {
-        function TemplateGroup(name, templates) {
-            this.name = name;
-            this.templates = templates;
-        }
-        return TemplateGroup;
-    }());
-    ZBuilder.TemplateGroup = TemplateGroup;
+    var Prompt;
+    (function (Prompt) {
+        var PromptParameterImage = (function (_super) {
+            __extends(PromptParameterImage, _super);
+            function PromptParameterImage(key, title, value, placeholder) {
+                var _this = _super.call(this, key, title, value, placeholder) || this;
+                if (value) {
+                    _this._value = value;
+                }
+                return _this;
+            }
+            PromptParameterImage.prototype.parseValue = function () {
+                this.value = this._value;
+                this.$control = null;
+                delete this._$control;
+                this._value = null;
+                delete this._value;
+            };
+            PromptParameterImage.prototype.getEditor = function () {
+                var field = this;
+                var img = this.value && this.value.fileContent ? this.value.fileContent : "";
+                var $editor = $("\n                <div class='usl-image-input form-group'>\n                    <label for=\"" + this.key + "\">\n                        " + this.placeholder + "\n                    </label>                        \n                    <img src=\"" + img + "\"/>                    \n                    <input type=\"file\" id=\"" + this.key + "\" class=\"usl-input form-control search\" placeholder=\"" + this.placeholder + "\">\n                </div>\n                <small class='usl-image-input-filename'></small>");
+                var $file = $('input', $editor);
+                var $filePreview = $('img', $editor);
+                var $fileName = $('.usl-image-input-filename', $editor);
+                var value = this.value;
+                if (value) {
+                    $filePreview.attr('src', value.fileContent);
+                    $filePreview.addClass('usl-loaded');
+                    $fileName.text(value.fileInfo.name);
+                }
+                $file.change(function () {
+                    var fileInput = this;
+                    if (fileInput.files && fileInput.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (ev) {
+                            var target = ev.target;
+                            field._value = new Prompt.PromptParameterImageResult();
+                            field._value.fileContent = target.result;
+                            field._value.fileInfo = new Prompt.PromptParameterImageResultFile(fileInput.files[0]);
+                            $filePreview.attr('src', field._value.fileContent);
+                            $filePreview.addClass('usl-loaded');
+                            $fileName.text(field._value.fileInfo.name);
+                        };
+                        reader.readAsDataURL(fileInput.files[0]);
+                    }
+                });
+                return $editor;
+            };
+            return PromptParameterImage;
+        }(Prompt.PromptParameter));
+        Prompt.PromptParameterImage = PromptParameterImage;
+    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
+})(ZBuilder || (ZBuilder = {}));
+var ZBuilder;
+(function (ZBuilder) {
+    var Prompt;
+    (function (Prompt) {
+        var PromptParameterImageResult = (function () {
+            function PromptParameterImageResult() {
+            }
+            return PromptParameterImageResult;
+        }());
+        Prompt.PromptParameterImageResult = PromptParameterImageResult;
+        var PromptParameterImageResultFile = (function () {
+            function PromptParameterImageResultFile(file) {
+                this.name = file.name;
+                this.size = file.size;
+                this.type = file.type;
+                this.lastModified = file.lastModified;
+                this.lastModifiedDate = file.lastModifiedDate;
+            }
+            return PromptParameterImageResultFile;
+        }());
+        Prompt.PromptParameterImageResultFile = PromptParameterImageResultFile;
+    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
+})(ZBuilder || (ZBuilder = {}));
+var ZBuilder;
+(function (ZBuilder) {
+    var Prompt;
+    (function (Prompt) {
+        var PromptParameterList = (function () {
+            function PromptParameterList(params) {
+                this.params = params;
+            }
+            PromptParameterList.prototype.getValue = function (key) {
+                var param = this.params.find(function (p) {
+                    return p.key === key;
+                });
+                return param ? param.value : null;
+            };
+            return PromptParameterList;
+        }());
+        Prompt.PromptParameterList = PromptParameterList;
+    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
+})(ZBuilder || (ZBuilder = {}));
+var ZBuilder;
+(function (ZBuilder) {
+    var Prompt;
+    (function (Prompt) {
+        var PromptParameterOption = (function () {
+            function PromptParameterOption(title, value, selected) {
+                if (selected === void 0) { selected = false; }
+                this.title = title;
+                this.value = value;
+                this.selected = selected;
+            }
+            return PromptParameterOption;
+        }());
+        Prompt.PromptParameterOption = PromptParameterOption;
+    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
+})(ZBuilder || (ZBuilder = {}));
+var ZBuilder;
+(function (ZBuilder) {
+    var Prompt;
+    (function (Prompt) {
+        var PromptParameterOptions = (function (_super) {
+            __extends(PromptParameterOptions, _super);
+            function PromptParameterOptions(key, title, options, value, placeholder) {
+                var _this = _super.call(this, key, title, value, placeholder) || this;
+                _this.options = [];
+                options.forEach(function (kv) {
+                    _this.options.push(new Prompt.PromptParameterOption(kv[0], kv[1], kv[1] == value));
+                });
+                return _this;
+            }
+            PromptParameterOptions.prototype.getEditor = function () {
+                var options = this.options.map(function (opt) {
+                    return "<option value=\"" + opt.value + "\" " + (opt.selected ? "selected" : "") + ">" + (opt.title ? opt.title : opt.value) + "</option>";
+                });
+                return $("<select type=\"text\" id=\"" + this.key + "\" class=\"ZBuilder-input form-control search\" placeholder=\"" + this.placeholder + "\">" + options + "</select>");
+            };
+            return PromptParameterOptions;
+        }(Prompt.PromptParameter));
+        Prompt.PromptParameterOptions = PromptParameterOptions;
+    })(Prompt = ZBuilder.Prompt || (ZBuilder.Prompt = {}));
 })(ZBuilder || (ZBuilder = {}));
 var ZBuilder;
 (function (ZBuilder) {
@@ -1632,7 +1689,6 @@ var ZBuilder;
             TemplateService.getTemplate = function (templateName) {
                 for (var gi = 0; gi < this.templates.length; gi++) {
                     var group = this.templates[gi];
-                    console.log("Group: ", group);
                     for (var ti = 0; ti < group.templates.length; ti++) {
                         var template = group.templates[ti];
                         if (template.name.uslEqualsInvariant(templateName)) {
@@ -1646,6 +1702,49 @@ var ZBuilder;
         }());
         Services.TemplateService = TemplateService;
     })(Services = ZBuilder.Services || (ZBuilder.Services = {}));
+})(ZBuilder || (ZBuilder = {}));
+var ZBuilder;
+(function (ZBuilder) {
+    var Template = (function () {
+        function Template(el) {
+            this.loaded = true;
+            var previewSelector = ZBuilder.Selectors.selectorTemplatePreview;
+            var $template = $(el);
+            var data = $template.data();
+            this.name = data.name;
+            this.category = data.cactegory || [];
+            this.$html = $template.contents().not(previewSelector);
+            this.$preview = $(previewSelector, $template).contents();
+            if (!this.$preview.length) {
+                var block = new ZBuilder.Block(this, true);
+                var blockEl = block.getHtml(true);
+                if (blockEl === null) {
+                    this.loaded = false;
+                }
+                else {
+                    this.$preview = $(blockEl);
+                }
+            }
+        }
+        Template.prototype.getPreview = function () {
+            var $template = $("<div class='" + ZBuilder.Selectors.classTemplate + "'></div>");
+            $template.append(this.$preview);
+            return $template;
+        };
+        return Template;
+    }());
+    ZBuilder.Template = Template;
+})(ZBuilder || (ZBuilder = {}));
+var ZBuilder;
+(function (ZBuilder) {
+    var TemplateGroup = (function () {
+        function TemplateGroup(name, templates) {
+            this.name = name;
+            this.templates = templates;
+        }
+        return TemplateGroup;
+    }());
+    ZBuilder.TemplateGroup = TemplateGroup;
 })(ZBuilder || (ZBuilder = {}));
 var ZBuilder;
 (function (ZBuilder) {
@@ -1973,14 +2072,14 @@ var ZBuilder;
         };
         UI.prototype.setModal = function () {
             var $modal = $('<div class="usl usl-modal"><div class="usl-modal-placeholder"></div></div>');
-            var $modalCloseBtn = $("<div class=\"usl-modal-close\"><a href=\"#\">" + ZBuilder.EditorStrings.buttonClose + " \u2716</a></div>");
+            var $modalCloseBtn = $("<div class=\"usl-modal-close\"><a href=\"#\">\u2716</a></div>");
             var $modalContent = $('<div class="usl-modal-content"></div>');
             var $modalForm = $('<form></form>');
-            var $modalBtns = $('<div class="usl-btns"></div>');
-            var $modalOk = $("<button type=\"button\" class=\"usl-btn usl-btn-primary\">" + ZBuilder.EditorStrings.buttonOk + "</button>");
-            var $modalCancel = $("<button type=\"button\" class=\"usl-btn\">" + ZBuilder.EditorStrings.buttonCancel + "</button>");
-            $modalBtns.append($modalOk);
+            var $modalBtns = $('<div class="usl-btns row p-3" align="right"></div>');
+            var $modalOk = $("<button type=\"button\" class=\"usl-btn usl-btn-primary btn btn-block btn-primary m-0\">" + ZBuilder.EditorStrings.buttonOk + "</button>");
+            var $modalCancel = $("<button type=\"button\" class=\"usl-btn btn btn-outline-primary btn-block\">" + ZBuilder.EditorStrings.buttonCancel + "</button>");
             $modalBtns.append($modalCancel);
+            $modalBtns.append($modalOk);
             $modalForm.append($modalBtns);
             $modalContent.append($modalForm);
             var $placeholder = $('.usl-modal-placeholder', $modal);

@@ -11,7 +11,7 @@ import * as $ from 'jquery';
 // declare var $:any;
 import { ReportService } from '../service/report.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import {Report, ReportGroup, ReportQueries, ReportTemplate} from '../class/report';
+import {Report, ReportDownload, ReportGroup, ReportQueries, ReportTemplate} from '../class/report';
 declare const require: any;
 const jsPDF = require('jspdf');
 // require('jspdf-autotable');
@@ -60,6 +60,7 @@ export class ReportSheetsComponent implements OnInit {
   isIndividual;
   isGroup;
   dtOptions: any = {};
+  reportDownload: ReportDownload = {};
   queries: ReportQueries[];
   templates: ReportTemplate[];
   private selectedLink;
@@ -78,19 +79,13 @@ export class ReportSheetsComponent implements OnInit {
     this.isGroup = false;
     this.name = this.reportserv.getter().name
     this.groupReport = this.reportserv.getter().reports;
-   if(this.groupReport === undefined){
-    console.log(null);
-    this.toview = 0
-   }else{
-    this.toview = 2
-    console.log('vvvvvvvvvvvvvvvvvvvv', this.name,this.groupReport );
+   if (this.groupReport === undefined){
+    this.toview = 0;
+   } else {
+    this.toview = 2;
    }
-    
-     
-  
-
-    this.reportserv.getTemplates().subscribe(response => this.templates = response.data);
-    this.reportserv.getQueries().subscribe(response => this.queries = response.data);
+   this.reportserv.getTemplates().subscribe(response => this.templates = response.data);
+   this.reportserv.getQueries().subscribe(response => this.queries = response.data);
   }
 
   getReports() {

@@ -50,8 +50,8 @@
                                       <tbody #tableList >
                                         <tr *ngFor="let item of queries">
                                           <td>{{item.title}}</td>
-                                          <td>{{item.description}}</td>
-                                          <td>{{item.content}}</td>
+                                          <td>{{item.description | stringLength:15}}</td>
+                                          <td>{{item.content | stringLength:15}}</td>
                                           <td><a (click)="updateQuery(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
                                           <td><a class=" btn-remove" (click)="Delete(item.id)"></a></td>
                                         </tr>
@@ -68,60 +68,6 @@
 
   </div>
 </div>
-
-
-
-
-<!-- view for table -->
-
-<!-- <div class="container-fluid mt-1" *ngIf="view === 0">
-  <div class="row p-3 pl-4">
-    <div class="col-md-6">
-      <h1 class="text-bold">Query Builder Table</h1>
-    </div>
-
-    <div class="col-md-2 offset-md-4 pr-0">
-      <button class="btn btn-block btn-primary " (click)="configure()"><i
-          class="flaticon-add mr-2"></i>Configure</button>
-    </div>
-  </div>
-  <div class="row p-2 pl-4 mt-5">
-    <div class="col-md-12">
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="panel">
-            <div class="panel-body">
-              <table class="table table-borderless table-align">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th> Description</th>
-                    <th>Content</th>
-                    <th>Actions</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of queries">
-                    <td>{{item.title}}</td>
-                    <td>{{item.description}}</td>
-                    <td>{{item.content}}</td>
-                    <td><a (click)="updateQuery(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
-                    <td><a class="btn btn-danger round-table-button" (click)="Delete(item.id)">-</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-
 <!-- view for form new -->
 
 <div class="container-fluid mt-1" *ngIf="view === 1">
@@ -181,16 +127,6 @@
                     </div>
 
                     <div class="row">
-                      <!-- <div class="col-md-4">
-                          Switch to enter queries manually
-                      </div>
-                      <div class="col-md-2">
-                          <label class="switch">
-                              <input type="checkbox" [(ngModel)]="booleanVal" (ngOnChange)="onChange($event)">
-                              <span class="slider round"></span>
-                            </label>
-                      </div>                       -->
-
                       <div class="col-md-2">
                         Query
                       </div>
@@ -214,7 +150,7 @@
 
             <!-- USING MANUAL -->
             <div class="form-body" *ngIf="isManual">
-              <textarea class="m-0 p-5 largetext col-md-12" rows="12" id="content" name="content" [(ngModel)]="que.content"></textarea>
+              <textarea class="m-0 p-2 largetext col-md-12" rows="12" id="content" name="content" [(ngModel)]="que.content"></textarea>
             </div>
 
 
@@ -252,14 +188,14 @@
                       <div class="row">
                         <div class="col-md-3">
                           <label for="table-1">Table <sup>*</sup></label>
-                          <select id="table-1" class="form-control search" [disabled] = "isDisabled">
+                          <select id="table-1" class="form-control search" [disabled] = "tableNotEmpty">
                              <option value="">&lt;-------&gt;</option>
                              <option *ngFor="let t of tableContainer" [value]="t">{{toTopicCase(t)}}</option>
                           </select>
                         </div>
                         <div class="col-md-3">
                           <label for="table-1-alias">Alias(optional)</label>
-                          <input type="text" class="form-control search" id="table-1-alias"  [disabled] = "isDisabled">
+                          <input type="text" class="form-control search" id="table-1-alias"  [disabled] = "tableNotEmpty">
                         </div>
 
                         <div class="col-md-2 mt-auto">
@@ -281,7 +217,7 @@
                           <div class="col-md-6">
                             <div class="form-group row">
                               <div class="col-md-4">
-                                <label for="Connections">Join Column (optional)</label>
+                                <label for="join">Join Column (optional)</label>
                               </div>
                               <div class="col-md-8">
                                 <select id="join" class="form-control search" [(ngModel)]="join">
@@ -295,7 +231,7 @@
                           <div class="col-md-6">
                             <div class="form-group row">
                               <div class="col-md-4">
-                                <label for="Connections">Types of Join</label>
+                                <label for="joinType">Types of Join</label>
                               </div>
                               <div class="col-md-8">
                                 <select id="joinType" class="form-control search" [(ngModel)]="joinType">
@@ -638,11 +574,11 @@
                           <th>Actions</th>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let item of tableObj">
+                          <tr *ngFor="let item of oracleQueryBuilder.getUserData('tables')">
                             <td>{{item.name}}</td>
                             <td>{{item.alias}}</td>
                             <td>{{item.joinType}}</td>
-                            <td><a class="btn btn-danger round-table-button" (click)= "removeTable(item.table)">-</a></td>
+                            <td><a class="btn btn-danger round-table-button" (click)= "removeTable(item.name)">-</a></td>
                           </tr>
                         </tbody>
                       </table>
@@ -748,16 +684,16 @@
 
               <div class="row pl-4">
                 <div class="col-md-12 text-bold">
-                  RAW SCRIPT
+                  <code type="SQL" id="raw-script">RAW SCRIPT</code>
                 </div>
               </div>
 
               <div class="panel-body largetext">
                 <div class="row largetext">
                   <div class="col-sm-12 col-md-10 offset-md-1">
-                      <div class="row pl-4" id="preview-box">
+                      <div class="row pl-4 overflow-auto" style="max-width: 100%; max-height: 300px" id="preview-box">
                           &nbsp;
-                          </div>
+                      </div>
                   </div>
                 </div>
               </div>

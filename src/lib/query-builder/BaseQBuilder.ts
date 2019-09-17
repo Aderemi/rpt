@@ -145,23 +145,24 @@ export class BaseQBuilder {
         }
         if (joinType && !on) { throw new Error('You must specify column where the tableContainer join'); }
         if (joinType && !this.joins[joinType]) { throw new Error('The join type: ' + joinType + ' you specified does not exist'); }
-        debugger;
         this.userData['tables'].push({
             name: table,
             alias: alias,
             joinType: joinType,
             on: on
         });
-      debugger;
+        debugger
       return this;
     }
 
     parseFrom() {
         this.validate('tables', 1, true);
         const tables = this.userData.tables;
+        let pos = 0;
         this.query.from = this.from + tables.map((t) => {
+            pos++;
             const on = !!t.on ? t.on.map((o) => `${o.left} ${!!o.op ? o.op : ' = '} ${o.right}`).join(' AND') : '';
-            return `${!!t.joinType ? this.joins[t.joinType] : ''} ${t.name} ${!!t.alias ? ' ' + t.alias : ''} ${!!on ? this.on + on : ''} `;
+            return `${!!t.joinType && pos > 1 ? this.joins[t.joinType] : ''} ${t.name} ${!!t.alias ? ' ' + t.alias : ''} ${!!on && pos > 1 ? this.on + on : ''} `;
         }).join(' ');
 
         return this;
@@ -251,11 +252,15 @@ export class BaseQBuilder {
     }
 
     removeTable(table) {
-        this.removeEntity('tables', table, {});
-        return this;
+      let pos = 0;
+      this.userData["tables"] = this.userData["tables"].filter(ent => {
+          return ent['name'] != table;
+      });
+      return this;
     }
 
     removeEntity(entityName, pointer, extra) {
+      debugger;
         if (entityName === 'limit') { return this.userData.limit = ''; } else {
             const prop = entityName === 'tables' ? 'builderName' : 'column';
             this.userData[entityName] = this.userData[entityName].filter(ent => {

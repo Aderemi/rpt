@@ -91,6 +91,7 @@ import { GroupComponent } from './report-sheets/group/group.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { SearchDirectives } from './directives/search-directive';
 import { RulesComponent } from './rules/rules.component';
+import {StringLengthPipe} from "./report-sheets/string-length.pipe";
 
 
 // import { NotificationMessageTemplateComponent } from './notification-message-template/notification-message-template.component';
@@ -180,6 +181,7 @@ NavbarComponent,
     ConnectionComponent,
     GroupComponent,
     RulesComponent,
+    StringLengthPipe,
     // InstrumentComponent
   ],
   imports: [
@@ -200,20 +202,20 @@ NavbarComponent,
             // [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
             // ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
             // ['blockquote', 'code-block'],
-        
+
             // [{ 'header': 1 }, { 'header': 2 }],               // custom button values
             // [{ 'list': 'ordered'}, { 'list': 'bullet' }],
             // [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
             // [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
             // [{ 'direction': 'rtl' }],                         // text direction
-        
+
             // // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        
+
             // [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
             // [{ 'align': [] }],
-        
+
             // ['clean'],                                         // remove formatting button
-        
+
             // ['link', 'image', 'video']                         // link and image, video
           ],
       },

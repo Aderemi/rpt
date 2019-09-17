@@ -10,6 +10,17 @@ export interface Report {
     defaultExportType?: string;
 }
 
+export interface ReportDownload {
+    id?:number;
+    report_id?:number;
+    filetype?:string;
+    emails?: string[];
+    roleIds?: number[];
+    schedule?: string;
+    scheduleStart?: string;
+    scheduleStop?: string;
+}
+
 export interface ReportConnection{
     id:number;
     title?: string;

@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class ConnectionComponent implements OnInit {
 
-  constructor( private reportserv: ReportService, private router: Router, private route: ActivatedRoute,private toastr: ToastrService ) { }
+  constructor( private reportserv: ReportService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService ) { }
 
   view;
   connections;
@@ -54,7 +54,7 @@ export class ConnectionComponent implements OnInit {
   }
 
 
- 
+
 
 
   Delete(connectionId) {
@@ -66,7 +66,7 @@ export class ConnectionComponent implements OnInit {
     });
     }
 
-   
+
     updateConnection(connectionId) {
       this.reportserv.getConnection(connectionId).subscribe((res) => {
         this.conn = res.data;
@@ -79,32 +79,28 @@ export class ConnectionComponent implements OnInit {
     }
 
     checkValue(event) {
-      debugger;
       if (this.statusCheck === "ACTIVE" || this.statusCheck ===  "Active" ){
         this.isChecked = true;
         this.status = 'Enabled';
       }else{
         event.target.checked = false;
         this.status = 'Disabled';
-        this.isChecked = false;        
+        this.isChecked = false;
       }
    }
-
-
-
 
     testConnection() {
       this.reportserv.testConnection(this.conn).subscribe((res) => {
         let connected = res.data;
         this.message = res.message;
         console.log(res.message, connected);
-
-        if (connected === true){
+        alert(res.message);
+        if (connected === true) {
           this.showAlert = 1;
           this.toastr.success( this.message, 'Connected!', {
             timeOut: 4000
           });
-        }else{
+        } else {
           this.showAlert = 0;
           this.toastr.error( this.message, 'Error!', {
             timeOut: 4000
@@ -112,7 +108,6 @@ export class ConnectionComponent implements OnInit {
         }
       });
     }
-
 
   processForm() {
     if (this.conn.id == undefined) {
