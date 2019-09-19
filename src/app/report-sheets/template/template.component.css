@@ -46,3 +46,6 @@ td{
 .navbar-collapse{
     padding-left: 5.68rem;
 }
+.build{
+    border-top: 1px dashed #ccc
+  }

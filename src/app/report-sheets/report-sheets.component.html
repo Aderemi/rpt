@@ -163,10 +163,18 @@
 
               <div class="col-md-6" *ngIf="isGroup">
                   <label for="email-category">Group Emails</label>
-                  <select (change)="onChange($event)"  class="form-control">
+                  <!-- <select (change)="onChange($event)"  class="form-control">
                       <option value="">&lt;-------&gt;</option>
                       <option *ngFor="let v of values" [value]="v.id">{{v.name}}</option>
-                  </select>
+                  </select> -->
+                  <ngx-select-dropdown
+                  id="groups"
+                  class="search"
+                  [config]="config"
+                  [options]="data"
+                  [(ngModel)]="groupby"
+                  [multiple]="true" >
+                </ngx-select-dropdown>
               </div>
 
             </div>
@@ -174,25 +182,31 @@
             <div class="row" *ngIf="showChecked === 1">
               <div class="col-md-6">
                  <label for="">Schedule <sup>*</sup></label>
-                 <select name="" id="format" class="form-control search">
+                 <select name="" id="format" class="form-control search" (change) = "disableDAte($event)">
                    <option value="">&lt;-------&gt;</option>
-                   <option value="">once</option>
+                   <option value="once">once</option>
                    <option value="">daily</option>
                    <option value="">weekly</option>
                    <option value="">monthly</option>
                    <option value="">yearly</option>
                  </select>
               </div>
+
               <div class="col-md-6">
-                 <label for="">Start Date <sup>*</sup></label>
-                 <input type="date"  class="form-control search">
-              </div>
+                  <label for="">Time <sup>*</sup></label>
+                  <input type="time"  class="form-control search">
+               </div>
+             
               </div>
 
             <div class="row" *ngIf="showChecked === 1">
+                <div class="col-md-6">
+                    <label for="">Start Date <sup>*</sup></label>
+                    <input type="date"  class="form-control search">
+                 </div>
               <div class="col-md-6">
                  <label for="">End Date (Optional)</label>
-                 <input type="date"  class="form-control search">
+                 <input type="date"  class="form-control search" [disabled]="isDisable">
               </div>
 
 

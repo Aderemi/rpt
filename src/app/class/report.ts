@@ -88,4 +88,5 @@ export interface ReportTemplate{
     jsonContent: string;
     description: string;
     html: string;
+    fileContent?:string
 }

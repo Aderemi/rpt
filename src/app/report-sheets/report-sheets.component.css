@@ -17,4 +17,6 @@ td{
 .row{
     padding: 5px 0px;
 }
-
+.ngx-dropdown-container, .ngx-dropdown-list-container, .ngx-dropdown-button{
+    width: 275px !important;
+}

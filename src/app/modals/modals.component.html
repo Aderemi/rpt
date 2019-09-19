@@ -4,7 +4,7 @@
 <button class="btn btn-dark" data-toggle="modal" data-target="#margin-modal">margin deposit</button>
 <button class="btn btn-dark" data-toggle="modal" data-target="#collateral-modal">collateral collateral</button>
 <button class="btn btn-dark" data-toggle="modal" data-target="#milestone-modal" (click)= "createMilestone()">create</button>
-<button class="btn btn-dark" data-toggle="modal" data-target="#milestone-modal" (click)= "updateMilestone()">Update</button>
+<button class="btn btn-dark" data-toggle="modal" data-target="#milestone1-modal" (click)= "updateMilestone()">post</button>
 
 <!-- milestone -->
 
@@ -1034,3 +1034,279 @@
 
   </div>
 </div> -->
+
+<div class="modal fade bd-example-modal-lg" id="milestone1-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12 p-0">
+
+          <div class="card-body form-card">
+            <div class="panel-heading" role="tab" id="headingBasic">
+              <div class="row">
+                <div class="col-md-9">
+                  <!-- <div class="float-left form-icon text-center mr-3"  *ngIf="!popupmode">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div> -->
+                  <h1 class="panel-title  font-weight-bold secondary-color mb-1">
+                    Accounting Entries
+                  </h1>
+                  <!-- <p class="subtitle mb-0"  *ngIf="!popupmode">Please fill in the appropriate data for this rule definition </p> -->
+                </div>
+
+                <div class="col-md-3">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body p-0">
+        <div class="container p-2">
+          <div class="col-md-12">
+            <!-- <div class="form-body">
+                <div class="row p-2 pl-4 mt-5">
+                    <div class="col-md-12"> -->
+                        <!-- <div class="row mb-2"  *ngIf="!popupmode">
+                            <div class="form-group col-md-3 pr-0 mb-0">
+                                <input name="code" [(ngModel)]="postingentry.code" type="text" id="code" class="form-control search"
+                                    placeholder="Search by Code">
+                            </div>
+                            <div class="form-group col-md-3 pr-0 mb-0">
+                                <input name="name" [(ngModel)]="postingentry.description" type="text" id="description"
+                                    class="form-control search" placeholder="Search by Description">
+                            </div>
+                            <div class="col-md-2 pr-0 mb-0">
+                                <button class="btn btn-block btn-success hover-raise" (click)="search()">Search</button>
+                            </div>
+                            <div class="form-group col-md-2 offset-md-2 mb-0">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <label class="pr-2">Showing</label>
+                                        <select name="" id="">
+                                            <option value="">5</option>
+                                            <option value="">10</option>
+                                            <option value="">15</option>
+                                            <option value="">20</option>
+                                        </select>
+                                    </div>
+                                </div>
+            
+            
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <!-- <div class="col-md-12">
+                                <div class="panel"> -->
+                                    <!-- <div class="panel-body"> -->
+                                        <table class="table alt-table table-borderless">
+                                            <thead>
+                                                <!-- <tr> -->
+                                                    <th></th>
+                                                    <th>Reference</th>
+                                                    <th>Description</th>
+                                                    <th>Tran Type</th>
+                                                    <th>Primary Account</th>
+                                                    <th>Amount</th>
+                                                    <th>Contra Account</th>
+                                                    <th>Status</th>
+                                                    <th></th>
+                                                    <th>Action</th>
+                                                <!-- </tr> -->
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let param of PostingEntrys" (click)="set($event, param)"
+                                                [ngClass]="{'selected' : param === selectedPostingEntry}">
+                                                    <td></td>
+                                                    <!--td>{{param.postingKey}}</td-->
+                                                    <td>{{param.transactionRef}}</td>
+                                                    <td>{{param.tranClass}}</td>
+                                                    <td>{{param.tranType}}</td>                                        
+                                                    <td>{{param.primaryAccountNumber}}</td>
+                                                    <td>{{param.primaryCurrency != null ?param.primaryCurrency.code : ''}} {{param.primaryAmount}}</td>
+                                                    <!--td> {{param.primaryCurrency.code}}</td-->
+                                                    <td>{{param.contraAccountNumber}}</td>
+                                                    <td>{{param.tranStatus}}</td>
+                                                    <td><button class="btn-outline-primary">view</button></td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <img src="/assets/three-dots-more-indicator.svg" alt="Ellipse"
+                                                                class=" btn secondary dropdown-toggle" id="dropdownMenu2"
+                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                                <a class="dropdown-item" (click)="editPostingEntry()">Edit</a>
+                                                                <a class="dropdown-item"
+                                                                (click)="openConfirmationDialog()">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+            
+            
+            
+                                            </tbody>
+                                        </table>
+                                    <!-- </div>
+                                </div> -->
+                                <div class="clearfix p-2">
+                                    <p class="text-secondary ml-1 float-left"></p>
+                                    <div class="float-right">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination pg-blue">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" tabindex="-1">Previous</a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link">1</a></li>
+                                                <li class="page-item active">
+                                                    <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link">Next</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                        <!-- </div>
+                    </div>
+                </div> -->
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="processForm()" data-dismiss="modal">Apply</button>
+      </div> -->
+    </div>
+
+  </div>
+</div>
+
+<div class="container-fluid mt-1">
+    <div class="row p-3 pl-4" *ngIf="!popupmode">
+        <div class="col-md-6">
+            <h1 class="text-bold">Accounting Entries</h1>
+        </div>
+        <div class="col-md-2 offset-md-4 pr-0">
+            <button class="btn btn-block btn-primary " routerLink="/postingentry"><i class="flaticon-add mr-2"></i>New </button>
+        </div>
+        <div *ngIf="popupmode" class="col-md-2 offset-md-4 pr-0">
+                <button (click)="_activeModal.close('Cross click')" class="btn btn-info usl-btn-color">Close</button>
+            </div>
+    </div>
+    <div class="row p-2 pl-4 mt-5">
+        <div class="col-md-12">
+            <div class="row mb-2"  *ngIf="!popupmode">
+                <div class="form-group col-md-3 pr-0 mb-0">
+                    <input name="code" [(ngModel)]="postingentry.code" type="text" id="code" class="form-control search"
+                        placeholder="Search by Code">
+                </div>
+                <div class="form-group col-md-3 pr-0 mb-0">
+                    <input name="name" [(ngModel)]="postingentry.description" type="text" id="description"
+                        class="form-control search" placeholder="Search by Description">
+                </div>
+                <div class="col-md-1 pr-0 mb-0">
+                    <button class="btn btn-block btn-success hover-raise" (click)="search()">Search</button>
+                </div>
+                <div class="form-group col-md-2 offset-md-3 mb-0">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <label class="pr-2">Showing</label>
+                            <select name="" id="">
+                                <option value="">5</option>
+                                <option value="">10</option>
+                                <option value="">15</option>
+                                <option value="">20</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <div class="panel"> -->
+                        <div class="panel-body">
+                            <table class="table alt-table table-borderless">
+                                <thead>
+                                    <!-- <tr> -->
+                                        <th scope="col"></th>
+                                        <th scope="col">Reference</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Tran Type</th>
+                                        <th scope="col">Primary Account</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Contra Account</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col"></th>
+                                        <th scope="col">Action</th>
+                                    <!-- </tr> -->
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let param of PostingEntrys" (click)="set($event, param)"
+                                    [ngClass]="{'selected' : param === selectedPostingEntry}">
+                                        <td></td>
+                                        <!--td>{{param.postingKey}}</td-->
+                                        <td>{{param.transactionRef}}</td>
+                                        <td>{{param.tranClass}}</td>
+                                        <td>{{param.tranType}}</td>                                        
+                                        <td>{{param.primaryAccountNumber}}</td>
+                                        <td>{{param.primaryCurrency != null ?param.primaryCurrency.code : ''}} {{param.primaryAmount}}</td>
+                                        <!--td> {{param.primaryCurrency.code}}</td-->
+                                        <td>{{param.contraAccountNumber}}</td>
+                                        <td>{{param.tranStatus}}</td>
+                                        <td><button class="btn-outline-primary">view</button></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <img src="/assets/three-dots-more-indicator.svg" alt="Ellipse"
+                                                    class=" btn secondary dropdown-toggle" id="dropdownMenu2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    <a class="dropdown-item" (click)="editPostingEntry()">Edit</a>
+                                                    <a class="dropdown-item"
+                                                    (click)="openConfirmationDialog()">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    <!-- </div> -->
+                    <div class="clearfix p-2">
+                        <p class="text-secondary ml-1 float-left"></p>
+                        <div class="float-right">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination pg-blue">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link">1</a></li>
+                                    <li class="page-item active">
+                                        <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

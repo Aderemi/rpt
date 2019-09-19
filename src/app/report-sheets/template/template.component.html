@@ -45,11 +45,14 @@
                                           <!-- <th>JsonContent</th>
                                           <th>HTML</th> -->
                                           <th></th>
+                                          <th></th>
+                                          <th></th>
                                         </thead>
                                         <tbody #tableList>
                                           <tr *ngFor="let item of templates">
                                             <td>{{item.name}}</td>
                                             <td>{{item.description | stringLength:35}}</td>
+                                            <td><a data-toggle="modal" data-target="#milestone-modal"> <span><i class="flaticon-view"></i></span></a></td>
                                             <td><a (click)="updateTemplate(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
                                             <td><a class="btn-remove" (click)="Delete(item.id)"></a></td>
                                           </tr>
@@ -66,6 +69,58 @@
 
     </div>
   </div>
+
+
+
+  <div class="modal fade" id="milestone-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-md-12 p-0">
+
+          <div class="card-body form-card">
+            <div class="panel-heading" role="tab" id="headingBasic">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="float-left form-icon text-center mr-3">
+                    <span class="flaticon-paper  primary-color"></span>
+                  </div>
+                  <h4 class="panel-title  font-weight-bold secondary-color mb-1">
+                    Template View
+                  </h4>
+                </div>
+
+                <div class="col-md-3">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body p-0">
+        <div class="container p-2">
+          <div class="col-md-10  m-auto">
+           <div class="form-body">
+
+
+
+         
+           </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 
@@ -131,9 +186,64 @@
 
                       </div>
 
+                      <div class="row pl-3">
+                        <div class="col-md-2">
+                          <label for="DesignTemplate">Design Template</label>
+                        </div>
+                        <div class="col-md-2">
+                          <input type="radio" class="radio" id="manually" name="drone" [checked]="isBuilder"
+                            (click)="setradio('manually')">
+                          <label class="labelradio ml-2" for="manually">Template Builder</label>
+                        </div>
+                        <div class="col-md-2">
+                          <input type="radio" class="radio" id="builder" name="drone" [checked]="!isBuilder"
+                            (click)="setradio('builder')">
+                          <label class="labelradio ml-2" for="builder">Upload Template</label>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
-                  <div id="zb-editor" style="margin-left: 50px" class="mb-4"></div>
+                  
+                  <div class="panel-body build col-sm-12 col-md-12" *ngIf="isBuilder">
+                    <div class="row">
+                      <div class="col-md-10 offset-md-1">
+                        <h6 class="font-weight-bold">
+                          Template Builder
+                        </h6>
+                      </div>
+                    </div>
+                    <div id="zb-editor" style="margin-left: 50px" class="mb-4 mt-4"></div>                 
+
+                    </div>
+                  <div class="panel-body build col-sm-12 col-md-10 offset-md-1" *ngIf="!isBuilder">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h6 class="font-weight-bold">
+                          Template Loader
+                        </h6>
+                      </div>
+                    </div>
+
+                    <div class="row mt-4">                      
+                      <div class="col-md-2">
+                        <label for="table-1-alias">Upload Template</label> &nbsp;
+
+                        <button (click)="file.click()" class="btn btn-light search" type="file" ><img src="../../assets/icons/attach-icon.svg"
+                          alt="attachment"> &nbsp; choose file</button>
+              
+                          <input hidden #file type="file" id="file" (change)="onFileChange($event)">
+
+                        <!-- <input type="file" class="form-control search" id="file"> -->
+                      </div>
+
+                      <!-- <div class="col-md-3 mt-auto"> -->
+                        <button id="add-file" class="btn btn-outline-success btn-block">{{uploadState}}</button>
+                      <!-- </div> -->
+
+                    </div>
+                    </div>
+      
 
 
                 <!-- nav-bar -->

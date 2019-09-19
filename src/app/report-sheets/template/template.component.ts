@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ReportService} from 'src/app/service/report.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {environment} from '../../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
+
 declare var $:any;
 @Component({
   selector: 'app-template',
@@ -16,8 +18,12 @@ export class TemplateComponent implements OnInit {
   tem;
   template;
   editorData;
+  isBuilder = true;
+  private selectedLink;
+  file:File;
+
   // template:ReportTemplate = new ReportTemplate();
-  constructor(private reportserv: ReportService, private router: Router, private route: ActivatedRoute, ) {
+  constructor(private reportserv: ReportService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService ) {
   }
 
   ngOnInit() {
@@ -65,23 +71,42 @@ export class TemplateComponent implements OnInit {
     return placeholders;
   }
 
+  form
   processForm() {
-    this.tem.placeholders = this.getPlaceholder(this.editorData.blocks);
-    this.tem.jsonContent = JSON.stringify(this.editorData.blocks);
-    this.tem.html = this.editorData.html;
-    console.log(this.tem);
+    if (this.isBuilder ){
+      this.tem.placeholders = this.getPlaceholder(this.editorData.blocks);
+      this.tem.jsonContent = JSON.stringify(this.editorData.blocks);
+      this.tem.html = this.editorData.html;
+    }     
+
     if (this.tem.id == undefined) {
       this.reportserv.createTemplate(this.tem).subscribe((template) => {
-        this.view = 1;
+        this.view = 0;
+        this.form = 'saved';
+        this.toastr.success( this.form, 'Successfully uploaded!', {
+          timeOut: 4000
+        });
         this.ngOnInit();
       }, (error) => {
+        this.form = 'failed';
+        this.toastr.success( this.form, 'to save!', {
+          timeOut: 4000
+        });
         console.log(error);
       });
     } else {
       this.reportserv.updateTemplate(this.tem).subscribe((template) => {
-        this.view = 1;
+        this.view = 0;
+        this.form = 'saved';
+        this.toastr.success( this.form, 'Successfully uploaded!', {
+          timeOut: 4000
+        });        
         this.ngOnInit();
       }, (error) => {
+        this.form = 'failed';
+        this.toastr.success( this.form, 'to save!', {
+          timeOut: 4000
+        });
         console.log(error);
       });
     }
@@ -92,6 +117,7 @@ export class TemplateComponent implements OnInit {
     this.view = 1;
     this.tem = {};
     this.attachBuilder();
+    this.uploadState = 'Empty';
   }
 
   attachBuilder() {
@@ -113,4 +139,69 @@ export class TemplateComponent implements OnInit {
   Cancel() {
     this.view = 0;
   }
+
+
+  setradio(e: string): void {
+    this.selectedLink = e;
+    if (e == 'manually') {
+      this.isBuilder =  true;
+      this.attachBuilder();
+    } else {
+      this.isBuilder = false;
+    }
+  }
+
+  isSelected(name: string): boolean {
+      return (this.selectedLink === name); // if current radio button is selected, return true, else return false
+  }
+  base64String;
+  uploadState = 'Empty';
+
+  onFileChange(event) {
+    const self = this;
+    let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      // uploading
+      self.file = event.target.files[0];
+      self.uploadState = 'Uploading...'+ self.file.name;
+      reader.readAsDataURL(self.file);
+      reader.onload = () => {
+        // done
+        self.uploadState = 'Upload Done!!!'+ self.file.name;
+        self.toastr.success( self.file.name, 'Successfully uploaded!', {
+          timeOut: 4000
+        });
+        self.tem.fileContent = reader.result;       
+      };
+      reader.onerror = function (error) {
+        // error        
+        self.uploadState = 'Error!!!';
+        self.toastr.error( self.file.name, 'failed to uploaded!', {
+          timeOut: 4000
+        });
+        throw new Error(reader.error.toString());      
+      };      
+      };
+    }
+  // }
+  
+  // getFile(){
+  //   const self = this;
+  //   document.getElementById('add-file').addEventListener('click', function() {
+  //     let files = document.getElementById('file').files;
+  //     if (files.length > 0) {
+  //       getBase64(files[0]);
+  //     }
+  //   });
+  //   function getBase64(file) {
+  //      let reader = new FileReader();
+  //      reader.readAsDataURL(file);
+  //      reader.onload = function () {
+  //        self.tem.file_content = reader.result;
+  //      };
+  //      reader.onerror = function (error) {
+  //        throw new Error(reader.error.toString());
+  //      };
+  //   }
+  // }
 }
