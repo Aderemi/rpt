@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Response, Report, ReportConnection, ReportQueries, SingleDataResponse, ReportGroup, ReportTemplate } from '../class/report';
+import {
+  Response, Report, ReportConnection, ReportQueries, SingleDataResponse, ReportGroup, ReportTemplate,
+  ReportDownload
+} from '../class/report';
 
 
 
@@ -9,7 +12,7 @@ import { Response, Report, ReportConnection, ReportQueries, SingleDataResponse, 
 })
 export class ReportService {
 
-  baseUrl: String = `http://192.168.1.175:8081/api`;
+  baseUrl: String = `http://localhost:8091/api`;
 
   private reportGroup:ReportGroup = new ReportGroup();
   // private reportconn:ReportConnection = new ReportConnection();
@@ -54,6 +57,10 @@ export class ReportService {
 
   getReport(id: number) {
     return this._http.get<SingleDataResponse<Report>>(this.baseUrl + '/report/' + id);
+  }
+
+  saveReportingSchedule(rpt: ReportDownload) {
+    return this._http.post(this.baseUrl + '/report/download', rpt);
   }
 
   getReportGroup(id: number) {
@@ -120,27 +127,31 @@ export class ReportService {
     return this._http.put(this.baseUrl + '/report/connection', connection);
   }
 
-
   // template
-  getTemplates(){
+  getTemplates() {
     return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/templates');
   }
-  getTemplate(id:number){
+
+  getTemplate(id:number) {
     return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/template/' + id);
   }
 
-  createTemplate(template){
+  getTemplateHtml(id:number) {
+    return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/template/' + id + '/html');
+  }
+
+  createTemplate(template) {
     return this._http.post(this.baseUrl+ '/report/template', template);
   }
-  deleteTemplate(id:number){
+  deleteTemplate(id:number) {
     return this._http.delete(this.baseUrl+ '/report/template/' + id);
   }
 
-  updateTemplate(template){
+  updateTemplate(template) {
     return this._http.put(this.baseUrl+ '/report/template', template);
   }
 
-  setter(reportGroup:ReportGroup){
+  setter(reportGroup:ReportGroup) {
     this.reportGroup = reportGroup;
   }
   getter(){

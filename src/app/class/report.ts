@@ -1,10 +1,11 @@
+import {Time} from "@angular/common";
 export interface Report {
     id?:number;
     name?:string;
     title?:string;
     description?: string;
     queryIds?: string[];
-    template?: string;
+    templateId?: number;
     group?: ReportGroup;
     templateType?: string;
     defaultExportType?: string;
@@ -19,6 +20,7 @@ export interface ReportDownload {
     schedule?: string;
     scheduleStart?: string;
     scheduleStop?: string;
+    time?: Time;
 }
 
 export interface ReportConnection{

@@ -12,6 +12,7 @@ import * as $ from 'jquery';
 import { ReportService } from '../service/report.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Report, ReportDownload, ReportGroup, ReportQueries, ReportTemplate} from '../class/report';
+import {environment} from "../../environments/environment";
 declare const require: any;
 const jsPDF = require('jspdf');
 // require('jspdf-autotable');
@@ -36,14 +37,9 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./report-sheets.component.css']
 })
 export class ReportSheetsComponent implements OnInit {
-// schedule: once, daily, weekly, monthly and yearly
-// start_from: date
-// end_by: date optional
 
   constructor(
-    //  private http:HttpClient,
-    private reportserv: ReportService, private router: Router, private route: ActivatedRoute,
-    private cust: CustomService) { }
+    private reportserv: ReportService) { }
 
   view;
   views;
@@ -60,6 +56,7 @@ export class ReportSheetsComponent implements OnInit {
   isIndividual;
   isGroup;
   dtOptions: any = {};
+  roles: any[];
   reportDownload: ReportDownload = {};
   queries: ReportQueries[];
   templates: ReportTemplate[];
@@ -121,10 +118,35 @@ export class ReportSheetsComponent implements OnInit {
     });
   }
 
+  openForDownload(reportId) {
+    const self = this;
+    this.reportserv.getReport(reportId).subscribe((res) => {
+      this.report = res.data;
+    });
+  }
+
+  schedule() {
+    const self = this;
+    const download = () => {
+      const linkEl = document.createElement('a');
+      linkEl.href = environment.api + 'api/report/download/'
+        + self.report.id + '/'
+        + this.reportDownload.filetype;
+      linkEl.target = 'Blank';
+
+      linkEl.download = self.report.title +  '.' + self.reportDownload.filetype;
+      debugger;
+      linkEl.click();
+    };
+    if (this.reportDownload.schedule) {
+      this.reportserv.saveReportingSchedule(this.reportDownload).subscribe((response) => {});
+    }
+    download();
+  }
+
   updateReport(reportId) {
     this.reportserv.getReport(reportId).subscribe((res) => {
       this.report = res.data;
-      console.log(this.report);
     });
     this.toview = 1;
   }

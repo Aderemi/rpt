@@ -256,7 +256,12 @@ var ZBuilder;
                 return _this.options.onError({ message: message, code: code });
             };
             ZBuilder.Fields.BaseField.registerCommonFields();
-            this.$editor = $editor;
+            var $innerEditor = $('<div id="burna"></div>');
+            var $innerControl = $('<div id="burna-control"></div>');
+            $editor.append($innerControl);
+            $editor.append($innerEditor);
+            this.$editor = $editor.find('#burna');
+            this.$control = $editor.find('#burna-control');
             this.$editor.addClass(ZBuilder.Selectors.classEditor);
             this.options = new ZBuilder.EditorOptions(options);
             this.container = this.createContainer();
@@ -435,8 +440,8 @@ var ZBuilder;
             this.compactToolsWidth = 768;
             this.ignoreHtml = null;
             this.htmlToolsButtons = null;
-            this.apiRoot = "http://localhost:8081";
-            this.queryApi = "http://localhost:8081/api/report/queries";
+            this.apiRoot = "http://localhost:8091";
+            this.queryApi = "http://localhost:8091/api/report/queries";
             this.templatesUrl = options.templatesUrl || this.templatesUrl;
             this.onLoad = options.onLoad || options.onload;
             this.onChange = options.onChange;
@@ -901,7 +906,11 @@ var ZBuilder;
         var ContainerField = (function (_super) {
             __extends(ContainerField, _super);
             function ContainerField() {
-                return _super !== null && _super.apply(this, arguments) || this;
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.minWidth = 40;
+                _this.minHeight = 10;
+                _this.dragging = false;
+                return _this;
             }
             ContainerField.prototype.bind = function () {
                 var _this = this;
@@ -921,11 +930,48 @@ var ZBuilder;
             ContainerField.prototype.updateBlocks = function () {
                 this.updateProperty('blocks', this.container.getData(true), true);
                 this.updateProperty('html', this.container.getHtml(), true);
-                this.updateProperty('width', this.$field.width(), true);
-                this.updateProperty('height', this.$field.height(), true);
+            };
+            ContainerField.prototype.resize = function (offsetY, offsetX) {
+                var width = this.$field.width() + offsetX;
+                var height = this.$field.height() + offsetY;
+                if (width > this.minWidth) {
+                    this.$field.width(width);
+                    this.updateProperty('width', width);
+                }
+                if (height > this.minHeight) {
+                    this.$field.height(height);
+                    this.updateProperty('height', height);
+                }
+            };
+            ContainerField.prototype.select = function () {
+                var self = this;
+                var $resizer = $('<div class="resizer"></div>');
+                $resizer.on('mousedown', function (ev) {
+                    ev.preventDefault();
+                    self.dragging = true;
+                    self.originalWidth = self.$field.width();
+                    self.originalHiegth = self.$field.height();
+                    self.originalX = ev.pageX;
+                    self.originalY = ev.pageY;
+                    $(window).on('mouseup', function (e) {
+                        $(window).unbind('mousemove');
+                        self.dragging = false;
+                    });
+                    $(window).on('mousemove', function (e) {
+                        if (!self.dragging)
+                            return;
+                        self.resize(e.pageY - self.originalY, e.pageX - self.originalX);
+                        self.originalX = e.pageX;
+                        self.originalY = e.pageY;
+                    });
+                });
+                if (this.$field.find('.resizer').length < 1)
+                    this.$field.append($resizer);
+                _super.prototype.select.call(this);
             };
             ContainerField.prototype.deselect = function () {
                 this.container.blocks.forEach(function (b) { return b.deselect(); });
+                this.$field.find('.resizer').each(function (ind, ele) { return ele.remove(); });
                 this.$field.removeClass(ZBuilder.Selectors.selectorFieldSelected);
             };
             ContainerField.prototype.getEl = function () {
@@ -1303,7 +1349,7 @@ var ZBuilder;
             };
             PlaceholderField.prototype.getQueryResults = function (queryId) {
                 var _this = this;
-                var url = "http://localhost:8081/api/report/query/0/" + queryId + "/run/html";
+                var url = "http://localhost:8091/api/report/query/0/" + queryId + "/run/html/limit/5";
                 return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
                     var params, data, err_1;
                     return __generator(this, function (_a) {
@@ -1754,6 +1800,10 @@ var ZBuilder;
             this.buttons = [
                 { icon: 'bold', command: 'Bold', range: true, aValueArgument: null },
                 { icon: 'italic', command: 'Italic', range: true, aValueArgument: null },
+                { icon: 'align-left', command: 'justifyLeft', range: true, aValueArgument: null },
+                { icon: 'align-right', command: 'justifyRight', range: true, aValueArgument: null },
+                { icon: 'align-center', command: 'justifyCenter', range: true, aValueArgument: null },
+                { icon: 'align-justify', command: 'justifyFull', range: true, aValueArgument: null },
                 { icon: 'link', command: 'CreateLink', range: true, aValueArgument: null },
                 { icon: 'list-ul', command: 'insertUnorderedList', range: true, aValueArgument: null },
                 { icon: 'list-ol', command: 'insertOrderedList', range: true, aValueArgument: null },
@@ -2014,7 +2064,7 @@ var ZBuilder;
         Selectors.selectorContentEditable = 'contenteditable';
         Selectors.attrField = 'data-usl-field';
         Selectors.selectorField = "[" + Selectors.attrField + "]";
-        Selectors.classEditor = 'usl-editor';
+        Selectors.classEditor = 'usl-editor usl-portrait-paper';
         Selectors.classTemplate = 'usl-template';
         Selectors.selectorTemplate = "." + Selectors.classTemplate;
         Selectors.classTemplateGroup = 'usl-template-group';
@@ -2060,7 +2110,7 @@ var ZBuilder;
             this.$toolsLoader = $('<div class="usl-tools-loader"><b><span style="padding-right: 5px; padding-left: 5px"> Loading... </span></b></div>');
             this.$toolsHideBtn = $('<button type="button" class="usl-tools-toggle" style="display: none"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAq1BMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADU4c3GAAAAOHRSTlMAHEA0WLHl5iziHh3ullFQIaMMpXmnBa72dh8asEk3wTlIPD3h4zXnILi3VVqDWero7C3tXCjw6etREhUAAACaSURBVBjTjYxHFoMwDESFsS1M7zW99164/8mCgPeyyCaz0czXSAA/0gYTGlaCdmCSE2PpNHldlDsREhlJvwZIijQToQio4tQ1A1kdcl9s7e4NO7OLBcc828j+MbtiCXBK46gHHA0wtSpG7ZsNfNlRn/d4g6d8GMi77NL+faeS24Kl3lhOZ7pqgZqvqMxRn3VgqhYeTU+pIfyhD5LJCT7GrAJ7AAAAAElFTkSuQmCC"></div></button>');
             this.$tools.append([this.$toolsTemplates, this.$toolsHideBtn, this.$toolsLoader]);
-            this.editor.$editor.append(this.$tools);
+            this.editor.$control.append(this.$tools);
             if (this.isCompactTools) {
                 this.$tools.addClass("usl-tools-templates-compact");
                 this.toggleTools();
@@ -2114,7 +2164,35 @@ var ZBuilder;
                 $li.append($group);
                 _this.$toolsTemplates.append($li);
             });
+            this.addExtraTools();
         };
+        UI.prototype.addExtraTools = function () {
+            var editor = this.editor;
+            var $header = $("<a class='" + ZBuilder.Selectors.classTemplateGroup + " nav-link dropdown-toggle bond put' href=\"#\" id=\"navbarDropdownMenuLink\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Orientation</a>");
+            var $li = $('<li class=" nav-item dropdown "></li>');
+            var $group = $('<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"></div>');
+            $li.append($header);
+            var $portrait = $("<div class='" + ZBuilder.Selectors.classTemplate + "'><a  class=\"dropdown-item\">Portrait</a></div>");
+            $portrait.attr('title', 'Set document type to portrait');
+            $portrait.on('click', function (ev) {
+                editor.$editor.removeClass('usl-landscape-paper');
+                editor.$editor.addClass('usl-portrait-paper');
+                // ev.stopPropagation();
+                // return false;
+            });
+            var $landscape = $("<div class='" + ZBuilder.Selectors.classTemplate + "'><a  class=\"dropdown-item\">Landscape</a></div>");
+            $landscape.attr('title', 'Set document type to portrait');
+            $landscape.on('click', function (ev) {
+                editor.$editor.removeClass('usl-portrait-paper');
+                editor.$editor.addClass('usl-landscape-paper');
+                // ev.stopPropagation();
+                // return false;
+            });
+            $group.append($portrait).append($landscape);
+            $li.append($group);
+            this.$toolsTemplates.append($li);
+        };
+
         UI.prototype.hideGroup = function () {
             this.$toolsTemplates.find('.group-children-xyz').hide();
         };

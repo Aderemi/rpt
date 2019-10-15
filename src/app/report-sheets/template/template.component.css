@@ -1,6 +1,6 @@
 tr, td{
     padding: 0.2rem 0.4rem;
-   
+
 }
 
 thead th{
@@ -18,7 +18,14 @@ td{
 
  .nav-item{
     padding: 0.7rem
-} 
+}
+#template-view-panel #burna {
+    border: solid 1px gray;
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px;
+    box-shadow: 1px 1px gray;
+}
 /* .nav-item a , */
 .put{
     padding: 0.5rem;
@@ -37,11 +44,11 @@ td{
 
 .dropdown-toggle::after {
     margin-left: 4.255em !important;
-   
+
 }
 .bond::after {
     margin-left: 8.255em !important;
-   
+
 }
 .navbar-collapse{
     padding-left: 5.68rem;

@@ -421,14 +421,16 @@ joinsValues = [
     const columnElem: HTMLFormElement = this.document.getElementById('filter-columns') as HTMLFormElement;
     const column = columnElem.options[columnElem.selectedIndex].value;
     const conditionElem: HTMLFormElement = this.document.getElementById('conditions') as HTMLFormElement;
+    const orElem: HTMLFormElement = this.document.getElementById('or') as HTMLFormElement;
     const op = conditionElem.options[conditionElem.selectedIndex].value;
     const value: HTMLFormElement = (this.document.getElementById('values') as HTMLFormElement).value;
-    console.log(value);
-    this.oracleQueryBuilder.addWhere(column, op, value, null);
+    const andOr = orElem && orElem.checked ? 'OR' : 'AND';
+    this.oracleQueryBuilder.addWhere(column, op, value, andOr);
     this.userFilter = this.oracleQueryBuilder.getUserData('where');
     this.updateRawCodeBox();
     this.clearFieldsById([ 'values', 'filter-columns__select', 'conditions__select'])
   }
+
   groupby
 
   addGroup() {

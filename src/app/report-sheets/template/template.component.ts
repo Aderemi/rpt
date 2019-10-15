@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ReportService} from 'src/app/service/report.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import {DOCUMENT} from "@angular/common";
 
 declare var $:any;
 @Component({
@@ -13,6 +14,7 @@ declare var $:any;
 
 export class TemplateComponent implements OnInit {
   view;
+  previewTemp;
   templates;
   dbms;
   tem;
@@ -23,7 +25,7 @@ export class TemplateComponent implements OnInit {
   file:File;
 
   // template:ReportTemplate = new ReportTemplate();
-  constructor(private reportserv: ReportService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService ) {
+  constructor(private reportserv: ReportService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService, @Inject(DOCUMENT)  private document: Document) {
   }
 
   ngOnInit() {
@@ -39,6 +41,11 @@ export class TemplateComponent implements OnInit {
     });
   }
 
+  getTemplateHtml(templateId) {
+    this.reportserv.getTemplateHtml(templateId).subscribe(response => {
+       this.document.getElementById("template-view-panel").innerHTML = response.data.html;
+    });
+  }
 
   Delete(templateId) {
     this.reportserv.deleteTemplate(templateId).subscribe((response => {
@@ -63,7 +70,7 @@ export class TemplateComponent implements OnInit {
       if (block.template == 'Embed') {
         block.fields.forEach(field => {
           if (field.type == 'placeholder') {
-            placeholders.push(field.queryId);
+            placeholders.push(Number(field.queryId));
           }
         });
       }
@@ -77,7 +84,7 @@ export class TemplateComponent implements OnInit {
       this.tem.placeholders = this.getPlaceholder(this.editorData.blocks);
       this.tem.jsonContent = JSON.stringify(this.editorData.blocks);
       this.tem.html = this.editorData.html;
-    }     
+    }
 
     if (this.tem.id == undefined) {
       this.reportserv.createTemplate(this.tem).subscribe((template) => {
@@ -100,7 +107,7 @@ export class TemplateComponent implements OnInit {
         this.form = 'saved';
         this.toastr.success( this.form, 'Successfully uploaded!', {
           timeOut: 4000
-        });        
+        });
         this.ngOnInit();
       }, (error) => {
         this.form = 'failed';
@@ -126,7 +133,7 @@ export class TemplateComponent implements OnInit {
       $.getScript('assets/js/ZBuilder/locales/jquery.zbuilder.en.js', function () {
         $('#zb-editor').zbuilder({
           ignoreHtml: true,
-          blocksUrl: environment.api + '/api/report/template/' + self.tem.id + '/initial-block.json',
+          blocksUrl: environment.api + 'api/report/template/' + self.tem.id + '/initial-block.json',
           templatesUrl: 'assets/js/ZBuilder/templates/templates.html',
           onChange: function (data) {
             self.editorData = data;
@@ -171,20 +178,20 @@ export class TemplateComponent implements OnInit {
         self.toastr.success( self.file.name, 'Successfully uploaded!', {
           timeOut: 4000
         });
-        self.tem.fileContent = reader.result;       
+        self.tem.fileContent = reader.result;
       };
       reader.onerror = function (error) {
-        // error        
+        // error
         self.uploadState = 'Error!!!';
         self.toastr.error( self.file.name, 'failed to uploaded!', {
           timeOut: 4000
         });
-        throw new Error(reader.error.toString());      
-      };      
+        throw new Error(reader.error.toString());
+      };
       };
     }
   // }
-  
+
   // getFile(){
   //   const self = this;
   //   document.getElementById('add-file').addEventListener('click', function() {

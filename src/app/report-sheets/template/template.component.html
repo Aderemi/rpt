@@ -52,7 +52,7 @@
                                           <tr *ngFor="let item of templates">
                                             <td>{{item.name}}</td>
                                             <td>{{item.description | stringLength:35}}</td>
-                                            <td><a data-toggle="modal" data-target="#milestone-modal"> <span><i class="flaticon-view"></i></span></a></td>
+                                            <td><a data-toggle="modal" data-target="#milestone-modal" (click)="getTemplateHtml(item.id)"> <span><i class="flaticon-view"></i></span></a></td>
                                             <td><a (click)="updateTemplate(item.id)"> <span><i class="flaticon-pencil"></i></span></a></td>
                                             <td><a class="btn-remove" (click)="Delete(item.id)"></a></td>
                                           </tr>
@@ -69,9 +69,6 @@
 
     </div>
   </div>
-
-
-
   <div class="modal fade" id="milestone-modal" tabindex="-1" role="dialog" aria-labelledby="workflow-modalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -89,6 +86,7 @@
                   <h4 class="panel-title  font-weight-bold secondary-color mb-1">
                     Template View
                   </h4>
+                  <div class="panel-body" id="template-view-panel"></div>
                 </div>
 
                 <div class="col-md-3">
@@ -107,9 +105,6 @@
           <div class="col-md-10  m-auto">
            <div class="form-body">
 
-
-
-         
            </div>
           </div>
         </div>
@@ -204,7 +199,7 @@
 
                     </div>
                   </div>
-                  
+
                   <div class="panel-body build col-sm-12 col-md-12" *ngIf="isBuilder">
                     <div class="row">
                       <div class="col-md-10 offset-md-1">
@@ -213,7 +208,7 @@
                         </h6>
                       </div>
                     </div>
-                    <div id="zb-editor" style="margin-left: 50px" class="mb-4 mt-4"></div>                 
+                    <div id="zb-editor" style="margin-left: 50px" class="mb-4 mt-4"></div>
 
                     </div>
                   <div class="panel-body build col-sm-12 col-md-10 offset-md-1" *ngIf="!isBuilder">
@@ -225,26 +220,24 @@
                       </div>
                     </div>
 
-                    <div class="row mt-4">                      
+                    <div class="row mt-4">
                       <div class="col-md-2">
                         <label for="table-1-alias">Upload Template</label> &nbsp;
 
                         <button (click)="file.click()" class="btn btn-light search" type="file" ><img src="../../assets/icons/attach-icon.svg"
                           alt="attachment"> &nbsp; choose file</button>
-              
+
                           <input hidden #file type="file" id="file" (change)="onFileChange($event)">
 
+                       <div class="col-md-3 mt-auto">
+                        <button id="add-file" class="btn btn-outline-success btn-block">{{uploadState}}</button>
+                       </div>
                         <!-- <input type="file" class="form-control search" id="file"> -->
                       </div>
 
-                      <!-- <div class="col-md-3 mt-auto"> -->
-                        <button id="add-file" class="btn btn-outline-success btn-block">{{uploadState}}</button>
-                      <!-- </div> -->
 
                     </div>
                     </div>
-      
-
 
                 <!-- nav-bar -->
                         <!--<nav class="navbar navbar-expand-lg navbar-light bg-light p-0 mb-4">-->
