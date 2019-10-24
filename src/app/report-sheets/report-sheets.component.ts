@@ -131,15 +131,15 @@ export class ReportSheetsComponent implements OnInit {
       const linkEl = document.createElement('a');
       linkEl.href = environment.api + 'api/report/download/'
         + self.report.id + '/'
-        + this.reportDownload.filetype;
+        + self.reportDownload.filetype;
       linkEl.target = 'Blank';
 
       linkEl.download = self.report.title +  '.' + self.reportDownload.filetype;
-      debugger;
       linkEl.click();
     };
-    if (this.reportDownload.schedule) {
-      this.reportserv.saveReportingSchedule(this.reportDownload).subscribe((response) => {});
+    if (self.reportDownload.schedule) {
+      self.reportDownload.report_id = self.report.id;
+      self.reportserv.saveReportingSchedule(self.reportDownload).subscribe((response) => {});
     }
     download();
   }

@@ -54,14 +54,14 @@ export interface ReportQueries{
     type?: string;
 }
 
-export interface Response<T>{
+export interface Response<T> {
     status: string;
     code: number;
     data?: T[];
     message: string;
 }
 
-export interface SingleDataResponse<T>{
+export interface SingleDataResponse<T> {
     status: string;
     code: number;
     data?: T;
@@ -75,7 +75,8 @@ export interface ReportGroup{
     description?: string;
     reports?: Report;
 }
-export class ReportGroup{
+
+export class ReportGroup {
     id?: number;
     name?: string;
     code?: string;
@@ -83,7 +84,7 @@ export class ReportGroup{
     reports?: Report;
 }
 
-export interface ReportTemplate{
+export interface ReportTemplate {
     id:number;
     name:string;
     placeholders: string[];

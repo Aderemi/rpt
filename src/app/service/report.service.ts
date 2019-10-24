@@ -82,12 +82,15 @@ export class ReportService {
   getQueries() {
     return this._http.get<Response<ReportQueries>>(this.baseUrl + '/report/queries');
   }
+
   getQuery(id: number) {
     return this._http.get<SingleDataResponse<ReportQueries>>(this.baseUrl + '/report/query/' + id);
   }
+
   createQuery(query) {
     return this._http.post(this.baseUrl + '/report/query', query);
   }
+
   updateQuery(query) {
     return this._http.put(this.baseUrl + '/report/query', query);
   }
@@ -96,18 +99,14 @@ export class ReportService {
     return this._http.delete(this.baseUrl + '/report/query/' + id);
   }
 
-
-  // dbms
   getDBMS() {
     return this._http.get<string[]>(this.baseUrl + '/report/query/dbms');
   }
 
-
-  // connections
-
   getConnections() {
     return this._http.get<Response<ReportConnection>>(this.baseUrl + '/report/connections');
   }
+
   getConnection(id: number) {
     return this._http.get<Response<ReportConnection>>(this.baseUrl + '/report/connection/' + id);
   }
@@ -119,6 +118,7 @@ export class ReportService {
   testConnection(connection) {
     return this._http.post<SingleDataResponse<boolean>>(this.baseUrl + '/report/connection/test', connection);
   }
+
   deleteConnection(id: number) {
     return this._http.delete(this.baseUrl + '/report/connection/' + id);
   }
@@ -127,7 +127,6 @@ export class ReportService {
     return this._http.put(this.baseUrl + '/report/connection', connection);
   }
 
-  // template
   getTemplates() {
     return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/templates');
   }
@@ -137,12 +136,13 @@ export class ReportService {
   }
 
   getTemplateHtml(id:number) {
-    return this._http.get<Response<ReportTemplate>>(this.baseUrl+ '/report/template/' + id + '/html');
+    return this._http.get<SingleDataResponse<ReportTemplate>>(this.baseUrl+ '/report/template/' + id + '/html');
   }
 
   createTemplate(template) {
     return this._http.post(this.baseUrl+ '/report/template', template);
   }
+
   deleteTemplate(id:number) {
     return this._http.delete(this.baseUrl+ '/report/template/' + id);
   }
@@ -154,6 +154,7 @@ export class ReportService {
   setter(reportGroup:ReportGroup) {
     this.reportGroup = reportGroup;
   }
+
   getter(){
     return this.reportGroup;
   }
