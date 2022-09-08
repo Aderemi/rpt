@@ -37,7 +37,7 @@
     "jquery": "^3.4.1",
     "jspdf": "^1.5.3",
     "jspdf-autotable": "^3.2.4",
-    "jszip": "^3.2.2",
+    "jszip": "^3.7.0",
     "ng-quill": "^4.5.1",
     "ngx-quill": "^7.2.0",
     "ngx-select-dropdown": "^1.0.1",
